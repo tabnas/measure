@@ -41,6 +41,19 @@ make measure
 `make measure` records a full run under `results/runs/`, refreshes
 `results/latest/`, updates the catalog, and rebuilds the Pages history data.
 
+For repeated measurements across a fleet, assign each physical machine or
+runner pool a stable ID and an optional readable label:
+
+```sh
+make measure HOST_ID=lab-m3-01 HOST_LABEL='Intel m3 lab laptop'
+```
+
+The defaults are the observed hostname for both fields. The equivalent
+environment variables are `TABNAS_MEASURE_HOST_ID` and
+`TABNAS_MEASURE_HOST_LABEL`. Keep `HOST_ID` stable: history uses it to group
+repeated observations, while the separate environment fingerprint starts a
+new comparable series after hardware, kernel, or OS changes.
+
 To record a parser release, pin its version in `measure.config.json`, update
 the lockfiles, and run `make measure` from a clean commit. The
 `Record historical measurement` GitHub workflow provides the same operation on
@@ -57,14 +70,15 @@ case or port.
 - Raw per-port JSON is retained; matrices are derived from it.
 - Every run snapshots its config, schemas, manifests, and exact generated
   inputs, so later suite changes cannot reinterpret old measurements.
-- Historical runs are immutable and cataloged by suite version, per-port parser
-  version, port set, repository commit, and environment fingerprint.
+- Historical runs are immutable and cataloged by host ID, suite version,
+  per-port parser version, port set, repository commit, and environment
+  fingerprint.
 - Every performance row records the exact input hash, runtime versions,
   machine metadata, warmup policy, iterations, and raw sample durations.
 - Cross-port rows are emitted only when the input hashes match and all
   capability fixtures pass.
 - A result is descriptive of its recorded machine, not a universal ranking.
-- Trend views compare matching benchmark keys and visibly separate machine
-  fingerprints; `latest` never replaces historical data.
+- Trend views can filter by host and visibly separate host, runtime, suite, and
+  environment series; `latest` never replaces historical data.
 
 MIT licensed.

@@ -12,7 +12,7 @@
     "build": "npm run build:ts && npm run build:go",
     "build:ts": "tsc -p ports/typescript/tsconfig.json",
     "build:go": "GOWORK=off go build -trimpath -o .build/measure-go ./ports/go/cmd/measure",
-    "test": "node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run",
+    "test": "node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run && npm run site && node scripts/smoke-site.mjs",
     "measure": "node scripts/run-all.mjs --profile full --record",
     "site": "node scripts/build-site.mjs",
     "validate": "node scripts/validate-repository.mjs",

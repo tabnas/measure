@@ -57,9 +57,13 @@
             <p class="eyebrow">Retained over time</p>
             <h2 id="history-title">Release history</h2>
           </div>
-          <label>Measurement <select id="history-case"></select></label>
+          <div class="filter-controls">
+            <label>Measurement <select id="history-case"></select></label>
+            <label>Host <select id="history-host"></select></label>
+          </div>
         </div>
-        <p class="note">Series are split by suite, runtime version, and machine fingerprint. Parser versions are shown at each point.</p>
+        <p class="note">Series are split by host, environment, suite, port, and runtime. Use the host filter to isolate repeated runs from one machine or runner pool.</p>
+        <p id="history-context" class="history-context"></p>
         <div class="chart-shell">
           <svg id="history-chart" viewBox="0 0 900 340" role="img" aria-label="Historical median latency chart"></svg>
           <div id="history-legend" class="legend"></div>
@@ -71,6 +75,9 @@
           <div>
             <p class="eyebrow">Immutable archive</p>
             <h2 id="runs-title">All recorded runs</h2>
+          </div>
+          <div class="filter-controls">
+            <label>Host <select id="run-host"></select></label>
           </div>
         </div>
         <div id="run-list" class="run-list"></div>

@@ -50,8 +50,9 @@ Every run records:
 
 - repository commit or dirty marker;
 - benchmark suite and parser versions;
+- stable measurement-host ID and readable label;
 - runtime, OS distribution and kernel, architecture, CPU, logical CPU count,
-  memory, and hostname;
+  memory, and observed hostname;
 - profile parameters;
 - input sizes and SHA-256 hashes;
 - exact config, schema, benchmark-manifest, and generated-input snapshots;
@@ -67,15 +68,24 @@ evidence.
 
 The catalog retains every complete run so parser releases and newly implemented
 ports remain visible over time. Each point records its benchmark case, suite,
-port, parser version, runtime version, repository commit, and environment
-fingerprint. A comparable series holds the suite version, port, runtime version,
-and environment fingerprint constant while allowing parser version and commit
-to change. Hardware, runtime, or suite changes therefore start a visibly
-separate series rather than silently joining unlike measurements.
+port, parser version, runtime version, repository commit, host ID, and
+environment fingerprint. A comparable series holds the suite version, host ID,
+port, runtime version, and environment fingerprint constant while allowing
+parser version and commit to change. Host, hardware, runtime, or suite changes
+therefore start a visibly separate series rather than silently joining unlike
+measurements.
 
 The fingerprint covers the OS identifier, distribution name, kernel release,
 architecture, processor model, logical CPU count, and total memory. Hostname is
 reported for provenance but deliberately excluded from the fingerprint.
+
+`TABNAS_MEASURE_HOST_ID` identifies the physical host or logical runner pool;
+it defaults to the observed hostname. Set it explicitly when hostnames are
+ephemeral or hard to recognize. `TABNAS_MEASURE_HOST_LABEL` is presentation
+only and may be changed without breaking the host's time series. Two hosts with
+identical hardware remain separate because host ID is an independent series
+dimension. A hardware or OS change on one host remains separate because the
+environment fingerprint is another independent dimension.
 
 `results/latest/` is convenience output only. The source of historical truth is
 the set of immutable directories under `results/runs/`.

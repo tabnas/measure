@@ -1,5 +1,6 @@
 import { execFile } from 'node:child_process'
 import { access, cp, mkdir, rename, rm, writeFile } from 'node:fs/promises'
+import { hostname } from 'node:os'
 import { join, relative, resolve } from 'node:path'
 import { promisify } from 'node:util'
 
@@ -31,6 +32,7 @@ async function main() {
   if (options.record && options.profile !== 'full') {
     throw new Error('Only the full profile can be committed to historical results')
   }
+  const host = resolveHostIdentity()
 
   await runVisible('npm', ['run', 'build'])
 
@@ -42,7 +44,8 @@ async function main() {
   }
 
   const generatedAt = new Date().toISOString()
-  const runID = makeRunID(generatedAt, config.suiteVersion, commit)
+  const runID = makeRunID(generatedAt, host.id, config.suiteVersion, commit)
+  process.stdout.write(`Measurement host: ${host.label} [${host.id}]\n`)
   let runDirectory
   let finalDirectory
   if (options.record) {
@@ -71,6 +74,8 @@ async function main() {
       `--generated-at=${generatedAt}`,
       `--commit=${commit}`,
       `--dirty=${dirty}`,
+      `--host-id=${host.id}`,
+      `--host-label=${host.label}`,
     ]
     const { stdout, stderr } = await execute(port.command, runnerArguments, {
       cwd: repositoryRoot,
@@ -135,9 +140,29 @@ async function git(arguments_) {
   return stdout
 }
 
-function makeRunID(generatedAt, suiteVersion, commit) {
+function makeRunID(generatedAt, hostID, suiteVersion, commit) {
   const timestamp = generatedAt.replaceAll(/[-:.]/g, '').replace('000Z', 'Z')
-  return `${timestamp}-suite-${suiteVersion}-${commit.slice(0, 8)}`
+  const hostSegment = hostID
+    .toLowerCase()
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/^-|-$/g, '')
+    .slice(0, 32) || 'host'
+  return `${timestamp}-${hostSegment}-suite-${suiteVersion}-${commit.slice(0, 8)}`
+}
+
+function resolveHostIdentity() {
+  const observedHostname = hostname()
+  const hostID = process.env.TABNAS_MEASURE_HOST_ID?.trim() || observedHostname
+  const hostLabel = process.env.TABNAS_MEASURE_HOST_LABEL?.trim() || hostID
+  if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$/.test(hostID)) {
+    throw new Error(
+      'TABNAS_MEASURE_HOST_ID must be 1–64 characters using letters, numbers, dot, underscore, colon, or hyphen',
+    )
+  }
+  if (hostLabel.length > 100 || /[\u0000-\u001f\u007f]/.test(hostLabel)) {
+    throw new Error('TABNAS_MEASURE_HOST_LABEL must be 1–100 printable characters')
+  }
+  return { id: hostID, label: hostLabel }
 }
 
 async function ensureAbsent(path) {

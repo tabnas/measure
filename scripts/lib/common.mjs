@@ -34,14 +34,20 @@ export async function loadManifests(directory = join(repositoryRoot, 'benchmarks
   return manifests.sort((left, right) => left.id.localeCompare(right.id))
 }
 
-export async function validateSchema(schemaFile, value, label = schemaFile) {
-  let validate = schemaValidators.get(schemaFile)
+export async function validateSchema(
+  schemaFile,
+  value,
+  label = schemaFile,
+  schemaDirectory = join(repositoryRoot, 'schemas'),
+) {
+  const schemaPath = join(schemaDirectory, schemaFile)
+  let validate = schemaValidators.get(schemaPath)
   if (validate === undefined) {
-    const schema = await readJson(join(repositoryRoot, 'schemas', schemaFile))
+    const schema = await readJson(schemaPath)
     const ajv = new Ajv2020({ allErrors: true, strict: true })
     addFormats(ajv)
     validate = ajv.compile(schema)
-    schemaValidators.set(schemaFile, validate)
+    schemaValidators.set(schemaPath, validate)
   }
   if (!validate(value)) {
     const errors = validate.errors

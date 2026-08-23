@@ -20,11 +20,17 @@ import { summarize } from './lib/statistics.mjs'
 export async function aggregateRun(runDirectory, { write = true } = {}) {
   const absoluteRunDirectory = resolve(repositoryRoot, runDirectory)
   const definitionsDirectory = join(absoluteRunDirectory, 'definitions')
+  const schemasDirectory = join(definitionsDirectory, 'schemas')
   const config = await readJson(join(definitionsDirectory, 'measure.config.json'))
   const manifests = await loadManifests(join(definitionsDirectory, 'benchmarks'))
-  await validateSchema('config.schema.json', config, 'measure.config.json')
+  await validateSchema('config.schema.json', config, 'measure.config.json', schemasDirectory)
   for (const manifest of manifests) {
-    await validateSchema('benchmark.schema.json', manifest, `benchmark ${manifest.id}`)
+    await validateSchema(
+      'benchmark.schema.json',
+      manifest,
+      `benchmark ${manifest.id}`,
+      schemasDirectory,
+    )
   }
 
   const rawDirectory = join(absoluteRunDirectory, 'raw')
@@ -36,7 +42,7 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
   const rawByPort = new Map()
   for (const entry of rawEntries) {
     const raw = await readJson(join(rawDirectory, entry))
-    await validateSchema('port-result.schema.json', raw, `raw result ${entry}`)
+    await validateSchema('port-result.schema.json', raw, `raw result ${entry}`, schemasDirectory)
     assert(!rawByPort.has(raw.port.id), `Duplicate raw result for port ${raw.port.id}`)
     rawByPort.set(raw.port.id, raw)
   }
@@ -182,7 +188,7 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
 
   const matrix = {
     $schema: 'https://tabnas.github.io/measure/schemas/matrix.schema.json',
-    schemaVersion: 1,
+    schemaVersion: rawResults[0].schemaVersion,
     run: canonicalRun,
     ports: rawResults.map((raw) => ({ ...raw.port, environment: raw.environment })),
     benchmarks: manifests.map((manifest) => ({
@@ -195,7 +201,12 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
     capabilityMatrix,
     performanceMatrix,
   }
-  await validateSchema('matrix.schema.json', matrix, `matrix ${canonicalRun.id}`)
+  await validateSchema(
+    'matrix.schema.json',
+    matrix,
+    `matrix ${canonicalRun.id}`,
+    schemasDirectory,
+  )
   const report = renderReport(matrix)
   if (write) {
     await writeJson(join(absoluteRunDirectory, 'matrix.json'), matrix)
@@ -221,6 +232,13 @@ function validatePortMetadata(raw, config) {
 
 export function renderReport(matrix) {
   const environment = matrix.ports[0].environment
+  const hostRows = Object.hasOwn(environment, 'hostId')
+    ? [
+        `| Host | ${markdownValue(environment.hostLabel)} |`,
+        `| Host ID | ${markdownValue(environment.hostId)} |`,
+        `| Observed hostname | ${markdownValue(environment.hostname)} |`,
+      ]
+    : [`| Hostname | ${markdownValue(environment.hostname)} |`]
   const lines = [
     `# Tabnas measurement — ${matrix.run.id}`,
     '',
@@ -232,7 +250,7 @@ export function renderReport(matrix) {
     '',
     '| Field | Value |',
     '| --- | --- |',
-    `| Hostname | ${markdownValue(environment.hostname)} |`,
+    ...hostRows,
     `| Operating system | ${markdownValue(`${environment.osName} (${environment.os}/${environment.arch})`)} |`,
     `| Kernel | ${markdownValue(environment.kernelVersion)} |`,
     `| Processor | ${markdownValue(environment.cpu)} |`,

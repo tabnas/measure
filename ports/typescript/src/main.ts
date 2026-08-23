@@ -59,13 +59,14 @@ async function main(): Promise<void> {
   const osName = await operatingSystemName(os)
   const kernelVersion = release()
   const architecture = canonicalArchitecture(arch())
+  const observedHostname = hostname()
   const fingerprint = sha256(
     JSON.stringify({ os, osName, kernelVersion, arch: architecture, cpu, logicalCpus, memoryBytes }),
   )
 
   const result = {
     $schema: 'https://tabnas.github.io/measure/schemas/port-result.schema.json',
-    schemaVersion: 1,
+    schemaVersion: 2,
     run: {
       id: args.runId,
       generatedAt: args.generatedAt,
@@ -85,6 +86,8 @@ async function main(): Promise<void> {
     },
     environment: {
       fingerprint,
+      hostId: args.hostId,
+      hostLabel: args.hostLabel,
       os,
       osName,
       kernelVersion,
@@ -92,7 +95,7 @@ async function main(): Promise<void> {
       cpu,
       logicalCpus,
       memoryBytes,
-      hostname: hostname(),
+      hostname: observedHostname,
     },
     methodology: {
       scope: 'parse-only-steady-state-sequential',
@@ -267,6 +270,8 @@ function parseArguments(arguments_: string[]): RunnerArguments {
     generatedAt: required('generated-at'),
     commit: required('commit'),
     dirty: dirty === 'true',
+    hostId: required('host-id'),
+    hostLabel: required('host-label'),
   }
 }
 

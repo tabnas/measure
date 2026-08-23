@@ -65,10 +65,10 @@ func Run(arguments Arguments) (*Result, error) {
 		}
 	}
 
-	environment := detectEnvironment()
+	environment := detectEnvironment(arguments.HostID, arguments.HostLabel)
 	return &Result{
 		Schema:        "https://tabnas.github.io/measure/schemas/port-result.schema.json",
-		SchemaVersion: 1,
+		SchemaVersion: 2,
 		Run: RunMetadata{
 			ID: arguments.RunID, GeneratedAt: arguments.GeneratedAt,
 			Profile: arguments.Profile, SuiteVersion: config.SuiteVersion,
@@ -277,7 +277,7 @@ func dependencyVersion(module string) (string, error) {
 	return "", fmt.Errorf("dependency %s is absent from Go build information", module)
 }
 
-func detectEnvironment() Environment {
+func detectEnvironment(hostID, hostLabel string) Environment {
 	osID, architecture := runtime.GOOS, runtime.GOARCH
 	osName := operatingSystemName(osID)
 	kernelVersion := operatingSystemKernelVersion()
@@ -295,7 +295,8 @@ func detectEnvironment() Environment {
 	}{osID, osName, kernelVersion, architecture, cpu, logicalCPUs, memoryBytes})
 	host, _ := os.Hostname()
 	return Environment{
-		Fingerprint: hashString(string(fingerprintInput)), OS: osID, OSName: osName,
+		Fingerprint: hashString(string(fingerprintInput)), HostID: hostID, HostLabel: hostLabel,
+		OS: osID, OSName: osName,
 		KernelVersion: kernelVersion, Arch: architecture, CPU: cpu,
 		LogicalCPUs: logicalCPUs, MemoryBytes: memoryBytes, Hostname: host,
 	}

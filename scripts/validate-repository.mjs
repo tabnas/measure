@@ -77,7 +77,12 @@ async function validateDefinitions() {
 
 async function validateRun(directory, recorded) {
   const storedMatrix = await readJson(join(directory, 'matrix.json'))
-  await validateSchema('matrix.schema.json', storedMatrix, `matrix ${storedMatrix.run.id}`)
+  await validateSchema(
+    'matrix.schema.json',
+    storedMatrix,
+    `matrix ${storedMatrix.run.id}`,
+    join(directory, 'definitions', 'schemas'),
+  )
   if (recorded) {
     assert(
       directory.endsWith(join('results', 'runs', storedMatrix.run.id)),

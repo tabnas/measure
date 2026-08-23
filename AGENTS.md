@@ -39,9 +39,9 @@ universal ranking.
    change and must produce a new run.
 9. Rebuild history by scanning immutable run directories. Never maintain a
    second hand-authored list of results.
-10. Trend lines must identify environment discontinuities. Do not imply that
-    measurements from different machine fingerprints form one controlled
-    time series.
+10. Trend lines must identify host and environment discontinuities. Do not
+    imply that measurements from different host IDs or machine fingerprints
+    form one controlled time series.
 11. Every run carries the exact config, manifests, schemas, and generated input
     sources used to produce it. Historical validation uses those snapshots,
     never today's definitions.

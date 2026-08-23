@@ -29,6 +29,7 @@ export function deriveCatalog(matrices) {
         right.run.id.localeCompare(left.run.id),
     )
     .map((matrix) => {
+      const host = describeHost(matrix.ports[0].environment)
       const capabilityTotal = matrix.capabilityMatrix.length * matrix.ports.length
       const capabilityPassed = matrix.capabilityMatrix.reduce(
         (count, row) => count + Object.values(row.ports).filter((result) => result.passed).length,
@@ -43,6 +44,7 @@ export function deriveCatalog(matrices) {
         repositoryDirty: matrix.run.repositoryDirty,
         matrixPath: `runs/${matrix.run.id}/matrix.json`,
         reportPath: `runs/${matrix.run.id}/README.md`,
+        host,
         ports: matrix.ports.map((port) => ({
           id: port.id,
           label: port.label,
@@ -59,7 +61,7 @@ export function deriveCatalog(matrices) {
     })
   return {
     $schema: 'https://tabnas.github.io/measure/schemas/catalog.schema.json',
-    schemaVersion: 1,
+    schemaVersion: 2,
     latestRunId: runs[0]?.id ?? null,
     runs,
   }
@@ -71,6 +73,7 @@ export function deriveHistory(matrices) {
     for (const row of matrix.performanceMatrix) {
       for (const port of matrix.ports) {
         const summary = row.ports[port.id]
+        const host = describeHost(port.environment)
         const key = [
           matrix.run.suiteVersion,
           row.benchmarkId,
@@ -78,6 +81,7 @@ export function deriveHistory(matrices) {
           port.id,
           port.runtime,
           port.runtimeVersion,
+          host.id,
           port.environment.fingerprint,
         ].join('/')
         let series = seriesByKey.get(key)
@@ -93,17 +97,26 @@ export function deriveHistory(matrices) {
             portLabel: port.label,
             runtime: port.runtime,
             runtimeVersion: port.runtimeVersion,
+            host,
             environmentFingerprint: port.environment.fingerprint,
             environment: port.environment,
             points: [],
           }
           seriesByKey.set(key, series)
+        } else {
+          // Labels and observed hostnames may be refined without breaking a
+          // comparable host/environment series. Display the newest metadata.
+          series.host = host
+          series.environment = port.environment
         }
         series.points.push({
           runId: matrix.run.id,
           generatedAt: matrix.run.generatedAt,
           repositoryCommit: matrix.run.repositoryCommit,
           parserVersion: port.parserVersion,
+          hostId: host.id,
+          hostLabel: host.label,
+          hostname: host.hostname,
           medianNs: summary.medianNs,
           p95Ns: summary.p95Ns,
           operationsPerSecond: summary.operationsPerSecond,
@@ -122,8 +135,28 @@ export function deriveHistory(matrices) {
   series.sort((left, right) => left.id.localeCompare(right.id))
   return {
     $schema: 'https://tabnas.github.io/measure/schemas/history.schema.json',
-    schemaVersion: 1,
+    schemaVersion: 2,
     series,
+  }
+}
+
+export function describeHost(environment) {
+  const environmentFingerprint = environment.fingerprint
+  const hostname = environment.hostname?.trim() || `unknown-${environmentFingerprint.slice(0, 8)}`
+  const id = environment.hostId?.trim() || hostname
+  const label = environment.hostLabel?.trim() || id
+  return {
+    id,
+    label,
+    hostname,
+    environmentFingerprint,
+    os: environment.os,
+    osName: environment.osName || environment.os,
+    kernelVersion: environment.kernelVersion || 'unrecorded',
+    arch: environment.arch,
+    cpu: environment.cpu,
+    logicalCpus: environment.logicalCpus,
+    memoryBytes: environment.memoryBytes,
   }
 }
 

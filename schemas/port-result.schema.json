@@ -15,7 +15,7 @@
   ],
   "properties": {
     "$schema": { "type": "string" },
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "enum": [1, 2] },
     "run": { "$ref": "#/$defs/run" },
     "port": { "$ref": "#/$defs/port" },
     "environment": { "$ref": "#/$defs/environment" },
@@ -29,6 +29,26 @@
       "items": { "$ref": "#/$defs/measurement" }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "schemaVersion": { "const": 2 } },
+        "required": ["schemaVersion"]
+      },
+      "then": {
+        "properties": {
+          "environment": {
+            "type": "object",
+            "required": ["hostId", "hostLabel"],
+            "properties": {
+              "hostId": { "type": "string" },
+              "hostLabel": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
     "nonNegativeInteger": { "type": "integer", "minimum": 0 },
@@ -66,6 +86,8 @@
       "required": ["fingerprint", "os", "osName", "kernelVersion", "arch", "cpu", "logicalCpus", "memoryBytes", "hostname"],
       "properties": {
         "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "hostId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$" },
+        "hostLabel": { "type": "string", "minLength": 1, "maxLength": 100 },
         "os": { "type": "string" },
         "osName": { "type": "string", "minLength": 1 },
         "kernelVersion": { "type": "string", "minLength": 1 },

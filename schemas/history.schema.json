@@ -7,9 +7,43 @@
   "required": ["$schema", "schemaVersion", "series"],
   "properties": {
     "$schema": { "const": "https://tabnas.github.io/measure/schemas/history.schema.json" },
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "enum": [1, 2] },
     "series": { "type": "array", "items": { "$ref": "#/$defs/series" } }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "schemaVersion": { "const": 2 } },
+        "required": ["schemaVersion"]
+      },
+      "then": {
+        "properties": {
+          "series": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["host"],
+              "properties": {
+                "host": { "$ref": "#/$defs/host" },
+                "points": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["hostId", "hostLabel", "hostname"],
+                    "properties": {
+                      "hostId": { "type": "string" },
+                      "hostLabel": { "type": "string" },
+                      "hostname": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "series": {
       "type": "object",
@@ -40,9 +74,40 @@
         "portLabel": { "type": "string" },
         "runtime": { "type": "string" },
         "runtimeVersion": { "type": "string" },
+        "host": { "$ref": "#/$defs/host" },
         "environmentFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "environment": { "type": "object" },
         "points": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/point" } }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "hostname",
+        "environmentFingerprint",
+        "os",
+        "osName",
+        "kernelVersion",
+        "arch",
+        "cpu",
+        "logicalCpus",
+        "memoryBytes"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "hostname": { "type": "string", "minLength": 1 },
+        "environmentFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "os": { "type": "string" },
+        "osName": { "type": "string" },
+        "kernelVersion": { "type": "string" },
+        "arch": { "type": "string" },
+        "cpu": { "type": "string" },
+        "logicalCpus": { "type": "integer", "minimum": 1 },
+        "memoryBytes": { "type": "integer", "minimum": 1 }
       }
     },
     "point": {
@@ -63,6 +128,9 @@
         "generatedAt": { "type": "string", "format": "date-time" },
         "repositoryCommit": { "type": "string" },
         "parserVersion": { "type": "string" },
+        "hostId": { "type": "string", "minLength": 1 },
+        "hostLabel": { "type": "string", "minLength": 1 },
+        "hostname": { "type": "string", "minLength": 1 },
         "medianNs": { "type": "number", "exclusiveMinimum": 0 },
         "p95Ns": { "type": "number", "exclusiveMinimum": 0 },
         "operationsPerSecond": { "type": "number", "exclusiveMinimum": 0 },

@@ -22,7 +22,8 @@ one for a different input or semantic contract.
 
 A port runner must:
 
-- accept `--config <path>`, `--benchmarks <path>`, and `--profile <name>`;
+- accept the config, benchmark, profile, run-metadata, `--host-id`, and
+  `--host-label` arguments supplied by `scripts/run-all.mjs`;
 - read every canonical manifest under the supplied benchmark snapshot;
 - write exactly one `port-result.schema.json` document to stdout;
 - send diagnostics only to stderr;
@@ -41,5 +42,5 @@ the matrix must identify the version difference explicitly.
 Update a port's exact dependency pin and lockfile in one commit, then record a
 new full run from that clean commit. Use `make measure` locally or dispatch the
 `Record historical measurement` workflow. Each run preserves its own parser,
-runtime, suite, commit, and environment identities, so adding a port or version
-extends the catalog without mutating prior evidence.
+runtime, suite, commit, host, and environment identities, so adding a port or
+version extends the catalog without mutating prior evidence.

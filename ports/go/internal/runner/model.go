@@ -70,6 +70,8 @@ type Arguments struct {
 	GeneratedAt string
 	Commit      string
 	Dirty       bool
+	HostID      string
+	HostLabel   string
 }
 
 type Result struct {
@@ -104,6 +106,8 @@ type PortMetadata struct {
 
 type Environment struct {
 	Fingerprint   string `json:"fingerprint"`
+	HostID        string `json:"hostId"`
+	HostLabel     string `json:"hostLabel"`
 	OS            string `json:"os"`
 	OSName        string `json:"osName"`
 	KernelVersion string `json:"kernelVersion"`
