@@ -232,13 +232,6 @@ function validatePortMetadata(raw, config) {
 
 export function renderReport(matrix) {
   const environment = matrix.ports[0].environment
-  const hostRows = Object.hasOwn(environment, 'hostId')
-    ? [
-        `| Host | ${markdownValue(environment.hostLabel)} |`,
-        `| Host ID | ${markdownValue(environment.hostId)} |`,
-        `| Observed hostname | ${markdownValue(environment.hostname)} |`,
-      ]
-    : [`| Hostname | ${markdownValue(environment.hostname)} |`]
   const lines = [
     `# Tabnas measurement — ${matrix.run.id}`,
     '',
@@ -250,7 +243,7 @@ export function renderReport(matrix) {
     '',
     '| Field | Value |',
     '| --- | --- |',
-    ...hostRows,
+    `| Host fingerprint | ${markdownValue(environment.hostFingerprint)} |`,
     `| Operating system | ${markdownValue(`${environment.osName} (${environment.os}/${environment.arch})`)} |`,
     `| Kernel | ${markdownValue(environment.kernelVersion)} |`,
     `| Processor | ${markdownValue(environment.cpu)} |`,

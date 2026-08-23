@@ -1,7 +1,6 @@
 .PHONY: setup build test measure site clean
 
-HOST_ID ?= $(TABNAS_MEASURE_HOST_ID)
-HOST_LABEL ?= $(TABNAS_MEASURE_HOST_LABEL)
+HOST_KEY ?= $(TABNAS_MEASURE_HOST_KEY)
 
 setup:
 	npm ci
@@ -14,7 +13,7 @@ test:
 	npm test
 
 measure:
-	TABNAS_MEASURE_HOST_ID="$(HOST_ID)" TABNAS_MEASURE_HOST_LABEL="$(HOST_LABEL)" npm run measure
+	@TABNAS_MEASURE_HOST_KEY="$(HOST_KEY)" npm run measure
 
 site:
 	npm run site

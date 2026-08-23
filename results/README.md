@@ -10,9 +10,9 @@
 
 `latest/` is a generated copy of the newest complete committed run.
 `index.json` is the machine-readable catalog consumed by the Pages build.
-It preserves host IDs and labels, per-port parser versions, and environment
-fingerprints so the site can add machines, releases, and ports without
-rewriting old rows.
+It preserves short pseudonymous host fingerprints, per-port parser versions,
+and environment fingerprints so the site can add machines, releases, and ports
+without rewriting old rows.
 
 Do not edit generated statistics by hand. Change the harness or manifest,
 create a new run, and retain the previous observation.

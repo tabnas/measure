@@ -22,8 +22,8 @@ one for a different input or semantic contract.
 
 A port runner must:
 
-- accept the config, benchmark, profile, run-metadata, `--host-id`, and
-  `--host-label` arguments supplied by `scripts/run-all.mjs`;
+- accept the config, benchmark, profile, run-metadata, and
+  `--host-fingerprint` arguments supplied by `scripts/run-all.mjs`;
 - read every canonical manifest under the supplied benchmark snapshot;
 - write exactly one `port-result.schema.json` document to stdout;
 - send diagnostics only to stderr;

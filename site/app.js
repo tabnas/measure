@@ -15,7 +15,7 @@ if (catalog.latestRunId === null) {
 }
 
 function renderSummary(catalogData, latest) {
-  const hostCount = new Set(catalogData.runs.map((run) => run.host.id)).size
+  const hostCount = new Set(catalogData.runs.map((run) => run.host.fingerprint)).size
   const values = [
     ['Recorded runs', catalogData.runs.length],
     ['Hosts', hostCount],
@@ -35,7 +35,7 @@ function renderLatest(matrix) {
     `<span>${date.toLocaleString()}</span>`,
     `<span>suite ${matrix.run.suiteVersion}</span>`,
     `<span>commit ${escapeHTML(matrix.run.repositoryCommit.slice(0, 10))}</span>`,
-    `<span>host ${escapeHTML(hostDisplayName(host))}</span>`,
+    `<span>${escapeHTML(hostDisplayName(host))}</span>`,
     ...matrix.ports.map((port) => `<span>${escapeHTML(port.label)} parser ${escapeHTML(port.parserVersion)}</span>`),
   ].join('')
 
@@ -63,8 +63,7 @@ function renderEnvironment(matrix) {
   const environment = matrix.ports[0].environment
   const host = hostFromEnvironment(environment)
   const facts = [
-    ['Host ID', host.id],
-    ['Observed hostname', host.hostname],
+    ['Host fingerprint', host.fingerprint],
     ['Processor', environment.cpu],
     ['Logical CPUs', format(environment.logicalCpus, 0)],
     ['Memory', `${format(environment.memoryBytes / 2 ** 30, 2)} GiB (${format(environment.memoryBytes, 0)} bytes)`],
@@ -83,8 +82,8 @@ function renderEnvironment(matrix) {
   document.querySelector('#environment-details').innerHTML = `
     <div class="environment-intro">
       <p class="eyebrow">Recorded host</p>
-      <h3>${escapeHTML(host.label)}</h3>
-      <p class="environment-host-key">${escapeHTML(host.id)} · env ${escapeHTML(environment.fingerprint.slice(0, 8))}</p>
+      <h3>${escapeHTML(hostDisplayName(host))}</h3>
+      <p class="environment-host-key">env ${escapeHTML(environment.fingerprint.slice(0, 8))}</p>
       <p class="note">${escapeHTML(environment.os)} / ${escapeHTML(environment.arch)} · kernel ${escapeHTML(environment.kernelVersion)}</p>
     </div>
     <dl class="host-facts">
@@ -125,7 +124,7 @@ function renderHistory(historyData) {
   hostSelector.innerHTML = [
     '<option value="">All hosts</option>',
     ...hosts.map(
-      (host) => `<option value="${escapeHTML(host.id)}">${escapeHTML(hostDisplayName(host))}</option>`,
+      (host) => `<option value="${escapeHTML(host.fingerprint)}">${escapeHTML(hostDisplayName(host))}</option>`,
     ),
   ].join('')
   const update = () => drawChart(historyData, measurementSelector.value, hostSelector.value)
@@ -134,12 +133,12 @@ function renderHistory(historyData) {
   drawChart(historyData, measurements[0], '')
 }
 
-function drawChart(historyData, measurement, hostID) {
+function drawChart(historyData, measurement, hostFingerprint) {
   const svg = document.querySelector('#history-chart')
   const series = historyData.series.filter(
     (candidate) =>
       `${candidate.benchmarkId}/${candidate.caseId}` === measurement &&
-      (hostID === '' || candidate.host.id === hostID),
+      (hostFingerprint === '' || candidate.host.fingerprint === hostFingerprint),
   )
   const points = series.flatMap((item) => item.points)
   if (points.length === 0) {
@@ -148,11 +147,11 @@ function drawChart(historyData, measurement, hostID) {
     document.querySelector('#history-context').textContent = 'No matching measurements.'
     return
   }
-  const visibleHostCount = new Set(series.map((item) => item.host.id)).size
+  const visibleHostCount = new Set(series.map((item) => item.host.fingerprint)).size
   document.querySelector('#history-context').textContent = `${visibleHostCount} ${visibleHostCount === 1 ? 'host' : 'hosts'} · ${series.length} ${series.length === 1 ? 'series' : 'series'} · ${points.length} ${points.length === 1 ? 'point' : 'points'}`
   svg.setAttribute(
     'aria-label',
-    `${measurement} historical median latency for ${hostID === '' ? 'all hosts' : series[0].host.label}`,
+    `${measurement} historical median latency for ${hostFingerprint === '' ? 'all hosts' : hostDisplayName(series[0].host)}`,
   )
   const width = 900
   const height = 340
@@ -182,7 +181,7 @@ function drawChart(historyData, measurement, hostID) {
   nodes.push(`<text x="${width - margin.right}" y="${height - 18}" text-anchor="end" class="chart-label">${new Date(maxTime).toLocaleDateString()}</text>`)
 
   series.forEach((item) => {
-    const color = hostColor(item.host.id)
+    const color = hostColor(item.host.fingerprint)
     const dash = portDash(item.portId)
     const coordinates = item.points.map((point) => `${x(Date.parse(point.generatedAt))},${y(point.medianNs)}`)
     if (coordinates.length > 1) {
@@ -197,7 +196,7 @@ function drawChart(historyData, measurement, hostID) {
   document.querySelector('#history-legend').innerHTML = series
     .map(
       (item) =>
-        `<span style="--series:${hostColor(item.host.id)}"><b>${escapeHTML(hostDisplayName(item.host))}</b> · ${escapeHTML(item.portLabel)} ${escapeHTML(item.runtimeVersion)} · suite ${escapeHTML(item.suiteVersion)} · env ${escapeHTML(item.environmentFingerprint.slice(0, 8))}</span>`,
+        `<span style="--series:${hostColor(item.host.fingerprint)}"><b>${escapeHTML(hostDisplayName(item.host))}</b> · ${escapeHTML(item.portLabel)} ${escapeHTML(item.runtimeVersion)} · suite ${escapeHTML(item.suiteVersion)} · env ${escapeHTML(item.environmentFingerprint.slice(0, 8))}</span>`,
     )
     .join('')
 }
@@ -208,17 +207,17 @@ function renderRuns(catalogData) {
   selector.innerHTML = [
     '<option value="">All hosts</option>',
     ...hosts.map(
-      (host) => `<option value="${escapeHTML(host.id)}">${escapeHTML(hostDisplayName(host))}</option>`,
+      (host) => `<option value="${escapeHTML(host.fingerprint)}">${escapeHTML(hostDisplayName(host))}</option>`,
     ),
   ].join('')
   const update = () => {
     document.querySelector('#run-list').innerHTML = catalogData.runs
-      .filter((run) => selector.value === '' || run.host.id === selector.value)
+      .filter((run) => selector.value === '' || run.host.fingerprint === selector.value)
       .map(
         (run) => `<a class="run-row" href="data/${run.reportPath}">
           <div class="run-leading">
             <strong>${escapeHTML(new Date(run.generatedAt).toLocaleString())}</strong>
-            <span class="host-chip" style="--host:${hostColor(run.host.id)}">${escapeHTML(hostDisplayName(run.host))} · env ${escapeHTML(run.host.environmentFingerprint.slice(0, 8))}</span>
+            <span class="host-chip" style="--host:${hostColor(run.host.fingerprint)}">${escapeHTML(hostDisplayName(run.host))} · env ${escapeHTML(run.host.environmentFingerprint.slice(0, 8))}</span>
           </div>
           <code>${escapeHTML(run.id)}</code>
           <small>${run.capability.passed}/${run.capability.total} checks · ${run.ports.map((port) => `${escapeHTML(port.id)} ${escapeHTML(port.parserVersion)}`).join(' · ')}</small>
@@ -231,32 +230,28 @@ function renderRuns(catalogData) {
 }
 
 function hostFromEnvironment(environment) {
-  const hostname = environment.hostname || `unknown-${environment.fingerprint.slice(0, 8)}`
-  const id = environment.hostId || hostname
   return {
-    id,
-    label: environment.hostLabel || id,
-    hostname,
+    fingerprint: environment.hostFingerprint,
     environmentFingerprint: environment.fingerprint,
   }
 }
 
 function hostDisplayName(host) {
-  return host.label === host.id ? host.label : `${host.label} (${host.id})`
+  return `host ${host.fingerprint}`
 }
 
 function uniqueHosts(hosts) {
-  const byID = new Map()
+  const byFingerprint = new Map()
   for (const host of hosts) {
-    if (!byID.has(host.id)) byID.set(host.id, host)
+    if (!byFingerprint.has(host.fingerprint)) byFingerprint.set(host.fingerprint, host)
   }
-  return [...byID.values()].sort((left, right) =>
+  return [...byFingerprint.values()].sort((left, right) =>
     hostDisplayName(left).localeCompare(hostDisplayName(right)),
   )
 }
 
-function hostColor(hostID) {
-  return `hsl(${stringHash(hostID) % 360} 72% 66%)`
+function hostColor(hostFingerprint) {
+  return `hsl(${stringHash(hostFingerprint) % 360} 72% 66%)`
 }
 
 function portDash(portID) {

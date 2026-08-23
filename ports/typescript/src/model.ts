@@ -55,8 +55,7 @@ export interface RunnerArguments {
   generatedAt: string
   commit: string
   dirty: boolean
-  hostId: string
-  hostLabel: string
+  hostFingerprint: string
 }
 
 export interface ParserAdapter {

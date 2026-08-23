@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { isDeepStrictEqual } from 'node:util'
 import { readFile, readdir } from 'node:fs/promises'
-import { arch, cpus, hostname, platform, release, totalmem } from 'node:os'
+import { arch, cpus, platform, release, totalmem } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -59,14 +59,13 @@ async function main(): Promise<void> {
   const osName = await operatingSystemName(os)
   const kernelVersion = release()
   const architecture = canonicalArchitecture(arch())
-  const observedHostname = hostname()
   const fingerprint = sha256(
     JSON.stringify({ os, osName, kernelVersion, arch: architecture, cpu, logicalCpus, memoryBytes }),
   )
 
   const result = {
     $schema: 'https://tabnas.github.io/measure/schemas/port-result.schema.json',
-    schemaVersion: 2,
+    schemaVersion: 3,
     run: {
       id: args.runId,
       generatedAt: args.generatedAt,
@@ -86,8 +85,7 @@ async function main(): Promise<void> {
     },
     environment: {
       fingerprint,
-      hostId: args.hostId,
-      hostLabel: args.hostLabel,
+      hostFingerprint: args.hostFingerprint,
       os,
       osName,
       kernelVersion,
@@ -95,7 +93,6 @@ async function main(): Promise<void> {
       cpu,
       logicalCpus,
       memoryBytes,
-      hostname: observedHostname,
     },
     methodology: {
       scope: 'parse-only-steady-state-sequential',
@@ -270,8 +267,7 @@ function parseArguments(arguments_: string[]): RunnerArguments {
     generatedAt: required('generated-at'),
     commit: required('commit'),
     dirty: dirty === 'true',
-    hostId: required('host-id'),
-    hostLabel: required('host-label'),
+    hostFingerprint: required('host-fingerprint'),
   }
 }
 

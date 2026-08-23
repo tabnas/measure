@@ -17,11 +17,10 @@ func main() {
 	generatedAt := flag.String("generated-at", "", "ISO-8601 generation time")
 	commit := flag.String("commit", "", "repository commit")
 	dirty := flag.Bool("dirty", false, "whether the source tree was dirty")
-	hostID := flag.String("host-id", "", "stable measurement host identifier")
-	hostLabel := flag.String("host-label", "", "human-readable measurement host label")
+	hostFingerprint := flag.String("host-fingerprint", "", "short pseudonymous measurement host fingerprint")
 	flag.Parse()
 
-	if *config == "" || *benchmarks == "" || *profile == "" || *runID == "" || *generatedAt == "" || *commit == "" || *hostID == "" || *hostLabel == "" {
+	if *config == "" || *benchmarks == "" || *profile == "" || *runID == "" || *generatedAt == "" || *commit == "" || *hostFingerprint == "" {
 		fmt.Fprintln(os.Stderr, "all runner arguments are required")
 		flag.Usage()
 		os.Exit(2)
@@ -30,7 +29,7 @@ func main() {
 	result, err := runner.Run(runner.Arguments{
 		Config: *config, Benchmarks: *benchmarks, Profile: *profile, RunID: *runID,
 		GeneratedAt: *generatedAt, Commit: *commit, Dirty: *dirty,
-		HostID: *hostID, HostLabel: *hostLabel,
+		HostFingerprint: *hostFingerprint,
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)

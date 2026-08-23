@@ -63,15 +63,14 @@ type Generator struct {
 }
 
 type Arguments struct {
-	Config      string
-	Benchmarks  string
-	Profile     string
-	RunID       string
-	GeneratedAt string
-	Commit      string
-	Dirty       bool
-	HostID      string
-	HostLabel   string
+	Config          string
+	Benchmarks      string
+	Profile         string
+	RunID           string
+	GeneratedAt     string
+	Commit          string
+	Dirty           bool
+	HostFingerprint string
 }
 
 type Result struct {
@@ -105,17 +104,15 @@ type PortMetadata struct {
 }
 
 type Environment struct {
-	Fingerprint   string `json:"fingerprint"`
-	HostID        string `json:"hostId"`
-	HostLabel     string `json:"hostLabel"`
-	OS            string `json:"os"`
-	OSName        string `json:"osName"`
-	KernelVersion string `json:"kernelVersion"`
-	Arch          string `json:"arch"`
-	CPU           string `json:"cpu"`
-	LogicalCPUs   int    `json:"logicalCpus"`
-	MemoryBytes   uint64 `json:"memoryBytes"`
-	Hostname      string `json:"hostname"`
+	Fingerprint     string `json:"fingerprint"`
+	HostFingerprint string `json:"hostFingerprint"`
+	OS              string `json:"os"`
+	OSName          string `json:"osName"`
+	KernelVersion   string `json:"kernelVersion"`
+	Arch            string `json:"arch"`
+	CPU             string `json:"cpu"`
+	LogicalCPUs     int    `json:"logicalCpus"`
+	MemoryBytes     uint64 `json:"memoryBytes"`
 }
 
 type Methodology struct {

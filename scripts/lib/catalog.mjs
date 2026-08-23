@@ -61,7 +61,7 @@ export function deriveCatalog(matrices) {
     })
   return {
     $schema: 'https://tabnas.github.io/measure/schemas/catalog.schema.json',
-    schemaVersion: 2,
+    schemaVersion: 3,
     latestRunId: runs[0]?.id ?? null,
     runs,
   }
@@ -81,7 +81,7 @@ export function deriveHistory(matrices) {
           port.id,
           port.runtime,
           port.runtimeVersion,
-          host.id,
+          host.fingerprint,
           port.environment.fingerprint,
         ].join('/')
         let series = seriesByKey.get(key)
@@ -104,8 +104,6 @@ export function deriveHistory(matrices) {
           }
           seriesByKey.set(key, series)
         } else {
-          // Labels and observed hostnames may be refined without breaking a
-          // comparable host/environment series. Display the newest metadata.
           series.host = host
           series.environment = port.environment
         }
@@ -114,9 +112,7 @@ export function deriveHistory(matrices) {
           generatedAt: matrix.run.generatedAt,
           repositoryCommit: matrix.run.repositoryCommit,
           parserVersion: port.parserVersion,
-          hostId: host.id,
-          hostLabel: host.label,
-          hostname: host.hostname,
+          hostFingerprint: host.fingerprint,
           medianNs: summary.medianNs,
           p95Ns: summary.p95Ns,
           operationsPerSecond: summary.operationsPerSecond,
@@ -135,21 +131,15 @@ export function deriveHistory(matrices) {
   series.sort((left, right) => left.id.localeCompare(right.id))
   return {
     $schema: 'https://tabnas.github.io/measure/schemas/history.schema.json',
-    schemaVersion: 2,
+    schemaVersion: 3,
     series,
   }
 }
 
 export function describeHost(environment) {
-  const environmentFingerprint = environment.fingerprint
-  const hostname = environment.hostname?.trim() || `unknown-${environmentFingerprint.slice(0, 8)}`
-  const id = environment.hostId?.trim() || hostname
-  const label = environment.hostLabel?.trim() || id
   return {
-    id,
-    label,
-    hostname,
-    environmentFingerprint,
+    fingerprint: environment.hostFingerprint,
+    environmentFingerprint: environment.fingerprint,
     os: environment.os,
     osName: environment.osName || environment.os,
     kernelVersion: environment.kernelVersion || 'unrecorded',

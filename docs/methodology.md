@@ -50,9 +50,9 @@ Every run records:
 
 - repository commit or dirty marker;
 - benchmark suite and parser versions;
-- stable measurement-host ID and readable label;
+- short pseudonymous measurement-host fingerprint;
 - runtime, OS distribution and kernel, architecture, CPU, logical CPU count,
-  memory, and observed hostname;
+  and memory;
 - profile parameters;
 - input sizes and SHA-256 hashes;
 - exact config, schema, benchmark-manifest, and generated-input snapshots;
@@ -68,22 +68,22 @@ evidence.
 
 The catalog retains every complete run so parser releases and newly implemented
 ports remain visible over time. Each point records its benchmark case, suite,
-port, parser version, runtime version, repository commit, host ID, and
-environment fingerprint. A comparable series holds the suite version, host ID,
-port, runtime version, and environment fingerprint constant while allowing
-parser version and commit to change. Host, hardware, runtime, or suite changes
-therefore start a visibly separate series rather than silently joining unlike
-measurements.
+port, parser version, runtime version, repository commit, host fingerprint, and
+environment fingerprint. A comparable series holds the suite version, host
+fingerprint, port, runtime version, and environment fingerprint constant while
+allowing parser version and commit to change. Host, hardware, runtime, or suite
+changes therefore start a visibly separate series rather than silently joining
+unlike measurements.
 
 The fingerprint covers the OS identifier, distribution name, kernel release,
-architecture, processor model, logical CPU count, and total memory. Hostname is
-reported for provenance but deliberately excluded from the fingerprint.
+architecture, processor model, logical CPU count, and total memory.
 
-`TABNAS_MEASURE_HOST_ID` identifies the physical host or logical runner pool;
-it defaults to the observed hostname. Set it explicitly when hostnames are
-ephemeral or hard to recognize. `TABNAS_MEASURE_HOST_LABEL` is presentation
-only and may be changed without breaking the host's time series. Two hosts with
-identical hardware remain separate because host ID is an independent series
+The host fingerprint is the first 12 hexadecimal characters of SHA-256 over a
+domain-separated host key. By default the key comes from the operating system
+machine identifier. `TABNAS_MEASURE_HOST_KEY` can provide a stable private key
+for an ephemeral host or logical runner pool. The source key is never retained,
+and the harness does not collect the machine name. Two hosts with identical
+hardware remain separate because the host fingerprint is an independent series
 dimension. A hardware or OS change on one host remains separate because the
 environment fingerprint is another independent dimension.
 

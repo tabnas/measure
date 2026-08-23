@@ -1,6 +1,5 @@
 import { execFile } from 'node:child_process'
-import { access, cp, mkdir, rename, rm, writeFile } from 'node:fs/promises'
-import { hostname } from 'node:os'
+import { access, cp, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { join, relative, resolve } from 'node:path'
 import { promisify } from 'node:util'
 
@@ -11,6 +10,7 @@ import {
   loadConfig,
   loadManifests,
   repositoryRoot,
+  sha256,
   validateSchema,
   writeJson,
 } from './lib/common.mjs'
@@ -32,7 +32,7 @@ async function main() {
   if (options.record && options.profile !== 'full') {
     throw new Error('Only the full profile can be committed to historical results')
   }
-  const host = resolveHostIdentity()
+  const hostFingerprint = await resolveHostFingerprint()
 
   await runVisible('npm', ['run', 'build'])
 
@@ -44,8 +44,8 @@ async function main() {
   }
 
   const generatedAt = new Date().toISOString()
-  const runID = makeRunID(generatedAt, host.id, config.suiteVersion, commit)
-  process.stdout.write(`Measurement host: ${host.label} [${host.id}]\n`)
+  const runID = makeRunID(generatedAt, hostFingerprint, config.suiteVersion, commit)
+  process.stdout.write(`Measurement host fingerprint: ${hostFingerprint}\n`)
   let runDirectory
   let finalDirectory
   if (options.record) {
@@ -74,8 +74,7 @@ async function main() {
       `--generated-at=${generatedAt}`,
       `--commit=${commit}`,
       `--dirty=${dirty}`,
-      `--host-id=${host.id}`,
-      `--host-label=${host.label}`,
+      `--host-fingerprint=${hostFingerprint}`,
     ]
     const { stdout, stderr } = await execute(port.command, runnerArguments, {
       cwd: repositoryRoot,
@@ -140,29 +139,30 @@ async function git(arguments_) {
   return stdout
 }
 
-function makeRunID(generatedAt, hostID, suiteVersion, commit) {
+function makeRunID(generatedAt, hostFingerprint, suiteVersion, commit) {
   const timestamp = generatedAt.replaceAll(/[-:.]/g, '').replace('000Z', 'Z')
-  const hostSegment = hostID
-    .toLowerCase()
-    .replaceAll(/[^a-z0-9]+/g, '-')
-    .replaceAll(/^-|-$/g, '')
-    .slice(0, 32) || 'host'
-  return `${timestamp}-${hostSegment}-suite-${suiteVersion}-${commit.slice(0, 8)}`
+  return `${timestamp}-${hostFingerprint}-suite-${suiteVersion}-${commit.slice(0, 8)}`
 }
 
-function resolveHostIdentity() {
-  const observedHostname = hostname()
-  const hostID = process.env.TABNAS_MEASURE_HOST_ID?.trim() || observedHostname
-  const hostLabel = process.env.TABNAS_MEASURE_HOST_LABEL?.trim() || hostID
-  if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$/.test(hostID)) {
+async function resolveHostFingerprint() {
+  let hostKey = process.env.TABNAS_MEASURE_HOST_KEY?.trim()
+  delete process.env.TABNAS_MEASURE_HOST_KEY
+  if (!hostKey) {
+    for (const path of ['/etc/machine-id', '/var/lib/dbus/machine-id']) {
+      try {
+        hostKey = (await readFile(path, 'utf8')).trim()
+        if (hostKey) break
+      } catch (cause) {
+        if (cause?.code !== 'ENOENT') throw cause
+      }
+    }
+  }
+  if (!hostKey) {
     throw new Error(
-      'TABNAS_MEASURE_HOST_ID must be 1–64 characters using letters, numbers, dot, underscore, colon, or hyphen',
+      'Unable to derive a host fingerprint; set TABNAS_MEASURE_HOST_KEY to a stable per-host value',
     )
   }
-  if (hostLabel.length > 100 || /[\u0000-\u001f\u007f]/.test(hostLabel)) {
-    throw new Error('TABNAS_MEASURE_HOST_LABEL must be 1–100 printable characters')
-  }
-  return { id: hostID, label: hostLabel }
+  return sha256(`tabnas-measure-host-v1\0${hostKey}`).slice(0, 12)
 }
 
 async function ensureAbsent(path) {

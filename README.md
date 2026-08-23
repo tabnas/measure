@@ -17,7 +17,7 @@ The repository keeps four concerns separate:
 The Pages site uses the canonical Tabnas logo and emblem copied verbatim from
 `tabnas/web/src/assets/brand/`.
 
-The initial catalog measures:
+The suite currently defines:
 
 - **Adder:** the canonical Tabnas `1+2+3` grammar and numeric result.
 - **Even palindromes:** the classic non-deterministic context-free language
@@ -41,18 +41,21 @@ make measure
 `make measure` records a full run under `results/runs/`, refreshes
 `results/latest/`, updates the catalog, and rebuilds the Pages history data.
 
-For repeated measurements across a fleet, assign each physical machine or
-runner pool a stable ID and an optional readable label:
+For repeated measurements across a fleet, the harness derives a stable,
+12-character pseudonymous fingerprint from the operating system's machine key.
+For an ephemeral host or a runner pool, supply a stable key explicitly:
 
 ```sh
-make measure HOST_ID=lab-m3-01 HOST_LABEL='Intel m3 lab laptop'
+make measure HOST_KEY='stable-private-value-for-this-host'
 ```
 
-The defaults are the observed hostname for both fields. The equivalent
-environment variables are `TABNAS_MEASURE_HOST_ID` and
-`TABNAS_MEASURE_HOST_LABEL`. Keep `HOST_ID` stable: history uses it to group
-repeated observations, while the separate environment fingerprint starts a
-new comparable series after hardware, kernel, or OS changes.
+The equivalent environment variable is `TABNAS_MEASURE_HOST_KEY`. The key is
+hashed with a domain separator and is never written to results; only its first
+12 hexadecimal hash characters are retained. The harness does not collect or
+publish machine names. Keep the key stable on one host: history uses the short
+fingerprint to group repeated observations, while the separate environment
+fingerprint starts a new comparable series after hardware, kernel, or OS
+changes.
 
 To record a parser release, pin its version in `measure.config.json`, update
 the lockfiles, and run `make measure` from a clean commit. The
@@ -70,9 +73,9 @@ case or port.
 - Raw per-port JSON is retained; matrices are derived from it.
 - Every run snapshots its config, schemas, manifests, and exact generated
   inputs, so later suite changes cannot reinterpret old measurements.
-- Historical runs are immutable and cataloged by host ID, suite version,
-  per-port parser version, port set, repository commit, and environment
-  fingerprint.
+- Historical runs are immutable and cataloged by host fingerprint, suite
+  version, per-port parser version, port set, repository commit, and
+  environment fingerprint.
 - Every performance row records the exact input hash, runtime versions,
   machine metadata, warmup policy, iterations, and raw sample durations.
 - Cross-port rows are emitted only when the input hashes match and all
