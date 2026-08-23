@@ -1,5 +1,646 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/history.schema.json",
   "schemaVersion": 1,
-  "series": []
+  "series": [
+    {
+      "id": "0.1.0/adder/terms-4096/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 5780093.75,
+          "p95Ns": 7232697.71875,
+          "operationsPerSecond": 173.007574,
+          "coefficientOfVariationPercent": 10.185842
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-4096/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 18201581,
+          "p95Ns": 27051001.4375,
+          "operationsPerSecond": 54.940282,
+          "coefficientOfVariationPercent": 19.676121
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-512/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 1026719.390625,
+          "p95Ns": 1581621.253906,
+          "operationsPerSecond": 973.975956,
+          "coefficientOfVariationPercent": 24.04513
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-512/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 2268819.046875,
+          "p95Ns": 3799533.171875,
+          "operationsPerSecond": 440.757936,
+          "coefficientOfVariationPercent": 32.121208
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-64/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 120840.989258,
+          "p95Ns": 145827.104004,
+          "operationsPerSecond": 8275.337749,
+          "coefficientOfVariationPercent": 10.436286
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-64/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 246915.455078,
+          "p95Ns": 432512.064453,
+          "operationsPerSecond": 4049.969248,
+          "coefficientOfVariationPercent": 44.81983
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-8/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 28479.115234,
+          "p95Ns": 39877.568359,
+          "operationsPerSecond": 35113.450392,
+          "coefficientOfVariationPercent": 22.512772
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-8/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 41663.708984,
+          "p95Ns": 67379.153442,
+          "operationsPerSecond": 24001.703746,
+          "coefficientOfVariationPercent": 33.589247
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-1024/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 1240748.140625,
+          "p95Ns": 1792702.175781,
+          "operationsPerSecond": 805.965342,
+          "coefficientOfVariationPercent": 28.814134
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-1024/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 2124357.796875,
+          "p95Ns": 3552753.445313,
+          "operationsPerSecond": 470.730496,
+          "coefficientOfVariationPercent": 34.810946
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-128/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 139029.347656,
+          "p95Ns": 219789.825195,
+          "operationsPerSecond": 7192.725974,
+          "coefficientOfVariationPercent": 27.282851
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-128/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 266964.558594,
+          "p95Ns": 427298.973633,
+          "operationsPerSecond": 3745.815569,
+          "coefficientOfVariationPercent": 31.406943
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-16/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 17950.842163,
+          "p95Ns": 25772.90094,
+          "operationsPerSecond": 55707.69276,
+          "coefficientOfVariationPercent": 25.548571
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-16/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 41524.597656,
+          "p95Ns": 66503.922119,
+          "operationsPerSecond": 24082.111723,
+          "coefficientOfVariationPercent": 25.990053
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-8192/go/Go/go1.26.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 14377671.75,
+          "p95Ns": 20716536.3125,
+          "operationsPerSecond": 69.55229,
+          "coefficientOfVariationPercent": 25.053327
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-8192/typescript/Node.js/v24.14.1/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+      "environment": {
+        "fingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232,
+        "hostname": "inch"
+      },
+      "points": [
+        {
+          "runId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+          "generatedAt": "2026-08-23T13:38:27.595Z",
+          "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+          "parserVersion": "0.9.0",
+          "medianNs": 15586852.875,
+          "p95Ns": 24298369.9375,
+          "operationsPerSecond": 64.156633,
+          "coefficientOfVariationPercent": 30.077653
+        }
+      ]
+    }
+  ]
 }

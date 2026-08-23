@@ -1,6 +1,46 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 1,
-  "latestRunId": null,
-  "runs": []
+  "latestRunId": "20260823T133827595Z-suite-0.1.0-bc89442a",
+  "runs": [
+    {
+      "id": "20260823T133827595Z-suite-0.1.0-bc89442a",
+      "generatedAt": "2026-08-23T13:38:27.595Z",
+      "profile": "full",
+      "suiteVersion": "0.1.0",
+      "repositoryCommit": "bc89442adec49836cba36ff7fbd0039a9b96da29",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260823T133827595Z-suite-0.1.0-bc89442a/matrix.json",
+      "reportPath": "runs/20260823T133827595Z-suite-0.1.0-bc89442a/README.md",
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.0",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.14.1",
+          "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.0",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.1",
+          "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 32,
+        "total": 32
+      },
+      "performanceRows": 8
+    }
+  ]
 }
