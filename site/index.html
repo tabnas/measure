@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Versioned capability and performance evidence for every implemented Tabnas port.">
+    <title>Tabnas Measure</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <nav>
+        <a class="brand" href="./"><span class="mark">T</span> Tabnas Measure</a>
+        <a href="https://github.com/tabnas/measure">Repository ↗</a>
+      </nav>
+      <div class="hero-copy">
+        <p class="eyebrow">Evidence, not anecdotes</p>
+        <h1>One catalog for every grammar, port, and release.</h1>
+        <p class="lede">Reproducible capability matrices, raw timing samples, and environment-aware history for Tabnas.</p>
+      </div>
+      <dl class="summary" id="summary" aria-label="Catalog summary"></dl>
+    </header>
+
+    <main>
+      <section id="latest" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Current evidence</p>
+            <h2 id="latest-title">Latest complete run</h2>
+          </div>
+          <a id="latest-json" class="quiet-link" href="#">Matrix JSON ↗</a>
+        </div>
+        <div id="latest-meta" class="run-meta"></div>
+        <div id="capability-catalog" class="benchmark-grid"></div>
+      </section>
+
+      <section aria-labelledby="performance-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Cross-port matrix</p>
+            <h2 id="performance-title">Parse performance</h2>
+          </div>
+          <p class="note">Median, steady-state, parse-only. Lower latency is better.</p>
+        </div>
+        <div class="table-wrap"><table id="performance-table"></table></div>
+      </section>
+
+      <section aria-labelledby="history-title">
+        <div class="section-heading history-heading">
+          <div>
+            <p class="eyebrow">Retained over time</p>
+            <h2 id="history-title">Release history</h2>
+          </div>
+          <label>Measurement <select id="history-case"></select></label>
+        </div>
+        <p class="note">Series are split by suite, runtime version, and machine fingerprint. Parser versions are shown at each point.</p>
+        <div class="chart-shell">
+          <svg id="history-chart" viewBox="0 0 900 340" role="img" aria-label="Historical median latency chart"></svg>
+          <div id="history-legend" class="legend"></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="runs-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Immutable archive</p>
+            <h2 id="runs-title">All recorded runs</h2>
+          </div>
+        </div>
+        <div id="run-list" class="run-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Numbers describe the recorded environment. Raw samples and methodology travel with every run.</p>
+      <a href="https://github.com/tabnas/measure/blob/main/docs/methodology.md">Read the methodology ↗</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+{
+  "$schema": "../../schemas/benchmark.schema.json",
+  "schemaVersion": 1,
+  "id": "palindrome",
+  "title": "Even palindromes",
+  "summary": "Classic non-deterministic context-free language resolved with full parse context.",
+  "classification": ["non-deterministic-context-free", "state-aware", "recursive"],
+  "reference": {
+    "label": "Context-free recognition summary",
+    "url": "https://www.cs.utahtech.edu/cs/3530/examples.examples/chapter02-contextfreelanguages.pdf"
+  },
+  "capabilityCases": [
+    {
+      "id": "empty",
+      "description": "The empty word belongs to the language.",
+      "input": "",
+      "accept": true,
+      "expected": true
+    },
+    {
+      "id": "pair-a",
+      "description": "The smallest a palindrome is accepted.",
+      "input": "aa",
+      "accept": true,
+      "expected": true
+    },
+    {
+      "id": "pair-b",
+      "description": "The smallest b palindrome is accepted.",
+      "input": "bb",
+      "accept": true,
+      "expected": true
+    },
+    {
+      "id": "nested",
+      "description": "Nested unlike symbols match across the midpoint.",
+      "input": "abba",
+      "accept": true,
+      "expected": true
+    },
+    {
+      "id": "length-six",
+      "description": "A three-symbol first half is mirrored.",
+      "input": "abaaba",
+      "accept": true,
+      "expected": true
+    },
+    {
+      "id": "odd-length",
+      "description": "No midpoint between symbols exists.",
+      "input": "aba",
+      "accept": false
+    },
+    {
+      "id": "not-mirrored",
+      "description": "Equal-length halves that are not reverses fail.",
+      "input": "abab",
+      "accept": false
+    },
+    {
+      "id": "wrong-close",
+      "description": "A close symbol that differs from its opener fails.",
+      "input": "aabb",
+      "accept": false
+    },
+    {
+      "id": "outside-alphabet",
+      "description": "Symbols outside the declared alphabet are rejected.",
+      "input": "abca",
+      "accept": false
+    }
+  ],
+  "performanceCases": [
+    {
+      "id": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "generator": { "kind": "even-palindrome", "size": 16, "pattern": "abba" }
+    },
+    {
+      "id": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "generator": { "kind": "even-palindrome", "size": 128, "pattern": "abba" }
+    },
+    {
+      "id": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "generator": { "kind": "even-palindrome", "size": 1024, "pattern": "abba" }
+    },
+    {
+      "id": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "generator": { "kind": "even-palindrome", "size": 8192, "pattern": "abba" }
+    }
+  ]
+}

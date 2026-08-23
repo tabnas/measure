@@ -1,0 +1,30 @@
+{
+  "name": "@tabnas/measure",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reproducible capability and performance measurements for Tabnas ports.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "npm run build:ts && npm run build:go",
+    "build:ts": "tsc -p ports/typescript/tsconfig.json",
+    "build:go": "GOWORK=off go build -trimpath -o .build/measure-go ./ports/go/cmd/measure",
+    "test": "node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run",
+    "measure": "node scripts/run-all.mjs --profile full --record",
+    "site": "node scripts/build-site.mjs",
+    "validate": "node scripts/validate-repository.mjs",
+    "clean": "node scripts/clean.mjs"
+  },
+  "dependencies": {
+    "@tabnas/parser": "0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "25.6.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "typescript": "6.0.3"
+  }
+}

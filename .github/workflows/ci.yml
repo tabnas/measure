@@ -1,0 +1,30 @@
+name: Verify measurements
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-go@v7.0.0
+        with:
+          go-version: '1.26.x'
+          cache: true
+      - run: npm ci
+      - run: GOWORK=off go mod download
+      - run: npm test
+      - run: npm run validate
+      - run: npm run site
+      - name: Check committed derived catalogs
+        run: git diff --exit-code -- results/index.json site/data/catalog.json site/data/history.json

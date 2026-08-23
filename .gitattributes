@@ -1,0 +1,3 @@
+# Generated benchmark sources are byte-exact evidence; never normalize them.
+results/runs/**/definitions/inputs/** -text
+results/latest/definitions/inputs/** -text

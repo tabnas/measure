@@ -1,0 +1,6 @@
+node_modules/
+.build/
+.DS_Store
+coverage/
+site/data/runs/
+site/schemas/
