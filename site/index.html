@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Versioned capability and performance evidence for every implemented Tabnas port.">
     <title>Tabnas Measure</title>
+    <link rel="icon" href="assets/tabnas-mark.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="hero">
       <nav>
-        <a class="brand" href="./"><span class="mark">T</span> Tabnas Measure</a>
+        <a class="brand" href="./"><img class="brand-mark" src="assets/tabnas-mark.svg" alt=""> <span>Tabnas Measure</span></a>
         <a href="https://github.com/tabnas/measure">Repository ↗</a>
       </nav>
-      <div class="hero-copy">
-        <p class="eyebrow">Evidence, not anecdotes</p>
-        <h1>One catalog for every grammar, port, and release.</h1>
-        <p class="lede">Reproducible capability matrices, raw timing samples, and environment-aware history for Tabnas.</p>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="eyebrow">Evidence, not anecdotes</p>
+          <h1>One catalog for every grammar, port, and release.</h1>
+          <p class="lede">Reproducible capability matrices, raw timing samples, and environment-aware history for Tabnas.</p>
+        </div>
+        <img class="hero-emblem" src="assets/tabnas-logo.svg" alt="">
       </div>
       <dl class="summary" id="summary" aria-label="Catalog summary"></dl>
     </header>
@@ -32,6 +36,7 @@
           <a id="latest-json" class="quiet-link" href="#">Matrix JSON ↗</a>
         </div>
         <div id="latest-meta" class="run-meta"></div>
+        <div id="environment-details" class="environment-panel"></div>
         <div id="capability-catalog" class="benchmark-grid"></div>
       </section>
 

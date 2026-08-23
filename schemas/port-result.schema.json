@@ -63,10 +63,12 @@
     "environment": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["fingerprint", "os", "arch", "cpu", "logicalCpus", "memoryBytes", "hostname"],
+      "required": ["fingerprint", "os", "osName", "kernelVersion", "arch", "cpu", "logicalCpus", "memoryBytes", "hostname"],
       "properties": {
         "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "os": { "type": "string" },
+        "osName": { "type": "string", "minLength": 1 },
+        "kernelVersion": { "type": "string", "minLength": 1 },
         "arch": { "type": "string" },
         "cpu": { "type": "string" },
         "logicalCpus": { "$ref": "#/$defs/positiveInteger" },

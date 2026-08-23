@@ -47,12 +47,16 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
     return raw
   })
   const canonicalRun = rawResults[0].run
-  const canonicalEnvironment = rawResults[0].environment.fingerprint
+  const canonicalEnvironment = rawResults[0].environment
   for (const raw of rawResults) {
     assert(sameJson(raw.run, canonicalRun), `Run metadata differs for port ${raw.port.id}`)
     assert(
-      raw.environment.fingerprint === canonicalEnvironment,
+      raw.environment.fingerprint === canonicalEnvironment.fingerprint,
       `${raw.port.id} reports a different machine fingerprint; cross-port runs must share one host`,
+    )
+    assert(
+      sameJson(raw.environment, canonicalEnvironment),
+      `${raw.port.id} reports different host details; cross-port runs must share one environment`,
     )
     validatePortMetadata(raw, config)
   }
@@ -216,6 +220,7 @@ function validatePortMetadata(raw, config) {
 }
 
 export function renderReport(matrix) {
+  const environment = matrix.ports[0].environment
   const lines = [
     `# Tabnas measurement — ${matrix.run.id}`,
     '',
@@ -223,13 +228,25 @@ export function renderReport(matrix) {
     '',
     '> These are steady-state, sequential, parse-only measurements on the recorded host. Parser construction, process startup, and compilation are excluded. Compare values inside this run; do not treat workstation results as universal rankings.',
     '',
-    '## Ports and environment',
+    '## Recorded host',
     '',
-    '| Port | Parser | Runtime | Host fingerprint |',
-    '| --- | --- | --- | --- |',
+    '| Field | Value |',
+    '| --- | --- |',
+    `| Hostname | ${markdownValue(environment.hostname)} |`,
+    `| Operating system | ${markdownValue(`${environment.osName} (${environment.os}/${environment.arch})`)} |`,
+    `| Kernel | ${markdownValue(environment.kernelVersion)} |`,
+    `| Processor | ${markdownValue(environment.cpu)} |`,
+    `| Logical CPUs | ${formatNumber(environment.logicalCpus, 0)} |`,
+    `| Memory | ${formatNumber(environment.memoryBytes / 2 ** 30, 2)} GiB (${formatNumber(environment.memoryBytes, 0)} bytes) |`,
+    `| Environment fingerprint | ${markdownValue(environment.fingerprint)} |`,
+    '',
+    '## Ports and runtimes',
+    '',
+    '| Port | Parser | Runtime |',
+    '| --- | --- | --- |',
     ...matrix.ports.map(
       (port) =>
-        `| ${port.label} | \`${port.parserModule}@${port.parserVersion}\` | ${port.runtime} ${port.runtimeVersion} | \`${port.environment.fingerprint.slice(0, 12)}\` |`,
+        `| ${port.label} | \`${port.parserModule}@${port.parserVersion}\` | ${port.runtime} ${port.runtimeVersion} |`,
     ),
     '',
   ]

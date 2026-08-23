@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"reflect"
 	"runtime"
@@ -277,22 +278,68 @@ func dependencyVersion(module string) (string, error) {
 }
 
 func detectEnvironment() Environment {
-	osName, architecture := runtime.GOOS, runtime.GOARCH
+	osID, architecture := runtime.GOOS, runtime.GOARCH
+	osName := operatingSystemName(osID)
+	kernelVersion := operatingSystemKernelVersion()
 	cpu := cpuModel()
 	logicalCPUs := runtime.NumCPU()
 	memoryBytes := totalMemoryBytes()
 	fingerprintInput, _ := json.Marshal(struct {
-		OS          string `json:"os"`
-		Arch        string `json:"arch"`
-		CPU         string `json:"cpu"`
-		LogicalCPUs int    `json:"logicalCpus"`
-		MemoryBytes uint64 `json:"memoryBytes"`
-	}{osName, architecture, cpu, logicalCPUs, memoryBytes})
+		OS            string `json:"os"`
+		OSName        string `json:"osName"`
+		KernelVersion string `json:"kernelVersion"`
+		Arch          string `json:"arch"`
+		CPU           string `json:"cpu"`
+		LogicalCPUs   int    `json:"logicalCpus"`
+		MemoryBytes   uint64 `json:"memoryBytes"`
+	}{osID, osName, kernelVersion, architecture, cpu, logicalCPUs, memoryBytes})
 	host, _ := os.Hostname()
 	return Environment{
-		Fingerprint: hashString(string(fingerprintInput)), OS: osName, Arch: architecture,
-		CPU: cpu, LogicalCPUs: logicalCPUs, MemoryBytes: memoryBytes, Hostname: host,
+		Fingerprint: hashString(string(fingerprintInput)), OS: osID, OSName: osName,
+		KernelVersion: kernelVersion, Arch: architecture, CPU: cpu,
+		LogicalCPUs: logicalCPUs, MemoryBytes: memoryBytes, Hostname: host,
 	}
+}
+
+func operatingSystemName(fallback string) string {
+	for _, path := range []string{"/etc/os-release", "/usr/lib/os-release"} {
+		content, err := os.ReadFile(path)
+		if err != nil {
+			continue
+		}
+		for _, line := range strings.Split(string(content), "\n") {
+			if value, found := strings.CutPrefix(line, "PRETTY_NAME="); found {
+				if name := unquoteOSReleaseValue(value); name != "" {
+					return name
+				}
+			}
+		}
+	}
+	return fallback
+}
+
+func unquoteOSReleaseValue(value string) string {
+	value = strings.TrimSpace(value)
+	if len(value) >= 2 && ((value[0] == '"' && value[len(value)-1] == '"') ||
+		(value[0] == '\'' && value[len(value)-1] == '\'')) {
+		value = value[1 : len(value)-1]
+	}
+	value = strings.ReplaceAll(value, `\"`, `"`)
+	return strings.ReplaceAll(value, `\\`, `\`)
+}
+
+func operatingSystemKernelVersion() string {
+	if content, err := os.ReadFile("/proc/sys/kernel/osrelease"); err == nil {
+		if version := strings.TrimSpace(string(content)); version != "" {
+			return version
+		}
+	}
+	if output, err := exec.Command("uname", "-r").Output(); err == nil {
+		if version := strings.TrimSpace(string(output)); version != "" {
+			return version
+		}
+	}
+	return runtime.GOOS
 }
 
 func cpuModel() string {

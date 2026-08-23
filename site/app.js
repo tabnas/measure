@@ -38,6 +38,8 @@ function renderLatest(matrix) {
     ...matrix.ports.map((port) => `<span>${escapeHTML(port.label)} parser ${escapeHTML(port.parserVersion)}</span>`),
   ].join('')
 
+  renderEnvironment(matrix)
+
   document.querySelector('#capability-catalog').innerHTML = matrix.benchmarks
     .map((benchmark) => {
       const rows = matrix.capabilityMatrix.filter((row) => row.benchmarkId === benchmark.id)
@@ -54,6 +56,41 @@ function renderLatest(matrix) {
       </article>`
     })
     .join('')
+}
+
+function renderEnvironment(matrix) {
+  const environment = matrix.ports[0].environment
+  const facts = [
+    ['Processor', environment.cpu],
+    ['Logical CPUs', format(environment.logicalCpus, 0)],
+    ['Memory', `${format(environment.memoryBytes / 2 ** 30, 2)} GiB (${format(environment.memoryBytes, 0)} bytes)`],
+    ['Hostname', environment.hostname],
+    ['Fingerprint', environment.fingerprint],
+  ]
+  const runtimes = matrix.ports
+    .map(
+      (port) => `<article class="runtime-card">
+        <p>${escapeHTML(port.label)}</p>
+        <strong>${escapeHTML(port.runtime)} ${escapeHTML(port.runtimeVersion)}</strong>
+        <small>${escapeHTML(port.parserModule)}@${escapeHTML(port.parserVersion)}</small>
+      </article>`,
+    )
+    .join('')
+
+  document.querySelector('#environment-details').innerHTML = `
+    <div class="environment-intro">
+      <p class="eyebrow">Recorded host</p>
+      <h3>${escapeHTML(environment.osName)}</h3>
+      <p class="note">${escapeHTML(environment.os)} / ${escapeHTML(environment.arch)} · kernel ${escapeHTML(environment.kernelVersion)}</p>
+    </div>
+    <dl class="host-facts">
+      ${facts
+        .map(
+          ([label, value]) => `<div><dt>${escapeHTML(label)}</dt><dd${label === 'Fingerprint' ? ' class="fingerprint"' : ''}>${escapeHTML(value)}</dd></div>`,
+        )
+        .join('')}
+    </dl>
+    <div class="runtime-grid">${runtimes}</div>`
 }
 
 function renderPerformance(matrix) {

@@ -14,6 +14,9 @@ The repository keeps four concerns separate:
 4. [`site/`](site/) renders the committed result catalog at
    <https://tabnas.github.io/measure/>.
 
+The Pages site uses the canonical Tabnas logo and emblem copied verbatim from
+`tabnas/web/src/assets/brand/`.
+
 The initial catalog measures:
 
 - **Adder:** the canonical Tabnas `1+2+3` grammar and numeric result.

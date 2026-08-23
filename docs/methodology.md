@@ -50,7 +50,8 @@ Every run records:
 
 - repository commit or dirty marker;
 - benchmark suite and parser versions;
-- runtime, OS, architecture, CPU, logical CPU count, and memory;
+- runtime, OS distribution and kernel, architecture, CPU, logical CPU count,
+  memory, and hostname;
 - profile parameters;
 - input sizes and SHA-256 hashes;
 - exact config, schema, benchmark-manifest, and generated-input snapshots;
@@ -71,6 +72,10 @@ fingerprint. A comparable series holds the suite version, port, runtime version,
 and environment fingerprint constant while allowing parser version and commit
 to change. Hardware, runtime, or suite changes therefore start a visibly
 separate series rather than silently joining unlike measurements.
+
+The fingerprint covers the OS identifier, distribution name, kernel release,
+architecture, processor model, logical CPU count, and total memory. Hostname is
+reported for provenance but deliberately excluded from the fingerprint.
 
 `results/latest/` is convenience output only. The source of historical truth is
 the set of immutable directories under `results/runs/`.

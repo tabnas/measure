@@ -103,13 +103,15 @@ type PortMetadata struct {
 }
 
 type Environment struct {
-	Fingerprint string `json:"fingerprint"`
-	OS          string `json:"os"`
-	Arch        string `json:"arch"`
-	CPU         string `json:"cpu"`
-	LogicalCPUs int    `json:"logicalCpus"`
-	MemoryBytes uint64 `json:"memoryBytes"`
-	Hostname    string `json:"hostname"`
+	Fingerprint   string `json:"fingerprint"`
+	OS            string `json:"os"`
+	OSName        string `json:"osName"`
+	KernelVersion string `json:"kernelVersion"`
+	Arch          string `json:"arch"`
+	CPU           string `json:"cpu"`
+	LogicalCPUs   int    `json:"logicalCpus"`
+	MemoryBytes   uint64 `json:"memoryBytes"`
+	Hostname      string `json:"hostname"`
 }
 
 type Methodology struct {

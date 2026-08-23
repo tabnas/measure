@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { isDeepStrictEqual } from 'node:util'
 import { readFile, readdir } from 'node:fs/promises'
-import { cpus, hostname, platform, arch, totalmem } from 'node:os'
+import { arch, cpus, hostname, platform, release, totalmem } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -56,9 +56,11 @@ async function main(): Promise<void> {
   const logicalCpus = cpus().length
   const memoryBytes = totalmem()
   const os = platform()
+  const osName = await operatingSystemName(os)
+  const kernelVersion = release()
   const architecture = canonicalArchitecture(arch())
   const fingerprint = sha256(
-    JSON.stringify({ os, arch: architecture, cpu, logicalCpus, memoryBytes }),
+    JSON.stringify({ os, osName, kernelVersion, arch: architecture, cpu, logicalCpus, memoryBytes }),
   )
 
   const result = {
@@ -84,6 +86,8 @@ async function main(): Promise<void> {
     environment: {
       fingerprint,
       os,
+      osName,
+      kernelVersion,
       arch: architecture,
       cpu,
       logicalCpus,
@@ -274,6 +278,34 @@ function canonicalArchitecture(value: string): string {
   if (value === 'x64') return 'amd64'
   if (value === 'ia32') return '386'
   return value
+}
+
+async function operatingSystemName(fallback: string): Promise<string> {
+  for (const path of ['/etc/os-release', '/usr/lib/os-release']) {
+    try {
+      const content = await readFile(path, 'utf8')
+      const prettyName = content
+        .split('\n')
+        .find((line) => line.startsWith('PRETTY_NAME='))
+      if (prettyName !== undefined) {
+        return unquoteOSReleaseValue(prettyName.slice('PRETTY_NAME='.length)) || fallback
+      }
+    } catch {
+      // Distribution metadata is optional; the runtime platform remains useful.
+    }
+  }
+  return fallback
+}
+
+function unquoteOSReleaseValue(value: string): string {
+  const trimmed = value.trim()
+  const unquoted =
+    trimmed.length >= 2 &&
+    ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+      (trimmed.startsWith("'") && trimmed.endsWith("'")))
+      ? trimmed.slice(1, -1)
+      : trimmed
+  return unquoted.replaceAll('\\"', '"').replaceAll('\\\\', '\\')
 }
 
 function cleanError(cause: unknown): string {
