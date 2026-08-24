@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
+  "title": "Tabnas historical run catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "latestRunId", "runs"],
+  "properties": {
+    "$schema": { "const": "https://tabnas.github.io/measure/schemas/catalog.schema.json" },
+    "schemaVersion": { "const": 3 },
+    "latestRunId": { "type": ["string", "null"] },
+    "runs": { "type": "array", "items": { "$ref": "#/$defs/run" } }
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "generatedAt",
+        "profile",
+        "suiteVersion",
+        "repositoryCommit",
+        "repositoryDirty",
+        "matrixPath",
+        "reportPath",
+        "host",
+        "ports",
+        "benchmarks",
+        "capability",
+        "performanceRows"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "profile": { "type": "string" },
+        "suiteVersion": { "type": "string" },
+        "repositoryCommit": { "type": "string" },
+        "repositoryDirty": { "type": "boolean" },
+        "matrixPath": { "type": "string" },
+        "reportPath": { "type": "string" },
+        "host": { "$ref": "#/$defs/host" },
+        "ports": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/port" } },
+        "benchmarks": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "capability": { "$ref": "#/$defs/passCount" },
+        "performanceRows": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fingerprint",
+        "environmentFingerprint",
+        "os",
+        "osName",
+        "kernelVersion",
+        "arch",
+        "cpu",
+        "logicalCpus",
+        "memoryBytes"
+      ],
+      "properties": {
+        "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{12}$" },
+        "environmentFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "os": { "type": "string" },
+        "osName": { "type": "string" },
+        "kernelVersion": { "type": "string" },
+        "arch": { "type": "string" },
+        "cpu": { "type": "string" },
+        "logicalCpus": { "type": "integer", "minimum": 1 },
+        "memoryBytes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "parserModule",
+        "parserVersion",
+        "runtime",
+        "runtimeVersion",
+        "environmentFingerprint"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "parserModule": { "type": "string" },
+        "parserVersion": { "type": "string" },
+        "runtime": { "type": "string" },
+        "runtimeVersion": { "type": "string" },
+        "environmentFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "passCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "total"],
+      "properties": {
+        "passed": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
