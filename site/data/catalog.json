@@ -1,8 +1,58 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 3,
-  "latestRunId": "20260824T174621785Z-60c854374a1f-suite-0.1.0-ba627922",
+  "latestRunId": "20260824T180228785Z-60c854374a1f-suite-0.1.0-dce65958",
   "runs": [
+    {
+      "id": "20260824T180228785Z-60c854374a1f-suite-0.1.0-dce65958",
+      "generatedAt": "2026-08-24T18:02:28.785Z",
+      "profile": "full",
+      "suiteVersion": "0.1.0",
+      "repositoryCommit": "dce6595872eaac175f61ba4f9d948cde3ae44a0d",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260824T180228785Z-60c854374a1f-suite-0.1.0-dce65958/matrix.json",
+      "reportPath": "runs/20260824T180228785Z-60c854374a1f-suite-0.1.0-dce65958/README.md",
+      "host": {
+        "fingerprint": "60c854374a1f",
+        "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.8.0-137-generic",
+        "arch": "amd64",
+        "cpu": "Intel(R) Core(TM) m3-6Y30 CPU @ 0.90GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 8219103232
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.0",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.14.1",
+          "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.0",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.1",
+          "environmentFingerprint": "6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 32,
+        "total": 32
+      },
+      "performanceRows": 8
+    },
     {
       "id": "20260824T174621785Z-60c854374a1f-suite-0.1.0-ba627922",
       "generatedAt": "2026-08-24T17:46:21.785Z",
