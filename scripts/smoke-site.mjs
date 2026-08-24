@@ -47,13 +47,10 @@ globalThis.document = {
   },
 }
 
-const publishedCatalog = await readJson(join(repositoryRoot, 'site', 'data', 'catalog.json'))
-const publishedHistory = await readJson(join(repositoryRoot, 'site', 'data', 'history.json'))
-assert.equal(publishedCatalog.latestRunId, null)
-assert.deepEqual(publishedCatalog.runs, [])
-assert.deepEqual(publishedHistory.series, [])
+const emptyCatalog = deriveCatalog([])
+const emptyHistory = deriveHistory([])
 globalThis.fetch = async (path) => {
-  const data = path === 'data/catalog.json' ? publishedCatalog : publishedHistory
+  const data = path === 'data/catalog.json' ? emptyCatalog : emptyHistory
   return { ok: true, status: 200, json: async () => data }
 }
 await import(`${pathToFileURL(join(repositoryRoot, 'site', 'app.js')).href}?empty-smoke`)
