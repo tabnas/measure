@@ -1,8 +1,58 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 3,
-  "latestRunId": "20260825T152240338Z-fee6c88dd0dc-suite-0.1.0-a1efc476",
+  "latestRunId": "20260825T154057262Z-fee6c88dd0dc-suite-0.1.0-02303907",
   "runs": [
+    {
+      "id": "20260825T154057262Z-fee6c88dd0dc-suite-0.1.0-02303907",
+      "generatedAt": "2026-08-25T15:40:57.262Z",
+      "profile": "full",
+      "suiteVersion": "0.1.0",
+      "repositoryCommit": "02303907920209681b0a573e6496608932b86d69",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260825T154057262Z-fee6c88dd0dc-suite-0.1.0-02303907/matrix.json",
+      "reportPath": "runs/20260825T154057262Z-fee6c88dd0dc-suite-0.1.0-02303907/README.md",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.0",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.14.1",
+          "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.0",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.3",
+          "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 32,
+        "total": 32
+      },
+      "performanceRows": 8
+    },
     {
       "id": "20260825T152240338Z-fee6c88dd0dc-suite-0.1.0-a1efc476",
       "generatedAt": "2026-08-25T15:22:40.338Z",
