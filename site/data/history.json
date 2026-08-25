@@ -77,6 +77,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-4096/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 990619.789063,
+          "p95Ns": 994269.527344,
+          "operationsPerSecond": 1009.469032,
+          "coefficientOfVariationPercent": 0.327211
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-4096/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -147,6 +199,58 @@
           "p95Ns": 11581230.71875,
           "operationsPerSecond": 131.025415,
           "coefficientOfVariationPercent": 20.00042
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-4096/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 1341707.351563,
+          "p95Ns": 1388649.738281,
+          "operationsPerSecond": 745.319014,
+          "coefficientOfVariationPercent": 1.753857
         }
       ]
     },
@@ -225,6 +329,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-512/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 107605.061523,
+          "p95Ns": 108190.470703,
+          "operationsPerSecond": 9293.243142,
+          "coefficientOfVariationPercent": 0.297494
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-512/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -295,6 +451,58 @@
           "p95Ns": 1344938.242188,
           "operationsPerSecond": 1089.317267,
           "coefficientOfVariationPercent": 19.108575
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-512/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 168642.863281,
+          "p95Ns": 176072.794434,
+          "operationsPerSecond": 5929.690593,
+          "coefficientOfVariationPercent": 1.843238
         }
       ]
     },
@@ -373,6 +581,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-64/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 13465.744019,
+          "p95Ns": 13589.207947,
+          "operationsPerSecond": 74262.513725,
+          "coefficientOfVariationPercent": 0.583418
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-64/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -443,6 +703,58 @@
           "p95Ns": 149288.933594,
           "operationsPerSecond": 8488.696654,
           "coefficientOfVariationPercent": 15.026452
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-64/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 21569.793701,
+          "p95Ns": 22101.905823,
+          "operationsPerSecond": 46361.129543,
+          "coefficientOfVariationPercent": 1.278727
         }
       ]
     },
@@ -521,6 +833,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-8/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 2147.209167,
+          "p95Ns": 2165.963165,
+          "operationsPerSecond": 465720.813391,
+          "coefficientOfVariationPercent": 0.577596
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-8/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -591,6 +955,58 @@
           "p95Ns": 25930.969055,
           "operationsPerSecond": 54859.55582,
           "coefficientOfVariationPercent": 20.173753
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-8/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 3119.400024,
+          "p95Ns": 3417.50209,
+          "operationsPerSecond": 320574.46694,
+          "coefficientOfVariationPercent": 5.271311
         }
       ]
     },
@@ -669,6 +1085,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-1024/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 130584.391602,
+          "p95Ns": 131181.416504,
+          "operationsPerSecond": 7657.883057,
+          "coefficientOfVariationPercent": 0.325603
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-1024/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -739,6 +1207,58 @@
           "p95Ns": 1234352.375,
           "operationsPerSecond": 1051.532295,
           "coefficientOfVariationPercent": 15.813577
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-1024/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 173807.577148,
+          "p95Ns": 180270.52832,
+          "operationsPerSecond": 5753.489096,
+          "coefficientOfVariationPercent": 2.042813
         }
       ]
     },
@@ -817,6 +1337,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-128/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 15475.36731,
+          "p95Ns": 15611.279785,
+          "operationsPerSecond": 64618.821641,
+          "coefficientOfVariationPercent": 0.520097
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-128/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -887,6 +1459,58 @@
           "p95Ns": 174991.605957,
           "operationsPerSecond": 7744.305714,
           "coefficientOfVariationPercent": 18.836512
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-128/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 22515.340088,
+          "p95Ns": 23178.952515,
+          "operationsPerSecond": 44414.163681,
+          "coefficientOfVariationPercent": 1.737192
         }
       ]
     },
@@ -965,6 +1589,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-16/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 2574.120209,
+          "p95Ns": 2587.245941,
+          "operationsPerSecond": 388482.245936,
+          "coefficientOfVariationPercent": 0.423724
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-16/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -1035,6 +1711,58 @@
           "p95Ns": 25785.336609,
           "operationsPerSecond": 49672.303169,
           "coefficientOfVariationPercent": 14.640381
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-16/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 3628.03775,
+          "p95Ns": 3812.984467,
+          "operationsPerSecond": 275631.090093,
+          "coefficientOfVariationPercent": 2.899357
         }
       ]
     },
@@ -1113,6 +1841,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-8192/go/Go/go1.26.3/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.3",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 1393961.59375,
+          "p95Ns": 1412287.109375,
+          "operationsPerSecond": 717.379879,
+          "coefficientOfVariationPercent": 1.246357
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-8192/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -1183,6 +1963,58 @@
           "p95Ns": 10423583.9375,
           "operationsPerSecond": 126.152642,
           "coefficientOfVariationPercent": 17.579567
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-8192/typescript/Node.js/v24.14.1/fee6c88dd0dc/01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.14.1",
+      "host": {
+        "fingerprint": "fee6c88dd0dc",
+        "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "environmentFingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+      "environment": {
+        "fingerprint": "01316d6d95918ed0b77a4b12e3d9242a05f989b4c5b957844a1d72042b4b7589",
+        "hostFingerprint": "fee6c88dd0dc",
+        "os": "darwin",
+        "osName": "darwin",
+        "kernelVersion": "25.6.0",
+        "arch": "arm64",
+        "cpu": "Apple M4",
+        "logicalCpus": 10,
+        "memoryBytes": 25769803776
+      },
+      "points": [
+        {
+          "runId": "20260825T144124487Z-fee6c88dd0dc-suite-0.1.0-7c016950",
+          "generatedAt": "2026-08-25T14:41:24.487Z",
+          "repositoryCommit": "7c0169505a3b2d4b80b172240c0aa04983d37356",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "fee6c88dd0dc",
+          "medianNs": 1414003.25,
+          "p95Ns": 1469893.390625,
+          "operationsPerSecond": 707.211953,
+          "coefficientOfVariationPercent": 2.138731
         }
       ]
     }
