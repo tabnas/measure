@@ -93,6 +93,10 @@ assert.match(elements.get('#history-host').innerHTML, new RegExp(`host ${secondF
 assert.equal(elements.get('#history-context').textContent, '2 hosts · 4 series · 4 points')
 assert.match(elements.get('#history-legend').innerHTML, new RegExp(`host ${firstFingerprint}`))
 assert.match(elements.get('#history-legend').innerHTML, new RegExp(`host ${secondFingerprint}`))
+assert.match(elements.get('#history-range').textContent, /—/)
+assert.match(elements.get('#scaling-context').textContent, /peak exponent/)
+assert.match(elements.get('#scaling-chart').innerHTML, /Input size \(bytes, log scale\)/)
+assert.match(elements.get('#scaling-legend').innerHTML, /adjacent exponent labels/)
 assert.match(elements.get('#run-host').innerHTML, new RegExp(`host ${secondFingerprint}`))
 assert.match(elements.get('#run-list').innerHTML, /host-chip/)
 
@@ -126,13 +130,18 @@ function createElements() {
     'history-chart',
     'history-legend',
     'history-context',
+    'history-range',
+    'scaling-chart',
+    'scaling-legend',
+    'scaling-context',
     'run-list',
   ]) {
     result.set(`#${id}`, new StubElement())
   }
-  for (const id of ['history-case', 'history-host', 'run-host']) {
+  for (const id of ['history-case', 'history-host', 'scaling-benchmark', 'scaling-host', 'scaling-run', 'run-host']) {
     result.set(`#${id}`, new StubElement({ select: true }))
   }
+  for (const id of ['history-from', 'history-to', 'history-reset']) result.set(`#${id}`, new StubElement())
   result.set('main', new StubElement())
   return result
 }

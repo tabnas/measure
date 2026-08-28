@@ -70,11 +70,20 @@ td strong { color: var(--lime); font-family: ui-monospace, SFMono-Regular, Menlo
 .filter-controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; }
 .filter-controls label { display: grid; gap: .45rem; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
 select { min-width: 260px; padding: .7rem 2.2rem .7rem .8rem; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: .45rem; }
+.zoom-controls { display: grid; grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr) auto; gap: .65rem 1rem; align-items: end; padding: .9rem 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: .7rem; }
+.zoom-controls label { display: grid; gap: .25rem; color: var(--muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.zoom-controls input { width: 100%; accent-color: var(--lime); }
+.zoom-controls button { padding: .55rem .8rem; color: var(--ink); background: #101311; border: 1px solid var(--line); border-radius: .4rem; cursor: pointer; }
+.zoom-controls button:hover { border-color: var(--lime); }
+.zoom-controls output { grid-column: 1 / -1; color: var(--mint); font: .75rem ui-monospace, SFMono-Regular, Menlo, monospace; }
 .history-context { margin: .6rem 0 1rem; color: var(--mint); font: .78rem ui-monospace, SFMono-Regular, Menlo, monospace; }
 .chart-shell { padding: 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 1rem; }
 #history-chart { display: block; width: 100%; min-height: 280px; }
 .chart-grid { stroke: #343a34; stroke-width: 1; }
 .chart-label { fill: var(--muted); font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.chart-grid-minor { opacity: .45; }
+.chart-exponent { fill: var(--muted); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; paint-order: stroke; stroke: var(--panel); stroke-width: 4px; }
+.chart-exponent.superlinear { fill: var(--orange); font-weight: 700; }
 .legend { display: flex; flex-wrap: wrap; gap: .7rem 1.3rem; padding: .5rem 1rem 1rem; color: var(--muted); font-size: .78rem; }
 .legend span::before { content: ""; display: inline-block; width: .6rem; height: .6rem; margin-right: .4rem; border-radius: 50%; background: var(--series); }
 .legend b { color: var(--ink); font-weight: 650; }
@@ -99,6 +108,8 @@ footer { max-width: 1180px; margin: auto; padding: 3rem 1.5rem 5rem; display: fl
   .section-heading, .history-heading, footer { align-items: start; flex-direction: column; }
   .filter-controls { width: 100%; }
   .filter-controls label, .filter-controls select { width: 100%; }
+  .zoom-controls { grid-template-columns: 1fr; }
+  .zoom-controls output { grid-column: auto; }
   .run-row { grid-template-columns: 1fr; gap: .4rem; }
   section { padding: 4rem 0; }
 }

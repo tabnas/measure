@@ -63,10 +63,36 @@
           </div>
         </div>
         <p class="note">Series are split by host fingerprint, environment, suite, port, and runtime. Use the fingerprint filter to isolate repeated runs from one machine or runner pool.</p>
+        <div class="zoom-controls" aria-label="History time range">
+          <label>From <input id="history-from" type="range" min="0" max="0" value="0"></label>
+          <label>To <input id="history-to" type="range" min="0" max="0" value="0"></label>
+          <button id="history-reset" type="button">Reset range</button>
+          <output id="history-range"></output>
+        </div>
         <p id="history-context" class="history-context"></p>
         <div class="chart-shell">
           <svg id="history-chart" viewBox="0 0 900 340" role="img" aria-label="Historical median latency chart"></svg>
           <div id="history-legend" class="legend"></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="scaling-title">
+        <div class="section-heading history-heading">
+          <div>
+            <p class="eyebrow">Complexity profile</p>
+            <h2 id="scaling-title">Performance by input size</h2>
+          </div>
+          <div class="filter-controls">
+            <label>Benchmark <select id="scaling-benchmark"></select></label>
+            <label>Host fingerprint <select id="scaling-host"></select></label>
+            <label>Run <select id="scaling-run"></select></label>
+          </div>
+        </div>
+        <p class="note">Log–log axes compare related cases by byte size. The exponent between adjacent points estimates growth: 1× is linear; above 1× is superlinear.</p>
+        <p id="scaling-context" class="history-context"></p>
+        <div class="chart-shell">
+          <svg id="scaling-chart" viewBox="0 0 900 390" role="img" aria-label="Median latency by input size"></svg>
+          <div id="scaling-legend" class="legend"></div>
         </div>
       </section>
 
