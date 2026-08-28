@@ -4,7 +4,11 @@
   "id": "adder",
   "title": "Adder grammar",
   "summary": "Canonical Tabnas integer-addition grammar with semantic accumulation.",
-  "classification": ["deterministic", "semantic-action", "repetition"],
+  "classification": [
+    "deterministic",
+    "semantic-action",
+    "repetition"
+  ],
   "reference": {
     "label": "Tabnas quickstart",
     "url": "https://tabnas.dev/docs/quickstart"
@@ -60,22 +64,74 @@
     {
       "id": "terms-8",
       "description": "Eight one-digit terms.",
-      "generator": { "kind": "adder-chain", "size": 8, "value": 1 }
+      "generator": {
+        "kind": "adder-chain",
+        "size": 8,
+        "value": 1
+      }
     },
     {
       "id": "terms-64",
       "description": "Sixty-four one-digit terms.",
-      "generator": { "kind": "adder-chain", "size": 64, "value": 1 }
+      "generator": {
+        "kind": "adder-chain",
+        "size": 64,
+        "value": 1
+      }
     },
     {
       "id": "terms-512",
       "description": "Five hundred twelve one-digit terms.",
-      "generator": { "kind": "adder-chain", "size": 512, "value": 1 }
+      "generator": {
+        "kind": "adder-chain",
+        "size": 512,
+        "value": 1
+      }
+    },
+    {
+      "id": "terms-1024",
+      "description": "One thousand twenty-four one-digit terms.",
+      "generator": {
+        "kind": "adder-chain",
+        "size": 1024,
+        "value": 1
+      }
+    },
+    {
+      "id": "terms-2048",
+      "description": "Two thousand forty-eight one-digit terms.",
+      "generator": {
+        "kind": "adder-chain",
+        "size": 2048,
+        "value": 1
+      }
     },
     {
       "id": "terms-4096",
       "description": "Four thousand ninety-six one-digit terms.",
-      "generator": { "kind": "adder-chain", "size": 4096, "value": 1 }
+      "generator": {
+        "kind": "adder-chain",
+        "size": 4096,
+        "value": 1
+      }
+    },
+    {
+      "id": "terms-8192",
+      "description": "Eight thousand one hundred ninety-two one-digit terms.",
+      "generator": {
+        "kind": "adder-chain",
+        "size": 8192,
+        "value": 1
+      }
+    },
+    {
+      "id": "terms-16384",
+      "description": "Sixteen thousand three hundred eighty-four one-digit terms.",
+      "generator": {
+        "kind": "adder-chain",
+        "size": 16384,
+        "value": 1
+      }
     }
   ]
 }
