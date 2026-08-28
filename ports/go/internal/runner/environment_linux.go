@@ -4,26 +4,40 @@ package runner
 
 import (
 	"bufio"
+	"bytes"
 	"os"
+	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
 )
 
 func cpuModel() string {
+	if output, err := exec.Command("lscpu").Output(); err == nil {
+		if model := cpuModelFrom(bytes.NewReader(output)); model != "" {
+			return model
+		}
+	}
 	file, err := os.Open("/proc/cpuinfo")
 	if err != nil {
 		return runtime.GOARCH
 	}
 	defer file.Close()
-	scanner := bufio.NewScanner(file)
+	if model := cpuModelFrom(file); model != "" {
+		return model
+	}
+	return runtime.GOARCH
+}
+
+func cpuModelFrom(input interface{ Read([]byte) (int, error) }) string {
+	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
 		key, value, found := strings.Cut(scanner.Text(), ":")
-		if found && strings.TrimSpace(key) == "model name" {
+		if found && strings.EqualFold(strings.TrimSpace(key), "model name") {
 			return strings.TrimSpace(value)
 		}
 	}
-	return runtime.GOARCH
+	return ""
 }
 
 func totalMemoryBytes() uint64 {
