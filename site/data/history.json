@@ -162,6 +162,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-4096/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 3614487.90625,
+          "p95Ns": 3633094.203125,
+          "operationsPerSecond": 276.664365,
+          "coefficientOfVariationPercent": 0.60061
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-4096/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -317,6 +369,58 @@
           "p95Ns": 1441781.085938,
           "operationsPerSecond": 731.068781,
           "coefficientOfVariationPercent": 2.779355
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-4096/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 5307235.28125,
+          "p95Ns": 6099813.78125,
+          "operationsPerSecond": 188.422021,
+          "coefficientOfVariationPercent": 8.56665
         }
       ]
     },
@@ -480,6 +584,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-512/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 392118.9375,
+          "p95Ns": 395517.074219,
+          "operationsPerSecond": 2550.246633,
+          "coefficientOfVariationPercent": 0.552013
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-512/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -635,6 +791,58 @@
           "p95Ns": 185287.109375,
           "operationsPerSecond": 5889.587512,
           "coefficientOfVariationPercent": 4.359447
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-512/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 674953.34375,
+          "p95Ns": 794324.470703,
+          "operationsPerSecond": 1481.583889,
+          "coefficientOfVariationPercent": 8.138498
         }
       ]
     },
@@ -798,6 +1006,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-64/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 49788.561035,
+          "p95Ns": 50163.395996,
+          "operationsPerSecond": 20084.934756,
+          "coefficientOfVariationPercent": 0.576566
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-64/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -953,6 +1213,58 @@
           "p95Ns": 22924.179016,
           "operationsPerSecond": 45885.567165,
           "coefficientOfVariationPercent": 2.56366
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-64/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 83654.458984,
+          "p95Ns": 100668.043457,
+          "operationsPerSecond": 11953.935416,
+          "coefficientOfVariationPercent": 11.140975
         }
       ]
     },
@@ -1116,6 +1428,58 @@
       ]
     },
     {
+      "id": "0.1.0/adder/terms-8/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 7674.995239,
+          "p95Ns": 8307.686218,
+          "operationsPerSecond": 130293.240429,
+          "coefficientOfVariationPercent": 3.526122
+        }
+      ]
+    },
+    {
       "id": "0.1.0/adder/terms-8/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "adder",
@@ -1271,6 +1635,58 @@
           "p95Ns": 3411.27269,
           "operationsPerSecond": 320619.688348,
           "coefficientOfVariationPercent": 5.208983
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/adder/terms-8/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 12449.474365,
+          "p95Ns": 17921.123291,
+          "operationsPerSecond": 80324.676421,
+          "coefficientOfVariationPercent": 23.237619
         }
       ]
     },
@@ -1434,6 +1850,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-1024/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 419122.921875,
+          "p95Ns": 507784.818359,
+          "operationsPerSecond": 2385.934884,
+          "coefficientOfVariationPercent": 9.08616
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-1024/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -1589,6 +2057,58 @@
           "p95Ns": 181113.851074,
           "operationsPerSecond": 5706.081089,
           "coefficientOfVariationPercent": 2.030531
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-1024/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 648274.519531,
+          "p95Ns": 748260.509766,
+          "operationsPerSecond": 1542.556386,
+          "coefficientOfVariationPercent": 9.019043
         }
       ]
     },
@@ -1752,6 +2272,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-128/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 53296.442383,
+          "p95Ns": 54138.378174,
+          "operationsPerSecond": 18762.978452,
+          "coefficientOfVariationPercent": 0.87152
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-128/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -1907,6 +2479,58 @@
           "p95Ns": 23518.241943,
           "operationsPerSecond": 43970.721232,
           "coefficientOfVariationPercent": 1.800257
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-128/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 82210.509766,
+          "p95Ns": 94250.339355,
+          "operationsPerSecond": 12163.894894,
+          "coefficientOfVariationPercent": 8.514084
         }
       ]
     },
@@ -2070,6 +2694,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-16/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 8570.61792,
+          "p95Ns": 8720.331482,
+          "operationsPerSecond": 116677.701578,
+          "coefficientOfVariationPercent": 0.842704
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-16/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -2225,6 +2901,58 @@
           "p95Ns": 3877.047867,
           "operationsPerSecond": 273759.812825,
           "coefficientOfVariationPercent": 3.201149
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-16/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 13839.605225,
+          "p95Ns": 16751.188293,
+          "operationsPerSecond": 72256.396318,
+          "coefficientOfVariationPercent": 12.052126
         }
       ]
     },
@@ -2388,6 +3116,58 @@
       ]
     },
     {
+      "id": "0.1.0/palindrome/chars-8192/go/Go/go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "go",
+      "portLabel": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 5172098.625,
+          "p95Ns": 5417371.203125,
+          "operationsPerSecond": 193.345114,
+          "coefficientOfVariationPercent": 2.631191
+        }
+      ]
+    },
+    {
       "id": "0.1.0/palindrome/chars-8192/typescript/Node.js/v24.14.1/60c854374a1f/6163022ce2b319c20cb1a337223fb3a4023207e3dc44d9875b54dfc293274ead",
       "suiteVersion": "0.1.0",
       "benchmarkId": "palindrome",
@@ -2543,6 +3323,58 @@
           "p95Ns": 1468874.347656,
           "operationsPerSecond": 705.712088,
           "coefficientOfVariationPercent": 2.003125
+        }
+      ]
+    },
+    {
+      "id": "0.1.0/palindrome/chars-8192/typescript/Node.js/v24.20.0/e5f6c05acfe5/16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "suiteVersion": "0.1.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.20.0",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+      "environment": {
+        "fingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "hostFingerprint": "e5f6c05acfe5",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "points": [
+        {
+          "runId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+          "generatedAt": "2026-08-28T17:08:50.988Z",
+          "repositoryCommit": "f0ee7f574ec762bf8189e44d0b1eff8c78c3cda7",
+          "parserVersion": "0.9.0",
+          "hostFingerprint": "e5f6c05acfe5",
+          "medianNs": 5329217.8125,
+          "p95Ns": 6178769.640625,
+          "operationsPerSecond": 187.644798,
+          "coefficientOfVariationPercent": 9.119716
         }
       ]
     }
