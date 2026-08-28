@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tabnas.github.io/measure/schemas/port-result.schema.json",
+  "title": "Raw result from one Tabnas runtime port",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "run",
+    "port",
+    "environment",
+    "methodology",
+    "capabilities",
+    "measurements"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 3 },
+    "run": { "$ref": "#/$defs/run" },
+    "port": { "$ref": "#/$defs/port" },
+    "environment": { "$ref": "#/$defs/environment" },
+    "methodology": { "$ref": "#/$defs/methodology" },
+    "capabilities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/capabilityGroup" }
+    },
+    "measurements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/measurement" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "nonNegativeInteger": { "type": "integer", "minimum": 0 },
+    "positiveInteger": { "type": "integer", "minimum": 1 },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "generatedAt", "profile", "suiteVersion", "repositoryCommit", "repositoryDirty"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "profile": { "$ref": "#/$defs/id" },
+        "suiteVersion": { "type": "string" },
+        "repositoryCommit": { "type": "string", "minLength": 1 },
+        "repositoryDirty": { "type": "boolean" }
+      }
+    },
+    "port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "language", "runtime", "runtimeVersion", "parserModule", "parserVersion"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" },
+        "language": { "type": "string" },
+        "runtime": { "type": "string" },
+        "runtimeVersion": { "type": "string" },
+        "parserModule": { "type": "string" },
+        "parserVersion": { "type": "string" }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fingerprint", "hostFingerprint", "os", "osName", "kernelVersion", "arch", "cpu", "logicalCpus", "memoryBytes"],
+      "properties": {
+        "fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "hostFingerprint": { "type": "string", "pattern": "^[a-f0-9]{12}$" },
+        "os": { "type": "string" },
+        "osName": { "type": "string", "minLength": 1 },
+        "kernelVersion": { "type": "string", "minLength": 1 },
+        "arch": { "type": "string" },
+        "cpu": { "type": "string" },
+        "logicalCpus": { "$ref": "#/$defs/positiveInteger" },
+        "memoryBytes": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "methodology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "warmupMs", "sampleTargetMs", "samples", "maxIterations"],
+      "properties": {
+        "scope": { "const": "parse-only-steady-state-sequential" },
+        "warmupMs": { "$ref": "#/$defs/positiveInteger" },
+        "sampleTargetMs": { "$ref": "#/$defs/positiveInteger" },
+        "samples": { "type": "integer", "minimum": 3 },
+        "maxIterations": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "capabilityGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["benchmarkId", "passed", "total", "cases"],
+      "properties": {
+        "benchmarkId": { "$ref": "#/$defs/id" },
+        "passed": { "$ref": "#/$defs/nonNegativeInteger" },
+        "total": { "$ref": "#/$defs/nonNegativeInteger" },
+        "cases": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capabilityResult" }
+        }
+      }
+    },
+    "capabilityResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["caseId", "description", "acceptExpected", "accepted", "passed"],
+      "properties": {
+        "caseId": { "$ref": "#/$defs/id" },
+        "description": { "type": "string" },
+        "acceptExpected": { "type": "boolean" },
+        "accepted": { "type": "boolean" },
+        "passed": { "type": "boolean" },
+        "expected": true,
+        "actual": true,
+        "error": { "type": "string" }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["benchmarkId", "caseId", "description", "input", "iterationsPerSample", "samples", "checksum"],
+      "properties": {
+        "benchmarkId": { "$ref": "#/$defs/id" },
+        "caseId": { "$ref": "#/$defs/id" },
+        "description": { "type": "string" },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bytes", "codeUnits", "sha256"],
+          "properties": {
+            "bytes": { "$ref": "#/$defs/positiveInteger" },
+            "codeUnits": { "$ref": "#/$defs/positiveInteger" },
+            "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          }
+        },
+        "iterationsPerSample": { "$ref": "#/$defs/positiveInteger" },
+        "samples": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["elapsedNs"],
+            "properties": {
+              "elapsedNs": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          }
+        },
+        "checksum": { "type": "number" }
+      }
+    }
+  }
+}

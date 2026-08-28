@@ -1,8 +1,58 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 3,
-  "latestRunId": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
+  "latestRunId": "20260828T171533306Z-e5f6c05acfe5-suite-0.1.0-48a8eb2a",
   "runs": [
+    {
+      "id": "20260828T171533306Z-e5f6c05acfe5-suite-0.1.0-48a8eb2a",
+      "generatedAt": "2026-08-28T17:15:33.306Z",
+      "profile": "full",
+      "suiteVersion": "0.1.0",
+      "repositoryCommit": "48a8eb2a92bf13109055b96e73b9776a5ef195b6",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260828T171533306Z-e5f6c05acfe5-suite-0.1.0-48a8eb2a/matrix.json",
+      "reportPath": "runs/20260828T171533306Z-e5f6c05acfe5-suite-0.1.0-48a8eb2a/README.md",
+      "host": {
+        "fingerprint": "e5f6c05acfe5",
+        "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b",
+        "os": "linux",
+        "osName": "Oracle Linux Server 9.8",
+        "kernelVersion": "6.12.0-205.92.4.2.el9uek.aarch64",
+        "arch": "arm64",
+        "cpu": "Neoverse-N1",
+        "logicalCpus": 2,
+        "memoryBytes": 11427643392
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.0",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.20.0",
+          "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.0",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.5 (Red Hat 1.26.5-1.0.1.el9_8)",
+          "environmentFingerprint": "16e56d5a691ea761d98c254c4812b9e9aef4d38e902ed4a63852430f82aeaa7b"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 32,
+        "total": 32
+      },
+      "performanceRows": 8
+    },
     {
       "id": "20260828T170850988Z-e5f6c05acfe5-suite-0.1.0-f0ee7f57",
       "generatedAt": "2026-08-28T17:08:50.988Z",
