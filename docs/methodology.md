@@ -80,8 +80,11 @@ architecture, processor model, logical CPU count, and total memory.
 
 The host fingerprint is the first 12 hexadecimal characters of SHA-256 over a
 domain-separated host key. By default the key comes from the operating system
-machine identifier. `TABNAS_MEASURE_HOST_KEY` can provide a stable private key
-for an ephemeral host or logical runner pool. The source key is never retained,
+machine identifier: `/etc/machine-id` or `/var/lib/dbus/machine-id` on Linux,
+and the `IOPlatformUUID` reported by `ioreg` on macOS.
+`TABNAS_MEASURE_HOST_KEY` can provide a stable private key for an ephemeral
+host or logical runner pool, and is required on any platform where neither
+source exists. The source key is never retained,
 and the harness does not collect the machine name. Two hosts with identical
 hardware remain separate because the host fingerprint is an independent series
 dimension. A hardware or OS change on one host remains separate because the

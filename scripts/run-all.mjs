@@ -157,6 +157,22 @@ async function resolveHostFingerprint() {
       }
     }
   }
+  // The two paths above are systemd/dbus files: linux only. macOS has
+  // neither, so without this branch no Mac could derive a fingerprint at all
+  // and every run there needed the key passed by hand — the exact chore the
+  // automatic fingerprint exists to remove. IOPlatformUUID is the platform's
+  // own stable hardware identifier and is the right analogue: constant across
+  // reboots and reinstalls, distinct per machine.
+  if (!hostKey && process.platform === 'darwin') {
+    try {
+      const { stdout } = await execute('ioreg', ['-rd1', '-c', 'IOPlatformExpertDevice'], {
+        encoding: 'utf8',
+      })
+      hostKey = /"IOPlatformUUID"\s*=\s*"([^"]+)"/.exec(stdout)?.[1]?.trim()
+    } catch {
+      // Leave hostKey unset and fall through to the explicit-key error.
+    }
+  }
   if (!hostKey) {
     throw new Error(
       'Unable to derive a host fingerprint; set TABNAS_MEASURE_HOST_KEY to a stable per-host value',
