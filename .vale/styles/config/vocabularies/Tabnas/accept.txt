@@ -1,0 +1,7 @@
+[Tt]abnas
+config
+lockfile
+lockfiles
+npm
+stderr
+stdout
