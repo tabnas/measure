@@ -23,6 +23,7 @@ on:
       - 'README.md'
       - 'docs/STYLE-GUIDE.md'
       - 'scripts/gated-docs.mjs'
+      - 'scripts/vale-counts.mjs'
       - '.vale.ini'
       - '.vale/**'
       - '.github/workflows/docs.yml'
@@ -32,6 +33,7 @@ on:
       - 'README.md'
       - 'docs/STYLE-GUIDE.md'
       - 'scripts/gated-docs.mjs'
+      - 'scripts/vale-counts.mjs'
       - '.vale.ini'
       - '.vale/**'
       - '.github/workflows/docs.yml'
@@ -44,9 +46,9 @@ jobs:
   prose:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7.0.0
         with:
           node-version: '24.x'
 
@@ -77,6 +79,13 @@ jobs:
       # not by path.
       - name: Prose gate
         run: vale --minAlertLevel=error $(node scripts/gated-docs.mjs)
+
+      # .vale.ini justifies every demoted rule with the number of alerts
+      # it produced here, and docs/STYLE-GUIDE.md repeats the total. Both
+      # were written by hand, and the two totals drifted apart before
+      # anything compared them to a run. This step does.
+      - name: Recorded alert counts
+        run: node scripts/vale-counts.mjs
 
       # Warnings and suggestions are reported for the author to read and
       # do not block; see the demotion notes in .vale.ini for what sits

@@ -1,4 +1,5 @@
-.PHONY: setup build test measure site clean
+.PHONY: setup build test measure site clean \
+        prose prose-counts
 
 HOST_KEY ?= $(TABNAS_MEASURE_HOST_KEY)
 
@@ -27,3 +28,9 @@ clean:
 # `vale sync`. Warnings are advisory, errors fail.
 prose:
 	vale --minAlertLevel=error $$(node scripts/gated-docs.mjs)
+	node scripts/vale-counts.mjs
+
+# Re-measure what .vale.ini and the style guide record, after
+# a change to the pages or to the rules moves the numbers.
+prose-counts:
+	node scripts/vale-counts.mjs --write
