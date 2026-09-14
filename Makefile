@@ -1,4 +1,5 @@
-.PHONY: setup build test measure site clean
+.PHONY: setup build test measure site clean \
+        prose prose-counts
 
 HOST_KEY ?= $(TABNAS_MEASURE_HOST_KEY)
 
