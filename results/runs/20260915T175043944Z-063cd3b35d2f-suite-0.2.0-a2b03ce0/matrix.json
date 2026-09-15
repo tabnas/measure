@@ -1,0 +1,1452 @@
+{
+  "$schema": "https://tabnas.github.io/measure/schemas/matrix.schema.json",
+  "schemaVersion": 3,
+  "run": {
+    "id": "20260915T175043944Z-063cd3b35d2f-suite-0.2.0-a2b03ce0",
+    "generatedAt": "2026-09-15T17:50:43.944Z",
+    "profile": "full",
+    "suiteVersion": "0.2.0",
+    "repositoryCommit": "a2b03ce0620484e5e02ae153581d17baaf109933",
+    "repositoryDirty": false
+  },
+  "ports": [
+    {
+      "id": "typescript",
+      "label": "TypeScript / Node.js",
+      "language": "TypeScript",
+      "runtime": "Node.js",
+      "runtimeVersion": "v24.21.0",
+      "parserModule": "@tabnas/parser",
+      "parserVersion": "0.9.7",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      }
+    },
+    {
+      "id": "go",
+      "label": "Go",
+      "language": "Go",
+      "runtime": "Go",
+      "runtimeVersion": "go1.26.0",
+      "parserModule": "github.com/tabnas/parser/go",
+      "parserVersion": "0.9.7",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      }
+    },
+    {
+      "id": "rust",
+      "label": "Rust",
+      "language": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "parserModule": "tabnas",
+      "parserVersion": "0.9.7",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      }
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "adder",
+      "title": "Adder grammar",
+      "summary": "Canonical Tabnas integer-addition grammar with semantic accumulation.",
+      "classification": [
+        "deterministic",
+        "semantic-action",
+        "repetition"
+      ],
+      "reference": {
+        "label": "Tabnas quickstart",
+        "url": "https://tabnas.dev/docs/quickstart"
+      }
+    },
+    {
+      "id": "palindrome",
+      "title": "Even palindromes",
+      "summary": "Classic non-deterministic context-free language resolved with full parse context.",
+      "classification": [
+        "non-deterministic-context-free",
+        "state-aware",
+        "recursive"
+      ],
+      "reference": {
+        "label": "Context-free recognition summary",
+        "url": "https://www.cs.utahtech.edu/cs/3530/examples.examples/chapter02-contextfreelanguages.pdf"
+      }
+    }
+  ],
+  "capabilityMatrix": [
+    {
+      "benchmarkId": "adder",
+      "caseId": "single",
+      "description": "One number is a complete expression.",
+      "acceptExpected": true,
+      "expected": 1,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": 1
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": 1
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": 1
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "chain",
+      "description": "Three terms accumulate on the parent node.",
+      "acceptExpected": true,
+      "expected": 6,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": 6
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": 6
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": 6
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "multi-digit",
+      "description": "Multi-digit number tokens retain their numeric values.",
+      "acceptExpected": true,
+      "expected": 60,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": 60
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": 60
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": 60
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "trailing-plus",
+      "description": "A plus sign must be followed by another number.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "leading-plus",
+      "description": "An expression cannot begin with plus.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "double-plus",
+      "description": "An empty term between plus signs is rejected.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "unknown-token",
+      "description": "Unrecognized arithmetic syntax is rejected.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "empty",
+      "description": "The empty word belongs to the language.",
+      "acceptExpected": true,
+      "expected": true,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "pair-a",
+      "description": "The smallest a palindrome is accepted.",
+      "acceptExpected": true,
+      "expected": true,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "pair-b",
+      "description": "The smallest b palindrome is accepted.",
+      "acceptExpected": true,
+      "expected": true,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "nested",
+      "description": "Nested unlike symbols match across the midpoint.",
+      "acceptExpected": true,
+      "expected": true,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "length-six",
+      "description": "A three-symbol first half is mirrored.",
+      "acceptExpected": true,
+      "expected": true,
+      "ports": {
+        "typescript": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "go": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        },
+        "rust": {
+          "accepted": true,
+          "passed": true,
+          "actual": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "odd-length",
+      "description": "No midpoint between symbols exists.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "not-mirrored",
+      "description": "Equal-length halves that are not reverses fail.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "wrong-close",
+      "description": "A close symbol that differs from its opener fails.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "outside-alphabet",
+      "description": "Symbols outside the declared alphabet are rejected.",
+      "acceptExpected": false,
+      "ports": {
+        "typescript": {
+          "accepted": false,
+          "passed": true
+        },
+        "go": {
+          "accepted": false,
+          "passed": true
+        },
+        "rust": {
+          "accepted": false,
+          "passed": true
+        }
+      }
+    }
+  ],
+  "performanceMatrix": [
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 16384,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 11346.878723,
+          "medianNs": 11501.861511,
+          "p95Ns": 13297.728973,
+          "maxNs": 14912.031982,
+          "meanNs": 11820.12763,
+          "standardDeviationNs": 1031.100994,
+          "coefficientOfVariationPercent": 8.723264,
+          "operationsPerSecond": 86942.448318,
+          "sourceMiBPerSecond": 1.243722
+        },
+        "go": {
+          "iterationsPerSample": 16384,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 7571.058167,
+          "medianNs": 8626.884644,
+          "p95Ns": 9319.320526,
+          "maxNs": 9850.144165,
+          "meanNs": 8475.143105,
+          "standardDeviationNs": 643.906665,
+          "coefficientOfVariationPercent": 7.59759,
+          "operationsPerSecond": 115916.700097,
+          "sourceMiBPerSecond": 1.658202
+        },
+        "rust": {
+          "iterationsPerSample": 4096,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 31903.182129,
+          "medianNs": 32365.118408,
+          "p95Ns": 33603.635254,
+          "maxNs": 33743.483643,
+          "meanNs": 32580.321089,
+          "standardDeviationNs": 645.017079,
+          "coefficientOfVariationPercent": 1.979775,
+          "operationsPerSecond": 30897.461501,
+          "sourceMiBPerSecond": 0.441992
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.814,
+        "go": 3.752,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 2048,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 74977.755859,
+          "medianNs": 77718.931641,
+          "p95Ns": 87181.515625,
+          "maxNs": 89400.287598,
+          "meanNs": 79283.652255,
+          "standardDeviationNs": 4598.165232,
+          "coefficientOfVariationPercent": 5.799639,
+          "operationsPerSecond": 12866.877849,
+          "sourceMiBPerSecond": 1.558393
+        },
+        "go": {
+          "iterationsPerSample": 2048,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 46418.23291,
+          "medianNs": 48575.950684,
+          "p95Ns": 51707.401123,
+          "maxNs": 51796.308105,
+          "meanNs": 49089.405939,
+          "standardDeviationNs": 1883.049414,
+          "coefficientOfVariationPercent": 3.835959,
+          "operationsPerSecond": 20586.31866,
+          "sourceMiBPerSecond": 2.493346
+        },
+        "rust": {
+          "iterationsPerSample": 512,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 215374.839844,
+          "medianNs": 217759.25,
+          "p95Ns": 234094.12207,
+          "maxNs": 236378.074219,
+          "meanNs": 221191.485618,
+          "standardDeviationNs": 7009.22063,
+          "coefficientOfVariationPercent": 3.168847,
+          "operationsPerSecond": 4592.227425,
+          "sourceMiBPerSecond": 0.556195
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.802,
+        "go": 4.483,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 256,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 587101.789063,
+          "medianNs": 592963.476563,
+          "p95Ns": 794478.701172,
+          "maxNs": 924687.347656,
+          "meanNs": 629435.487926,
+          "standardDeviationNs": 100381.987135,
+          "coefficientOfVariationPercent": 15.947939,
+          "operationsPerSecond": 1686.444511,
+          "sourceMiBPerSecond": 1.64531
+        },
+        "go": {
+          "iterationsPerSample": 256,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 369028.558594,
+          "medianNs": 386345.832031,
+          "p95Ns": 429486.365234,
+          "maxNs": 437772.675781,
+          "meanNs": 391566.487571,
+          "standardDeviationNs": 22162.774686,
+          "coefficientOfVariationPercent": 5.660028,
+          "operationsPerSecond": 2588.35457,
+          "sourceMiBPerSecond": 2.525222
+        },
+        "rust": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 1623353.359375,
+          "medianNs": 1628482.21875,
+          "p95Ns": 1716003.914063,
+          "maxNs": 1779058.578125,
+          "meanNs": 1646499.417614,
+          "standardDeviationNs": 45301.293647,
+          "coefficientOfVariationPercent": 2.75137,
+          "operationsPerSecond": 614.068725,
+          "sourceMiBPerSecond": 0.599091
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.746,
+        "go": 4.215,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-1024",
+      "description": "One thousand twenty-four one-digit terms.",
+      "input": {
+        "bytes": 2047,
+        "codeUnits": 2047,
+        "sha256": "1de348e1b18d00c6ebfc74a51e1d2395a11bbbd1e55f64e539ce4daf843cb786"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 128,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 1184576.273438,
+          "medianNs": 1210972.601563,
+          "p95Ns": 1392350.976563,
+          "maxNs": 1427065.976563,
+          "meanNs": 1246478.974432,
+          "standardDeviationNs": 79291.032482,
+          "coefficientOfVariationPercent": 6.361201,
+          "operationsPerSecond": 825.782515,
+          "sourceMiBPerSecond": 1.612069
+        },
+        "go": {
+          "iterationsPerSample": 256,
+          "sampleCount": 11,
+          "checksum": 2883584,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 746509.335938,
+          "medianNs": 756447.199219,
+          "p95Ns": 774770.697266,
+          "maxNs": 776677.800781,
+          "meanNs": 759010.120739,
+          "standardDeviationNs": 10060.008192,
+          "coefficientOfVariationPercent": 1.325412,
+          "operationsPerSecond": 1321.969334,
+          "sourceMiBPerSecond": 2.580711
+        },
+        "rust": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 3295214.96875,
+          "medianNs": 3320377.59375,
+          "p95Ns": 3358743.515625,
+          "maxNs": 3370187.125,
+          "meanNs": 3321658.227273,
+          "standardDeviationNs": 22768.369469,
+          "coefficientOfVariationPercent": 0.685452,
+          "operationsPerSecond": 301.170566,
+          "sourceMiBPerSecond": 0.587937
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.742,
+        "go": 4.389,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-2048",
+      "description": "Two thousand forty-eight one-digit terms.",
+      "input": {
+        "bytes": 4095,
+        "codeUnits": 4095,
+        "sha256": "63694f1a7945adff1acabfe47857fd437a4db73f7d85825be8d6176981d148d9"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 2365110.5,
+          "medianNs": 2402498.15625,
+          "p95Ns": 2651871.460938,
+          "maxNs": 2843055.078125,
+          "meanNs": 2441975.590909,
+          "standardDeviationNs": 136404.287613,
+          "coefficientOfVariationPercent": 5.585817,
+          "operationsPerSecond": 416.23341,
+          "sourceMiBPerSecond": 1.625515
+        },
+        "go": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 1637079.046875,
+          "medianNs": 1683305.640625,
+          "p95Ns": 1780120.34375,
+          "maxNs": 1828652.71875,
+          "meanNs": 1691876.700284,
+          "standardDeviationNs": 54348.544285,
+          "coefficientOfVariationPercent": 3.212323,
+          "operationsPerSecond": 594.069179,
+          "sourceMiBPerSecond": 2.320016
+        },
+        "rust": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 6763639.375,
+          "medianNs": 6945699.8125,
+          "p95Ns": 7115993.625,
+          "maxNs": 7125798.1875,
+          "meanNs": 6942023.488636,
+          "standardDeviationNs": 107404.265008,
+          "coefficientOfVariationPercent": 1.547161,
+          "operationsPerSecond": 143.973973,
+          "sourceMiBPerSecond": 0.562261
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.891,
+        "go": 4.126,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 5078534.6875,
+          "medianNs": 5119914.03125,
+          "p95Ns": 5544052,
+          "maxNs": 5911552.875,
+          "meanNs": 5190326.275568,
+          "standardDeviationNs": 241240.151622,
+          "coefficientOfVariationPercent": 4.64788,
+          "operationsPerSecond": 195.31578,
+          "sourceMiBPerSecond": 1.525718
+        },
+        "go": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 3248756.71875,
+          "medianNs": 3382218.8125,
+          "p95Ns": 3711860.109375,
+          "maxNs": 3948537.25,
+          "meanNs": 3418325.127841,
+          "standardDeviationNs": 191005.601941,
+          "coefficientOfVariationPercent": 5.587696,
+          "operationsPerSecond": 295.663899,
+          "sourceMiBPerSecond": 2.309592
+        },
+        "rust": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 14725517.5,
+          "medianNs": 15123288.375,
+          "p95Ns": 15716017.5,
+          "maxNs": 15744530,
+          "meanNs": 15232643.215909,
+          "standardDeviationNs": 347172.767853,
+          "coefficientOfVariationPercent": 2.279137,
+          "operationsPerSecond": 66.123185,
+          "sourceMiBPerSecond": 0.516524
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 2.954,
+        "go": 4.471,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-8192",
+      "description": "Eight thousand one hundred ninety-two one-digit terms.",
+      "input": {
+        "bytes": 16383,
+        "codeUnits": 16383,
+        "sha256": "a0e5c605958886ff43ffdf6db4fb6abb0713f0944111a2a1e0e1c128ca8bd204"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 9838899.9375,
+          "medianNs": 9941596.8125,
+          "p95Ns": 10898031.21875,
+          "maxNs": 11710864,
+          "meanNs": 10101540.340909,
+          "standardDeviationNs": 538569.05785,
+          "coefficientOfVariationPercent": 5.331554,
+          "operationsPerSecond": 100.587463,
+          "sourceMiBPerSecond": 1.571583
+        },
+        "go": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 7862362.4375,
+          "medianNs": 8238046.8125,
+          "p95Ns": 8432362.1875,
+          "maxNs": 8457744.9375,
+          "meanNs": 8211879.954545,
+          "standardDeviationNs": 183993.051179,
+          "coefficientOfVariationPercent": 2.240572,
+          "operationsPerSecond": 121.387997,
+          "sourceMiBPerSecond": 1.896572
+        },
+        "rust": {
+          "iterationsPerSample": 4,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 32074593.5,
+          "medianNs": 32903458.5,
+          "p95Ns": 35187916.25,
+          "maxNs": 35252466.5,
+          "meanNs": 33186545.522727,
+          "standardDeviationNs": 1072187.422803,
+          "coefficientOfVariationPercent": 3.230789,
+          "operationsPerSecond": 30.391942,
+          "sourceMiBPerSecond": 0.474845
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.31,
+        "go": 3.994,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-16384",
+      "description": "Sixteen thousand three hundred eighty-four one-digit terms.",
+      "input": {
+        "bytes": 32767,
+        "codeUnits": 32767,
+        "sha256": "795f6c8dc2e336e1c23ec659521c24b6486d29665375384a47c7a2767c781ee2"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 18201552.75,
+          "medianNs": 18364692.75,
+          "p95Ns": 21541825.4375,
+          "maxNs": 23311341.25,
+          "meanNs": 19049040.772727,
+          "standardDeviationNs": 1509144.649113,
+          "coefficientOfVariationPercent": 7.922418,
+          "operationsPerSecond": 54.452313,
+          "sourceMiBPerSecond": 1.701583
+        },
+        "go": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 1441792,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 15665668.625,
+          "medianNs": 16363686.75,
+          "p95Ns": 17182800.5625,
+          "maxNs": 17411381.125,
+          "meanNs": 16395827.215909,
+          "standardDeviationNs": 553869.249225,
+          "coefficientOfVariationPercent": 3.378111,
+          "operationsPerSecond": 61.110923,
+          "sourceMiBPerSecond": 1.909658
+        },
+        "rust": {
+          "iterationsPerSample": 2,
+          "sampleCount": 11,
+          "checksum": 360448,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 62676660.5,
+          "medianNs": 65369735,
+          "p95Ns": 68821612.5,
+          "maxNs": 69449851.5,
+          "meanNs": 65494274.045455,
+          "standardDeviationNs": 1943521.432305,
+          "coefficientOfVariationPercent": 2.967468,
+          "operationsPerSecond": 15.297599,
+          "sourceMiBPerSecond": 0.478035
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.56,
+        "go": 3.995,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 8192,
+          "sampleCount": 11,
+          "checksum": 90112,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 12060.319214,
+          "medianNs": 12206.393555,
+          "p95Ns": 14617.696472,
+          "maxNs": 16238.018555,
+          "meanNs": 12686.862493,
+          "standardDeviationNs": 1219.334367,
+          "coefficientOfVariationPercent": 9.611,
+          "operationsPerSecond": 81924.279724,
+          "sourceMiBPerSecond": 1.250065
+        },
+        "go": {
+          "iterationsPerSample": 16384,
+          "sampleCount": 11,
+          "checksum": 180224,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 8981.711243,
+          "medianNs": 9308.927612,
+          "p95Ns": 9770.83371,
+          "maxNs": 9776.077332,
+          "meanNs": 9356.52169,
+          "standardDeviationNs": 260.659491,
+          "coefficientOfVariationPercent": 2.785859,
+          "operationsPerSecond": 107423.75939,
+          "sourceMiBPerSecond": 1.639156
+        },
+        "rust": {
+          "iterationsPerSample": 4096,
+          "sampleCount": 11,
+          "checksum": 45056,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 42903.492432,
+          "medianNs": 43411.659668,
+          "p95Ns": 45870.39209,
+          "maxNs": 47796.528076,
+          "meanNs": 43802.336248,
+          "standardDeviationNs": 1349.484173,
+          "coefficientOfVariationPercent": 3.08085,
+          "operationsPerSecond": 23035.286088,
+          "sourceMiBPerSecond": 0.351491
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.556,
+        "go": 4.663,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 2048,
+          "sampleCount": 11,
+          "checksum": 22528,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 75782.575684,
+          "medianNs": 76246.573242,
+          "p95Ns": 85229.303223,
+          "maxNs": 91367.591797,
+          "meanNs": 77936.272328,
+          "standardDeviationNs": 4560.063951,
+          "coefficientOfVariationPercent": 5.851016,
+          "operationsPerSecond": 13115.343516,
+          "sourceMiBPerSecond": 1.600994
+        },
+        "go": {
+          "iterationsPerSample": 2048,
+          "sampleCount": 11,
+          "checksum": 22528,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 49169.759277,
+          "medianNs": 51534.48877,
+          "p95Ns": 54193.02832,
+          "maxNs": 55644.28418,
+          "meanNs": 51285.378729,
+          "standardDeviationNs": 1869.267705,
+          "coefficientOfVariationPercent": 3.644836,
+          "operationsPerSecond": 19404.480841,
+          "sourceMiBPerSecond": 2.368711
+        },
+        "rust": {
+          "iterationsPerSample": 512,
+          "sampleCount": 11,
+          "checksum": 5632,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 271446.291016,
+          "medianNs": 278685.939453,
+          "p95Ns": 331209.223633,
+          "maxNs": 372709.226563,
+          "meanNs": 287008.956499,
+          "standardDeviationNs": 28926.975679,
+          "coefficientOfVariationPercent": 10.078771,
+          "operationsPerSecond": 3588.268579,
+          "sourceMiBPerSecond": 0.438021
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.655,
+        "go": 5.408,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 256,
+          "sampleCount": 11,
+          "checksum": 2816,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 605131.492188,
+          "medianNs": 607598.179688,
+          "p95Ns": 679137.212891,
+          "maxNs": 727841.71875,
+          "meanNs": 621330.806108,
+          "standardDeviationNs": 36066.211746,
+          "coefficientOfVariationPercent": 5.804671,
+          "operationsPerSecond": 1645.824549,
+          "sourceMiBPerSecond": 1.607251
+        },
+        "go": {
+          "iterationsPerSample": 256,
+          "sampleCount": 11,
+          "checksum": 2816,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 408331.355469,
+          "medianNs": 438160.328125,
+          "p95Ns": 466856.826172,
+          "maxNs": 467382.308594,
+          "meanNs": 437421.337358,
+          "standardDeviationNs": 18871.603999,
+          "coefficientOfVariationPercent": 4.314285,
+          "operationsPerSecond": 2282.269607,
+          "sourceMiBPerSecond": 2.228779
+        },
+        "rust": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 704,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 2007580.671875,
+          "medianNs": 2040128.390625,
+          "p95Ns": 2063059.96875,
+          "maxNs": 2076815.703125,
+          "meanNs": 2038007.426136,
+          "standardDeviationNs": 17325.720833,
+          "coefficientOfVariationPercent": 0.85013,
+          "operationsPerSecond": 490.165229,
+          "sourceMiBPerSecond": 0.478677
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.358,
+        "go": 4.656,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-2048",
+      "description": "Two thousand forty-eight-character even palindrome.",
+      "input": {
+        "bytes": 2048,
+        "codeUnits": 2048,
+        "sha256": "e780a6ff5de9f3a835d37484789914d05abf84a385e6d1b6422ca865e404eee8"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 128,
+          "sampleCount": 11,
+          "checksum": 1408,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 1129074.710938,
+          "medianNs": 1143796.664063,
+          "p95Ns": 1454779.082031,
+          "maxNs": 1503441.164063,
+          "meanNs": 1199079.078125,
+          "standardDeviationNs": 128681.831349,
+          "coefficientOfVariationPercent": 10.731722,
+          "operationsPerSecond": 874.28127,
+          "sourceMiBPerSecond": 1.707581
+        },
+        "go": {
+          "iterationsPerSample": 128,
+          "sampleCount": 11,
+          "checksum": 1408,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 909965.9375,
+          "medianNs": 946748.632813,
+          "p95Ns": 1026893.664063,
+          "maxNs": 1054944.492188,
+          "meanNs": 957493.360085,
+          "standardDeviationNs": 41209.421294,
+          "coefficientOfVariationPercent": 4.303886,
+          "operationsPerSecond": 1056.246574,
+          "sourceMiBPerSecond": 2.062982
+        },
+        "rust": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 352,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 4061568.5,
+          "medianNs": 4102874.625,
+          "p95Ns": 4251451.8125,
+          "maxNs": 4265429.40625,
+          "meanNs": 4132811.264205,
+          "standardDeviationNs": 68497.028079,
+          "coefficientOfVariationPercent": 1.657396,
+          "operationsPerSecond": 243.731552,
+          "sourceMiBPerSecond": 0.476038
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.587,
+        "go": 4.334,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-4096",
+      "description": "Four thousand ninety-six-character even palindrome.",
+      "input": {
+        "bytes": 4096,
+        "codeUnits": 4096,
+        "sha256": "a6e506b1c9312bc87b7d6030859b7f4e3c6cd7ccf16f8791d00ab95192623424"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 704,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 2306050.984375,
+          "medianNs": 2348373.984375,
+          "p95Ns": 2698097.59375,
+          "maxNs": 2952365.453125,
+          "meanNs": 2409303.298295,
+          "standardDeviationNs": 184965.194183,
+          "coefficientOfVariationPercent": 7.677124,
+          "operationsPerSecond": 425.826553,
+          "sourceMiBPerSecond": 1.663385
+        },
+        "go": {
+          "iterationsPerSample": 64,
+          "sampleCount": 11,
+          "checksum": 704,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 2382737.765625,
+          "medianNs": 2451319.375,
+          "p95Ns": 2546109.578125,
+          "maxNs": 2571663.390625,
+          "meanNs": 2458267.234375,
+          "standardDeviationNs": 57970.451402,
+          "coefficientOfVariationPercent": 2.358183,
+          "operationsPerSecond": 407.943579,
+          "sourceMiBPerSecond": 1.59353
+        },
+        "rust": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 176,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 8488152.5625,
+          "medianNs": 8787031.375,
+          "p95Ns": 9280240.46875,
+          "maxNs": 9406698.625,
+          "meanNs": 8816283.670455,
+          "standardDeviationNs": 283430.734586,
+          "coefficientOfVariationPercent": 3.214855,
+          "operationsPerSecond": 113.804078,
+          "sourceMiBPerSecond": 0.444547
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 3.742,
+        "go": 3.585,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 352,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 4645133.71875,
+          "medianNs": 4796385.75,
+          "p95Ns": 5511074,
+          "maxNs": 6131773,
+          "meanNs": 4893101.085227,
+          "standardDeviationNs": 416586.703031,
+          "coefficientOfVariationPercent": 8.513756,
+          "operationsPerSecond": 208.49032,
+          "sourceMiBPerSecond": 1.628831
+        },
+        "go": {
+          "iterationsPerSample": 32,
+          "sampleCount": 11,
+          "checksum": 352,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 5009074.34375,
+          "medianNs": 5207247.34375,
+          "p95Ns": 5446688.609375,
+          "maxNs": 5449082.8125,
+          "meanNs": 5237251.548295,
+          "standardDeviationNs": 134382.372417,
+          "coefficientOfVariationPercent": 2.565895,
+          "operationsPerSecond": 192.040042,
+          "sourceMiBPerSecond": 1.500313
+        },
+        "rust": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 88,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 18698132.25,
+          "medianNs": 19273155.5,
+          "p95Ns": 20893440.125,
+          "maxNs": 21149050.5,
+          "meanNs": 19662773.988636,
+          "standardDeviationNs": 820403.247712,
+          "coefficientOfVariationPercent": 4.172368,
+          "operationsPerSecond": 51.88564,
+          "sourceMiBPerSecond": 0.405357
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 4.018,
+        "go": 3.701,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16384",
+      "description": "Sixteen thousand three hundred eighty-four-character even palindrome.",
+      "input": {
+        "bytes": 16384,
+        "codeUnits": 16384,
+        "sha256": "afc86c13985da05d8b3e68f80852a56dd6495ba36ac8afe268233a8b96f79a5a"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 176,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 8996259.5,
+          "medianNs": 9145727.75,
+          "p95Ns": 10519294.96875,
+          "maxNs": 11234525.125,
+          "meanNs": 9390468.386364,
+          "standardDeviationNs": 648981.025672,
+          "coefficientOfVariationPercent": 6.911061,
+          "operationsPerSecond": 109.34067,
+          "sourceMiBPerSecond": 1.708448
+        },
+        "go": {
+          "iterationsPerSample": 16,
+          "sampleCount": 11,
+          "checksum": 176,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 9464425.125,
+          "medianNs": 9623604.75,
+          "p95Ns": 10191603.90625,
+          "maxNs": 10255384,
+          "meanNs": 9745428.005682,
+          "standardDeviationNs": 271710.426115,
+          "coefficientOfVariationPercent": 2.788081,
+          "operationsPerSecond": 103.911167,
+          "sourceMiBPerSecond": 1.623612
+        },
+        "rust": {
+          "iterationsPerSample": 4,
+          "sampleCount": 11,
+          "checksum": 44,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 42676337.75,
+          "medianNs": 43591120.25,
+          "p95Ns": 45438093.5,
+          "maxNs": 46001328.75,
+          "meanNs": 43824145.886364,
+          "standardDeviationNs": 913819.835461,
+          "coefficientOfVariationPercent": 2.085197,
+          "operationsPerSecond": 22.940452,
+          "sourceMiBPerSecond": 0.358445
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 4.766,
+        "go": 4.53,
+        "rust": 1
+      }
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-32768",
+      "description": "Thirty-two thousand seven hundred sixty-eight-character even palindrome.",
+      "input": {
+        "bytes": 32768,
+        "codeUnits": 32768,
+        "sha256": "ea6040375617e268aed6ca19d1b5af61ad8774118f2ddfdf2a6184b2cef2b95c"
+      },
+      "ports": {
+        "typescript": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 88,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 19697392.25,
+          "medianNs": 21394762.25,
+          "p95Ns": 26403340.1875,
+          "maxNs": 26728015.25,
+          "meanNs": 22047671.579545,
+          "standardDeviationNs": 2417713.522693,
+          "coefficientOfVariationPercent": 10.965845,
+          "operationsPerSecond": 46.740412,
+          "sourceMiBPerSecond": 1.460638
+        },
+        "go": {
+          "iterationsPerSample": 8,
+          "sampleCount": 11,
+          "checksum": 88,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 17009927.25,
+          "medianNs": 17540599.875,
+          "p95Ns": 18644425.5625,
+          "maxNs": 18665527.125,
+          "meanNs": 17815928.818182,
+          "standardDeviationNs": 568589.367816,
+          "coefficientOfVariationPercent": 3.191466,
+          "operationsPerSecond": 57.010593,
+          "sourceMiBPerSecond": 1.781581
+        },
+        "rust": {
+          "iterationsPerSample": 2,
+          "sampleCount": 11,
+          "checksum": 22,
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+          "minNs": 92366729,
+          "medianNs": 95411775,
+          "p95Ns": 96902910.5,
+          "maxNs": 97105787.5,
+          "meanNs": 95226332.045455,
+          "standardDeviationNs": 1463365.707553,
+          "coefficientOfVariationPercent": 1.536724,
+          "operationsPerSecond": 10.480887,
+          "sourceMiBPerSecond": 0.327528
+        }
+      },
+      "relativeThroughput": {
+        "typescript": 4.46,
+        "go": 5.439,
+        "rust": 1
+      }
+    }
+  ]
+}

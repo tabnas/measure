@@ -110,8 +110,7 @@ fn make_palindrome() -> Tabnas {
                 ..Default::default()
             };
             open.add_action(move |rule, _context| {
-                rule.u
-                    .insert("expected".into(), Value::String(symbol.into()));
+                rule.u_mut().insert("expected".into(), Value::String(symbol.into()));
             });
             rule.add_open(open);
         }
@@ -120,7 +119,7 @@ fn make_palindrome() -> Tabnas {
             ..Default::default()
         };
         midpoint.add_action(|rule, _context| {
-            rule.u.insert("midpoint".into(), Value::Bool(true));
+            rule.u_mut().insert("midpoint".into(), Value::Bool(true));
         });
         rule.add_open(midpoint);
 

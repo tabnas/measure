@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tabnas.github.io/measure/schemas/config.schema.json",
+  "title": "Tabnas measurement configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "suiteVersion", "profiles", "ports"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "suiteVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "profiles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/profile" }
+    },
+    "ports": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/port" }
+    }
+  },
+  "$defs": {
+    "positiveInteger": { "type": "integer", "minimum": 1 },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["warmupMs", "sampleTargetMs", "samples", "maxIterations"],
+      "properties": {
+        "warmupMs": { "$ref": "#/$defs/positiveInteger" },
+        "sampleTargetMs": { "$ref": "#/$defs/positiveInteger" },
+        "samples": { "type": "integer", "minimum": 3 },
+        "maxIterations": { "$ref": "#/$defs/positiveInteger" }
+      }
+    },
+    "port": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "parser", "command", "arguments"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "label": { "type": "string", "minLength": 1 },
+        "parser": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "version"],
+          "properties": {
+            "module": { "type": "string", "minLength": 1 },
+            "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+          }
+        },
+        "command": { "type": "string", "minLength": 1 },
+        "arguments": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

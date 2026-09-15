@@ -1,10 +1,11 @@
 import { execFile } from 'node:child_process'
 import { access, cp, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
-import { join, relative, resolve } from 'node:path'
+import { dirname, join, relative, resolve } from 'node:path'
 import { promisify } from 'node:util'
 
 import { aggregateRun } from './aggregate.mjs'
-import { rebuildCatalog } from './lib/catalog.mjs'
+import { rebuildCatalog, scanRunMatrices } from './lib/catalog.mjs'
+import { toolchainWarning } from './lib/toolchain.mjs'
 import {
   generateInput,
   loadConfig,
@@ -94,6 +95,12 @@ async function main() {
 
   await aggregateRun(runDirectory)
   if (options.record) {
+    process.stderr.write(
+      toolchainWarning(
+        JSON.parse(await readFile(join(runDirectory, 'matrix.json'), 'utf8')),
+        await scanRunMatrices(),
+      ),
+    )
     await mkdir(join(repositoryRoot, 'results', 'runs'), { recursive: true })
     await rename(runDirectory, finalDirectory)
     await rebuildCatalog()
@@ -110,6 +117,27 @@ async function snapshotDefinitions(runDirectory, config, manifests) {
   await mkdir(join(definitionsDirectory, 'inputs'), { recursive: true })
   await cp(join(repositoryRoot, 'schemas'), join(definitionsDirectory, 'schemas'), { recursive: true })
   await writeJson(join(definitionsDirectory, 'measure.config.json'), config)
+
+  // Invariant 11 says a run carries the manifests used to produce it, and
+  // these were the ones it did not. A run named its parsers only by the
+  // version each port reports, and the Rust crate is unpublished, so every
+  // revision on a branch reports the same in-tree version: twenty-three
+  // pinned revisions all calling themselves 0.9.7. That left the measured
+  // git revision recoverable only through the run's `repositoryCommit`,
+  // and a branch that is rebased or squashed takes that commit with it.
+  // Codex caught a run in this repository already naming an object no
+  // longer in its own history.
+  //
+  // Copying each port's pinning manifests in makes the run answer the
+  // question by itself. The list comes from the config rather than from
+  // here, so a port added later cannot skip it unnoticed.
+  for (const port of config.ports) {
+    for (const pinned of port.manifests) {
+      const destination = join(definitionsDirectory, 'manifests', port.id, pinned)
+      await mkdir(dirname(destination), { recursive: true })
+      await cp(join(repositoryRoot, pinned), destination)
+    }
+  }
   for (const manifest of manifests) {
     const benchmarkDirectory = join(definitionsDirectory, 'benchmarks', manifest.id)
     const inputsDirectory = join(definitionsDirectory, 'inputs', manifest.id)

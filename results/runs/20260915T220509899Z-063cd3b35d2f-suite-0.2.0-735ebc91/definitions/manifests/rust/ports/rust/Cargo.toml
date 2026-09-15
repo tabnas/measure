@@ -1,0 +1,49 @@
+[package]
+name = "measure-rust"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Rust measurement runner for the Tabnas parser."
+license = "MIT"
+publish = false
+
+[[bin]]
+name = "measure-rust"
+path = "src/main.rs"
+
+# The Rust parser is not published to crates.io and carries no `rs/` tag,
+# so the exact revision is the only pin available.
+#
+# The revision is past `ts/v0.9.7` and `go/v0.9.7`. It carries the rule
+# stack fix that made this port measurable at all (tabnas/parser#176,
+# merged) and the allocation work that followed it. All of it is
+# Rust-internal, so the three ports still report 0.9.7 and the matrix
+# still compares like with like.
+[dependencies]
+tabnas = { git = "https://github.com/tabnas/parser", rev = "91ba7125ef96e7eb14559c6db08dd6a5f3013dd8" }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+sha2 = "0.10.9"
+# The other two ports bring their own allocator: Go has the runtime's and
+# TypeScript has V8's. Rust defaults to whatever libc supplies, which on
+# this host is glibc, and the engine allocates heavily enough that the
+# choice is 1.09x to 1.56x. Measuring the port against the system
+# allocator was measuring glibc as much as the port.
+mimalloc = "=0.1.52"
+
+# Measurements come from an optimized build. One codegen unit costs
+# compile time and buys stable inlining decisions between runs, which is
+# what a measurement harness wants from a knob a consumer would leave
+# alone. `panic` stays at the default `unwind`: the parser contains its
+# own panics with `catch_unwind`, and aborting would turn a contained
+# failure into a dead process.
+[profile.release]
+opt-level = 3
+codegen-units = 1
+# Cross-module inlining, which the other two ports get and this one did
+# not: the Go compiler inlines across packages within a binary by
+# default, and V8 inlines across module boundaries at runtime. Without
+# this the engine is a separate crate the runner cannot inline into,
+# which is a property of how the measurement is built rather than of
+# the port. Worth 1.10x-1.15x on every case.
+lto = "fat"

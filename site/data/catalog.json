@@ -1,8 +1,2427 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 3,
-  "latestRunId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+  "latestRunId": "20260915T232152873Z-063cd3b35d2f-suite-0.2.0-7a1d7bb6",
   "runs": [
+    {
+      "id": "20260915T232152873Z-063cd3b35d2f-suite-0.2.0-7a1d7bb6",
+      "generatedAt": "2026-09-15T23:21:52.873Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "7a1d7bb6ac8315db0f2d0f492d17a212b5c8ebd4",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T232152873Z-063cd3b35d2f-suite-0.2.0-7a1d7bb6/matrix.json",
+      "reportPath": "runs/20260915T232152873Z-063cd3b35d2f-suite-0.2.0-7a1d7bb6/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T232005591Z-063cd3b35d2f-suite-0.2.0-47cdeba0",
+      "generatedAt": "2026-09-15T23:20:05.591Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "47cdeba08d0e939122431bd43473da745ff1eeb6",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T232005591Z-063cd3b35d2f-suite-0.2.0-47cdeba0/matrix.json",
+      "reportPath": "runs/20260915T232005591Z-063cd3b35d2f-suite-0.2.0-47cdeba0/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T220509899Z-063cd3b35d2f-suite-0.2.0-735ebc91",
+      "generatedAt": "2026-09-15T22:05:09.899Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "735ebc9124d9efae8abb91b918a82f31af8e2cda",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T220509899Z-063cd3b35d2f-suite-0.2.0-735ebc91/matrix.json",
+      "reportPath": "runs/20260915T220509899Z-063cd3b35d2f-suite-0.2.0-735ebc91/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T220315949Z-063cd3b35d2f-suite-0.2.0-f623a9bb",
+      "generatedAt": "2026-09-15T22:03:15.949Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "f623a9bb97e124286dc0cbcdfa5be8d77f319c69",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T220315949Z-063cd3b35d2f-suite-0.2.0-f623a9bb/matrix.json",
+      "reportPath": "runs/20260915T220315949Z-063cd3b35d2f-suite-0.2.0-f623a9bb/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T220022449Z-063cd3b35d2f-suite-0.2.0-446def86",
+      "generatedAt": "2026-09-15T22:00:22.449Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "446def86704233c82f80fffbcad2ed4bb6005325",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T220022449Z-063cd3b35d2f-suite-0.2.0-446def86/matrix.json",
+      "reportPath": "runs/20260915T220022449Z-063cd3b35d2f-suite-0.2.0-446def86/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T214323699Z-063cd3b35d2f-suite-0.2.0-29fb5b41",
+      "generatedAt": "2026-09-15T21:43:23.699Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "29fb5b41ba93921a2b25a88ed9397028ed8a9f6b",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T214323699Z-063cd3b35d2f-suite-0.2.0-29fb5b41/matrix.json",
+      "reportPath": "runs/20260915T214323699Z-063cd3b35d2f-suite-0.2.0-29fb5b41/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T214136037Z-063cd3b35d2f-suite-0.2.0-11c6bfe9",
+      "generatedAt": "2026-09-15T21:41:36.037Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "11c6bfe917122f9a9906c53deb2aeb51b75e4284",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T214136037Z-063cd3b35d2f-suite-0.2.0-11c6bfe9/matrix.json",
+      "reportPath": "runs/20260915T214136037Z-063cd3b35d2f-suite-0.2.0-11c6bfe9/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+      "generatedAt": "2026-09-15T21:23:22.908Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3/matrix.json",
+      "reportPath": "runs/20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T212126054Z-063cd3b35d2f-suite-0.2.0-27877fae",
+      "generatedAt": "2026-09-15T21:21:26.054Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "27877fae077d3452b243d092faaa9aad4bd2eeeb",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T212126054Z-063cd3b35d2f-suite-0.2.0-27877fae/matrix.json",
+      "reportPath": "runs/20260915T212126054Z-063cd3b35d2f-suite-0.2.0-27877fae/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T204429053Z-063cd3b35d2f-suite-0.2.0-10c191dd",
+      "generatedAt": "2026-09-15T20:44:29.053Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "10c191dd4e301d93bcc5354224a28523090c169c",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T204429053Z-063cd3b35d2f-suite-0.2.0-10c191dd/matrix.json",
+      "reportPath": "runs/20260915T204429053Z-063cd3b35d2f-suite-0.2.0-10c191dd/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T204238333Z-063cd3b35d2f-suite-0.2.0-40411295",
+      "generatedAt": "2026-09-15T20:42:38.333Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "40411295127930592d3d93ea5b69541336e26eb1",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T204238333Z-063cd3b35d2f-suite-0.2.0-40411295/matrix.json",
+      "reportPath": "runs/20260915T204238333Z-063cd3b35d2f-suite-0.2.0-40411295/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T193109014Z-063cd3b35d2f-suite-0.2.0-841c3d0f",
+      "generatedAt": "2026-09-15T19:31:09.014Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "841c3d0fbe7d61f549a8990e4e6fede7905b31b3",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T193109014Z-063cd3b35d2f-suite-0.2.0-841c3d0f/matrix.json",
+      "reportPath": "runs/20260915T193109014Z-063cd3b35d2f-suite-0.2.0-841c3d0f/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+      "generatedAt": "2026-09-15T19:29:06.755Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5/matrix.json",
+      "reportPath": "runs/20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v22.22.2",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T191334778Z-063cd3b35d2f-suite-0.2.0-cdfcad42",
+      "generatedAt": "2026-09-15T19:13:34.778Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "cdfcad42210dfcdaef2eca30cee3aa3aee67231c",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T191334778Z-063cd3b35d2f-suite-0.2.0-cdfcad42/matrix.json",
+      "reportPath": "runs/20260915T191334778Z-063cd3b35d2f-suite-0.2.0-cdfcad42/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T191142310Z-063cd3b35d2f-suite-0.2.0-fc8f9f80",
+      "generatedAt": "2026-09-15T19:11:42.310Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "fc8f9f804264fa1c1e01e4ee4cfd2307fcb0e420",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T191142310Z-063cd3b35d2f-suite-0.2.0-fc8f9f80/matrix.json",
+      "reportPath": "runs/20260915T191142310Z-063cd3b35d2f-suite-0.2.0-fc8f9f80/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T190034373Z-063cd3b35d2f-suite-0.2.0-549d3ffc",
+      "generatedAt": "2026-09-15T19:00:34.373Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "549d3ffc188f1e7ca03dae17fd1ad164892d4224",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T190034373Z-063cd3b35d2f-suite-0.2.0-549d3ffc/matrix.json",
+      "reportPath": "runs/20260915T190034373Z-063cd3b35d2f-suite-0.2.0-549d3ffc/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T185842202Z-063cd3b35d2f-suite-0.2.0-5a2e0cd4",
+      "generatedAt": "2026-09-15T18:58:42.202Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "5a2e0cd4ddc485f2f7f903f15a6351d18a2b6e42",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T185842202Z-063cd3b35d2f-suite-0.2.0-5a2e0cd4/matrix.json",
+      "reportPath": "runs/20260915T185842202Z-063cd3b35d2f-suite-0.2.0-5a2e0cd4/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T184734913Z-063cd3b35d2f-suite-0.2.0-b3cdcdec",
+      "generatedAt": "2026-09-15T18:47:34.913Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "b3cdcdecf93ef7d186842cfd0ceb81f4ff6e3f97",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T184734913Z-063cd3b35d2f-suite-0.2.0-b3cdcdec/matrix.json",
+      "reportPath": "runs/20260915T184734913Z-063cd3b35d2f-suite-0.2.0-b3cdcdec/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205",
+      "generatedAt": "2026-09-15T18:45:44.947Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "4277e205ba7944a17c4b1e8eab12b863afd42521",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205/matrix.json",
+      "reportPath": "runs/20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T183800647Z-063cd3b35d2f-suite-0.2.0-1b4bbc76",
+      "generatedAt": "2026-09-15T18:38:00.647Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "1b4bbc7620b6eac457ccabee7e3628a74973f379",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T183800647Z-063cd3b35d2f-suite-0.2.0-1b4bbc76/matrix.json",
+      "reportPath": "runs/20260915T183800647Z-063cd3b35d2f-suite-0.2.0-1b4bbc76/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T183610724Z-063cd3b35d2f-suite-0.2.0-042f11c5",
+      "generatedAt": "2026-09-15T18:36:10.724Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "042f11c5aadc3f57d24eb651d5796aeaf31b2e9a",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T183610724Z-063cd3b35d2f-suite-0.2.0-042f11c5/matrix.json",
+      "reportPath": "runs/20260915T183610724Z-063cd3b35d2f-suite-0.2.0-042f11c5/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T181717939Z-063cd3b35d2f-suite-0.2.0-e7f5cea4",
+      "generatedAt": "2026-09-15T18:17:17.939Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "e7f5cea461c629854a300c6f4b26d74d0f57b97e",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T181717939Z-063cd3b35d2f-suite-0.2.0-e7f5cea4/matrix.json",
+      "reportPath": "runs/20260915T181717939Z-063cd3b35d2f-suite-0.2.0-e7f5cea4/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T181534112Z-063cd3b35d2f-suite-0.2.0-cb97588e",
+      "generatedAt": "2026-09-15T18:15:34.112Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "cb97588ef6e921f1dffe4bc47142c5e0f77fe85f",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T181534112Z-063cd3b35d2f-suite-0.2.0-cb97588e/matrix.json",
+      "reportPath": "runs/20260915T181534112Z-063cd3b35d2f-suite-0.2.0-cb97588e/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T180252380Z-063cd3b35d2f-suite-0.2.0-05a88620",
+      "generatedAt": "2026-09-15T18:02:52.380Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "05a886202b44a674550abd9cfa7f18a466bd8d94",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T180252380Z-063cd3b35d2f-suite-0.2.0-05a88620/matrix.json",
+      "reportPath": "runs/20260915T180252380Z-063cd3b35d2f-suite-0.2.0-05a88620/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T180106098Z-063cd3b35d2f-suite-0.2.0-4caaebe5",
+      "generatedAt": "2026-09-15T18:01:06.098Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "4caaebe507710878280c5fc4d470a62ffa55885f",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T180106098Z-063cd3b35d2f-suite-0.2.0-4caaebe5/matrix.json",
+      "reportPath": "runs/20260915T180106098Z-063cd3b35d2f-suite-0.2.0-4caaebe5/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T175228888Z-063cd3b35d2f-suite-0.2.0-7ac35ced",
+      "generatedAt": "2026-09-15T17:52:28.888Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "7ac35ced61f41be49b194123f58a4e62c1b079ca",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T175228888Z-063cd3b35d2f-suite-0.2.0-7ac35ced/matrix.json",
+      "reportPath": "runs/20260915T175228888Z-063cd3b35d2f-suite-0.2.0-7ac35ced/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T175043944Z-063cd3b35d2f-suite-0.2.0-a2b03ce0",
+      "generatedAt": "2026-09-15T17:50:43.944Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "a2b03ce0620484e5e02ae153581d17baaf109933",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T175043944Z-063cd3b35d2f-suite-0.2.0-a2b03ce0/matrix.json",
+      "reportPath": "runs/20260915T175043944Z-063cd3b35d2f-suite-0.2.0-a2b03ce0/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T173631289Z-063cd3b35d2f-suite-0.2.0-b4393d08",
+      "generatedAt": "2026-09-15T17:36:31.289Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "b4393d085cf336d98af859758652d7c508d879e1",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T173631289Z-063cd3b35d2f-suite-0.2.0-b4393d08/matrix.json",
+      "reportPath": "runs/20260915T173631289Z-063cd3b35d2f-suite-0.2.0-b4393d08/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T173447286Z-063cd3b35d2f-suite-0.2.0-c4f63ba0",
+      "generatedAt": "2026-09-15T17:34:47.286Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "c4f63ba0d18347be7313875121b0770b80a9262f",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T173447286Z-063cd3b35d2f-suite-0.2.0-c4f63ba0/matrix.json",
+      "reportPath": "runs/20260915T173447286Z-063cd3b35d2f-suite-0.2.0-c4f63ba0/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T171421351Z-063cd3b35d2f-suite-0.2.0-4becb4c5",
+      "generatedAt": "2026-09-15T17:14:21.351Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "4becb4c551758ecc12b7e1b538c59b8cf157416c",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T171421351Z-063cd3b35d2f-suite-0.2.0-4becb4c5/matrix.json",
+      "reportPath": "runs/20260915T171421351Z-063cd3b35d2f-suite-0.2.0-4becb4c5/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T171236462Z-063cd3b35d2f-suite-0.2.0-461e0cbc",
+      "generatedAt": "2026-09-15T17:12:36.462Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "461e0cbcd91dcfbe27d8cd69ffc2fef018a43adb",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T171236462Z-063cd3b35d2f-suite-0.2.0-461e0cbc/matrix.json",
+      "reportPath": "runs/20260915T171236462Z-063cd3b35d2f-suite-0.2.0-461e0cbc/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T170129860Z-063cd3b35d2f-suite-0.2.0-5fa7ea55",
+      "generatedAt": "2026-09-15T17:01:29.860Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "5fa7ea55c48bfb2988b4b7ff356f92cb4a0fcd97",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T170129860Z-063cd3b35d2f-suite-0.2.0-5fa7ea55/matrix.json",
+      "reportPath": "runs/20260915T170129860Z-063cd3b35d2f-suite-0.2.0-5fa7ea55/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T165937788Z-063cd3b35d2f-suite-0.2.0-e2dea2c9",
+      "generatedAt": "2026-09-15T16:59:37.788Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "e2dea2c9ee14954928d7dc7fd92570fa7dfa1ff0",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T165937788Z-063cd3b35d2f-suite-0.2.0-e2dea2c9/matrix.json",
+      "reportPath": "runs/20260915T165937788Z-063cd3b35d2f-suite-0.2.0-e2dea2c9/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T163204958Z-063cd3b35d2f-suite-0.2.0-da93c91e",
+      "generatedAt": "2026-09-15T16:32:04.958Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "da93c91eb1f7b737a87a053715d6d7678a141f7b",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T163204958Z-063cd3b35d2f-suite-0.2.0-da93c91e/matrix.json",
+      "reportPath": "runs/20260915T163204958Z-063cd3b35d2f-suite-0.2.0-da93c91e/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T163015263Z-063cd3b35d2f-suite-0.2.0-a53c2c1c",
+      "generatedAt": "2026-09-15T16:30:15.263Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "a53c2c1c365ea046c03bbddcf5e93e0f9103ca21",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T163015263Z-063cd3b35d2f-suite-0.2.0-a53c2c1c/matrix.json",
+      "reportPath": "runs/20260915T163015263Z-063cd3b35d2f-suite-0.2.0-a53c2c1c/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T160917518Z-063cd3b35d2f-suite-0.2.0-dd84cf8c",
+      "generatedAt": "2026-09-15T16:09:17.518Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "dd84cf8cfbd7de9872d3b7d127bc7f73c361518d",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T160917518Z-063cd3b35d2f-suite-0.2.0-dd84cf8c/matrix.json",
+      "reportPath": "runs/20260915T160917518Z-063cd3b35d2f-suite-0.2.0-dd84cf8c/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T160653387Z-063cd3b35d2f-suite-0.2.0-302a4d83",
+      "generatedAt": "2026-09-15T16:06:53.387Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "302a4d83c76564cb6cffe5e5aece29bde1e406df",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T160653387Z-063cd3b35d2f-suite-0.2.0-302a4d83/matrix.json",
+      "reportPath": "runs/20260915T160653387Z-063cd3b35d2f-suite-0.2.0-302a4d83/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T155022256Z-063cd3b35d2f-suite-0.2.0-83a2a301",
+      "generatedAt": "2026-09-15T15:50:22.256Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "83a2a301209c747ad65066f7a002ed583a55d355",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T155022256Z-063cd3b35d2f-suite-0.2.0-83a2a301/matrix.json",
+      "reportPath": "runs/20260915T155022256Z-063cd3b35d2f-suite-0.2.0-83a2a301/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T151623282Z-063cd3b35d2f-suite-0.2.0-51ffdf1d",
+      "generatedAt": "2026-09-15T15:16:23.282Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "51ffdf1d49a86d02a749926e9fa9a0bda0764887",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T151623282Z-063cd3b35d2f-suite-0.2.0-51ffdf1d/matrix.json",
+      "reportPath": "runs/20260915T151623282Z-063cd3b35d2f-suite-0.2.0-51ffdf1d/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T150053313Z-063cd3b35d2f-suite-0.2.0-d62043cc",
+      "generatedAt": "2026-09-15T15:00:53.313Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "d62043ccdbf9aebe465794a89479cb98941db3c4",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T150053313Z-063cd3b35d2f-suite-0.2.0-d62043cc/matrix.json",
+      "reportPath": "runs/20260915T150053313Z-063cd3b35d2f-suite-0.2.0-d62043cc/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
+    {
+      "id": "20260915T144739631Z-063cd3b35d2f-suite-0.2.0-227c4c87",
+      "generatedAt": "2026-09-15T14:47:39.631Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "227c4c87d6d8311bba6f77cab9157b83c4a12e47",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T144739631Z-063cd3b35d2f-suite-0.2.0-227c4c87/matrix.json",
+      "reportPath": "runs/20260915T144739631Z-063cd3b35d2f-suite-0.2.0-227c4c87/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
     {
       "id": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
       "generatedAt": "2026-09-15T13:23:08.094Z",

@@ -1,0 +1,945 @@
+{
+  "$schema": "https://tabnas.github.io/measure/schemas/port-result.schema.json",
+  "schemaVersion": 3,
+  "run": {
+    "id": "20260915T160917518Z-063cd3b35d2f-suite-0.2.0-dd84cf8c",
+    "generatedAt": "2026-09-15T16:09:17.518Z",
+    "profile": "full",
+    "suiteVersion": "0.2.0",
+    "repositoryCommit": "dd84cf8cfbd7de9872d3b7d127bc7f73c361518d",
+    "repositoryDirty": false
+  },
+  "port": {
+    "id": "rust",
+    "label": "Rust",
+    "language": "Rust",
+    "runtime": "Rust",
+    "runtimeVersion": "1.94.1",
+    "parserModule": "tabnas",
+    "parserVersion": "0.9.7"
+  },
+  "environment": {
+    "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+    "hostFingerprint": "063cd3b35d2f",
+    "os": "linux",
+    "osName": "Ubuntu 24.04.4 LTS",
+    "kernelVersion": "6.18.44-fc-v33",
+    "arch": "amd64",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "logicalCpus": 4,
+    "memoryBytes": 16877793280
+  },
+  "methodology": {
+    "scope": "parse-only-steady-state-sequential",
+    "warmupMs": 250,
+    "sampleTargetMs": 100,
+    "samples": 11,
+    "maxIterations": 1048576
+  },
+  "capabilities": [
+    {
+      "benchmarkId": "adder",
+      "passed": 7,
+      "total": 7,
+      "cases": [
+        {
+          "caseId": "single",
+          "description": "One number is a complete expression.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "caseId": "chain",
+          "description": "Three terms accumulate on the parent node.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": 6,
+          "actual": 6
+        },
+        {
+          "caseId": "multi-digit",
+          "description": "Multi-digit number tokens retain their numeric values.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": 60,
+          "actual": 60
+        },
+        {
+          "caseId": "trailing-plus",
+          "description": "A plus sign must be followed by another number.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): "
+        },
+        {
+          "caseId": "leading-plus",
+          "description": "An expression cannot begin with plus.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): +"
+        },
+        {
+          "caseId": "double-plus",
+          "description": "An empty term between plus signs is rejected.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): +"
+        },
+        {
+          "caseId": "unknown-token",
+          "description": "Unrecognized arithmetic syntax is rejected.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): *2"
+        }
+      ]
+    },
+    {
+      "benchmarkId": "palindrome",
+      "passed": 9,
+      "total": 9,
+      "cases": [
+        {
+          "caseId": "empty",
+          "description": "The empty word belongs to the language.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "caseId": "pair-a",
+          "description": "The smallest a palindrome is accepted.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "caseId": "pair-b",
+          "description": "The smallest b palindrome is accepted.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "caseId": "nested",
+          "description": "Nested unlike symbols match across the midpoint.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "caseId": "length-six",
+          "description": "A three-symbol first half is mirrored.",
+          "acceptExpected": true,
+          "accepted": true,
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "caseId": "odd-length",
+          "description": "No midpoint between symbols exists.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): a"
+        },
+        {
+          "caseId": "not-mirrored",
+          "description": "Equal-length halves that are not reverses fail.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): a"
+        },
+        {
+          "caseId": "wrong-close",
+          "description": "A close symbol that differs from its opener fails.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): b"
+        },
+        {
+          "caseId": "outside-alphabet",
+          "description": "Symbols outside the declared alphabet are rejected.",
+          "acceptExpected": false,
+          "accepted": false,
+          "passed": true,
+          "error": "[tabnas/unexpected]: unexpected character(s): c"
+        }
+      ]
+    }
+  ],
+  "measurements": [
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "iterationsPerSample": 2048,
+      "samples": [
+        {
+          "elapsedNs": 128352724
+        },
+        {
+          "elapsedNs": 131201643
+        },
+        {
+          "elapsedNs": 133105215
+        },
+        {
+          "elapsedNs": 133028497
+        },
+        {
+          "elapsedNs": 129727277
+        },
+        {
+          "elapsedNs": 132465643
+        },
+        {
+          "elapsedNs": 133830191
+        },
+        {
+          "elapsedNs": 131339014
+        },
+        {
+          "elapsedNs": 132689064
+        },
+        {
+          "elapsedNs": 136087319
+        },
+        {
+          "elapsedNs": 134710194
+        }
+      ],
+      "checksum": 180224
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "iterationsPerSample": 512,
+      "samples": [
+        {
+          "elapsedNs": 139427758
+        },
+        {
+          "elapsedNs": 145424759
+        },
+        {
+          "elapsedNs": 140975997
+        },
+        {
+          "elapsedNs": 139889457
+        },
+        {
+          "elapsedNs": 144749761
+        },
+        {
+          "elapsedNs": 137840654
+        },
+        {
+          "elapsedNs": 137803090
+        },
+        {
+          "elapsedNs": 137403613
+        },
+        {
+          "elapsedNs": 136539673
+        },
+        {
+          "elapsedNs": 138475117
+        },
+        {
+          "elapsedNs": 141831837
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "iterationsPerSample": 64,
+      "samples": [
+        {
+          "elapsedNs": 120139811
+        },
+        {
+          "elapsedNs": 121121147
+        },
+        {
+          "elapsedNs": 120359377
+        },
+        {
+          "elapsedNs": 120294505
+        },
+        {
+          "elapsedNs": 119891306
+        },
+        {
+          "elapsedNs": 120513642
+        },
+        {
+          "elapsedNs": 121842037
+        },
+        {
+          "elapsedNs": 121358555
+        },
+        {
+          "elapsedNs": 121019510
+        },
+        {
+          "elapsedNs": 121307015
+        },
+        {
+          "elapsedNs": 121530418
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-1024",
+      "description": "One thousand twenty-four one-digit terms.",
+      "input": {
+        "bytes": 2047,
+        "codeUnits": 2047,
+        "sha256": "1de348e1b18d00c6ebfc74a51e1d2395a11bbbd1e55f64e539ce4daf843cb786"
+      },
+      "iterationsPerSample": 32,
+      "samples": [
+        {
+          "elapsedNs": 122507360
+        },
+        {
+          "elapsedNs": 121164049
+        },
+        {
+          "elapsedNs": 119959568
+        },
+        {
+          "elapsedNs": 121724849
+        },
+        {
+          "elapsedNs": 124415005
+        },
+        {
+          "elapsedNs": 119856103
+        },
+        {
+          "elapsedNs": 119823625
+        },
+        {
+          "elapsedNs": 119701697
+        },
+        {
+          "elapsedNs": 120633820
+        },
+        {
+          "elapsedNs": 121735416
+        },
+        {
+          "elapsedNs": 120530640
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-2048",
+      "description": "Two thousand forty-eight one-digit terms.",
+      "input": {
+        "bytes": 4095,
+        "codeUnits": 4095,
+        "sha256": "63694f1a7945adff1acabfe47857fd437a4db73f7d85825be8d6176981d148d9"
+      },
+      "iterationsPerSample": 16,
+      "samples": [
+        {
+          "elapsedNs": 127041350
+        },
+        {
+          "elapsedNs": 127437857
+        },
+        {
+          "elapsedNs": 130228325
+        },
+        {
+          "elapsedNs": 126798604
+        },
+        {
+          "elapsedNs": 124907996
+        },
+        {
+          "elapsedNs": 127505990
+        },
+        {
+          "elapsedNs": 128210620
+        },
+        {
+          "elapsedNs": 129801003
+        },
+        {
+          "elapsedNs": 128255048
+        },
+        {
+          "elapsedNs": 130578673
+        },
+        {
+          "elapsedNs": 128157564
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "iterationsPerSample": 8,
+      "samples": [
+        {
+          "elapsedNs": 137943729
+        },
+        {
+          "elapsedNs": 139954599
+        },
+        {
+          "elapsedNs": 139695339
+        },
+        {
+          "elapsedNs": 136573489
+        },
+        {
+          "elapsedNs": 139726374
+        },
+        {
+          "elapsedNs": 143035436
+        },
+        {
+          "elapsedNs": 136810533
+        },
+        {
+          "elapsedNs": 135335306
+        },
+        {
+          "elapsedNs": 137032501
+        },
+        {
+          "elapsedNs": 135484247
+        },
+        {
+          "elapsedNs": 144490859
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-8192",
+      "description": "Eight thousand one hundred ninety-two one-digit terms.",
+      "input": {
+        "bytes": 16383,
+        "codeUnits": 16383,
+        "sha256": "a0e5c605958886ff43ffdf6db4fb6abb0713f0944111a2a1e0e1c128ca8bd204"
+      },
+      "iterationsPerSample": 4,
+      "samples": [
+        {
+          "elapsedNs": 146342841
+        },
+        {
+          "elapsedNs": 146401330
+        },
+        {
+          "elapsedNs": 146180286
+        },
+        {
+          "elapsedNs": 146349911
+        },
+        {
+          "elapsedNs": 148990665
+        },
+        {
+          "elapsedNs": 150659035
+        },
+        {
+          "elapsedNs": 145532001
+        },
+        {
+          "elapsedNs": 155719410
+        },
+        {
+          "elapsedNs": 149674132
+        },
+        {
+          "elapsedNs": 147373700
+        },
+        {
+          "elapsedNs": 155054807
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "adder",
+      "caseId": "terms-16384",
+      "description": "Sixteen thousand three hundred eighty-four one-digit terms.",
+      "input": {
+        "bytes": 32767,
+        "codeUnits": 32767,
+        "sha256": "795f6c8dc2e336e1c23ec659521c24b6486d29665375384a47c7a2767c781ee2"
+      },
+      "iterationsPerSample": 2,
+      "samples": [
+        {
+          "elapsedNs": 157714763
+        },
+        {
+          "elapsedNs": 158883540
+        },
+        {
+          "elapsedNs": 159104934
+        },
+        {
+          "elapsedNs": 157560125
+        },
+        {
+          "elapsedNs": 156784441
+        },
+        {
+          "elapsedNs": 159339622
+        },
+        {
+          "elapsedNs": 155993953
+        },
+        {
+          "elapsedNs": 157007373
+        },
+        {
+          "elapsedNs": 156603569
+        },
+        {
+          "elapsedNs": 158290925
+        },
+        {
+          "elapsedNs": 157168434
+        }
+      ],
+      "checksum": 360448
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "iterationsPerSample": 2048,
+      "samples": [
+        {
+          "elapsedNs": 166223225
+        },
+        {
+          "elapsedNs": 166838958
+        },
+        {
+          "elapsedNs": 166477664
+        },
+        {
+          "elapsedNs": 166513430
+        },
+        {
+          "elapsedNs": 168432228
+        },
+        {
+          "elapsedNs": 167029806
+        },
+        {
+          "elapsedNs": 167036688
+        },
+        {
+          "elapsedNs": 166349894
+        },
+        {
+          "elapsedNs": 167132141
+        },
+        {
+          "elapsedNs": 168846702
+        },
+        {
+          "elapsedNs": 166578044
+        }
+      ],
+      "checksum": 22528
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "iterationsPerSample": 512,
+      "samples": [
+        {
+          "elapsedNs": 178135796
+        },
+        {
+          "elapsedNs": 178569914
+        },
+        {
+          "elapsedNs": 178275068
+        },
+        {
+          "elapsedNs": 178153512
+        },
+        {
+          "elapsedNs": 178270921
+        },
+        {
+          "elapsedNs": 178327500
+        },
+        {
+          "elapsedNs": 180870271
+        },
+        {
+          "elapsedNs": 179422383
+        },
+        {
+          "elapsedNs": 175986252
+        },
+        {
+          "elapsedNs": 176757088
+        },
+        {
+          "elapsedNs": 177814704
+        }
+      ],
+      "checksum": 5632
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "iterationsPerSample": 32,
+      "samples": [
+        {
+          "elapsedNs": 103218191
+        },
+        {
+          "elapsedNs": 87606062
+        },
+        {
+          "elapsedNs": 106762817
+        },
+        {
+          "elapsedNs": 105280878
+        },
+        {
+          "elapsedNs": 104714533
+        },
+        {
+          "elapsedNs": 78030595
+        },
+        {
+          "elapsedNs": 79697071
+        },
+        {
+          "elapsedNs": 78811329
+        },
+        {
+          "elapsedNs": 79034156
+        },
+        {
+          "elapsedNs": 77920695
+        },
+        {
+          "elapsedNs": 77151424
+        }
+      ],
+      "checksum": 352
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-2048",
+      "description": "Two thousand forty-eight-character even palindrome.",
+      "input": {
+        "bytes": 2048,
+        "codeUnits": 2048,
+        "sha256": "e780a6ff5de9f3a835d37484789914d05abf84a385e6d1b6422ca865e404eee8"
+      },
+      "iterationsPerSample": 32,
+      "samples": [
+        {
+          "elapsedNs": 173044739
+        },
+        {
+          "elapsedNs": 169460981
+        },
+        {
+          "elapsedNs": 170941739
+        },
+        {
+          "elapsedNs": 168832767
+        },
+        {
+          "elapsedNs": 168492600
+        },
+        {
+          "elapsedNs": 169439625
+        },
+        {
+          "elapsedNs": 172044545
+        },
+        {
+          "elapsedNs": 173080565
+        },
+        {
+          "elapsedNs": 175069584
+        },
+        {
+          "elapsedNs": 181858894
+        },
+        {
+          "elapsedNs": 240489094
+        }
+      ],
+      "checksum": 352
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-4096",
+      "description": "Four thousand ninety-six-character even palindrome.",
+      "input": {
+        "bytes": 4096,
+        "codeUnits": 4096,
+        "sha256": "a6e506b1c9312bc87b7d6030859b7f4e3c6cd7ccf16f8791d00ab95192623424"
+      },
+      "iterationsPerSample": 8,
+      "samples": [
+        {
+          "elapsedNs": 106166385
+        },
+        {
+          "elapsedNs": 107897834
+        },
+        {
+          "elapsedNs": 97385423
+        },
+        {
+          "elapsedNs": 98792645
+        },
+        {
+          "elapsedNs": 104710432
+        },
+        {
+          "elapsedNs": 94225331
+        },
+        {
+          "elapsedNs": 98837382
+        },
+        {
+          "elapsedNs": 110401448
+        },
+        {
+          "elapsedNs": 101536901
+        },
+        {
+          "elapsedNs": 124989511
+        },
+        {
+          "elapsedNs": 124181765
+        }
+      ],
+      "checksum": 88
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "iterationsPerSample": 4,
+      "samples": [
+        {
+          "elapsedNs": 117729276
+        },
+        {
+          "elapsedNs": 116860554
+        },
+        {
+          "elapsedNs": 114214315
+        },
+        {
+          "elapsedNs": 117409580
+        },
+        {
+          "elapsedNs": 116333125
+        },
+        {
+          "elapsedNs": 121097188
+        },
+        {
+          "elapsedNs": 118810983
+        },
+        {
+          "elapsedNs": 134578342
+        },
+        {
+          "elapsedNs": 123043863
+        },
+        {
+          "elapsedNs": 134965646
+        },
+        {
+          "elapsedNs": 126624204
+        }
+      ],
+      "checksum": 44
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16384",
+      "description": "Sixteen thousand three hundred eighty-four-character even palindrome.",
+      "input": {
+        "bytes": 16384,
+        "codeUnits": 16384,
+        "sha256": "afc86c13985da05d8b3e68f80852a56dd6495ba36ac8afe268233a8b96f79a5a"
+      },
+      "iterationsPerSample": 2,
+      "samples": [
+        {
+          "elapsedNs": 128720176
+        },
+        {
+          "elapsedNs": 129546251
+        },
+        {
+          "elapsedNs": 131294958
+        },
+        {
+          "elapsedNs": 140655940
+        },
+        {
+          "elapsedNs": 119754153
+        },
+        {
+          "elapsedNs": 119526797
+        },
+        {
+          "elapsedNs": 117671283
+        },
+        {
+          "elapsedNs": 116120455
+        },
+        {
+          "elapsedNs": 116619499
+        },
+        {
+          "elapsedNs": 114486992
+        },
+        {
+          "elapsedNs": 117131059
+        }
+      ],
+      "checksum": 22
+    },
+    {
+      "benchmarkId": "palindrome",
+      "caseId": "chars-32768",
+      "description": "Thirty-two thousand seven hundred sixty-eight-character even palindrome.",
+      "input": {
+        "bytes": 32768,
+        "codeUnits": 32768,
+        "sha256": "ea6040375617e268aed6ca19d1b5af61ad8774118f2ddfdf2a6184b2cef2b95c"
+      },
+      "iterationsPerSample": 1,
+      "samples": [
+        {
+          "elapsedNs": 120191798
+        },
+        {
+          "elapsedNs": 119251752
+        },
+        {
+          "elapsedNs": 119032022
+        },
+        {
+          "elapsedNs": 118467862
+        },
+        {
+          "elapsedNs": 117371431
+        },
+        {
+          "elapsedNs": 115377134
+        },
+        {
+          "elapsedNs": 123734643
+        },
+        {
+          "elapsedNs": 118596516
+        },
+        {
+          "elapsedNs": 115651352
+        },
+        {
+          "elapsedNs": 116411292
+        },
+        {
+          "elapsedNs": 125195326
+        }
+      ],
+      "checksum": 11
+    }
+  ]
+}
