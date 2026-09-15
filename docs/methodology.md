@@ -69,9 +69,9 @@ durations and iteration counts remain in the per-port result documents.
   `adder/terms-8` and 1.98x on `palindrome/chars-16` with the large rows
   unmoved, which is the signature of a cost paid per call rather than per
   token.
-  This paragraph existed as a caveat, to keep those rows honest. It turned out
-  to also be a defect report, and the two rows it warned about were the two
-  furthest from Go. **Read a caveat about a port's own overhead as a bug to
+  This paragraph existed as a caveat, so that those rows would not be read as
+  pure throughput. It turned out to also be a defect report, and the two rows
+  it warned about were the two furthest from Go. **Read a caveat about a port's own overhead as a bug to
   file, not only as a footnote to the numbers.**
 
 ## Parser pins
