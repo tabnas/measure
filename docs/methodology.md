@@ -60,12 +60,19 @@ durations and iteration counts remain in the per-port result documents.
 - Parser construction is excluded by constructing one parser per benchmark and
   reusing it, which is as far as a port's public API allows. Where an engine
   rebuilds internal state inside its own parse call, that cost is inside the
-  measurement and cannot be hoisted out of it. The Rust engine does this:
-  `Tabnas::parse` rebuilds its parse view on each call, and `Parser` cannot be
-  constructed once and reused because the entry point that would allow it is
-  crate-private. Read that port's smallest rows with this in mind. They are
-  not wrong, but they report a fixed cost per call as much as they report
-  throughput.
+  measurement and cannot be hoisted out of it.
+  **The Rust engine used to do this** and no longer does: `Tabnas::parse`
+  rebuilt its whole parse view on every call, cloning a thirty-field `Options`
+  three times over and reassembling the rule and action tables, and it now
+  prepares both once and reuses them until the configuration changes. That is
+  what the `d9e339a`..`404ab87` runs record, and it is worth 2.0x on
+  `adder/terms-8` and 1.98x on `palindrome/chars-16` with the large rows
+  unmoved, which is the signature of a cost paid per call rather than per
+  token.
+  This paragraph existed as a caveat, to keep those rows honest. It turned out
+  to also be a defect report, and the two rows it warned about were the two
+  furthest from Go. **Read a caveat about a port's own overhead as a bug to
+  file, not only as a footnote to the numbers.**
 
 ## Parser pins
 
