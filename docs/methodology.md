@@ -57,6 +57,23 @@ durations and iteration counts remain in the per-port result documents.
   is not enough. The cumulative figures this repository exists to publish are
   a different matter: a row that moves by 2× or 4× is an order of magnitude
   clear of this.
+- **A runtime version can change underneath a fingerprint that does not
+  move.** The environment fingerprint answers "same machine", and it has to:
+  the aggregator requires every port of a run to report the same one, and the
+  three ports run three different runtimes, so no runtime version can ever be
+  part of it. Between runs `…T191334778Z-…-cdfcad42` and
+  `…T192906755Z-…-2f9490e5`, recorded sixteen minutes apart, this harness's
+  container replaced Node 24.21.0 with Node 22.22.2. Both runs carry
+  environment fingerprint `2e786edc…`, correctly, because it is the same
+  machine. Go, the control, moved by its usual few percent. TypeScript moved
+  by **+106% on `adder/terms-16384`** and +57% on `palindrome/chars-32768`,
+  the two largest rows. Read down the column, those rows say the parser
+  regressed; they say nothing about the parser. The site's history charts
+  already break the series on runtime version, and `npm run measure` now
+  prints the change when it records a run whose toolchain differs from the
+  previous one on the same host. Neither reaches a reader comparing two
+  matrices by eye, so check `runtimeVersion` on both before reading anything
+  into a difference between them.
 - **Each port is built the way it would be shipped, which is not the same
   configuration for each, because the runtimes do not supply the same things.**
   Two of these arrived late, both worth more than most of the engine changes

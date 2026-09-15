@@ -4,7 +4,8 @@ import { join, relative, resolve } from 'node:path'
 import { promisify } from 'node:util'
 
 import { aggregateRun } from './aggregate.mjs'
-import { rebuildCatalog } from './lib/catalog.mjs'
+import { rebuildCatalog, scanRunMatrices } from './lib/catalog.mjs'
+import { toolchainWarning } from './lib/toolchain.mjs'
 import {
   generateInput,
   loadConfig,
@@ -94,6 +95,12 @@ async function main() {
 
   await aggregateRun(runDirectory)
   if (options.record) {
+    process.stderr.write(
+      toolchainWarning(
+        JSON.parse(await readFile(join(runDirectory, 'matrix.json'), 'utf8')),
+        await scanRunMatrices(),
+      ),
+    )
     await mkdir(join(repositoryRoot, 'results', 'runs'), { recursive: true })
     await rename(runDirectory, finalDirectory)
     await rebuildCatalog()
