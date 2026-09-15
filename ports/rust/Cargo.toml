@@ -34,3 +34,10 @@ sha2 = "0.10.9"
 [profile.release]
 opt-level = 3
 codegen-units = 1
+# Cross-module inlining, which the other two ports get and this one did
+# not: the Go compiler inlines across packages within a binary by
+# default, and V8 inlines across module boundaries at runtime. Without
+# this the engine is a separate crate the runner cannot inline into,
+# which is a property of how the measurement is built rather than of
+# the port. Worth 1.10x-1.15x on every case.
+lto = "fat"

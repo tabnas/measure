@@ -57,6 +57,15 @@ durations and iteration counts remain in the per-port result documents.
   is not enough. The cumulative figures this repository exists to publish are
   a different matter: a row that moves by 2× or 4× is an order of magnitude
   clear of this.
+- **Each port is built the way it would be shipped, which is not the same flag
+  for each.** Go builds with `-trimpath`, and its compiler inlines across
+  packages within a binary by default. TypeScript runs on V8, which inlines
+  across module boundaries at runtime. Rust is built with `opt-level = 3`,
+  `codegen-units = 1` and `lto = "fat"`; without that last one the engine is a
+  separate crate the runner cannot inline into, which measures how the
+  benchmark is assembled rather than how the port performs. It arrived late
+  (runs from `…T182…` onward) and is worth 1.10x-1.15x on every case, so runs
+  before and after it are not directly comparable for the Rust column.
 - Parser construction is excluded by constructing one parser per benchmark and
   reusing it, which is as far as a port's public API allows. Where an engine
   rebuilds internal state inside its own parse call, that cost is inside the
