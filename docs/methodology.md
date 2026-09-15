@@ -93,6 +93,18 @@ durations and iteration counts remain in the per-port result documents.
     because of what its runtime does not bring, rather than because of its own
     code, and that is a property of the measurement rather than of the port.**
     Check what each runtime supplies before reading a gap as the engine's.
+- **Profile the build that ships, not a convenient one.** The Rust port's
+  profiling builds were made without LTO and against glibc, while the binary
+  this harness measures uses `lto = "fat"` and `mimalloc`. Those are two
+  different programs. On a 512-term adder the shipped one runs 17% fewer
+  instructions, and the share of a parse spent inside the allocator drops
+  from roughly 20% to roughly 3%. A change ranked against the first profile
+  is ranked against a cost the second does not carry: allocation looks like
+  the thing to attack, and under the shipped allocator it is already close
+  to free. Rebuild the profiling binary with the shipped profile and the
+  shipped allocator before reading a profile as a list of what to fix. This
+  is the same trap as the two build-configuration bullets above, one step
+  further back.
 - Parser construction is excluded by constructing one parser per benchmark and
   reusing it, which is as far as a port's public API allows. Where an engine
   rebuilds internal state inside its own parse call, that cost is inside the
