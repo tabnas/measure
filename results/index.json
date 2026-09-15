@@ -1,8 +1,67 @@
 {
   "$schema": "https://tabnas.github.io/measure/schemas/catalog.schema.json",
   "schemaVersion": 3,
-  "latestRunId": "20260915T183800647Z-063cd3b35d2f-suite-0.2.0-1b4bbc76",
+  "latestRunId": "20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205",
   "runs": [
+    {
+      "id": "20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205",
+      "generatedAt": "2026-09-15T18:45:44.947Z",
+      "profile": "full",
+      "suiteVersion": "0.2.0",
+      "repositoryCommit": "4277e205ba7944a17c4b1e8eab12b863afd42521",
+      "repositoryDirty": false,
+      "matrixPath": "runs/20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205/matrix.json",
+      "reportPath": "runs/20260915T184544947Z-063cd3b35d2f-suite-0.2.0-4277e205/README.md",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "ports": [
+        {
+          "id": "typescript",
+          "label": "TypeScript / Node.js",
+          "parserModule": "@tabnas/parser",
+          "parserVersion": "0.9.7",
+          "runtime": "Node.js",
+          "runtimeVersion": "v24.21.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "go",
+          "label": "Go",
+          "parserModule": "github.com/tabnas/parser/go",
+          "parserVersion": "0.9.7",
+          "runtime": "Go",
+          "runtimeVersion": "go1.26.0",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        },
+        {
+          "id": "rust",
+          "label": "Rust",
+          "parserModule": "tabnas",
+          "parserVersion": "0.9.7",
+          "runtime": "Rust",
+          "runtimeVersion": "1.94.1",
+          "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a"
+        }
+      ],
+      "benchmarks": [
+        "adder",
+        "palindrome"
+      ],
+      "capability": {
+        "passed": 48,
+        "total": 48
+      },
+      "performanceRows": 16
+    },
     {
       "id": "20260915T183800647Z-063cd3b35d2f-suite-0.2.0-1b4bbc76",
       "generatedAt": "2026-09-15T18:38:00.647Z",
