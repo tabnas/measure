@@ -20,7 +20,7 @@ path = "src/main.rs"
 # Rust-internal, so the three ports still report 0.9.7 and the matrix
 # still compares like with like.
 [dependencies]
-tabnas = { git = "https://github.com/tabnas/parser", rev = "cfa57f2ffd478550685be09cc94b0ef4bcf4ad28" }
+tabnas = { git = "https://github.com/tabnas/parser", rev = "8ceceb0d106aa9e5b418ca2f09ac68a2a29853dd" }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
 sha2 = "0.10.9"
