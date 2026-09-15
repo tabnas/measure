@@ -44,6 +44,15 @@ durations and iteration counts remain in the per-port result documents.
   better expose scaling, but can also amplify garbage collection.
 - The harness is not a substitute for application traces, hostile-input tests,
   latency under concurrency, memory profiles, or cold-start measurements.
+- Parser construction is excluded by constructing one parser per benchmark and
+  reusing it, which is as far as a port's public API allows. Where an engine
+  rebuilds internal state inside its own parse call, that cost is inside the
+  measurement and cannot be hoisted out of it. The Rust engine does this: at
+  parser revision `25de0904`, an empty-source parse, which returns before
+  reading a byte, costs about 15 microseconds on the recorded host, and every
+  parse pays it. Read the small-input rows with that in mind. They are not
+  wrong, but for that port they report a fixed cost per call as much as they
+  report throughput.
 
 ## Parser pins
 
