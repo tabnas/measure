@@ -24,20 +24,24 @@ The suite currently defines:
   `L = { wwᴿ | w ∈ {a,b}* }`. A state-aware midpoint condition lets the
   deterministic rule machine recognize it without automatic branch search.
 
-Both are run against TypeScript/Node.js and Go using Tabnas `0.9.0`.
+Both are run against TypeScript/Node.js, Go, and Rust using Tabnas `0.9.7`.
+The Rust crate is unpublished, so its port pins a parser revision rather
+than a registry version; see [`docs/methodology.md`](docs/methodology.md).
 
 ## Quick start
 
-Requirements: Node.js 24+, npm, and Go 1.26+.
+Requirements: Node.js 24+, npm, Go 1.26+, and a Rust toolchain of 1.85 or
+later.
 
 ```sh
 npm ci
 go mod download
+cargo fetch --locked --manifest-path ports/rust/Cargo.toml
 make test
 make measure
 ```
 
-`make test` builds both runners and executes a short validation profile.
+`make test` builds all three runners and executes a short validation profile.
 `make measure` records a full run under `results/runs/`, refreshes
 `results/latest/`, updates the catalog, and rebuilds the Pages history data.
 
@@ -58,7 +62,8 @@ fingerprint starts a new comparable series after hardware, kernel, or OS
 changes.
 
 To record a parser release, pin its version in `measure.config.json`, update
-the lockfiles, and run `make measure` from a clean commit. The
+the three lockfiles (`package-lock.json`, `go.sum`, and
+`ports/rust/Cargo.lock`), and run `make measure` from a clean commit. The
 `Record historical measurement` GitHub workflow provides the same operation on
 the standard hosted runner and can also be triggered with the
 `parser-release` repository-dispatch event. It commits a new run; it never

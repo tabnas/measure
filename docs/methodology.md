@@ -23,7 +23,8 @@ For each performance cell, a runner:
 2. parses repeatedly for the profile's warmup duration;
 3. calibrates a batch by doubling its iteration count until it reaches the
    target sample duration or the configured cap;
-4. optionally requests one garbage collection before measurement;
+4. optionally requests one garbage collection before measurement, where the
+   runtime has one to request;
 5. records the elapsed nanoseconds for every independent batch sample;
 6. consumes each parse result in a checksum.
 
@@ -43,6 +44,35 @@ durations and iteration counts remain in the per-port result documents.
   better expose scaling, but can also amplify garbage collection.
 - The harness is not a substitute for application traces, hostile-input tests,
   latency under concurrency, memory profiles, or cold-start measurements.
+- Parser construction is excluded by constructing one parser per benchmark and
+  reusing it, which is as far as a port's public API allows. Where an engine
+  rebuilds internal state inside its own parse call, that cost is inside the
+  measurement and cannot be hoisted out of it. The Rust engine does this:
+  `Tabnas::parse` rebuilds its parse view on each call, and `Parser` cannot be
+  constructed once and reused because the entry point that would allow it is
+  crate-private. Read that port's smallest rows with this in mind. They are
+  not wrong, but they report a fixed cost per call as much as they report
+  throughput.
+
+## Parser pins
+
+Each port pins its parser exactly, and how it pins differs by runtime because
+the published artifacts differ:
+
+- TypeScript pins `@tabnas/parser` by version in `package.json` and
+  `package-lock.json`.
+- Go pins `github.com/tabnas/parser/go` by version in `go.mod` and `go.sum`,
+  resolved from the repository's `go/vX.Y.Z` tags.
+- Rust pins the `tabnas` crate by **git revision** in
+  `ports/rust/Cargo.toml` and `ports/rust/Cargo.lock`. The crate is not
+  published to crates.io and the parser repository carries no `rs/` tags, so a
+  revision is the only exact pin available. The revision is what the run is
+  reproducible against; the version the runner reports is the crate's in-tree
+  version, which can be ahead of the last TypeScript and Go release.
+
+A row that compares ports is therefore a comparison of the recorded parser
+versions, and the revision in the lockfile is what settles any question the
+version string leaves open.
 
 ## Reproducibility
 

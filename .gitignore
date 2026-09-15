@@ -13,3 +13,8 @@ site/schemas/
 
 # Written by the counts script while measuring, removed after.
 .vale-counts.ini
+
+# The Rust runner keeps its build tree under .build/ like the other
+# two ports, but `cargo build` run by hand from ports/rust/ would put one
+# next to the manifest instead.
+ports/rust/target/

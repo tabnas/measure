@@ -5,3 +5,4 @@ lockfiles
 npm
 stderr
 stdout
+toolchain

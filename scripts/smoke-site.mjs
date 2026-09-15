@@ -90,7 +90,15 @@ assert.match(elements.get('#summary').innerHTML, /<dt>Hosts<\/dt><dd>2<\/dd>/)
 assert.match(elements.get('#latest-meta').innerHTML, new RegExp(`host ${secondFingerprint}`))
 assert.match(elements.get('#environment-details').innerHTML, /Host fingerprint/)
 assert.match(elements.get('#history-host').innerHTML, new RegExp(`host ${secondFingerprint}`))
-assert.equal(elements.get('#history-context').textContent, '2 hosts · 4 series · 4 points')
+// One series per host per port for the selected measurement, and one
+// point in each, because each synthetic host has exactly one run. Derived
+// from the run under test so that adding a port does not need this line
+// edited — the page still has to count them correctly.
+const portCount = firstMatrix.ports.length
+assert.equal(
+  elements.get('#history-context').textContent,
+  `2 hosts · ${2 * portCount} series · ${2 * portCount} points`,
+)
 assert.match(elements.get('#history-legend').innerHTML, new RegExp(`host ${firstFingerprint}`))
 assert.match(elements.get('#history-legend').innerHTML, new RegExp(`host ${secondFingerprint}`))
 assert.match(elements.get('#history-range').textContent, /—/)
@@ -103,7 +111,11 @@ assert.match(elements.get('#run-list').innerHTML, /host-chip/)
 const historyHost = elements.get('#history-host')
 historyHost.value = secondFingerprint
 historyHost.listeners.get('change')()
-assert.equal(elements.get('#history-context').textContent, '1 host · 2 series · 2 points')
+// Narrowed to one host, so one series per port remains.
+assert.equal(
+  elements.get('#history-context').textContent,
+  `1 host · ${portCount} series · ${portCount} points`,
+)
 assert.match(elements.get('#history-legend').innerHTML, new RegExp(`host ${secondFingerprint}`))
 assert.doesNotMatch(elements.get('#history-legend').innerHTML, new RegExp(`host ${firstFingerprint}`))
 

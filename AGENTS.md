@@ -15,7 +15,8 @@ universal ranking.
 | `schemas/` | JSON Schema contracts for benchmark manifests, raw port results, and matrix reports. |
 | `ports/typescript/` | TypeScript/Node runner using `@tabnas/parser`. |
 | `ports/go/` | Go runner using `github.com/tabnas/parser/go`. |
-| `scripts/run-all.mjs` | Builds/runs both ports and owns run-directory creation. |
+| `ports/rust/` | Rust runner using the `tabnas` crate, pinned by git revision. |
+| `scripts/run-all.mjs` | Builds/runs every port and owns run-directory creation. |
 | `scripts/aggregate.mjs` | Validates cross-port identity and derives statistics/matrices. |
 | `scripts/build-site.mjs` | Builds the Pages data catalog from committed matrices. |
 | `results/runs/<run-id>/` | Immutable definition/input snapshots, raw results, matrix, and Markdown report. |
@@ -36,7 +37,10 @@ universal ranking.
 7. Generated `results/latest/`, `results/index.json`, and
    `site/data/catalog.json` must agree with the immutable run catalog.
 8. Pin runtime dependencies exactly. A parser upgrade is its own measured
-   change and must produce a new run.
+   change and must produce a new run. The Rust crate is unpublished and
+   untagged, so its pin is a git revision in `ports/rust/Cargo.toml` and
+   `ports/rust/Cargo.lock`; the version the runner reports is the crate's
+   in-tree version and can be ahead of the last TypeScript and Go release.
 9. Rebuild history by scanning immutable run directories. Never maintain a
    second hand-authored list of results.
 10. Trend lines must identify host and environment discontinuities. Do not
@@ -51,6 +55,7 @@ universal ranking.
 ```sh
 npm ci
 go mod download
+cargo fetch --locked --manifest-path ports/rust/Cargo.toml
 make build
 make test
 make measure

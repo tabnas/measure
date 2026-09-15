@@ -8,7 +8,7 @@ add = NR [ PL add ]
 PL = "+"
 ```
 
-The benchmark uses equivalent programmatic rule tables in both ports so parser
+The benchmark uses equivalent programmatic rule tables in every port so parser
 execution—not an ABNF compiler—is timed. Each `#NR` action adds its numeric
 value to the `val` node, and the close-state repeat consumes `#PL` before the
 next term.
