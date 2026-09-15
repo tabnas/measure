@@ -44,6 +44,19 @@ durations and iteration counts remain in the per-port result documents.
   better expose scaling, but can also amplify garbage collection.
 - The harness is not a substitute for application traces, hostile-input tests,
   latency under concurrency, memory profiles, or cold-start measurements.
+- **Two runs recorded back to back do not resolve a difference of a few
+  percent.** A run at a fixed pin, repeated three minutes later on the same
+  host, moved Rust's rows by a median of 2.6% and by 17.2% at one case; the
+  clearer statement is the control, Go, whose parser had not changed at all
+  between the two and which still moved by a median of 4.0% and up to 14.7%.
+  Runs `…T160653387Z-…-302a4d83` and `…T160917518Z-…-dd84cf8c` are that pair,
+  recorded for exactly this purpose. So a change expected to be worth a few
+  percent should be measured by interleaving the two builds within one
+  session and comparing medians across rounds, with the harness asked only to
+  confirm the direction afterwards. Changing the pin between run A and run B
+  is not enough. The cumulative figures this repository exists to publish are
+  a different matter: a row that moves by 2× or 4× is an order of magnitude
+  clear of this.
 - Parser construction is excluded by constructing one parser per benchmark and
   reusing it, which is as far as a port's public API allows. Where an engine
   rebuilds internal state inside its own parse call, that cost is inside the
