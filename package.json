@@ -9,9 +9,10 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "npm run build:ts && npm run build:go",
+    "build": "npm run build:ts && npm run build:go && npm run build:rs",
     "build:ts": "tsc -p ports/typescript/tsconfig.json",
     "build:go": "GOWORK=off go build -trimpath -o .build/measure-go ./ports/go/cmd/measure",
+    "build:rs": "cargo build --release --locked --manifest-path ports/rust/Cargo.toml --target-dir .build/rust && cp .build/rust/release/measure-rust .build/measure-rust",
     "test": "node --test scripts/docs.test.mjs && node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run && npm run site && node scripts/smoke-site.mjs",
     "measure": "node scripts/run-all.mjs --profile full --record",
     "site": "node scripts/build-site.mjs",
@@ -19,7 +20,7 @@
     "clean": "node scripts/clean.mjs"
   },
   "dependencies": {
-    "@tabnas/parser": "0.9.0"
+    "@tabnas/parser": "0.9.7"
   },
   "devDependencies": {
     "@types/node": "25.6.0",

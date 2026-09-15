@@ -8,7 +8,7 @@
    an exact JSON-compatible result.
 3. Define deterministic performance cases using a named generator and explicit
    size parameters.
-4. Implement the generator in both port runners and in
+4. Implement the generator in every port runner and in
    `scripts/lib/common.mjs`, then implement each port's parser factory.
 5. Run `make test`; the aggregator will reject missing cases or input-hash
    disagreement.

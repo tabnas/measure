@@ -6,6 +6,7 @@ HOST_KEY ?= $(TABNAS_MEASURE_HOST_KEY)
 setup:
 	npm ci
 	GOWORK=off go mod download
+	cargo fetch --locked --manifest-path ports/rust/Cargo.toml
 
 build:
 	npm run build
