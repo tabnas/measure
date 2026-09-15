@@ -57,15 +57,25 @@ durations and iteration counts remain in the per-port result documents.
   is not enough. The cumulative figures this repository exists to publish are
   a different matter: a row that moves by 2× or 4× is an order of magnitude
   clear of this.
-- **Each port is built the way it would be shipped, which is not the same flag
-  for each.** Go builds with `-trimpath`, and its compiler inlines across
-  packages within a binary by default. TypeScript runs on V8, which inlines
-  across module boundaries at runtime. Rust is built with `opt-level = 3`,
-  `codegen-units = 1` and `lto = "fat"`; without that last one the engine is a
-  separate crate the runner cannot inline into, which measures how the
-  benchmark is assembled rather than how the port performs. It arrived late
-  (runs from `…T182…` onward) and is worth 1.10x-1.15x on every case, so runs
-  before and after it are not directly comparable for the Rust column.
+- **Each port is built the way it would be shipped, which is not the same
+  configuration for each, because the runtimes do not supply the same things.**
+  Two of these arrived late, both worth more than most of the engine changes
+  they sit alongside, and runs before and after them are not directly
+  comparable for the Rust column.
+  - *Cross-module inlining.* Go's compiler inlines across packages within a
+    binary by default and V8 inlines across module boundaries at runtime. Rust
+    needs `lto = "fat"` or the engine stays a separate crate the runner cannot
+    inline into. Worth 1.10x-1.15x on every case; runs from `…T183610…` onward.
+  - *The allocator.* Go ships the runtime's and TypeScript ships V8's; Rust
+    takes whatever libc supplies, which on this host is glibc. The engine
+    allocates heavily enough that this is worth 1.09x-1.56x, so the port was
+    being measured against glibc as much as against itself. The Rust runner now
+    sets `mimalloc` as its global allocator, pinned exactly like every other
+    dependency; runs from `…T184…` onward.
+  - The general point is worth more than either flag: **a port can be slower
+    because of what its runtime does not bring, rather than because of its own
+    code, and that is a property of the measurement rather than of the port.**
+    Check what each runtime supplies before reading a gap as the engine's.
 - Parser construction is excluded by constructing one parser per benchmark and
   reusing it, which is as far as a port's public API allows. Where an engine
   rebuilds internal state inside its own parse call, that cost is inside the

@@ -2,6 +2,11 @@
 // and the profile, exactly one raw result document goes to stdout, and
 // everything else goes to stderr.
 
+/// See the note on `mimalloc` in Cargo.toml: this puts the port on the
+/// same footing as the other two, which bring their own.
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
 mod environment;
 mod model;
 mod parsers;
