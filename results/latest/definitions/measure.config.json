@@ -22,7 +22,7 @@
       "label": "TypeScript / Node.js",
       "parser": {
         "module": "@tabnas/parser",
-        "version": "0.9.7"
+        "version": "0.9.0"
       },
       "command": "node",
       "arguments": [
@@ -35,19 +35,9 @@
       "label": "Go",
       "parser": {
         "module": "github.com/tabnas/parser/go",
-        "version": "0.9.7"
+        "version": "0.9.0"
       },
       "command": ".build/measure-go",
-      "arguments": []
-    },
-    {
-      "id": "rust",
-      "label": "Rust",
-      "parser": {
-        "module": "tabnas",
-        "version": "0.9.7"
-      },
-      "command": ".build/measure-rust",
       "arguments": []
     }
   ]

@@ -2,11 +2,11 @@
   "$schema": "https://tabnas.github.io/measure/schemas/port-result.schema.json",
   "schemaVersion": 3,
   "run": {
-    "id": "20260915T131105261Z-063cd3b35d2f-suite-0.2.0-7d07567d",
-    "generatedAt": "2026-09-15T13:11:05.261Z",
+    "id": "20260915T132126947Z-063cd3b35d2f-suite-0.2.0-a9c67968",
+    "generatedAt": "2026-09-15T13:21:26.947Z",
     "profile": "full",
     "suiteVersion": "0.2.0",
-    "repositoryCommit": "7d07567d18da05779c6367dfd746a13c77dbb9b8",
+    "repositoryCommit": "a9c679687bd991a2a34f1849aaf96153dabd41d3",
     "repositoryDirty": false
   },
   "port": {
@@ -14,9 +14,9 @@
     "label": "TypeScript / Node.js",
     "language": "TypeScript",
     "runtime": "Node.js",
-    "runtimeVersion": "v22.22.2",
+    "runtimeVersion": "v24.21.0",
     "parserModule": "@tabnas/parser",
-    "parserVersion": "0.9.7"
+    "parserVersion": "0.9.0"
   },
   "environment": {
     "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
@@ -198,43 +198,43 @@
         "codeUnits": 15,
         "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
       },
-      "iterationsPerSample": 8192,
+      "iterationsPerSample": 16384,
       "samples": [
         {
-          "elapsedNs": 114195775
+          "elapsedNs": 240864669
         },
         {
-          "elapsedNs": 122192493
+          "elapsedNs": 177794514
         },
         {
-          "elapsedNs": 132457122
+          "elapsedNs": 179972334
         },
         {
-          "elapsedNs": 95716830
+          "elapsedNs": 175822769
         },
         {
-          "elapsedNs": 90937484
+          "elapsedNs": 176149588
         },
         {
-          "elapsedNs": 88611365
+          "elapsedNs": 179096017
         },
         {
-          "elapsedNs": 87620260
+          "elapsedNs": 179320266
         },
         {
-          "elapsedNs": 88347033
+          "elapsedNs": 181943474
         },
         {
-          "elapsedNs": 87390182
+          "elapsedNs": 176884924
         },
         {
-          "elapsedNs": 87566316
+          "elapsedNs": 175825802
         },
         {
-          "elapsedNs": 86883548
+          "elapsedNs": 175913980
         }
       ],
-      "checksum": 720896
+      "checksum": 1441792
     },
     {
       "benchmarkId": "adder",
@@ -248,37 +248,37 @@
       "iterationsPerSample": 2048,
       "samples": [
         {
-          "elapsedNs": 180437754
+          "elapsedNs": 172572691
         },
         {
-          "elapsedNs": 146512083
+          "elapsedNs": 148155253
         },
         {
-          "elapsedNs": 149694618
+          "elapsedNs": 148824798
         },
         {
-          "elapsedNs": 148191638
+          "elapsedNs": 152677788
         },
         {
-          "elapsedNs": 149862106
+          "elapsedNs": 150583335
         },
         {
-          "elapsedNs": 151731085
+          "elapsedNs": 150278896
         },
         {
-          "elapsedNs": 149549772
+          "elapsedNs": 149926886
         },
         {
-          "elapsedNs": 149833261
+          "elapsedNs": 148069472
         },
         {
-          "elapsedNs": 150234141
+          "elapsedNs": 148771053
         },
         {
-          "elapsedNs": 148478124
+          "elapsedNs": 188858519
         },
         {
-          "elapsedNs": 156581891
+          "elapsedNs": 154224740
         }
       ],
       "checksum": 1441792
@@ -295,37 +295,37 @@
       "iterationsPerSample": 256,
       "samples": [
         {
-          "elapsedNs": 185236171
+          "elapsedNs": 177274991
         },
         {
-          "elapsedNs": 150957858
+          "elapsedNs": 151137067
         },
         {
-          "elapsedNs": 155346790
+          "elapsedNs": 152162277
         },
         {
-          "elapsedNs": 167861062
+          "elapsedNs": 163849274
         },
         {
-          "elapsedNs": 151093381
+          "elapsedNs": 147858260
         },
         {
-          "elapsedNs": 151342772
+          "elapsedNs": 148518266
         },
         {
-          "elapsedNs": 156933630
+          "elapsedNs": 148739587
         },
         {
-          "elapsedNs": 154411448
+          "elapsedNs": 149567008
         },
         {
-          "elapsedNs": 150464435
+          "elapsedNs": 151339603
         },
         {
-          "elapsedNs": 151122267
+          "elapsedNs": 153445533
         },
         {
-          "elapsedNs": 149399446
+          "elapsedNs": 161486146
         }
       ],
       "checksum": 1441792
@@ -342,37 +342,37 @@
       "iterationsPerSample": 128,
       "samples": [
         {
-          "elapsedNs": 171485105
+          "elapsedNs": 182497799
         },
         {
-          "elapsedNs": 151908468
+          "elapsedNs": 157517777
         },
         {
-          "elapsedNs": 151747788
+          "elapsedNs": 152752955
         },
         {
-          "elapsedNs": 151108312
+          "elapsedNs": 154181909
         },
         {
-          "elapsedNs": 153106622
+          "elapsedNs": 153001538
         },
         {
-          "elapsedNs": 153162371
+          "elapsedNs": 150112241
         },
         {
-          "elapsedNs": 152803154
+          "elapsedNs": 194219851
         },
         {
-          "elapsedNs": 150578208
+          "elapsedNs": 159111038
         },
         {
-          "elapsedNs": 150259245
+          "elapsedNs": 154605112
         },
         {
-          "elapsedNs": 152004027
+          "elapsedNs": 157867007
         },
         {
-          "elapsedNs": 158423863
+          "elapsedNs": 155736464
         }
       ],
       "checksum": 1441792
@@ -389,37 +389,37 @@
       "iterationsPerSample": 64,
       "samples": [
         {
-          "elapsedNs": 178495717
+          "elapsedNs": 178243346
         },
         {
-          "elapsedNs": 155177087
+          "elapsedNs": 145683237
         },
         {
-          "elapsedNs": 154696691
+          "elapsedNs": 145440965
         },
         {
-          "elapsedNs": 153641091
+          "elapsedNs": 145097385
         },
         {
-          "elapsedNs": 158256953
+          "elapsedNs": 148099996
         },
         {
-          "elapsedNs": 154180251
+          "elapsedNs": 147288391
         },
         {
-          "elapsedNs": 153381540
+          "elapsedNs": 150272573
         },
         {
-          "elapsedNs": 153480106
+          "elapsedNs": 146197925
         },
         {
-          "elapsedNs": 153067100
+          "elapsedNs": 147947379
         },
         {
-          "elapsedNs": 154803627
+          "elapsedNs": 146724351
         },
         {
-          "elapsedNs": 156093351
+          "elapsedNs": 150845878
         }
       ],
       "checksum": 1441792
@@ -436,37 +436,37 @@
       "iterationsPerSample": 32,
       "samples": [
         {
-          "elapsedNs": 190532163
+          "elapsedNs": 181001761
         },
         {
-          "elapsedNs": 162680797
+          "elapsedNs": 154816680
         },
         {
-          "elapsedNs": 164857132
+          "elapsedNs": 153379772
         },
         {
-          "elapsedNs": 164248393
+          "elapsedNs": 156561895
         },
         {
-          "elapsedNs": 157930033
+          "elapsedNs": 152470733
         },
         {
-          "elapsedNs": 157952490
+          "elapsedNs": 154345862
         },
         {
-          "elapsedNs": 160862683
+          "elapsedNs": 151061392
         },
         {
-          "elapsedNs": 161601479
+          "elapsedNs": 153158318
         },
         {
-          "elapsedNs": 160636998
+          "elapsedNs": 150311650
         },
         {
-          "elapsedNs": 157213908
+          "elapsedNs": 178990030
         },
         {
-          "elapsedNs": 161259685
+          "elapsedNs": 149798877
         }
       ],
       "checksum": 1441792
@@ -483,37 +483,37 @@
       "iterationsPerSample": 16,
       "samples": [
         {
-          "elapsedNs": 216627776
+          "elapsedNs": 205695968
         },
         {
-          "elapsedNs": 202254618
+          "elapsedNs": 172836385
         },
         {
-          "elapsedNs": 204863402
+          "elapsedNs": 157069485
         },
         {
-          "elapsedNs": 203747542
+          "elapsedNs": 156495179
         },
         {
-          "elapsedNs": 217549275
+          "elapsedNs": 154284440
         },
         {
-          "elapsedNs": 203068417
+          "elapsedNs": 154769038
         },
         {
-          "elapsedNs": 204224124
+          "elapsedNs": 153447129
         },
         {
-          "elapsedNs": 208704187
+          "elapsedNs": 153311116
         },
         {
-          "elapsedNs": 216813139
+          "elapsedNs": 153769127
         },
         {
-          "elapsedNs": 210517582
+          "elapsedNs": 153646714
         },
         {
-          "elapsedNs": 205581199
+          "elapsedNs": 154176568
         }
       ],
       "checksum": 1441792
@@ -527,43 +527,43 @@
         "codeUnits": 32767,
         "sha256": "795f6c8dc2e336e1c23ec659521c24b6486d29665375384a47c7a2767c781ee2"
       },
-      "iterationsPerSample": 4,
+      "iterationsPerSample": 8,
       "samples": [
         {
-          "elapsedNs": 146333479
+          "elapsedNs": 181442067
         },
         {
-          "elapsedNs": 150459949
+          "elapsedNs": 149275253
         },
         {
-          "elapsedNs": 142148654
+          "elapsedNs": 141756099
         },
         {
-          "elapsedNs": 156742787
+          "elapsedNs": 141218424
         },
         {
-          "elapsedNs": 159735811
+          "elapsedNs": 141646090
         },
         {
-          "elapsedNs": 146148694
+          "elapsedNs": 142293883
         },
         {
-          "elapsedNs": 150188361
+          "elapsedNs": 143186628
         },
         {
-          "elapsedNs": 164038360
+          "elapsedNs": 146429281
         },
         {
-          "elapsedNs": 143544269
+          "elapsedNs": 145282946
         },
         {
-          "elapsedNs": 156225709
+          "elapsedNs": 144304991
         },
         {
-          "elapsedNs": 148414369
+          "elapsedNs": 144155772
         }
       ],
-      "checksum": 720896
+      "checksum": 1441792
     },
     {
       "benchmarkId": "palindrome",
@@ -574,43 +574,43 @@
         "codeUnits": 16,
         "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
       },
-      "iterationsPerSample": 16384,
+      "iterationsPerSample": 8192,
       "samples": [
         {
-          "elapsedNs": 217532795
+          "elapsedNs": 138295584
         },
         {
-          "elapsedNs": 193176192
+          "elapsedNs": 100259974
         },
         {
-          "elapsedNs": 196880203
+          "elapsedNs": 100692403
         },
         {
-          "elapsedNs": 198593805
+          "elapsedNs": 98175758
         },
         {
-          "elapsedNs": 194716717
+          "elapsedNs": 101441702
         },
         {
-          "elapsedNs": 197139140
+          "elapsedNs": 99502482
         },
         {
-          "elapsedNs": 195003303
+          "elapsedNs": 96994494
         },
         {
-          "elapsedNs": 194904416
+          "elapsedNs": 96248769
         },
         {
-          "elapsedNs": 193860433
+          "elapsedNs": 98019344
         },
         {
-          "elapsedNs": 196270107
+          "elapsedNs": 97234397
         },
         {
-          "elapsedNs": 192233419
+          "elapsedNs": 97349023
         }
       ],
-      "checksum": 180224
+      "checksum": 90112
     },
     {
       "benchmarkId": "palindrome",
@@ -624,37 +624,37 @@
       "iterationsPerSample": 2048,
       "samples": [
         {
-          "elapsedNs": 172281867
+          "elapsedNs": 187302057
         },
         {
-          "elapsedNs": 155495794
+          "elapsedNs": 156743311
         },
         {
-          "elapsedNs": 150947053
+          "elapsedNs": 157324536
         },
         {
-          "elapsedNs": 148318356
+          "elapsedNs": 158780644
         },
         {
-          "elapsedNs": 150573179
+          "elapsedNs": 156185795
         },
         {
-          "elapsedNs": 148561274
+          "elapsedNs": 155927499
         },
         {
-          "elapsedNs": 150400288
+          "elapsedNs": 155503771
         },
         {
-          "elapsedNs": 151367456
+          "elapsedNs": 154986204
         },
         {
-          "elapsedNs": 164286517
+          "elapsedNs": 155365639
         },
         {
-          "elapsedNs": 149553383
+          "elapsedNs": 157601136
         },
         {
-          "elapsedNs": 200892110
+          "elapsedNs": 157035071
         }
       ],
       "checksum": 22528
@@ -671,37 +671,37 @@
       "iterationsPerSample": 256,
       "samples": [
         {
-          "elapsedNs": 177937577
+          "elapsedNs": 188002182
         },
         {
-          "elapsedNs": 157599966
+          "elapsedNs": 155222532
         },
         {
-          "elapsedNs": 159628367
+          "elapsedNs": 156092275
         },
         {
-          "elapsedNs": 161131325
+          "elapsedNs": 157352817
         },
         {
-          "elapsedNs": 160771629
+          "elapsedNs": 154458162
         },
         {
-          "elapsedNs": 156483465
+          "elapsedNs": 160784041
         },
         {
-          "elapsedNs": 162718645
+          "elapsedNs": 157716779
         },
         {
-          "elapsedNs": 158017003
+          "elapsedNs": 157063905
         },
         {
-          "elapsedNs": 160289743
+          "elapsedNs": 156062045
         },
         {
-          "elapsedNs": 159599532
+          "elapsedNs": 154681989
         },
         {
-          "elapsedNs": 159518014
+          "elapsedNs": 159839928
         }
       ],
       "checksum": 2816
@@ -718,37 +718,37 @@
       "iterationsPerSample": 128,
       "samples": [
         {
-          "elapsedNs": 183368640
+          "elapsedNs": 180809474
         },
         {
-          "elapsedNs": 156783573
+          "elapsedNs": 142188604
         },
         {
-          "elapsedNs": 156631715
+          "elapsedNs": 152325006
         },
         {
-          "elapsedNs": 161584326
+          "elapsedNs": 142131374
         },
         {
-          "elapsedNs": 160045758
+          "elapsedNs": 141533077
         },
         {
-          "elapsedNs": 157294886
+          "elapsedNs": 145688403
         },
         {
-          "elapsedNs": 159421224
+          "elapsedNs": 142306827
         },
         {
-          "elapsedNs": 157743698
+          "elapsedNs": 141657218
         },
         {
-          "elapsedNs": 162419365
+          "elapsedNs": 143452866
         },
         {
-          "elapsedNs": 164601190
+          "elapsedNs": 140869849
         },
         {
-          "elapsedNs": 158425749
+          "elapsedNs": 141001199
         }
       ],
       "checksum": 1408
@@ -765,37 +765,37 @@
       "iterationsPerSample": 64,
       "samples": [
         {
-          "elapsedNs": 187909070
+          "elapsedNs": 175227447
         },
         {
-          "elapsedNs": 155126705
+          "elapsedNs": 143606610
         },
         {
-          "elapsedNs": 160666076
+          "elapsedNs": 143137464
         },
         {
-          "elapsedNs": 156660303
+          "elapsedNs": 143485366
         },
         {
-          "elapsedNs": 155623072
+          "elapsedNs": 143354292
         },
         {
-          "elapsedNs": 149164060
+          "elapsedNs": 143074498
         },
         {
-          "elapsedNs": 148924595
+          "elapsedNs": 143273417
         },
         {
-          "elapsedNs": 150497509
+          "elapsedNs": 142219050
         },
         {
-          "elapsedNs": 152235994
+          "elapsedNs": 143312886
         },
         {
-          "elapsedNs": 154339581
+          "elapsedNs": 143234835
         },
         {
-          "elapsedNs": 189384577
+          "elapsedNs": 142468242
         }
       ],
       "checksum": 704
@@ -812,37 +812,37 @@
       "iterationsPerSample": 32,
       "samples": [
         {
-          "elapsedNs": 184816917
+          "elapsedNs": 184096123
         },
         {
-          "elapsedNs": 149949195
+          "elapsedNs": 149612584
         },
         {
-          "elapsedNs": 151862496
+          "elapsedNs": 151966781
         },
         {
-          "elapsedNs": 152241117
+          "elapsedNs": 147954367
         },
         {
-          "elapsedNs": 150169007
+          "elapsedNs": 146963297
         },
         {
-          "elapsedNs": 151682488
+          "elapsedNs": 146472830
         },
         {
-          "elapsedNs": 148624773
+          "elapsedNs": 154893159
         },
         {
-          "elapsedNs": 211428348
+          "elapsedNs": 148780929
         },
         {
-          "elapsedNs": 153778316
+          "elapsedNs": 148278971
         },
         {
-          "elapsedNs": 153844120
+          "elapsedNs": 148579119
         },
         {
-          "elapsedNs": 175887434
+          "elapsedNs": 155124837
         }
       ],
       "checksum": 352
@@ -859,37 +859,37 @@
       "iterationsPerSample": 16,
       "samples": [
         {
-          "elapsedNs": 199439468
+          "elapsedNs": 196655204
         },
         {
-          "elapsedNs": 173206324
+          "elapsedNs": 154585323
         },
         {
-          "elapsedNs": 173470271
+          "elapsedNs": 153442189
         },
         {
-          "elapsedNs": 173287198
+          "elapsedNs": 151789290
         },
         {
-          "elapsedNs": 168239280
+          "elapsedNs": 152409831
         },
         {
-          "elapsedNs": 173089320
+          "elapsedNs": 150164221
         },
         {
-          "elapsedNs": 175812405
+          "elapsedNs": 149914805
         },
         {
-          "elapsedNs": 178681136
+          "elapsedNs": 149279714
         },
         {
-          "elapsedNs": 185555144
+          "elapsedNs": 155509524
         },
         {
-          "elapsedNs": 187437101
+          "elapsedNs": 151561672
         },
         {
-          "elapsedNs": 191906143
+          "elapsedNs": 152269027
         }
       ],
       "checksum": 176
@@ -903,43 +903,43 @@
         "codeUnits": 32768,
         "sha256": "ea6040375617e268aed6ca19d1b5af61ad8774118f2ddfdf2a6184b2cef2b95c"
       },
-      "iterationsPerSample": 4,
+      "iterationsPerSample": 8,
       "samples": [
         {
-          "elapsedNs": 175779314
+          "elapsedNs": 222238868
         },
         {
-          "elapsedNs": 120791521
+          "elapsedNs": 162027172
         },
         {
-          "elapsedNs": 140377026
+          "elapsedNs": 162954538
         },
         {
-          "elapsedNs": 130736605
+          "elapsedNs": 168701443
         },
         {
-          "elapsedNs": 119163515
+          "elapsedNs": 162506178
         },
         {
-          "elapsedNs": 125424975
+          "elapsedNs": 164282020
         },
         {
-          "elapsedNs": 125357490
+          "elapsedNs": 190439986
         },
         {
-          "elapsedNs": 129037692
+          "elapsedNs": 151783548
         },
         {
-          "elapsedNs": 132876886
+          "elapsedNs": 157420690
         },
         {
-          "elapsedNs": 149516384
+          "elapsedNs": 154707719
         },
         {
-          "elapsedNs": 139996800
+          "elapsedNs": 153305462
         }
       ],
-      "checksum": 44
+      "checksum": 88
     }
   ]
 }
