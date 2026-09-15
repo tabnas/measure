@@ -142,6 +142,17 @@ A row that compares ports is therefore a comparison of the recorded parser
 versions, and the revision in the lockfile is what settles any question the
 version string leaves open.
 
+**Every run carries those files, under `definitions/manifests/<port>/`.** A
+run names its parsers by the version each port reports, and the Rust crate is
+unpublished, so every revision on a branch reports the same in-tree version:
+the twenty-three pins behind this repository's Rust series all call
+themselves 0.9.7. Without the manifests the only link from a run to the
+revision it measured is the run's `repositoryCommit`, and a branch that is
+rebased or squashed takes that commit away while the run stays. One run here
+already named an object no longer in its own history. The snapshot makes a
+run answer the question by itself; runs recorded before it was added do not
+have it, and for those the commit is still the only link.
+
 ## Reproducibility
 
 Every run records:

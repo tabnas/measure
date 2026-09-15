@@ -13,7 +13,7 @@
     "build:ts": "tsc -p ports/typescript/tsconfig.json",
     "build:go": "GOWORK=off go build -trimpath -o .build/measure-go ./ports/go/cmd/measure",
     "build:rs": "cargo build --release --locked --manifest-path ports/rust/Cargo.toml --target-dir .build/rust && cp .build/rust/release/measure-rust .build/measure-rust",
-    "test": "node --test scripts/docs.test.mjs scripts/toolchain.test.mjs && npm run test:ports && node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run && npm run site && node scripts/smoke-site.mjs",
+    "test": "node --test scripts/docs.test.mjs scripts/toolchain.test.mjs scripts/provenance.test.mjs && npm run test:ports && node scripts/run-all.mjs --profile smoke --output .build/smoke-run && node scripts/validate-repository.mjs --run .build/smoke-run && npm run site && node scripts/smoke-site.mjs",
     "test:ports": "GOWORK=off go test ./... && cargo test --locked --manifest-path ports/rust/Cargo.toml --target-dir .build/rust",
     "measure": "node scripts/run-all.mjs --profile full --record",
     "site": "node scripts/build-site.mjs",

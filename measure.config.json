@@ -24,6 +24,10 @@
         "module": "@tabnas/parser",
         "version": "0.9.7"
       },
+      "manifests": [
+        "package.json",
+        "package-lock.json"
+      ],
       "command": "node",
       "arguments": [
         "--expose-gc",
@@ -37,6 +41,10 @@
         "module": "github.com/tabnas/parser/go",
         "version": "0.9.7"
       },
+      "manifests": [
+        "go.mod",
+        "go.sum"
+      ],
       "command": ".build/measure-go",
       "arguments": []
     },
@@ -47,6 +55,10 @@
         "module": "tabnas",
         "version": "0.9.7"
       },
+      "manifests": [
+        "ports/rust/Cargo.toml",
+        "ports/rust/Cargo.lock"
+      ],
       "command": ".build/measure-rust",
       "arguments": []
     }
