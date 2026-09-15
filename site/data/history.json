@@ -4963,6 +4963,17 @@
           "p95Ns": 749103.482422,
           "operationsPerSecond": 1396.760946,
           "coefficientOfVariationPercent": 2.781228
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 749150.644531,
+          "p95Ns": 894004.4375,
+          "operationsPerSecond": 1334.845011,
+          "coefficientOfVariationPercent": 8.242533
         }
       ]
     },
@@ -5078,6 +5089,58 @@
           "p95Ns": 818898.269531,
           "operationsPerSecond": 1225.457603,
           "coefficientOfVariationPercent": 0.394365
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-1024/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-1024",
+      "description": "One thousand twenty-four one-digit terms.",
+      "input": {
+        "bytes": 2047,
+        "codeUnits": 2047,
+        "sha256": "1de348e1b18d00c6ebfc74a51e1d2395a11bbbd1e55f64e539ce4daf843cb786"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 11035477.9375,
+          "p95Ns": 11244509.8125,
+          "operationsPerSecond": 90.616827,
+          "coefficientOfVariationPercent": 1.414772
         }
       ]
     },
@@ -5245,6 +5308,17 @@
           "p95Ns": 1471553.320313,
           "operationsPerSecond": 821.901286,
           "coefficientOfVariationPercent": 8.685609
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1181315.710938,
+          "p95Ns": 1428294.394531,
+          "operationsPerSecond": 846.513756,
+          "coefficientOfVariationPercent": 8.281102
         }
       ]
     },
@@ -5297,6 +5371,17 @@
           "p95Ns": 17473702.0625,
           "operationsPerSecond": 65.122522,
           "coefficientOfVariationPercent": 5.724852
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 16285626.375,
+          "p95Ns": 18705087.4375,
+          "operationsPerSecond": 61.40384,
+          "coefficientOfVariationPercent": 8.379832
         }
       ]
     },
@@ -5412,6 +5497,58 @@
           "p95Ns": 19144942,
           "operationsPerSecond": 54.170557,
           "coefficientOfVariationPercent": 2.489642
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-16384/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-16384",
+      "description": "Sixteen thousand three hundred eighty-four one-digit terms.",
+      "input": {
+        "bytes": 32767,
+        "codeUnits": 32767,
+        "sha256": "795f6c8dc2e336e1c23ec659521c24b6486d29665375384a47c7a2767c781ee2"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 203957141,
+          "p95Ns": 213051145.5,
+          "operationsPerSecond": 4.902991,
+          "coefficientOfVariationPercent": 2.048713
         }
       ]
     },
@@ -5579,6 +5716,17 @@
           "p95Ns": 20669832.5,
           "operationsPerSecond": 55.495523,
           "coefficientOfVariationPercent": 7.840336
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 18303719,
+          "p95Ns": 20724327.875,
+          "operationsPerSecond": 54.633706,
+          "coefficientOfVariationPercent": 7.694296
         }
       ]
     },
@@ -5631,6 +5779,17 @@
           "p95Ns": 1801211.914063,
           "operationsPerSecond": 582.867768,
           "coefficientOfVariationPercent": 3.067143
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1796565.015625,
+          "p95Ns": 1887468.664063,
+          "operationsPerSecond": 556.617763,
+          "coefficientOfVariationPercent": 3.943484
         }
       ]
     },
@@ -5746,6 +5905,58 @@
           "p95Ns": 1818771.742188,
           "operationsPerSecond": 554.810948,
           "coefficientOfVariationPercent": 0.525693
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-2048/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-2048",
+      "description": "Two thousand forty-eight one-digit terms.",
+      "input": {
+        "bytes": 4095,
+        "codeUnits": 4095,
+        "sha256": "63694f1a7945adff1acabfe47857fd437a4db73f7d85825be8d6176981d148d9"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 23616946.5,
+          "p95Ns": 24086118.5625,
+          "operationsPerSecond": 42.342476,
+          "coefficientOfVariationPercent": 1.844545
         }
       ]
     },
@@ -5913,6 +6124,17 @@
           "p95Ns": 2571009.5625,
           "operationsPerSecond": 434.521686,
           "coefficientOfVariationPercent": 6.324467
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2375384.671875,
+          "p95Ns": 2766945.953125,
+          "operationsPerSecond": 420.984446,
+          "coefficientOfVariationPercent": 6.891391
         }
       ]
     },
@@ -5965,6 +6187,17 @@
           "p95Ns": 3553827.625,
           "operationsPerSecond": 304.376735,
           "coefficientOfVariationPercent": 4.966953
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 3412532.34375,
+          "p95Ns": 3765191.546875,
+          "operationsPerSecond": 293.037516,
+          "coefficientOfVariationPercent": 5.197009
         }
       ]
     },
@@ -6080,6 +6313,58 @@
           "p95Ns": 3627086.578125,
           "operationsPerSecond": 278.159358,
           "coefficientOfVariationPercent": 0.492859
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-4096/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 49173903.75,
+          "p95Ns": 50839268.5,
+          "operationsPerSecond": 20.33599,
+          "coefficientOfVariationPercent": 1.974138
         }
       ]
     },
@@ -6247,6 +6532,17 @@
           "p95Ns": 5624871.734375,
           "operationsPerSecond": 208.632466,
           "coefficientOfVariationPercent": 7.069671
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4664118.375,
+          "p95Ns": 5948554.890625,
+          "operationsPerSecond": 214.402792,
+          "coefficientOfVariationPercent": 15.129673
         }
       ]
     },
@@ -6299,6 +6595,17 @@
           "p95Ns": 366764.605469,
           "operationsPerSecond": 2786.966967,
           "coefficientOfVariationPercent": 2.07508
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 398504.78125,
+          "p95Ns": 408439.529297,
+          "operationsPerSecond": 2509.380181,
+          "coefficientOfVariationPercent": 2.701158
         }
       ]
     },
@@ -6414,6 +6721,58 @@
           "p95Ns": 395021.984375,
           "operationsPerSecond": 2557.755186,
           "coefficientOfVariationPercent": 0.509101
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-512/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4996333.5,
+          "p95Ns": 5075552.859375,
+          "operationsPerSecond": 200.146768,
+          "coefficientOfVariationPercent": 0.715219
         }
       ]
     },
@@ -6581,6 +6940,17 @@
           "p95Ns": 666258.330078,
           "operationsPerSecond": 1691.559875,
           "coefficientOfVariationPercent": 5.830406
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 594021.269531,
+          "p95Ns": 797516.519531,
+          "operationsPerSecond": 1683.441404,
+          "coefficientOfVariationPercent": 15.93245
         }
       ]
     },
@@ -6633,6 +7003,17 @@
           "p95Ns": 55919.070557,
           "operationsPerSecond": 22064.147544,
           "coefficientOfVariationPercent": 9.184718
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 49827.140625,
+          "p95Ns": 56129.255371,
+          "operationsPerSecond": 20069.383622,
+          "coefficientOfVariationPercent": 6.279942
         }
       ]
     },
@@ -6748,6 +7129,58 @@
           "p95Ns": 50459.342773,
           "operationsPerSecond": 20052.651723,
           "coefficientOfVariationPercent": 0.823583
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-64/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 655494.480469,
+          "p95Ns": 659008.648438,
+          "operationsPerSecond": 1525.565859,
+          "coefficientOfVariationPercent": 0.386135
         }
       ]
     },
@@ -6915,6 +7348,17 @@
           "p95Ns": 88240.041504,
           "operationsPerSecond": 13627.994712,
           "coefficientOfVariationPercent": 8.360061
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 78018.878906,
+          "p95Ns": 84042.763916,
+          "operationsPerSecond": 12817.41053,
+          "coefficientOfVariationPercent": 5.16187
         }
       ]
     },
@@ -6967,6 +7411,17 @@
           "p95Ns": 8715.996155,
           "operationsPerSecond": 130627.001875,
           "coefficientOfVariationPercent": 8.108589
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 7827.291382,
+          "p95Ns": 8651.533478,
+          "operationsPerSecond": 127758.115958,
+          "coefficientOfVariationPercent": 4.548457
         }
       ]
     },
@@ -7082,6 +7537,58 @@
           "p95Ns": 7710.490723,
           "operationsPerSecond": 131149.980729,
           "coefficientOfVariationPercent": 0.650696
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-8/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 115360.789063,
+          "p95Ns": 118613.632324,
+          "operationsPerSecond": 8668.456658,
+          "coefficientOfVariationPercent": 1.656493
         }
       ]
     },
@@ -7249,6 +7756,17 @@
           "p95Ns": 12903.080536,
           "operationsPerSecond": 92151.324759,
           "coefficientOfVariationPercent": 10.403041
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 11429.346436,
+          "p95Ns": 13152.806061,
+          "operationsPerSecond": 87494.066755,
+          "coefficientOfVariationPercent": 7.949064
         }
       ]
     },
@@ -7301,6 +7819,17 @@
           "p95Ns": 9597471.1875,
           "operationsPerSecond": 117.980987,
           "coefficientOfVariationPercent": 6.351985
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8515585.4375,
+          "p95Ns": 9488351.15625,
+          "operationsPerSecond": 117.431738,
+          "coefficientOfVariationPercent": 5.59027
         }
       ]
     },
@@ -7416,6 +7945,58 @@
           "p95Ns": 9229887.5625,
           "operationsPerSecond": 111.247042,
           "coefficientOfVariationPercent": 1.838155
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-8192/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8192",
+      "description": "Eight thousand one hundred ninety-two one-digit terms.",
+      "input": {
+        "bytes": 16383,
+        "codeUnits": 16383,
+        "sha256": "a0e5c605958886ff43ffdf6db4fb6abb0713f0944111a2a1e0e1c128ca8bd204"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 103162148,
+          "p95Ns": 121290851.5,
+          "operationsPerSecond": 9.693478,
+          "coefficientOfVariationPercent": 10.350214
         }
       ]
     },
@@ -7583,6 +8164,17 @@
           "p95Ns": 11829136.03125,
           "operationsPerSecond": 103.70456,
           "coefficientOfVariationPercent": 9.880762
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 9865074.875,
+          "p95Ns": 11242353.90625,
+          "operationsPerSecond": 101.367705,
+          "coefficientOfVariationPercent": 5.908262
         }
       ]
     },
@@ -7635,6 +8227,17 @@
           "p95Ns": 490500.1875,
           "operationsPerSecond": 2165.489169,
           "coefficientOfVariationPercent": 4.198391
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 441161.988281,
+          "p95Ns": 587760.806641,
+          "operationsPerSecond": 2266.741076,
+          "coefficientOfVariationPercent": 14.58978
         }
       ]
     },
@@ -7750,6 +8353,58 @@
           "p95Ns": 439834.378906,
           "operationsPerSecond": 2396.917923,
           "coefficientOfVariationPercent": 2.550626
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-1024/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10882871.875,
+          "p95Ns": 11635166.5625,
+          "operationsPerSecond": 91.88751,
+          "coefficientOfVariationPercent": 5.166716
         }
       ]
     },
@@ -7917,6 +8572,17 @@
           "p95Ns": 681223.091797,
           "operationsPerSecond": 1629.909813,
           "coefficientOfVariationPercent": 5.995998
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 645243.765625,
+          "p95Ns": 730974.146484,
+          "operationsPerSecond": 1549.801878,
+          "coefficientOfVariationPercent": 6.56307
         }
       ]
     },
@@ -7969,6 +8635,17 @@
           "p95Ns": 68049.485107,
           "operationsPerSecond": 16522.830106,
           "coefficientOfVariationPercent": 7.013392
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 60239.774902,
+          "p95Ns": 76080.7854,
+          "operationsPerSecond": 16600.327634,
+          "coefficientOfVariationPercent": 14.028439
         }
       ]
     },
@@ -8084,6 +8761,58 @@
           "p95Ns": 54656.552246,
           "operationsPerSecond": 18685.150757,
           "coefficientOfVariationPercent": 1.407162
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-128/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1146932.914063,
+          "p95Ns": 1185567.585938,
+          "operationsPerSecond": 871.890577,
+          "coefficientOfVariationPercent": 1.779793
         }
       ]
     },
@@ -8251,6 +8980,17 @@
           "p95Ns": 84492.846924,
           "operationsPerSecond": 13065.948313,
           "coefficientOfVariationPercent": 5.86175
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 80149.262207,
+          "p95Ns": 95757.542236,
+          "operationsPerSecond": 12476.721213,
+          "coefficientOfVariationPercent": 8.105301
         }
       ]
     },
@@ -8303,6 +9043,17 @@
           "p95Ns": 10231.584259,
           "operationsPerSecond": 105909.15283,
           "coefficientOfVariationPercent": 7.477645
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 9179.243713,
+          "p95Ns": 10403.861328,
+          "operationsPerSecond": 108941.436923,
+          "coefficientOfVariationPercent": 6.289889
         }
       ]
     },
@@ -8418,6 +9169,58 @@
           "p95Ns": 8813.264862,
           "operationsPerSecond": 114639.414784,
           "coefficientOfVariationPercent": 0.759867
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-16/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 201978.861328,
+          "p95Ns": 209224.461914,
+          "operationsPerSecond": 4951.013158,
+          "coefficientOfVariationPercent": 2.017086
         }
       ]
     },
@@ -8585,6 +9388,17 @@
           "p95Ns": 14632.40271,
           "operationsPerSecond": 83442.187429,
           "coefficientOfVariationPercent": 11.827472
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 12261.433655,
+          "p95Ns": 14196.189148,
+          "operationsPerSecond": 81556.531492,
+          "coefficientOfVariationPercent": 6.310256
         }
       ]
     },
@@ -8637,6 +9451,17 @@
           "p95Ns": 10639509.4375,
           "operationsPerSecond": 98.117441,
           "coefficientOfVariationPercent": 3.105313
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 9129819,
+          "p95Ns": 9740488.5,
+          "operationsPerSecond": 109.531197,
+          "coefficientOfVariationPercent": 3.888858
         }
       ]
     },
@@ -8752,6 +9577,58 @@
           "p95Ns": 10318174.40625,
           "operationsPerSecond": 99.377785,
           "coefficientOfVariationPercent": 2.386609
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-16384/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16384",
+      "description": "Sixteen thousand three hundred eighty-four-character even palindrome.",
+      "input": {
+        "bytes": 16384,
+        "codeUnits": 16384,
+        "sha256": "afc86c13985da05d8b3e68f80852a56dd6495ba36ac8afe268233a8b96f79a5a"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 214127311,
+          "p95Ns": 218752553.5,
+          "operationsPerSecond": 4.670119,
+          "coefficientOfVariationPercent": 1.08452
         }
       ]
     },
@@ -8919,6 +9796,17 @@
           "p95Ns": 11005147.75,
           "operationsPerSecond": 105.07718,
           "coefficientOfVariationPercent": 8.691751
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 9776031.75,
+          "p95Ns": 11203980.1875,
+          "operationsPerSecond": 102.290993,
+          "coefficientOfVariationPercent": 6.820795
         }
       ]
     },
@@ -8971,6 +9859,17 @@
           "p95Ns": 991800.660156,
           "operationsPerSecond": 1177.755175,
           "coefficientOfVariationPercent": 7.394709
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 918684.773438,
+          "p95Ns": 1002240.800781,
+          "operationsPerSecond": 1088.512653,
+          "coefficientOfVariationPercent": 4.963689
         }
       ]
     },
@@ -9086,6 +9985,58 @@
           "p95Ns": 900436.3125,
           "operationsPerSecond": 1116.396882,
           "coefficientOfVariationPercent": 0.452419
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-2048/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-2048",
+      "description": "Two thousand forty-eight-character even palindrome.",
+      "input": {
+        "bytes": 2048,
+        "codeUnits": 2048,
+        "sha256": "e780a6ff5de9f3a835d37484789914d05abf84a385e6d1b6422ca865e404eee8"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 24192136.25,
+          "p95Ns": 24592094.875,
+          "operationsPerSecond": 41.335746,
+          "coefficientOfVariationPercent": 1.814582
         }
       ]
     },
@@ -9253,6 +10204,17 @@
           "p95Ns": 1301306.5625,
           "operationsPerSecond": 900.212791,
           "coefficientOfVariationPercent": 8.02316
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1219688.328125,
+          "p95Ns": 1373394.148438,
+          "operationsPerSecond": 819.881585,
+          "coefficientOfVariationPercent": 6.042029
         }
       ]
     },
@@ -9305,6 +10267,17 @@
           "p95Ns": 20741399.875,
           "operationsPerSecond": 55.169719,
           "coefficientOfVariationPercent": 10.214742
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 17606482,
+          "p95Ns": 18646128.6875,
+          "operationsPerSecond": 56.797264,
+          "coefficientOfVariationPercent": 3.936013
         }
       ]
     },
@@ -9420,6 +10393,58 @@
           "p95Ns": 20275207.6875,
           "operationsPerSecond": 50.925388,
           "coefficientOfVariationPercent": 2.129587
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-32768/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-32768",
+      "description": "Thirty-two thousand seven hundred sixty-eight-character even palindrome.",
+      "input": {
+        "bytes": 32768,
+        "codeUnits": 32768,
+        "sha256": "ea6040375617e268aed6ca19d1b5af61ad8774118f2ddfdf2a6184b2cef2b95c"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 427395157,
+          "p95Ns": 432920250.5,
+          "operationsPerSecond": 2.339755,
+          "coefficientOfVariationPercent": 0.946524
         }
       ]
     },
@@ -9587,6 +10612,17 @@
           "p95Ns": 25792428.375,
           "operationsPerSecond": 49.228898,
           "coefficientOfVariationPercent": 12.353153
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 19746317.375,
+          "p95Ns": 23723311.5625,
+          "operationsPerSecond": 50.642354,
+          "coefficientOfVariationPercent": 9.701447
         }
       ]
     },
@@ -9639,6 +10675,17 @@
           "p95Ns": 2276921.28125,
           "operationsPerSecond": 466.121394,
           "coefficientOfVariationPercent": 3.742328
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2283452.84375,
+          "p95Ns": 2595573.414063,
+          "operationsPerSecond": 437.933283,
+          "coefficientOfVariationPercent": 6.872313
         }
       ]
     },
@@ -9754,6 +10801,58 @@
           "p95Ns": 2602820.851563,
           "operationsPerSecond": 442.656934,
           "coefficientOfVariationPercent": 8.482659
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-4096/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-4096",
+      "description": "Four thousand ninety-six-character even palindrome.",
+      "input": {
+        "bytes": 4096,
+        "codeUnits": 4096,
+        "sha256": "a6e506b1c9312bc87b7d6030859b7f4e3c6cd7ccf16f8791d00ab95192623424"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 50873265,
+          "p95Ns": 51864370.5,
+          "operationsPerSecond": 19.65669,
+          "coefficientOfVariationPercent": 1.113837
         }
       ]
     },
@@ -9921,6 +11020,17 @@
           "p95Ns": 2490891.070313,
           "operationsPerSecond": 446.698357,
           "coefficientOfVariationPercent": 6.635862
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2371139.8125,
+          "p95Ns": 2681787.421875,
+          "operationsPerSecond": 421.7381,
+          "coefficientOfVariationPercent": 6.750505
         }
       ]
     },
@@ -9973,6 +11083,17 @@
           "p95Ns": 6027429.65625,
           "operationsPerSecond": 198.78425,
           "coefficientOfVariationPercent": 10.561074
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 5215869.78125,
+          "p95Ns": 5777057.078125,
+          "operationsPerSecond": 191.722578,
+          "coefficientOfVariationPercent": 5.329209
         }
       ]
     },
@@ -10088,6 +11209,58 @@
           "p95Ns": 5379459.703125,
           "operationsPerSecond": 201.296332,
           "coefficientOfVariationPercent": 3.682117
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-8192/rust/Rust/1.94.1/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "rust",
+      "portLabel": "Rust",
+      "runtime": "Rust",
+      "runtimeVersion": "1.94.1",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 105215617,
+          "p95Ns": 106902021.5,
+          "operationsPerSecond": 9.504293,
+          "coefficientOfVariationPercent": 0.862483
         }
       ]
     },
@@ -10255,6 +11428,17 @@
           "p95Ns": 5300327.5,
           "operationsPerSecond": 215.081329,
           "coefficientOfVariationPercent": 7.015478
+        },
+        {
+          "runId": "20260915T132308094Z-063cd3b35d2f-suite-0.2.0-0efa10a7",
+          "generatedAt": "2026-09-15T13:23:08.094Z",
+          "repositoryCommit": "0efa10a7dd2c657a185610c5b35787c353623ec6",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4884700.96875,
+          "p95Ns": 5894236.796875,
+          "operationsPerSecond": 204.720823,
+          "coefficientOfVariationPercent": 9.409533
         }
       ]
     }
