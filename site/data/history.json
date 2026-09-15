@@ -5337,6 +5337,17 @@
           "p95Ns": 774280.552734,
           "operationsPerSecond": 1362.872494,
           "coefficientOfVariationPercent": 2.945637
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 699019.507813,
+          "p95Ns": 731316.330078,
+          "operationsPerSecond": 1430.57524,
+          "coefficientOfVariationPercent": 2.201741
         }
       ]
     },
@@ -5867,6 +5878,17 @@
           "p95Ns": 2047273.8125,
           "operationsPerSecond": 496.163647,
           "coefficientOfVariationPercent": 0.701245
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2037244.375,
+          "p95Ns": 2066262.445313,
+          "operationsPerSecond": 490.859129,
+          "coefficientOfVariationPercent": 0.973466
         }
       ]
     },
@@ -5963,6 +5985,17 @@
           "p95Ns": 1393315.683594,
           "operationsPerSecond": 772.528043,
           "coefficientOfVariationPercent": 3.709452
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1161607.367188,
+          "p95Ns": 1258410.949219,
+          "operationsPerSecond": 860.876083,
+          "coefficientOfVariationPercent": 4.60985
         }
       ]
     },
@@ -6875,6 +6908,17 @@
           "p95Ns": 16986950.5625,
           "operationsPerSecond": 63.890341,
           "coefficientOfVariationPercent": 5.313927
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 15281291.5,
+          "p95Ns": 15515381.75,
+          "operationsPerSecond": 65.439495,
+          "coefficientOfVariationPercent": 2.848891
         }
       ]
     },
@@ -7405,6 +7449,17 @@
           "p95Ns": 37581594,
           "operationsPerSecond": 27.96162,
           "coefficientOfVariationPercent": 2.357027
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 35575588.5,
+          "p95Ns": 38033433.75,
+          "operationsPerSecond": 28.109163,
+          "coefficientOfVariationPercent": 3.893656
         }
       ]
     },
@@ -7501,6 +7556,17 @@
           "p95Ns": 39870824.125,
           "operationsPerSecond": 26.465637,
           "coefficientOfVariationPercent": 4.781244
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 38124519.5,
+          "p95Ns": 40885150.875,
+          "operationsPerSecond": 26.229839,
+          "coefficientOfVariationPercent": 3.739156
         }
       ]
     },
@@ -8413,6 +8479,17 @@
           "p95Ns": 1792426.296875,
           "operationsPerSecond": 595.033879,
           "coefficientOfVariationPercent": 4.269912
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1615675.921875,
+          "p95Ns": 1769272.21875,
+          "operationsPerSecond": 618.936005,
+          "coefficientOfVariationPercent": 4.74718
         }
       ]
     },
@@ -8943,6 +9020,17 @@
           "p95Ns": 4114298.640625,
           "operationsPerSecond": 244.601137,
           "coefficientOfVariationPercent": 0.631059
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4080843.875,
+          "p95Ns": 4156527.4375,
+          "operationsPerSecond": 245.047356,
+          "coefficientOfVariationPercent": 0.981454
         }
       ]
     },
@@ -9039,6 +9127,17 @@
           "p95Ns": 2793717.351563,
           "operationsPerSecond": 394.425185,
           "coefficientOfVariationPercent": 5.699545
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2419434.359375,
+          "p95Ns": 2644443.390625,
+          "operationsPerSecond": 413.319748,
+          "coefficientOfVariationPercent": 4.43104
         }
       ]
     },
@@ -9951,6 +10050,17 @@
           "p95Ns": 3687773.734375,
           "operationsPerSecond": 313.813004,
           "coefficientOfVariationPercent": 8.146526
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 3265929.265625,
+          "p95Ns": 3341281.9375,
+          "operationsPerSecond": 306.191567,
+          "coefficientOfVariationPercent": 2.342162
         }
       ]
     },
@@ -10481,6 +10591,17 @@
           "p95Ns": 8668529.5,
           "operationsPerSecond": 119.519386,
           "coefficientOfVariationPercent": 2.106227
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8330661.3125,
+          "p95Ns": 8557951.125,
+          "operationsPerSecond": 120.038489,
+          "coefficientOfVariationPercent": 1.542184
         }
       ]
     },
@@ -10577,6 +10698,17 @@
           "p95Ns": 6257030.828125,
           "operationsPerSecond": 180.37213,
           "coefficientOfVariationPercent": 5.803304
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 5240124.1875,
+          "p95Ns": 5531425.5625,
+          "operationsPerSecond": 190.835172,
+          "coefficientOfVariationPercent": 3.526849
         }
       ]
     },
@@ -11489,6 +11621,17 @@
           "p95Ns": 412955.704102,
           "operationsPerSecond": 2594.000367,
           "coefficientOfVariationPercent": 4.757289
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 363583.458984,
+          "p95Ns": 391847.050781,
+          "operationsPerSecond": 2750.40015,
+          "coefficientOfVariationPercent": 4.071977
         }
       ]
     },
@@ -12019,6 +12162,17 @@
           "p95Ns": 1021698.21875,
           "operationsPerSecond": 988.819144,
           "coefficientOfVariationPercent": 0.645685
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1010776.804688,
+          "p95Ns": 1028550.558594,
+          "operationsPerSecond": 989.338097,
+          "coefficientOfVariationPercent": 0.937534
         }
       ]
     },
@@ -12115,6 +12269,17 @@
           "p95Ns": 645968.564453,
           "operationsPerSecond": 1729.3646,
           "coefficientOfVariationPercent": 5.715085
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 606728.066406,
+          "p95Ns": 662132.335938,
+          "operationsPerSecond": 1648.184838,
+          "coefficientOfVariationPercent": 5.769343
         }
       ]
     },
@@ -13027,6 +13192,17 @@
           "p95Ns": 51191.923706,
           "operationsPerSecond": 20970.230408,
           "coefficientOfVariationPercent": 3.788464
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 45514.330566,
+          "p95Ns": 46400.504761,
+          "operationsPerSecond": 21971.102015,
+          "coefficientOfVariationPercent": 1.520952
         }
       ]
     },
@@ -13557,6 +13733,17 @@
           "p95Ns": 127878.809082,
           "operationsPerSecond": 8014.615152,
           "coefficientOfVariationPercent": 1.212962
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 124034.492188,
+          "p95Ns": 125426.608887,
+          "operationsPerSecond": 8062.273504,
+          "coefficientOfVariationPercent": 0.71747
         }
       ]
     },
@@ -13653,6 +13840,17 @@
           "p95Ns": 88929.399658,
           "operationsPerSecond": 12218.94721,
           "coefficientOfVariationPercent": 3.718618
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 74612.390625,
+          "p95Ns": 81523.629395,
+          "operationsPerSecond": 13402.599644,
+          "coefficientOfVariationPercent": 4.719148
         }
       ]
     },
@@ -14565,6 +14763,17 @@
           "p95Ns": 7893.075562,
           "operationsPerSecond": 129979.047781,
           "coefficientOfVariationPercent": 2.010225
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 7123.435974,
+          "p95Ns": 7317.106201,
+          "operationsPerSecond": 140381.692716,
+          "coefficientOfVariationPercent": 1.742237
         }
       ]
     },
@@ -15095,6 +15304,17 @@
           "p95Ns": 17262.655579,
           "operationsPerSecond": 58545.368705,
           "coefficientOfVariationPercent": 0.535072
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 16927.64502,
+          "p95Ns": 17695.473389,
+          "operationsPerSecond": 59074.962811,
+          "coefficientOfVariationPercent": 1.922345
         }
       ]
     },
@@ -15191,6 +15411,17 @@
           "p95Ns": 11210.338867,
           "operationsPerSecond": 96055.583914,
           "coefficientOfVariationPercent": 4.159479
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10729.741272,
+          "p95Ns": 11505.43515,
+          "operationsPerSecond": 93198.892187,
+          "coefficientOfVariationPercent": 4.265001
         }
       ]
     },
@@ -16103,6 +16334,17 @@
           "p95Ns": 8400328.5,
           "operationsPerSecond": 127.283614,
           "coefficientOfVariationPercent": 3.550951
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8053576.3125,
+          "p95Ns": 8326803.78125,
+          "operationsPerSecond": 124.168439,
+          "coefficientOfVariationPercent": 3.056215
         }
       ]
     },
@@ -16633,6 +16875,17 @@
           "p95Ns": 17878861.6875,
           "operationsPerSecond": 56.959763,
           "coefficientOfVariationPercent": 1.125026
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 17395124.875,
+          "p95Ns": 17792721.5,
+          "operationsPerSecond": 57.487371,
+          "coefficientOfVariationPercent": 1.264628
         }
       ]
     },
@@ -16729,6 +16982,17 @@
           "p95Ns": 14798183,
           "operationsPerSecond": 77.765694,
           "coefficientOfVariationPercent": 6.698576
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 13768228.25,
+          "p95Ns": 14560186.375,
+          "operationsPerSecond": 72.630986,
+          "coefficientOfVariationPercent": 3.715403
         }
       ]
     },
@@ -17641,6 +17905,17 @@
           "p95Ns": 456944.557617,
           "operationsPerSecond": 2441.320117,
           "coefficientOfVariationPercent": 6.750127
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 444844.167969,
+          "p95Ns": 495977.095703,
+          "operationsPerSecond": 2247.978218,
+          "coefficientOfVariationPercent": 7.28813
         }
       ]
     },
@@ -18171,6 +18446,17 @@
           "p95Ns": 1220936.433594,
           "operationsPerSecond": 830.155825,
           "coefficientOfVariationPercent": 0.813106
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1204641.820313,
+          "p95Ns": 1228863.511719,
+          "operationsPerSecond": 830.122268,
+          "coefficientOfVariationPercent": 1.001032
         }
       ]
     },
@@ -18267,6 +18553,17 @@
           "p95Ns": 754105.419922,
           "operationsPerSecond": 1636.987016,
           "coefficientOfVariationPercent": 10.143384
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 600606.230469,
+          "p95Ns": 651370.201172,
+          "operationsPerSecond": 1664.984393,
+          "coefficientOfVariationPercent": 3.845777
         }
       ]
     },
@@ -19179,6 +19476,17 @@
           "p95Ns": 52575.357422,
           "operationsPerSecond": 19458.130772,
           "coefficientOfVariationPercent": 2.257101
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 49648.994629,
+          "p95Ns": 53104.530273,
+          "operationsPerSecond": 20141.394755,
+          "coefficientOfVariationPercent": 3.196002
         }
       ]
     },
@@ -19709,6 +20017,17 @@
           "p95Ns": 147803.978516,
           "operationsPerSecond": 6871.160085,
           "coefficientOfVariationPercent": 0.853355
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 144848.927734,
+          "p95Ns": 153062.918945,
+          "operationsPerSecond": 6903.744582,
+          "coefficientOfVariationPercent": 3.285619
         }
       ]
     },
@@ -19805,6 +20124,17 @@
           "p95Ns": 78113.662109,
           "operationsPerSecond": 13686.450437,
           "coefficientOfVariationPercent": 3.892428
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 73358.329102,
+          "p95Ns": 81092.549072,
+          "operationsPerSecond": 13631.717247,
+          "coefficientOfVariationPercent": 4.32179
         }
       ]
     },
@@ -20717,6 +21047,17 @@
           "p95Ns": 8681.662292,
           "operationsPerSecond": 121571.512138,
           "coefficientOfVariationPercent": 2.600458
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8388.913757,
+          "p95Ns": 8839.642426,
+          "operationsPerSecond": 119204.944636,
+          "coefficientOfVariationPercent": 2.611597
         }
       ]
     },
@@ -21247,6 +21588,17 @@
           "p95Ns": 22089.711121,
           "operationsPerSecond": 46163.669198,
           "coefficientOfVariationPercent": 0.859483
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 21682.019531,
+          "p95Ns": 22136.933228,
+          "operationsPerSecond": 46121.164985,
+          "coefficientOfVariationPercent": 1.064516
         }
       ]
     },
@@ -21343,6 +21695,17 @@
           "p95Ns": 12392.87796,
           "operationsPerSecond": 85610.021803,
           "coefficientOfVariationPercent": 3.295282
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 11762.94519,
+          "p95Ns": 13015.455475,
+          "operationsPerSecond": 85012.722903,
+          "coefficientOfVariationPercent": 4.864796
         }
       ]
     },
@@ -22255,6 +22618,17 @@
           "p95Ns": 9969718.1875,
           "operationsPerSecond": 105.979321,
           "coefficientOfVariationPercent": 3.212726
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 9972810.3125,
+          "p95Ns": 10697607.625,
+          "operationsPerSecond": 100.272638,
+          "coefficientOfVariationPercent": 4.680723
         }
       ]
     },
@@ -22785,6 +23159,17 @@
           "p95Ns": 24940930.75,
           "operationsPerSecond": 41.94145,
           "coefficientOfVariationPercent": 2.713699
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 24127976.625,
+          "p95Ns": 28034060,
+          "operationsPerSecond": 41.445663,
+          "coefficientOfVariationPercent": 7.717565
         }
       ]
     },
@@ -22881,6 +23266,17 @@
           "p95Ns": 12340723.125,
           "operationsPerSecond": 87.861926,
           "coefficientOfVariationPercent": 4.662163
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 11106254.6875,
+          "p95Ns": 12089893.125,
+          "operationsPerSecond": 90.039354,
+          "coefficientOfVariationPercent": 4.765208
         }
       ]
     },
@@ -23793,6 +24189,17 @@
           "p95Ns": 959839.085938,
           "operationsPerSecond": 1088.465168,
           "coefficientOfVariationPercent": 3.183396
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 931422.90625,
+          "p95Ns": 975514.441406,
+          "operationsPerSecond": 1073.626162,
+          "coefficientOfVariationPercent": 2.852772
         }
       ]
     },
@@ -24323,6 +24730,17 @@
           "p95Ns": 2545664.125,
           "operationsPerSecond": 409.330437,
           "coefficientOfVariationPercent": 1.946689
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2429520.46875,
+          "p95Ns": 2462210.523438,
+          "operationsPerSecond": 411.603859,
+          "coefficientOfVariationPercent": 0.752796
         }
       ]
     },
@@ -24419,6 +24837,17 @@
           "p95Ns": 1343819.257813,
           "operationsPerSecond": 860.812862,
           "coefficientOfVariationPercent": 8.374865
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1235321.695313,
+          "p95Ns": 1350364.199219,
+          "operationsPerSecond": 809.505737,
+          "coefficientOfVariationPercent": 5.241256
         }
       ]
     },
@@ -25331,6 +25760,17 @@
           "p95Ns": 19938410.625,
           "operationsPerSecond": 53.703926,
           "coefficientOfVariationPercent": 5.573155
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 18607431.75,
+          "p95Ns": 19422327.9375,
+          "operationsPerSecond": 53.741968,
+          "coefficientOfVariationPercent": 3.49841
         }
       ]
     },
@@ -25861,6 +26301,17 @@
           "p95Ns": 58563618.875,
           "operationsPerSecond": 19.782719,
           "coefficientOfVariationPercent": 6.64543
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 46932461.25,
+          "p95Ns": 47896601.875,
+          "operationsPerSecond": 21.307214,
+          "coefficientOfVariationPercent": 1.583388
         }
       ]
     },
@@ -25957,6 +26408,17 @@
           "p95Ns": 40786163.75,
           "operationsPerSecond": 28.847286,
           "coefficientOfVariationPercent": 9.751539
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 33147940.5,
+          "p95Ns": 39305224.875,
+          "operationsPerSecond": 30.167787,
+          "coefficientOfVariationPercent": 11.892826
         }
       ]
     },
@@ -26869,6 +27331,17 @@
           "p95Ns": 2719082.117188,
           "operationsPerSecond": 395.957837,
           "coefficientOfVariationPercent": 5.327092
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2526021.53125,
+          "p95Ns": 2642305.5,
+          "operationsPerSecond": 395.879444,
+          "coefficientOfVariationPercent": 2.687581
         }
       ]
     },
@@ -27399,6 +27872,17 @@
           "p95Ns": 5224729.3125,
           "operationsPerSecond": 200.799372,
           "coefficientOfVariationPercent": 2.526316
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4899091.5625,
+          "p95Ns": 5089807.296875,
+          "operationsPerSecond": 204.119475,
+          "coefficientOfVariationPercent": 2.062078
         }
       ]
     },
@@ -27495,6 +27979,17 @@
           "p95Ns": 2592217.507813,
           "operationsPerSecond": 424.749839,
           "coefficientOfVariationPercent": 5.270817
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2362096.640625,
+          "p95Ns": 2584827.609375,
+          "operationsPerSecond": 423.352704,
+          "coefficientOfVariationPercent": 5.362965
         }
       ]
     },
@@ -28407,6 +28902,17 @@
           "p95Ns": 5743490.875,
           "operationsPerSecond": 180.358265,
           "coefficientOfVariationPercent": 2.757815
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 5254074.8125,
+          "p95Ns": 5401612.234375,
+          "operationsPerSecond": 190.328466,
+          "coefficientOfVariationPercent": 1.742074
         }
       ]
     },
@@ -28937,6 +29443,17 @@
           "p95Ns": 11879480.6875,
           "operationsPerSecond": 86.759465,
           "coefficientOfVariationPercent": 3.234868
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10516698.1875,
+          "p95Ns": 11332006.875,
+          "operationsPerSecond": 95.086878,
+          "coefficientOfVariationPercent": 3.899891
         }
       ]
     },
@@ -29033,6 +29550,17 @@
           "p95Ns": 5724465.109375,
           "operationsPerSecond": 200.999424,
           "coefficientOfVariationPercent": 6.250219
+        },
+        {
+          "runId": "20260915T212322908Z-063cd3b35d2f-suite-0.2.0-76deaef3",
+          "generatedAt": "2026-09-15T21:23:22.908Z",
+          "repositoryCommit": "76deaef37f16d59ea1dfd7fd276a137396e56c43",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4762125.53125,
+          "p95Ns": 5406757.390625,
+          "operationsPerSecond": 209.990265,
+          "coefficientOfVariationPercent": 5.706359
         }
       ]
     },
