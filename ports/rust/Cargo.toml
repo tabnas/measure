@@ -22,7 +22,7 @@ path = "src/main.rs"
 # the matrix still compares like with like. Re-pin to the merge commit
 # once #176 lands, and record the new run that implies.
 [dependencies]
-tabnas = { git = "https://github.com/tabnas/parser", rev = "25de09047a13b34ff27b30cfc46d69552aea69c5" }
+tabnas = { git = "https://github.com/tabnas/parser", rev = "69d3fdd75595b155b69c9da1bfd79a272913bb54" }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
 sha2 = "0.10.9"

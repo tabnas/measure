@@ -233,7 +233,7 @@ dependencies = [
 [[package]]
 name = "tabnas"
 version = "0.9.7"
-source = "git+https://github.com/tabnas/parser?rev=25de09047a13b34ff27b30cfc46d69552aea69c5#25de09047a13b34ff27b30cfc46d69552aea69c5"
+source = "git+https://github.com/tabnas/parser?rev=69d3fdd75595b155b69c9da1bfd79a272913bb54#69d3fdd75595b155b69c9da1bfd79a272913bb54"
 dependencies = [
  "indexmap",
  "regex",
