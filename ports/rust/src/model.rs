@@ -46,16 +46,27 @@ pub struct BenchmarkManifest {
     pub performance_cases: Vec<PerformanceCase>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, PartialEq)]
 pub struct CapabilityCase {
     pub id: String,
     pub description: String,
     pub input: String,
     pub accept: bool,
-    // Absent for rejection cases. `Option` keeps "no expected value" and
-    // "expected null" apart, which a bare `Json` would not.
-    #[serde(default)]
-    pub expected: Option<Json>,
+    // Absent for rejection cases. A plain `Option<Json>` would not do: serde
+    // reads an explicit `"expected": null` as `None`, the same as an absent
+    // field, and the runner would then compare a parser's null result
+    // against "no expected value" and fail a case the manifest accepts. The
+    // outer `Option` records presence, the inner one the value, which is the
+    // distinction `'expected' in testCase` gives the TypeScript runner.
+    #[serde(default, deserialize_with = "present_value")]
+    pub expected: Option<Option<Json>>,
+}
+
+fn present_value<'de, D>(deserializer: D) -> Result<Option<Option<Json>>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    Option::<Json>::deserialize(deserializer).map(Some)
 }
 
 #[derive(Debug, Deserialize)]
@@ -197,4 +208,35 @@ pub struct Arguments {
     pub commit: String,
     pub dirty: bool,
     pub host_fingerprint: String,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// A manifest may say `"expected": null` for a case the grammar accepts
+    /// as null. Serde reads a plain `Option<Json>` as `None` for that and
+    /// for an absent field alike, and the runner would then compare a null
+    /// parse result against "no expected value" and fail a passing case,
+    /// which blocks the whole run.
+    #[test]
+    fn an_explicit_null_expected_value_is_not_an_absent_one() {
+        let absent: CapabilityCase = serde_json::from_str(
+            r#"{"id":"r","description":"d","input":"x","accept":false}"#,
+        )
+        .expect("rejection case");
+        assert_eq!(absent.expected, None);
+
+        let null: CapabilityCase = serde_json::from_str(
+            r#"{"id":"n","description":"d","input":"x","accept":true,"expected":null}"#,
+        )
+        .expect("null case");
+        assert_eq!(null.expected, Some(None));
+
+        let value: CapabilityCase = serde_json::from_str(
+            r#"{"id":"v","description":"d","input":"x","accept":true,"expected":6}"#,
+        )
+        .expect("value case");
+        assert_eq!(value.expected, Some(Some(Json::from(6))));
+    }
 }

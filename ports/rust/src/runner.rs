@@ -97,7 +97,11 @@ fn run_capabilities(manifest: &BenchmarkManifest, parser: &Tabnas) -> Capability
         let outcome = parser.parse(&test_case.input);
         let accepted = outcome.is_ok();
         let actual = outcome.as_ref().ok().map(canonical_json);
-        let expected = test_case.expected.as_ref().map(normalize);
+        // Present-and-null is a value to compare against; absent is not.
+        let expected = test_case.expected.as_ref().map(|value| match value {
+            Some(value) => normalize(value),
+            None => Json::Null,
+        });
         // Both sides are normalized, so a whole-valued `2.0` from the
         // parser and a `2` in the manifest agree the way they do in the
         // other two ports.
@@ -112,7 +116,12 @@ fn run_capabilities(manifest: &BenchmarkManifest, parser: &Tabnas) -> Capability
             accept_expected: test_case.accept,
             accepted,
             passed: case_passed,
-            expected: test_case.expected.clone(),
+            // The manifest's own value, as the other two runners emit it:
+            // present when the manifest has the key, null when it says null.
+            expected: test_case
+                .expected
+                .clone()
+                .map(|value| value.unwrap_or(Json::Null)),
             actual,
             error: outcome.err().map(|error| clean_error(&error.to_string())),
         });

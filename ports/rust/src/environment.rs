@@ -161,9 +161,40 @@ fn field_after_colon(text: &str, key: &str) -> Option<String> {
     })
 }
 
-/// `runtime.NumCPU()` and Node's `os.cpus().length` both report the logical
-/// processors this process may run on.
+/// The three runtimes do not agree on what this counts, and the aggregator
+/// needs one number. Node's `os.cpus().length` reports the host's logical
+/// processors; Go's `runtime.NumCPU()` honours CPU affinity; and Rust's
+/// `available_parallelism` honours affinity *and* a cgroup CPU quota. On an
+/// unrestricted host all three agree, which is why this was not visible
+/// here — but under a quota, which is ordinary for a container, Rust would
+/// report the allowance, the environment block would differ from
+/// TypeScript's, and `aggregateRun` would reject the whole run rather than
+/// one field.
+///
+/// TypeScript is the canonical port, so this reports what it reports: the
+/// processor entries the kernel lists, not the share this process may use.
+/// `available_parallelism` remains the fallback for platforms with neither
+/// file.
 fn logical_cpus() -> usize {
+    #[cfg(target_os = "linux")]
+    {
+        if let Ok(content) = fs::read_to_string("/proc/cpuinfo") {
+            let count = count_processors(&content);
+            if count > 0 {
+                return count;
+            }
+        }
+    }
+    #[cfg(target_os = "macos")]
+    {
+        if let Some(count) = command_output("sysctl", &["-n", "hw.logicalcpu"])
+            .and_then(|value| value.parse::<usize>().ok())
+        {
+            if count > 0 {
+                return count;
+            }
+        }
+    }
     std::thread::available_parallelism()
         .map(|count| count.get())
         .unwrap_or(1)
@@ -198,10 +229,56 @@ fn total_memory_bytes() -> u64 {
     1
 }
 
+/// One entry per `processor:` line, which is how the kernel lists them and
+/// what Node counts.
+fn count_processors(cpuinfo: &str) -> usize {
+    cpuinfo
+        .lines()
+        .filter(|line| {
+            line.split_once(':')
+                .is_some_and(|(key, _)| key.trim().eq_ignore_ascii_case("processor"))
+        })
+        .count()
+}
+
 fn command_output(program: &str, arguments: &[&str]) -> Option<String> {
     let output = Command::new(program).args(arguments).output().ok()?;
     if !output.status.success() {
         return None;
     }
     Some(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn processors_are_counted_by_their_own_lines() {
+        let cpuinfo = "processor\t: 0\nmodel name\t: Example\ncore id\t: 0\n\n\
+                       processor\t: 1\nmodel name\t: Example\ncore id\t: 1\n";
+        assert_eq!(count_processors(cpuinfo), 2);
+        // `core id` and `model name` also carry a colon, and a processor
+        // count that picked up either would not match what Node reports.
+        assert_eq!(count_processors("model name\t: Example\n"), 0);
+        assert_eq!(count_processors(""), 0);
+    }
+
+    #[test]
+    fn os_release_values_lose_their_quoting() {
+        assert_eq!(unquote_os_release_value("\"Ubuntu 24.04.4 LTS\""), "Ubuntu 24.04.4 LTS");
+        assert_eq!(unquote_os_release_value("'Ubuntu'"), "Ubuntu");
+        assert_eq!(unquote_os_release_value("  Ubuntu  "), "Ubuntu");
+        assert_eq!(unquote_os_release_value("\"a\\\"b\""), "a\"b");
+    }
+
+    #[test]
+    fn the_architecture_and_platform_use_the_names_the_other_ports_use() {
+        // Whatever this host is, neither name may be the one only Rust
+        // uses: the aggregator compares these strings across ports.
+        assert!(!architecture().is_empty());
+        assert_ne!(architecture(), "x86_64", "Go and Node both say amd64");
+        assert_ne!(architecture(), "aarch64", "Go and Node both say arm64");
+        assert_ne!(operating_system(), "macos", "Go and Node both say darwin");
+    }
 }
