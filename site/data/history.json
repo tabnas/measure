@@ -5282,6 +5282,17 @@
           "p95Ns": 831336.416016,
           "operationsPerSecond": 1274.014552,
           "coefficientOfVariationPercent": 4.021563
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 704998.519531,
+          "p95Ns": 779488.541016,
+          "operationsPerSecond": 1418.442695,
+          "coefficientOfVariationPercent": 5.549438
         }
       ]
     },
@@ -5757,6 +5768,69 @@
           "p95Ns": 2565287.40625,
           "operationsPerSecond": 405.321617,
           "coefficientOfVariationPercent": 2.215927
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2478316.421875,
+          "p95Ns": 2646537.75,
+          "operationsPerSecond": 403.499727,
+          "coefficientOfVariationPercent": 2.890766
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-1024/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-1024",
+      "description": "One thousand twenty-four one-digit terms.",
+      "input": {
+        "bytes": 2047,
+        "codeUnits": 2047,
+        "sha256": "1de348e1b18d00c6ebfc74a51e1d2395a11bbbd1e55f64e539ce4daf843cb786"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1149195.820313,
+          "p95Ns": 1274000.472656,
+          "operationsPerSecond": 870.173718,
+          "coefficientOfVariationPercent": 5.397784
         }
       ]
     },
@@ -6614,6 +6688,17 @@
           "p95Ns": 17955449.875,
           "operationsPerSecond": 63.365919,
           "coefficientOfVariationPercent": 7.411395
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 15395465,
+          "p95Ns": 16867801.625,
+          "operationsPerSecond": 64.954193,
+          "coefficientOfVariationPercent": 5.087663
         }
       ]
     },
@@ -7089,6 +7174,69 @@
           "p95Ns": 48873326.25,
           "operationsPerSecond": 21.248655,
           "coefficientOfVariationPercent": 2.58299
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 43148165,
+          "p95Ns": 44397634.875,
+          "operationsPerSecond": 23.175957,
+          "coefficientOfVariationPercent": 1.617923
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-16384/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-16384",
+      "description": "Sixteen thousand three hundred eighty-four one-digit terms.",
+      "input": {
+        "bytes": 32767,
+        "codeUnits": 32767,
+        "sha256": "795f6c8dc2e336e1c23ec659521c24b6486d29665375384a47c7a2767c781ee2"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 36692839.5,
+          "p95Ns": 39103401.875,
+          "operationsPerSecond": 27.253274,
+          "coefficientOfVariationPercent": 4.329238
         }
       ]
     },
@@ -7946,6 +8094,17 @@
           "p95Ns": 1725270.96875,
           "operationsPerSecond": 611.491005,
           "coefficientOfVariationPercent": 4.010674
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1561974.554688,
+          "p95Ns": 1677386.390625,
+          "operationsPerSecond": 640.215295,
+          "coefficientOfVariationPercent": 3.597051
         }
       ]
     },
@@ -8421,6 +8580,69 @@
           "p95Ns": 5297544.671875,
           "operationsPerSecond": 200.312437,
           "coefficientOfVariationPercent": 2.647711
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 5016054.375,
+          "p95Ns": 5393034.671875,
+          "operationsPerSecond": 199.35988,
+          "coefficientOfVariationPercent": 3.700984
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-2048/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-2048",
+      "description": "Two thousand forty-eight one-digit terms.",
+      "input": {
+        "bytes": 4095,
+        "codeUnits": 4095,
+        "sha256": "63694f1a7945adff1acabfe47857fd437a4db73f7d85825be8d6176981d148d9"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2353444.21875,
+          "p95Ns": 2529925.507813,
+          "operationsPerSecond": 424.909157,
+          "coefficientOfVariationPercent": 3.95714
         }
       ]
     },
@@ -9278,6 +9500,17 @@
           "p95Ns": 3650363.5,
           "operationsPerSecond": 292.568612,
           "coefficientOfVariationPercent": 3.180094
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 3073577.28125,
+          "p95Ns": 3230140.476563,
+          "operationsPerSecond": 325.353784,
+          "coefficientOfVariationPercent": 2.235371
         }
       ]
     },
@@ -9753,6 +9986,69 @@
           "p95Ns": 11019109.15625,
           "operationsPerSecond": 92.595427,
           "coefficientOfVariationPercent": 1.940608
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10353162.5625,
+          "p95Ns": 11178483.9375,
+          "operationsPerSecond": 96.588844,
+          "coefficientOfVariationPercent": 3.990063
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-4096/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-4096",
+      "description": "Four thousand ninety-six one-digit terms.",
+      "input": {
+        "bytes": 8191,
+        "codeUnits": 8191,
+        "sha256": "8f007725257384c4d2bcfcc22f6c4ce2448ed1ba98b9c1c19ceb601284759cc7"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4898065.8125,
+          "p95Ns": 5199419.125,
+          "operationsPerSecond": 204.162222,
+          "coefficientOfVariationPercent": 3.271405
         }
       ]
     },
@@ -10610,6 +10906,17 @@
           "p95Ns": 407650.429688,
           "operationsPerSecond": 2675.723321,
           "coefficientOfVariationPercent": 4.338868
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 364400.914063,
+          "p95Ns": 395306.988281,
+          "operationsPerSecond": 2744.230218,
+          "coefficientOfVariationPercent": 4.252833
         }
       ]
     },
@@ -11085,6 +11392,69 @@
           "p95Ns": 1373913.738281,
           "operationsPerSecond": 822.879692,
           "coefficientOfVariationPercent": 6.328156
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1213490.9375,
+          "p95Ns": 1265563.351563,
+          "operationsPerSecond": 824.068783,
+          "coefficientOfVariationPercent": 2.43291
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-512/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-512",
+      "description": "Five hundred twelve one-digit terms.",
+      "input": {
+        "bytes": 1023,
+        "codeUnits": 1023,
+        "sha256": "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 586357.785156,
+          "p95Ns": 629892.230469,
+          "operationsPerSecond": 1705.443375,
+          "coefficientOfVariationPercent": 4.599605
         }
       ]
     },
@@ -11942,6 +12312,17 @@
           "p95Ns": 57755.635498,
           "operationsPerSecond": 19380.812931,
           "coefficientOfVariationPercent": 6.397876
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 44276.959229,
+          "p95Ns": 46980.24585,
+          "operationsPerSecond": 22585.110121,
+          "coefficientOfVariationPercent": 3.399337
         }
       ]
     },
@@ -12417,6 +12798,69 @@
           "p95Ns": 155063.780273,
           "operationsPerSecond": 6709.214179,
           "coefficientOfVariationPercent": 1.82455
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 149371.774414,
+          "p95Ns": 150594.474121,
+          "operationsPerSecond": 6694.705234,
+          "coefficientOfVariationPercent": 0.6361
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-64/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-64",
+      "description": "Sixty-four one-digit terms.",
+      "input": {
+        "bytes": 127,
+        "codeUnits": 127,
+        "sha256": "91e79a93823fd4218f182177fb3bbdecb8e83356a0841b940accff1474901641"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 82351.155273,
+          "p95Ns": 88863.56958,
+          "operationsPerSecond": 12143.120478,
+          "coefficientOfVariationPercent": 3.98342
         }
       ]
     },
@@ -13274,6 +13718,17 @@
           "p95Ns": 9014.270782,
           "operationsPerSecond": 129300.787132,
           "coefficientOfVariationPercent": 8.570992
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 6996.292297,
+          "p95Ns": 7326.462982,
+          "operationsPerSecond": 142932.850358,
+          "coefficientOfVariationPercent": 2.368215
         }
       ]
     },
@@ -13749,6 +14204,69 @@
           "p95Ns": 22092.388977,
           "operationsPerSecond": 49056.051563,
           "coefficientOfVariationPercent": 4.765506
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 20552.116821,
+          "p95Ns": 20823.678162,
+          "operationsPerSecond": 48656.788432,
+          "coefficientOfVariationPercent": 0.740524
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-8/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8",
+      "description": "Eight one-digit terms.",
+      "input": {
+        "bytes": 15,
+        "codeUnits": 15,
+        "sha256": "93510957d0c117e488d63e3abdce2abc73faa01fe090b0ef129ec6c4be068184"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10880.157837,
+          "p95Ns": 11883.04248,
+          "operationsPerSecond": 91910.431355,
+          "coefficientOfVariationPercent": 4.946859
         }
       ]
     },
@@ -14606,6 +15124,17 @@
           "p95Ns": 8927165.46875,
           "operationsPerSecond": 119.413025,
           "coefficientOfVariationPercent": 3.516
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 7670906.8125,
+          "p95Ns": 7861326.1875,
+          "operationsPerSecond": 130.362684,
+          "coefficientOfVariationPercent": 2.292776
         }
       ]
     },
@@ -15081,6 +15610,69 @@
           "p95Ns": 22455675.8125,
           "operationsPerSecond": 45.327153,
           "coefficientOfVariationPercent": 0.899869
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 21852361.875,
+          "p95Ns": 22175930.125,
+          "operationsPerSecond": 45.761644,
+          "coefficientOfVariationPercent": 1.526227
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/adder/terms-8192/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "adder",
+      "caseId": "terms-8192",
+      "description": "Eight thousand one hundred ninety-two one-digit terms.",
+      "input": {
+        "bytes": 16383,
+        "codeUnits": 16383,
+        "sha256": "a0e5c605958886ff43ffdf6db4fb6abb0713f0944111a2a1e0e1c128ca8bd204"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 12241807.8125,
+          "p95Ns": 12702380.6875,
+          "operationsPerSecond": 81.687281,
+          "coefficientOfVariationPercent": 2.293043
         }
       ]
     },
@@ -15938,6 +16530,17 @@
           "p95Ns": 450542.013672,
           "operationsPerSecond": 2405.192435,
           "coefficientOfVariationPercent": 4.834459
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 430427.09375,
+          "p95Ns": 462981.480469,
+          "operationsPerSecond": 2323.273824,
+          "coefficientOfVariationPercent": 4.782032
         }
       ]
     },
@@ -16413,6 +17016,69 @@
           "p95Ns": 1491673.011719,
           "operationsPerSecond": 699.81497,
           "coefficientOfVariationPercent": 2.641478
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1386574.9375,
+          "p95Ns": 1418265.042969,
+          "operationsPerSecond": 721.201554,
+          "coefficientOfVariationPercent": 1.301893
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-1024/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-1024",
+      "description": "One thousand twenty-four-character even palindrome.",
+      "input": {
+        "bytes": 1024,
+        "codeUnits": 1024,
+        "sha256": "45bb734e62cea8b966efdec7779d7b163537adca590c2583f5b2637bbb15fec5"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 589959.214844,
+          "p95Ns": 672952.548828,
+          "operationsPerSecond": 1695.032427,
+          "coefficientOfVariationPercent": 5.815679
         }
       ]
     },
@@ -17270,6 +17936,17 @@
           "p95Ns": 57529.093018,
           "operationsPerSecond": 18846.23913,
           "coefficientOfVariationPercent": 6.558812
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 53666.907227,
+          "p95Ns": 59362.758545,
+          "operationsPerSecond": 18633.456849,
+          "coefficientOfVariationPercent": 7.799402
         }
       ]
     },
@@ -17745,6 +18422,69 @@
           "p95Ns": 171198.342285,
           "operationsPerSecond": 5951.400745,
           "coefficientOfVariationPercent": 1.034302
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 167263.710938,
+          "p95Ns": 170497.536621,
+          "operationsPerSecond": 5978.583127,
+          "coefficientOfVariationPercent": 1.060134
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-128/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-128",
+      "description": "One hundred twenty-eight-character even palindrome.",
+      "input": {
+        "bytes": 128,
+        "codeUnits": 128,
+        "sha256": "e88e0f118691787bd28fea8cd62950ca6a566e6a326c4273096395aceafbcd63"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 73441.834473,
+          "p95Ns": 78041.017822,
+          "operationsPerSecond": 13616.217612,
+          "coefficientOfVariationPercent": 3.453406
         }
       ]
     },
@@ -18602,6 +19342,17 @@
           "p95Ns": 9277.06076,
           "operationsPerSecond": 115040.247024,
           "coefficientOfVariationPercent": 4.06494
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8475.379028,
+          "p95Ns": 8705.450836,
+          "operationsPerSecond": 117988.823468,
+          "coefficientOfVariationPercent": 2.190421
         }
       ]
     },
@@ -19077,6 +19828,69 @@
           "p95Ns": 25261.172119,
           "operationsPerSecond": 40279.412067,
           "coefficientOfVariationPercent": 0.892305
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 25851.914307,
+          "p95Ns": 27115.980347,
+          "operationsPerSecond": 38681.854974,
+          "coefficientOfVariationPercent": 2.737124
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-16/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16",
+      "description": "Sixteen-character even palindrome.",
+      "input": {
+        "bytes": 16,
+        "codeUnits": 16,
+        "sha256": "79b7d7e507283611608710c2521a2eed17b17e69cd3a234b5d221e9a50b1913d"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 11567.636108,
+          "p95Ns": 12734.920258,
+          "operationsPerSecond": 86448.085904,
+          "coefficientOfVariationPercent": 5.71225
         }
       ]
     },
@@ -19934,6 +20748,17 @@
           "p95Ns": 10864197.59375,
           "operationsPerSecond": 98.942287,
           "coefficientOfVariationPercent": 4.834848
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 8702918.25,
+          "p95Ns": 9451688.90625,
+          "operationsPerSecond": 114.903986,
+          "coefficientOfVariationPercent": 5.553847
         }
       ]
     },
@@ -20409,6 +21234,69 @@
           "p95Ns": 35393991.125,
           "operationsPerSecond": 32.825379,
           "coefficientOfVariationPercent": 6.766118
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 26651908.75,
+          "p95Ns": 27822666.75,
+          "operationsPerSecond": 37.520765,
+          "coefficientOfVariationPercent": 2.796898
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-16384/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-16384",
+      "description": "Sixteen thousand three hundred eighty-four-character even palindrome.",
+      "input": {
+        "bytes": 16384,
+        "codeUnits": 16384,
+        "sha256": "afc86c13985da05d8b3e68f80852a56dd6495ba36ac8afe268233a8b96f79a5a"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 10654606.0625,
+          "p95Ns": 12806505.21875,
+          "operationsPerSecond": 93.856121,
+          "coefficientOfVariationPercent": 8.098436
         }
       ]
     },
@@ -21266,6 +22154,17 @@
           "p95Ns": 879697.527344,
           "operationsPerSecond": 1190.504912,
           "coefficientOfVariationPercent": 2.441641
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 820067.875,
+          "p95Ns": 868982.554688,
+          "operationsPerSecond": 1219.411259,
+          "coefficientOfVariationPercent": 3.113738
         }
       ]
     },
@@ -21741,6 +22640,69 @@
           "p95Ns": 2977714.671875,
           "operationsPerSecond": 353.031761,
           "coefficientOfVariationPercent": 2.590929
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2886052.75,
+          "p95Ns": 3116635.648438,
+          "operationsPerSecond": 346.494013,
+          "coefficientOfVariationPercent": 3.827491
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-2048/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-2048",
+      "description": "Two thousand forty-eight-character even palindrome.",
+      "input": {
+        "bytes": 2048,
+        "codeUnits": 2048,
+        "sha256": "e780a6ff5de9f3a835d37484789914d05abf84a385e6d1b6422ca865e404eee8"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 1168706.5,
+          "p95Ns": 1344345.113281,
+          "operationsPerSecond": 855.64682,
+          "coefficientOfVariationPercent": 6.979637
         }
       ]
     },
@@ -22598,6 +23560,17 @@
           "p95Ns": 19649629.9375,
           "operationsPerSecond": 54.836825,
           "coefficientOfVariationPercent": 5.472042
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 15474294.125,
+          "p95Ns": 16774158.875,
+          "operationsPerSecond": 64.623303,
+          "coefficientOfVariationPercent": 5.098981
         }
       ]
     },
@@ -23073,6 +24046,69 @@
           "p95Ns": 64162564.25,
           "operationsPerSecond": 16.444283,
           "coefficientOfVariationPercent": 2.865521
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 55513402.5,
+          "p95Ns": 56850693.75,
+          "operationsPerSecond": 18.013668,
+          "coefficientOfVariationPercent": 2.440451
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-32768/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-32768",
+      "description": "Thirty-two thousand seven hundred sixty-eight-character even palindrome.",
+      "input": {
+        "bytes": 32768,
+        "codeUnits": 32768,
+        "sha256": "ea6040375617e268aed6ca19d1b5af61ad8774118f2ddfdf2a6184b2cef2b95c"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 29333428.25,
+          "p95Ns": 41661179.25,
+          "operationsPerSecond": 34.090799,
+          "coefficientOfVariationPercent": 15.832032
         }
       ]
     },
@@ -23930,6 +24966,17 @@
           "p95Ns": 2328561.226563,
           "operationsPerSecond": 452.789791,
           "coefficientOfVariationPercent": 2.806127
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2104897.1875,
+          "p95Ns": 2188977.9375,
+          "operationsPerSecond": 475.082586,
+          "coefficientOfVariationPercent": 2.447449
         }
       ]
     },
@@ -24405,6 +25452,69 @@
           "p95Ns": 6905218.4375,
           "operationsPerSecond": 157.67434,
           "coefficientOfVariationPercent": 5.652196
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 5653489.90625,
+          "p95Ns": 5818174.78125,
+          "operationsPerSecond": 176.881894,
+          "coefficientOfVariationPercent": 1.438522
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-4096/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-4096",
+      "description": "Four thousand ninety-six-character even palindrome.",
+      "input": {
+        "bytes": 4096,
+        "codeUnits": 4096,
+        "sha256": "a6e506b1c9312bc87b7d6030859b7f4e3c6cd7ccf16f8791d00ab95192623424"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 2308049.859375,
+          "p95Ns": 2641679.703125,
+          "operationsPerSecond": 433.266203,
+          "coefficientOfVariationPercent": 5.858083
         }
       ]
     },
@@ -25262,6 +26372,17 @@
           "p95Ns": 5206821.390625,
           "operationsPerSecond": 201.680929,
           "coefficientOfVariationPercent": 2.754958
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4760649.25,
+          "p95Ns": 5220672.71875,
+          "operationsPerSecond": 210.055383,
+          "coefficientOfVariationPercent": 4.441047
         }
       ]
     },
@@ -25737,6 +26858,69 @@
           "p95Ns": 15751451.9375,
           "operationsPerSecond": 68.526742,
           "coefficientOfVariationPercent": 3.954466
+        },
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 12960210.125,
+          "p95Ns": 14457961.0625,
+          "operationsPerSecond": 77.159243,
+          "coefficientOfVariationPercent": 6.762785
+        }
+      ]
+    },
+    {
+      "id": "0.2.0/palindrome/chars-8192/typescript/Node.js/v22.22.2/063cd3b35d2f/2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "suiteVersion": "0.2.0",
+      "benchmarkId": "palindrome",
+      "caseId": "chars-8192",
+      "description": "Eight thousand one hundred ninety-two-character even palindrome.",
+      "input": {
+        "bytes": 8192,
+        "codeUnits": 8192,
+        "sha256": "a8a7fa958e95cc850d0541cc478d41107030ba8e97b6d52ab154057307b8ddc6"
+      },
+      "portId": "typescript",
+      "portLabel": "TypeScript / Node.js",
+      "runtime": "Node.js",
+      "runtimeVersion": "v22.22.2",
+      "host": {
+        "fingerprint": "063cd3b35d2f",
+        "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "environmentFingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+      "environment": {
+        "fingerprint": "2e786edca5574fb6b21f15751f3479f2a1aba3d072d6f8017da919fd2fb0956a",
+        "hostFingerprint": "063cd3b35d2f",
+        "os": "linux",
+        "osName": "Ubuntu 24.04.4 LTS",
+        "kernelVersion": "6.18.44-fc-v33",
+        "arch": "amd64",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+        "logicalCpus": 4,
+        "memoryBytes": 16877793280
+      },
+      "points": [
+        {
+          "runId": "20260915T192906755Z-063cd3b35d2f-suite-0.2.0-2f9490e5",
+          "generatedAt": "2026-09-15T19:29:06.755Z",
+          "repositoryCommit": "2f9490e594820084d43ea0a70ca3dc1a977d51d1",
+          "parserVersion": "0.9.7",
+          "hostFingerprint": "063cd3b35d2f",
+          "medianNs": 4772868.28125,
+          "p95Ns": 5753262.546875,
+          "operationsPerSecond": 209.517619,
+          "coefficientOfVariationPercent": 11.335466
         }
       ]
     },
