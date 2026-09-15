@@ -145,13 +145,25 @@ version string leaves open.
 **Every run carries those files, under `definitions/manifests/<port>/`.** A
 run names its parsers by the version each port reports, and the Rust crate is
 unpublished, so every revision on a branch reports the same in-tree version:
-the twenty-three pins behind this repository's Rust series all call
-themselves 0.9.7. Without the manifests the only link from a run to the
-revision it measured is the run's `repositoryCommit`, and a branch that is
-rebased or squashed takes that commit away while the run stays. One run here
-already named an object no longer in its own history. The snapshot makes a
-run answer the question by itself; runs recorded before it was added do not
-have it, and for those the commit is still the only link.
+the twenty distinct revisions behind this repository's Rust series, measured
+across forty runs, all call themselves 0.9.7. Without the manifests the only
+link from a run to the revision it measured is the run's `repositoryCommit`,
+and a branch that is rebased or squashed takes that commit away while the run
+stays. One run here was reported as already naming an object no longer in the
+history it was reviewed against. The snapshot makes a run answer the question
+by itself.
+
+Runs recorded before the snapshot was added do not carry it. For those, the
+revision is still recoverable while the commit survives, by reading the
+manifest out of it:
+
+```sh
+git show "$(jq -r .run.repositoryCommit results/runs/<run>/matrix.json)":ports/rust/Cargo.toml
+```
+
+That is a weaker guarantee than a run carrying its own answer, and it is the
+reason the snapshot exists. Counting the twenty revisions above needs exactly
+this command, run once per recorded run.
 
 ## Reproducibility
 
