@@ -66,6 +66,9 @@ describe('toolchain discontinuity', () => {
 // another.
 describe('counted-section discontinuity', () => {
   const ARGUMENTS = ['--tool=callgrind', '--cache-sim=yes', '--branch-sim=yes']
+  // The realistic change is a same-length substitution, not an appended flag:
+  // a list one element longer would let a length-only comparison pass.
+  const OTHER_ARGUMENTS = ARGUMENTS.map((argument) => (argument === '--cache-sim=yes' ? '--cache-sim=no' : argument))
   const counted = (matrix, tool, caches, callgrindArguments = ARGUMENTS) => ({
     ...matrix,
     deterministic: {
@@ -86,7 +89,7 @@ describe('counted-section discontinuity', () => {
   // The same list spelled out again, so the check is on what the
   // arguments are and not on which array object carries them.
   const sameArguments = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', narrow, [...ARGUMENTS])
-  const otherArguments = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', narrow, [...ARGUMENTS, '--cache-sim=no'])
+  const otherArguments = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', narrow, OTHER_ARGUMENTS)
   const series = [first, uncounted, same]
 
   test('compares against the previous counted run, skipping runs without the section', () => {
@@ -113,7 +116,7 @@ describe('counted-section discontinuity', () => {
   test('reports a changed argument list as a discontinuity, and an unchanged one as none', () => {
     Assert.deepEqual(countingChanges(sameArguments, [...series, sameArguments]), [])
     Assert.deepEqual(countingChanges(otherArguments, [...series, otherArguments]), [
-      `callgrind arguments: ${ARGUMENTS.join(' ')} -> ${[...ARGUMENTS, '--cache-sim=no'].join(' ')}`,
+      `callgrind arguments: ${ARGUMENTS.join(' ')} -> ${OTHER_ARGUMENTS.join(' ')}`,
     ])
     const warning = toolchainWarning(otherArguments, [...series, otherArguments])
     Assert.match(warning, /The counted section's tool changed since 20260915T204238333Z/)

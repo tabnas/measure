@@ -211,9 +211,10 @@ shell's. The Go runtime paces its collector on `GOMEMLIMIT` as well as
 `GOGC` and reads `GODEBUG`; the Rust port's allocator reads its
 `MIMALLOC_` settings when the process starts; the loader honours
 `LD_PRELOAD`; valgrind reads `VALGRIND_OPTS`. Each changes the count,
-and the runners can read back two of them: the Go runner reports
-`GOMAXPROCS` as its scheduler has it and `GOGC` as its collector has
-it, and that is the whole of what any runner reports. `GOMEMLIMIT`,
+and the runners can read back one of them, `GOGC`, together with
+`GOMAXPROCS`: the Go runner reports `GOMAXPROCS` as its scheduler has
+it and `GOGC` as its collector has it, and that is the whole of what
+any runner reports. `GOMEMLIMIT`,
 `GODEBUG`, and the settings the allocator, the loader, and the tool
 read are read back by nothing, so a setting left in the recording
 shell would reach the process and appear nowhere, and what keeps them
