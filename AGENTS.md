@@ -17,7 +17,7 @@ universal ranking.
 | `ports/go/` | Go runner using `github.com/tabnas/parser/go`. |
 | `ports/rust/` | Rust runner using the `tabnas` crate, pinned by git revision. |
 | `scripts/run-all.mjs` | Builds/runs every port and owns run-directory creation. With `--deterministic`, also counts a fixed case set under callgrind. |
-| `scripts/lib/deterministic.mjs` | The counted mode: valgrind detection, the callgrind totals parser, the two-run measurement, the checks on what the runners report and on the ports against each other, and the read-back the aggregator uses. |
+| `scripts/lib/deterministic.mjs` | The counted mode: valgrind detection, the callgrind totals parser, the two-run measurement, the environment the counted process is given, the checks on what the runners report, on the profiles and on the ports against each other, and the read-back the aggregator uses. |
 | `scripts/aggregate.mjs` | Validates cross-port identity and derives statistics/matrices. |
 | `scripts/build-site.mjs` | Builds the Pages data catalog from committed matrices. |
 | `results/runs/<run-id>/` | Immutable definition/input snapshots, raw results, matrix, and Markdown report. |

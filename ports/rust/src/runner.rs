@@ -171,10 +171,14 @@ fn count_parses(
         iterations,
         parse_checksum: parse_checksum as f64,
         checksum: checksum as f64,
-        // This port takes nothing from its environment that the count
-        // depends on: no collector to pace and no scheduler to pin. The
-        // field is empty rather than absent so the harness checks every
-        // port the same way, with nothing configured and nothing observed.
+        // This port has no runtime setting it can read back: no collector
+        // to pace and no scheduler to pin. Its allocator does read
+        // `MIMALLOC_*` from the environment, and cannot report what it
+        // read, which is why the harness hands the counted process an
+        // allowlisted environment rather than the shell's and records
+        // it. The field is empty rather than absent so the harness checks
+        // every port the same way, with nothing configured and nothing
+        // observed.
         environment: BTreeMap::new(),
     })
 }
@@ -494,8 +498,9 @@ mod tests {
         }
     }
 
-    /// Nothing in this port's environment bears on the count, and the
-    /// harness holds the empty report against an empty configuration.
+    /// This port has no runtime setting to read back, and the harness
+    /// holds the empty report against an empty configuration; what the
+    /// allocator would read from the environment, the harness withholds.
     #[test]
     fn the_counted_mode_reports_no_runtime_setting() {
         assert!(counted("adder", "terms-512", 1).environment.is_empty());

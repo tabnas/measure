@@ -67,6 +67,7 @@
       "required": [
         "command",
         "arguments",
+        "given",
         "environment"
       ],
       "properties": {
@@ -78,6 +79,31 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "given": {
+          "description": "What the counted process was handed: the host variables passed through by name, from the harness's fixed allowlist, and the configured settings by value. Nothing else from the recording shell reached the process.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "inherited",
+            "settings"
+          ],
+          "properties": {
+            "inherited": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "settings": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
           }
         },
         "environment": {

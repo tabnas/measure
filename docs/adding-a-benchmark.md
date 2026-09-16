@@ -37,8 +37,11 @@ A port runner must:
   with no clock, and print the input identity, the checksum of the first
   parse, the checksum of the `n` parses, and the runtime settings it read
   back (an empty object where there are none), so that a tool wrapped
-  around the process sees the same work every time and the harness can
-  check what the process did against what it asked for. A port that
+  around the process counts the same work every time and the harness can
+  check what the process did against what it asked for. The harness
+  gives that process `PATH` and `TMPDIR` from the host, the settings in
+  the port's `deterministic.environment`, and nothing else, so a runner
+  that needs another variable names it there. A port that
   cannot do this meaningfully, such as one whose runtime compiles at run
   time, omits the `deterministic` entry from its config and is left out.
 

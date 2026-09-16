@@ -199,7 +199,9 @@ func countParses(manifest *BenchmarkManifest, performanceCase *PerformanceCase, 
 // "off": runtime/metrics reports the same state as a wrapped uint64. It
 // returns the previous value, and setting that straight back leaves the
 // runtime as it was. Called before any parse, so both counted runs carry
-// it alike.
+// it alike. GOMEMLIMIT and GODEBUG also change what the collector does
+// and are not read back here; the harness keeps them out by giving the
+// counted process an allowlisted environment and recording it.
 func effectiveSettings() map[string]string {
 	percent := debug.SetGCPercent(-1)
 	debug.SetGCPercent(percent)

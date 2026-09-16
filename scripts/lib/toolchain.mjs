@@ -17,6 +17,17 @@
 // +106% on `adder/terms-16384` and +57% on `palindrome/chars-32768`. Read
 // as a time series, those rows say the parser regressed. They say nothing
 // about the parser at all.
+//
+// The counted section has the same shape of problem with two things the
+// environment fingerprint does not cover either: the valgrind version,
+// which is the one runtime dependency this repository does not pin, and
+// the cache geometry callgrind simulates, which it takes from the host
+// it runs on. A run records both and holds every port and case in it to
+// them, and a counted run is compared against the previous counted run
+// on the same host the way the wall clock is compared against the
+// previous run.
+
+import { sameJson } from './common.mjs'
 
 function describeToolchain(port) {
   return `${port.runtime} ${port.runtimeVersion}`
@@ -53,17 +64,66 @@ export function toolchainChanges(matrix, matrices) {
   return changes
 }
 
+// The counted run the given one follows: the same host, the same suite
+// version, older, and counted, since a run without the section has no
+// tool version or cache geometry to compare.
+export function comparableCountedRun(matrix, matrices) {
+  const host = matrix.ports[0].environment.hostFingerprint
+  const order = (candidate) => `${candidate.run.generatedAt}/${candidate.run.id}`
+  return matrices.findLast(
+    (candidate) =>
+      candidate.run.id !== matrix.run.id &&
+      order(candidate) < order(matrix) &&
+      candidate.ports[0].environment.hostFingerprint === host &&
+      candidate.run.suiteVersion === matrix.run.suiteVersion &&
+      candidate.deterministic !== undefined,
+  )
+}
+
+// One line per thing the counts depend on that changed since the previous
+// counted run: the tool version, and the simulated cache geometry.
+// Empty for a run without the section, or with nothing to compare against.
+export function countingChanges(matrix, matrices) {
+  if (matrix.deterministic === undefined) return []
+  const previous = comparableCountedRun(matrix, matrices)
+  if (previous === undefined) return []
+  const changes = []
+  const before = previous.deterministic
+  const now = matrix.deterministic
+  if (before.tool.version !== now.tool.version) {
+    changes.push(`callgrind: ${before.tool.version} -> ${now.tool.version}`)
+  }
+  if (!sameJson(before.caches, now.caches)) {
+    changes.push(`simulated caches: ${before.caches.join('; ')} -> ${now.caches.join('; ')}`)
+  }
+  return changes
+}
+
 export function toolchainWarning(matrix, matrices) {
   const changes = toolchainChanges(matrix, matrices)
-  if (changes.length === 0) return ''
-  const previous = comparableRun(matrix, matrices)
-  return [
-    '',
-    `Toolchain changed since ${previous.run.id}:`,
-    ...changes.map((change) => `  ${change}`),
-    'Those ports start a new series here. Their numbers are not comparable',
-    'with earlier runs on this host, however unchanged the parser is.',
-    '',
-    '',
-  ].join('\n')
+  const counting = countingChanges(matrix, matrices)
+  if (changes.length === 0 && counting.length === 0) return ''
+  const lines = ['']
+  if (changes.length > 0) {
+    const previous = comparableRun(matrix, matrices)
+    lines.push(
+      `Toolchain changed since ${previous.run.id}:`,
+      ...changes.map((change) => `  ${change}`),
+      'Those ports start a new series here. Their numbers are not comparable',
+      'with earlier runs on this host, however unchanged the parser is.',
+      '',
+    )
+  }
+  if (counting.length > 0) {
+    const previous = comparableCountedRun(matrix, matrices)
+    lines.push(
+      `The counted section's tool changed since ${previous.run.id}:`,
+      ...counting.map((change) => `  ${change}`),
+      'The counts start a new series here. Instructions and misses are not',
+      'comparable with earlier counted runs on this host, whatever the ports did.',
+      '',
+    )
+  }
+  lines.push('')
+  return lines.join('\n')
 }

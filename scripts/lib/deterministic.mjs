@@ -5,14 +5,16 @@
 //
 // Wall clock has a floor this harness cannot lower. A null change to the
 // Rust engine (one function marked never-inline, displacing code and
-// changing nothing) moved the suite by -2.49% to +2.92%, and reproduced
-// the "palindrome regression" that four real changes had appeared to
-// show. Interleaving two builds controls for drift over time, not for
-// where the linker put the code. A change worth less than that band
-// needs a count that does not depend on layout, and callgrind's
-// instruction count is one: two runs of one binary here differed by
-// 0.16% in Ir. Its cache counters are noisier (12% between the same two
-// runs, on D1 read misses), so they are recorded as secondary evidence.
+// changing nothing) moves the suite by a few percent from one build to
+// the next, and reproduced a "regression" that four real changes had
+// appeared to show. Interleaving two builds controls for drift over
+// time, not for where the linker put the code. A change worth less than
+// that band needs a count that does not depend on layout, and
+// callgrind's instruction count is one; its cache counters move with
+// where the allocator put memory, so they are recorded as secondary
+// evidence. The band, the repeatability figures and what each was
+// measured on are in docs/methodology.md under "Deterministic metrics",
+// in the note that says which of them this repository can reproduce.
 //
 // The runner is not asked to count anything. It is run twice under
 // valgrind in its `--deterministic` mode, once at the configured
@@ -39,7 +41,19 @@
 // one of those checks on the recorded documents, and adds one the
 // recorder does not need: the totals a document records are read back
 // out of the profile it names, so a figure in the JSON is held to the
-// evidence on disk rather than taken from the document.
+// evidence on disk rather than taken from the document, and each
+// profile's own `cmd:` and `creator:` lines are held to the runner
+// command, the case, the count and the tool the document records.
+//
+// The counted process is given an environment the harness builds, not
+// the recording shell's. The Go runtime paces its collector on
+// GOMEMLIMIT as well as GOGC and reads GODEBUG; the Rust port's
+// allocator reads MIMALLOC_* when it starts; the loader honours
+// LD_PRELOAD; valgrind reads VALGRIND_OPTS. A runner can read back GOGC
+// and GOMAXPROCS, and cannot read back the rest, so the only way to
+// record what the process ran under is to decide it: the allowlist in
+// `INHERITED_ENVIRONMENT`, the port's configured settings, and nothing
+// else. What was given is recorded beside what the runtime reported.
 //
 // The Go port is counted with its collector off (see
 // `deterministicPorts`), and that shapes its cache columns as well as
@@ -52,7 +66,7 @@
 import { execFile } from 'node:child_process'
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { promisify } from 'node:util'
 
 import { assert, inputIdentity, repositoryRoot, round, sameJson, writeJson } from './common.mjs'
@@ -66,6 +80,33 @@ export const SCHEMA_VERSION = 1
 // they are recorded in every result, and a change to them is a new
 // measurement rather than a new reading of an old one.
 export const CALLGRIND_ARGUMENTS = ['--tool=callgrind', '--cache-sim=yes', '--branch-sim=yes']
+
+// The host variables the counted process is given, by name. Everything
+// else in the recording shell is withheld, because the runtimes and the
+// tool take settings from the environment that change the count and
+// that no runner can read back: an operator's GOMEMLIMIT keeps the Go
+// collector running under a document that says GOGC=off, MIMALLOC_*
+// changes what the Rust port's allocator does per parse, LD_PRELOAD and
+// VALGRIND_OPTS change the process and the tool. PATH is what the tool
+// finds its own pieces with and TMPDIR is where it keeps its scratch
+// files; the runners need neither.
+export const INHERITED_ENVIRONMENT = ['PATH', 'TMPDIR']
+
+// The environment one counted process runs under, and the record of it:
+// the allowlisted host variables that were set, by name, and the port's
+// configured settings, by value. The settings win where the two name
+// the same variable.
+export function processEnvironment(port, host = process.env) {
+  const environment = {}
+  const inherited = []
+  for (const name of INHERITED_ENVIRONMENT) {
+    if (host[name] === undefined) continue
+    environment[name] = host[name]
+    inherited.push(name)
+  }
+  const settings = { ...(port.deterministic?.environment ?? {}) }
+  return { environment: { ...environment, ...settings }, given: { inherited, settings } }
+}
 
 // The modulus every runner reduces its checksum by (`CHECKSUM_MODULUS`
 // in each port). A loop of n parses of one input sums n copies of one
@@ -139,7 +180,42 @@ export function parseCallgrind(text) {
   const caches = lines
     .filter((line) => /^desc: (I1|D1|LL) cache:/.test(line))
     .map((line) => line.slice('desc: '.length))
-  return { command: field('cmd'), events, totals, caches }
+  return { creator: field('creator'), command: field('cmd'), events, totals, caches }
+}
+
+// What a profile says it is a profile of, held to what was counted.
+// Callgrind writes the command it ran on the `cmd:` line and its own
+// version on the `creator:` line, so a profile copied in from another
+// case, another count or another tool does not pass as this one's,
+// however faithfully its totals were copied along with it. The command
+// is the runner's, then the two snapshot paths the harness passes, then
+// the case and the count; the snapshot paths are the run directory's at
+// recording time, which a recorded run no longer occupies, so they are
+// held to the snapshot's layout rather than to a directory.
+export function checkProfileProvenance({ label, profile, tool, runner, reference, iterations }) {
+  const creator = `callgrind-${tool.version.replace(/^valgrind-/, '')}`
+  assert(
+    profile.creator === creator,
+    `${label}: the profile was written by ${profile.creator ?? 'a tool it does not name'} where the run was counted by ${tool.version}`,
+  )
+  const words = profile.command?.split(' ') ?? []
+  const head = [runner.command, ...runner.arguments]
+  assert(
+    sameJson(words.slice(0, head.length), head),
+    `${label}: the profile is of \`${profile.command}\`, not of the runner command recorded`,
+  )
+  const [configArgument, benchmarksArgument, ...rest] = words.slice(head.length)
+  assert(
+    sameJson(rest, [`--deterministic=${reference}`, `--iterations=${iterations}`]),
+    `${label}: the profile is of \`${profile.command}\`, not of ${reference} at ${iterations} parses`,
+  )
+  const snapshot = configArgument?.startsWith('--config=') ? configArgument.slice('--config='.length) : undefined
+  assert(
+    snapshot !== undefined &&
+      snapshot.endsWith('/definitions/measure.config.json') &&
+      benchmarksArgument === `--benchmarks=${dirname(snapshot)}/benchmarks`,
+    `${label}: the profile is of \`${profile.command}\`, which does not read one run's snapshot`,
+  )
 }
 
 // The cost of the parses alone, per parse.
@@ -337,6 +413,7 @@ export async function recordDeterministic({
   for (const port of ports) {
     await mkdir(join(runDirectory, 'raw', 'deterministic', port.id), { recursive: true })
     const cases = []
+    const handed = processEnvironment(port)
     let environment
     for (const reference of section.cases) {
       const { benchmarkId, caseId } = parseCase(reference)
@@ -349,7 +426,17 @@ export async function recordDeterministic({
       )
       log(`Counting ${port.label} ${reference} under callgrind (${section.iterations} parses)…\n`)
       const count = (iterations, kind) =>
-        countOnce({ port, reference, iterations, kind, input, runDirectory, definitionsDirectory, valgrind })
+        countOnce({
+          port,
+          reference,
+          iterations,
+          kind,
+          input,
+          runDirectory,
+          definitionsDirectory,
+          valgrind,
+          environment: handed.environment,
+        })
       const measured = await count(section.iterations, 'measured')
       const baseline = await count(0, 'baseline')
       assert(
@@ -400,11 +487,17 @@ export async function recordDeterministic({
       run,
       port: { id: port.id },
       tool: { name: 'valgrind', version: valgrind.version, arguments: [...CALLGRIND_ARGUMENTS] },
-      // The settings are the ones the runner read back from its runtime
-      // and reported, checked against the config in `countOnce`; the
-      // config's own copy is not recorded, because the document should
-      // say what the process ran under rather than what it was told.
-      runner: { command: port.command, arguments: [...port.arguments], environment: { ...environment } },
+      // `given` is what the process was handed: the host variables by
+      // name and the settings by value. `environment` is what the runner
+      // read back from its runtime and reported, checked against the
+      // config in `countOnce`. The document carries both, so it says what
+      // the process ran under as well as what it was told.
+      runner: {
+        command: port.command,
+        arguments: [...port.arguments],
+        given: handed.given,
+        environment: { ...environment },
+      },
       iterations: section.iterations,
       cases,
     })
@@ -424,6 +517,7 @@ async function countOnce({
   runDirectory,
   definitionsDirectory,
   valgrind,
+  environment,
 }) {
   const { benchmarkId, caseId } = parseCase(reference)
   const path = profilePath(port.id, benchmarkId, caseId, kind)
@@ -445,10 +539,11 @@ async function countOnce({
         cwd: repositoryRoot,
         encoding: 'utf8',
         maxBuffer: 16 * 1024 * 1024,
-        // The port's settings go to the process here, and come back in
-        // its document as what the runtime saw, which is what
-        // `checkRunnerDocument` holds against the config.
-        env: { ...process.env, ...(port.deterministic.environment ?? {}) },
+        // The environment is the one `processEnvironment` built and the
+        // document records, never the recording shell's. The port's
+        // settings come back in its document as what the runtime saw,
+        // which is what `checkRunnerDocument` holds against the config.
+        env: environment,
       },
     ))
   } catch (cause) {
@@ -474,7 +569,16 @@ async function countOnce({
   assert(sameJson(result.input, input), `${port.id} ${reference}: the counted process parsed a different input from the snapshot`)
   const text = redactPaths(await readFile(absolute, 'utf8'))
   await writeFile(absolute, text)
-  return { path, result, profile: parseCallgrind(text) }
+  const profile = parseCallgrind(text)
+  checkProfileProvenance({
+    label: `${port.id} ${reference} ${kind} profile`,
+    profile,
+    tool: { version: valgrind.version },
+    runner: { command: port.command, arguments: port.arguments },
+    reference,
+    iterations,
+  })
+  return { path, result, profile }
 }
 
 // The deterministic half of a run, read back for aggregation: the raw
@@ -482,12 +586,14 @@ async function countOnce({
 // snapshots the run carries, the profiles they name and each other.
 // Every total a document records is re-read from its profile, the way
 // the wall-clock aggregator holds `matrix.json` to its raw samples, so
-// no per-parse figure rests on a number that is only in the JSON. The
-// tool and the simulated cache geometry are taken from the first
-// document once every port and every case has been held to the same
-// ones. Returns `undefined` for a run that has no deterministic
-// section, which is every run recorded before the mode existed and
-// every run made without `--deterministic`.
+// no per-parse figure rests on a number that is only in the JSON, and
+// every profile is held to being a profile of the recorded command, the
+// case, the count and the tool. The environment a port was given is
+// held to the config and the allowlist. The tool and the simulated
+// cache geometry are taken from the first document once every port and
+// every case has been held to the same ones. Returns `undefined` for a
+// run that has no deterministic section, which is every run recorded
+// before the mode existed and every run made without `--deterministic`.
 export async function readDeterministic({ runDirectory, config, manifests, canonicalRun, validate }) {
   const directory = join(runDirectory, 'raw', 'deterministic')
   if (!(await exists(directory))) return undefined
@@ -521,6 +627,15 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
     )
     assert(raw.runner.command === port.command, `${port.id} was counted through a different command`)
     assert(sameJson(raw.runner.arguments, port.arguments), `${port.id} was counted with different arguments`)
+    assert(
+      sameJson(raw.runner.given.settings, port.deterministic.environment ?? {}),
+      `${port.id} was given ${describeSettings(raw.runner.given.settings)} where the config sets ${describeSettings(port.deterministic.environment ?? {})}`,
+    )
+    const foreign = raw.runner.given.inherited.filter((name) => !INHERITED_ENVIRONMENT.includes(name))
+    assert(
+      foreign.length === 0,
+      `${port.id} was counted with ${foreign.join(', ')} inherited from the host, which the harness does not pass`,
+    )
     checkSettings(
       port,
       raw.runner.environment,
@@ -556,6 +671,14 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
           `${port.id} ${reference} ${kind} totals do not match its events`,
         )
         const profile = await readProfile(profileFile, `${port.id} ${reference} ${kind} profile`)
+        checkProfileProvenance({
+          label: `${port.id} ${reference} ${kind} profile`,
+          profile,
+          tool,
+          runner: raw.runner,
+          reference,
+          iterations: item[kind].iterations,
+        })
         assert(
           sameJson(profile.totals, item[kind].totals),
           `${port.id} ${reference} ${kind} totals are not the totals line of ${item[kind].profile}`,
@@ -621,13 +744,23 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
     iterations: section.iterations,
     caches,
     ports: Object.fromEntries(
-      raws.map(({ port, raw }) => [port.id, { label: port.label, environment: raw.runner.environment }]),
+      raws.map(({ port, raw }) => [
+        port.id,
+        { label: port.label, given: raw.runner.given, environment: raw.runner.environment },
+      ]),
     ),
     rows,
   }
 }
 
 const describeTool = (tool) => `${tool.name} ${tool.version} (${tool.arguments.join(' ')})`
+
+const describeSettings = (settings) =>
+  Object.keys(settings).length === 0
+    ? 'nothing'
+    : Object.entries(settings)
+        .map(([name, value]) => `${name}=${value}`)
+        .join(', ')
 
 // A recorded profile, parsed; a profile that cannot be parsed names the
 // document that pointed at it rather than only the line it lacks.

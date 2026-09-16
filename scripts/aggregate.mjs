@@ -337,8 +337,16 @@ const HEADLINE_LABELS = {
   mispredicts: 'mispredicts',
 }
 
-function renderDeterministic(deterministic) {
+// The run report's counted section. The report is held byte for byte to
+// this renderer for as long as the run is recorded, so what the blurb
+// says about the figures has to be true of every run it is rendered
+// for, and it is derived from the section rather than written for one
+// configuration: which host variables the processes were given, which
+// port ran under which settings, and what the relative column does and
+// does not compare.
+export function renderDeterministic(deterministic) {
   const portIds = Object.keys(deterministic.ports)
+  const ports = portIds.map((portId) => deterministic.ports[portId])
   const environments = portIds
     .filter((portId) => Object.keys(deterministic.ports[portId].environment).length > 0)
     .map(
@@ -347,10 +355,22 @@ function renderDeterministic(deterministic) {
           .map(([name, value]) => `\`${name}=${value}\``)
           .join(', ')}`,
     )
+  const inherited = [...new Set(ports.flatMap((port) => port.given.inherited))]
+  const given =
+    inherited.length === 0
+      ? 'nothing from the recording host'
+      : `${inherited.map((name) => `\`${name}\``).join(' and ')} from the recording host`
+  const collectorOff = ports.filter((port) => port.environment.GOGC === 'off').map((port) => port.label)
   const lines = [
     '## Deterministic metrics',
     '',
-    `> Counted by ${deterministic.tool.version} (\`${deterministic.tool.arguments.join(' ')}\`), not timed. Each figure is per parse: the process counted at ${deterministic.iterations} parses, less the same process counted at zero, divided by ${deterministic.iterations}; both processes parse once before the counted loop, so first-use work is in the baseline too. Instruction count clears the layout floor that wall clock cannot; the cache and branch counters vary more between runs and are secondary evidence.${environments.length ? ` ${environments.join('; ')}, as read back from the runtime.` : ''}`,
+    `> Counted by ${deterministic.tool.version} (\`${deterministic.tool.arguments.join(' ')}\`), not timed. Each figure is per parse: the process counted at ${deterministic.iterations} parses, less the same process counted at zero, divided by ${deterministic.iterations}; both processes parse once before the counted loop, so first-use work is in the baseline too. Instruction count clears the layout floor that wall clock cannot; the cache and branch counters vary more between runs and are secondary evidence. Each counted process was given ${given} and the settings named here, and nothing else from the shell that recorded the run.${environments.length ? ` ${environments.join('; ')}, as read back from the runtime.` : ''}`,
+    '>',
+    `> Relative Ir is each port's instructions per parse over the fewest in the row. It compares what each process did under its own settings, not like for like${
+      collectorOff.length
+        ? `: ${collectorOff.join(' and ')} ran with the collector off, so that figure carries none of the collector's work, where a port that frees as it goes carries every free in its`
+        : ''
+    }. Instructions are comparable with another run's only under the same tool version and the same simulated caches, and the miss columns move with where the allocator put memory as well, so read them against the same port's earlier runs under the same settings.`,
     '',
     `Simulated caches: ${deterministic.caches.map((cache) => `\`${cache}\``).join(', ')}.`,
     '',
