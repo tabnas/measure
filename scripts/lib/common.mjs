@@ -8,6 +8,14 @@ import addFormats from 'ajv-formats'
 
 export const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
+// Where a run being recorded is assembled before it is renamed into
+// results/runs/: a directory named by the run, so that everything the
+// run writes about itself while it is there (the snapshot paths a
+// counted process is given, for one) names the run and no other.
+export function recordingDirectory(runId) {
+  return join(repositoryRoot, '.build', `record-${runId}`)
+}
+
 const schemaValidators = new Map()
 
 export async function readJson(path) {

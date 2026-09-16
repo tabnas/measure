@@ -23,12 +23,13 @@
 // generate the input and take one parse before the counted loop, so all
 // of that cancels. The parse before the loop is there because an engine
 // can leave work until it is first asked to parse: the Rust engine at
-// the pinned revision builds its parser on the first call, roughly 100k
-// instructions on top of a 7.8M-instruction parse, and a baseline
-// without a parse would leave that in the measured run at one part in
-// N. So the per-parse figure is a steady-state parse: no share of
-// process startup, no first-use work, and no symbol name the tool has
-// to find.
+// the pinned revision builds its parser on the first call, some 84k
+// instructions on top of a 7.8M-instruction parse when it was measured
+// (the methodology note has the figures and the command), and a
+// baseline without a parse would leave that in the measured run at one
+// part in N. So the per-parse figure is a steady-state parse: no share
+// of process startup, no first-use work, and no symbol name the tool
+// has to find.
 //
 // What the runner reports is checked rather than trusted. It prints the
 // checksum of the parse before the loop and the checksum of the loop,
@@ -43,7 +44,8 @@
 // out of the profile it names, so a figure in the JSON is held to the
 // evidence on disk rather than taken from the document, and each
 // profile's own `cmd:` and `creator:` lines are held to the runner
-// command, the case, the count and the tool the document records.
+// command, the run's snapshot, the case, the count and the tool the
+// document records.
 //
 // The counted process is given an environment the harness builds, not
 // the recording shell's. The Go runtime paces its collector on
@@ -66,10 +68,18 @@
 import { execFile } from 'node:child_process'
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 import { promisify } from 'node:util'
 
-import { assert, inputIdentity, repositoryRoot, round, sameJson, writeJson } from './common.mjs'
+import {
+  assert,
+  inputIdentity,
+  recordingDirectory,
+  repositoryRoot,
+  round,
+  sameJson,
+  writeJson,
+} from './common.mjs'
 
 const execute = promisify(execFile)
 
@@ -186,12 +196,15 @@ export function parseCallgrind(text) {
 // What a profile says it is a profile of, held to what was counted.
 // Callgrind writes the command it ran on the `cmd:` line and its own
 // version on the `creator:` line, so a profile copied in from another
-// case, another count or another tool does not pass as this one's,
-// however faithfully its totals were copied along with it. The command
-// is the runner's, then the two snapshot paths the harness passes, then
-// the case and the count; the snapshot paths are the run directory's at
-// recording time, which a recorded run no longer occupies, so they are
-// held to the snapshot's layout rather than to a directory.
+// case, another count, another run or another tool does not pass as
+// this one's, however faithfully its totals were copied along with it.
+// The command is the runner's, then the config and the benchmarks of
+// one snapshot, then the case and the count. The snapshot is the one
+// the document records the process being given (`runner.snapshot`),
+// and a run being recorded is assembled in a directory named by the
+// run, so the profile of a process that read another run's snapshot
+// carries that run's name and is refused here, whichever engine pin
+// that run's runner was built at.
 export function checkProfileProvenance({ label, profile, tool, runner, reference, iterations }) {
   const creator = `callgrind-${tool.version.replace(/^valgrind-/, '')}`
   assert(
@@ -209,13 +222,39 @@ export function checkProfileProvenance({ label, profile, tool, runner, reference
     sameJson(rest, [`--deterministic=${reference}`, `--iterations=${iterations}`]),
     `${label}: the profile is of \`${profile.command}\`, not of ${reference} at ${iterations} parses`,
   )
-  const snapshot = configArgument?.startsWith('--config=') ? configArgument.slice('--config='.length) : undefined
   assert(
-    snapshot !== undefined &&
-      snapshot.endsWith('/definitions/measure.config.json') &&
-      benchmarksArgument === `--benchmarks=${dirname(snapshot)}/benchmarks`,
-    `${label}: the profile is of \`${profile.command}\`, which does not read one run's snapshot`,
+    configArgument === `--config=${runner.snapshot}/measure.config.json` &&
+      benchmarksArgument === `--benchmarks=${runner.snapshot}/benchmarks`,
+    `${label}: the profile is of \`${profile.command}\`, which does not read this run's snapshot at ${runner.snapshot}`,
   )
+}
+
+// The snapshot a counted process is given, as the document records it
+// and as callgrind writes it into the profile after redaction: the
+// run's definitions directory, under the repository. The definitions
+// are written into the run directory, which the harness keeps under
+// the repository, so a path that does not redact to `<repository>/…`
+// is not one this harness made.
+export function snapshotPath(definitionsDirectory) {
+  const snapshot = redactPaths(definitionsDirectory)
+  assert(
+    snapshot.startsWith('<repository>/'),
+    `the definitions snapshot at ${definitionsDirectory} is outside the repository`,
+  )
+  return snapshot
+}
+
+// Where a run's snapshot can be, read back: for a run assembled for
+// recording, its recording directory, which it left when it was renamed
+// into results/; for an ephemeral run, or one still being assembled,
+// the directory being read. Both name the run and nothing else.
+export function snapshotPaths(runDirectory, runId) {
+  return [
+    ...new Set([
+      redactPaths(join(recordingDirectory(runId), 'definitions')),
+      redactPaths(join(runDirectory, 'definitions')),
+    ]),
+  ]
 }
 
 // The cost of the parses alone, per parse.
@@ -278,11 +317,13 @@ export function parseCase(reference) {
 // direction. With the collector off nothing is freed, so every parse
 // allocates into memory the process has never touched, and the first
 // write to each of those lines misses every level of the simulated
-// cache: on `adder/terms-512` the recorded Go figure is 5,388 D1 write
-// misses per parse of which 5,292 go on to miss LL, where the Rust
-// port, recycling through its allocator, records 19,285 and 57. Go's
-// D1 write-miss and LL data-miss columns measure the setting more than
-// the port, and the report's reader is told so in the methodology.
+// cache: on `adder/terms-512` nearly every one of the Go port's
+// first-level write misses goes on to miss the last level, where the
+// Rust port, recycling through its allocator, has almost none reach
+// it. Go's D1 write-miss and LL data-miss columns measure the setting
+// more than the port, and the report's reader is told so in the
+// methodology, whose note carries the figures and the command that
+// repeats them.
 export function deterministicPorts(config) {
   return config.ports.filter((port) => port.deterministic !== undefined)
 }
@@ -409,6 +450,7 @@ export async function recordDeterministic({
   assert(section !== undefined, 'measure.config.json has no deterministic section')
   const ports = deterministicPorts(config)
   assert(ports.length > 0, 'measure.config.json gives no port a deterministic entry')
+  const snapshot = snapshotPath(definitionsDirectory)
   const documents = []
   for (const port of ports) {
     await mkdir(join(runDirectory, 'raw', 'deterministic', port.id), { recursive: true })
@@ -434,6 +476,7 @@ export async function recordDeterministic({
           input,
           runDirectory,
           definitionsDirectory,
+          snapshot,
           valgrind,
           environment: handed.environment,
         })
@@ -491,10 +534,13 @@ export async function recordDeterministic({
       // name and the settings by value. `environment` is what the runner
       // read back from its runtime and reported, checked against the
       // config in `countOnce`. The document carries both, so it says what
-      // the process ran under as well as what it was told.
+      // the process ran under as well as what it was told. `snapshot` is
+      // the definitions directory every counted process read, which the
+      // read-back holds to this run and every profile's `cmd:` line to.
       runner: {
         command: port.command,
         arguments: [...port.arguments],
+        snapshot,
         given: handed.given,
         environment: { ...environment },
       },
@@ -516,6 +562,7 @@ async function countOnce({
   input,
   runDirectory,
   definitionsDirectory,
+  snapshot,
   valgrind,
   environment,
 }) {
@@ -574,7 +621,7 @@ async function countOnce({
     label: `${port.id} ${reference} ${kind} profile`,
     profile,
     tool: { version: valgrind.version },
-    runner: { command: port.command, arguments: port.arguments },
+    runner: { command: port.command, arguments: port.arguments, snapshot },
     reference,
     iterations,
   })
@@ -627,6 +674,11 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
     )
     assert(raw.runner.command === port.command, `${port.id} was counted through a different command`)
     assert(sameJson(raw.runner.arguments, port.arguments), `${port.id} was counted with different arguments`)
+    const snapshots = snapshotPaths(runDirectory, canonicalRun.id)
+    assert(
+      snapshots.includes(raw.runner.snapshot),
+      `${port.id} was counted against the snapshot at ${raw.runner.snapshot}, which is not this run's (${snapshots.join(' or ')})`,
+    )
     assert(
       sameJson(raw.runner.given.settings, port.deterministic.environment ?? {}),
       `${port.id} was given ${describeSettings(raw.runner.given.settings)} where the config sets ${describeSettings(port.deterministic.environment ?? {})}`,
@@ -656,8 +708,20 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
         item.parseChecksum !== 0,
         `${port.id} ${reference}: one parse checksums to zero, so the loop count cannot be checked`,
       )
-      assert(item.measured.iterations === section.iterations, `${port.id} measured the wrong count`)
-      assert(item.baseline.iterations === 0, `${port.id} baseline is not a zero-parse run`)
+      // The per-parse figure divides by the configured count and
+      // subtracts a run of no parses, so each side is held to its
+      // count here, before the loop checksums and the profiles are held
+      // to whatever count the document names. A document that names 19
+      // parses with a checksum and a profile to match passes every check
+      // below and comes out 5% low per parse without these two.
+      assert(
+        item.measured.iterations === section.iterations,
+        `${port.id} ${reference}: the measured run counted ${item.measured.iterations} parses where the run counts ${section.iterations}`,
+      )
+      assert(
+        item.baseline.iterations === 0,
+        `${port.id} ${reference}: the baseline counted ${item.baseline.iterations} parse${item.baseline.iterations === 1 ? '' : 's'}, and the per-parse figure subtracts a run of none`,
+      )
       for (const kind of ['measured', 'baseline']) {
         checkLoop(`${port.id} ${reference}`, kind, item[kind].checksum, item.parseChecksum, item[kind].iterations)
         assert(

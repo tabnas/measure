@@ -30,6 +30,7 @@ import {
   generateInput,
   loadConfig,
   readJson,
+  recordingDirectory,
   repositoryRoot,
   sha256 as digest,
   validateSchema,
@@ -54,6 +55,8 @@ import {
   readDeterministic,
   recordDeterministic,
   redactPaths,
+  snapshotPath,
+  snapshotPaths,
   valgrindVersion,
 } from './lib/deterministic.mjs'
 import { renderDeterministic } from './aggregate.mjs'
@@ -148,11 +151,19 @@ const CACHES = [
 // banner the stand-in answers `--version` with.
 const CREATOR = 'callgrind-3.22.0'
 
+// The snapshot the fixtures' profiles were taken against: an ephemeral
+// run's, under .build/. A recorded run's is its recording directory,
+// named by the run, which is what `snapshotOf` gives and what a run
+// read back out of results/ is held to.
+const FIXTURE_SNAPSHOT = '<repository>/.build/deterministic-run/definitions'
+const snapshotOf = (runId) => `<repository>/.build/record-${runId}/definitions`
+const againstSnapshot = (text, snapshot) => text.replaceAll(FIXTURE_SNAPSHOT, snapshot)
+
 // The `cmd:` line of a profile the mode took of a built runner, after
 // the harness replaced the repository path: the runner, the two
 // snapshot paths, the case and the count.
-const commandLine = (portId, iterations, reference = 'adder/terms-512') =>
-  `.build/measure-${portId} --config=<repository>/.build/deterministic-run/definitions/measure.config.json --benchmarks=<repository>/.build/deterministic-run/definitions/benchmarks --deterministic=${reference} --iterations=${iterations}`
+const commandLine = (portId, iterations, reference = 'adder/terms-512', snapshot = FIXTURE_SNAPSHOT) =>
+  `.build/measure-${portId} --config=${snapshot}/measure.config.json --benchmarks=${snapshot}/benchmarks --deterministic=${reference} --iterations=${iterations}`
 
 // A profile reduced to what the harness reads: the tool's version and
 // the command it ran, the cache geometry it simulated, the events line
@@ -222,15 +233,28 @@ const value = (name) => args.find((argument) => argument.startsWith('--' + name 
 const port = value('port')
 const iterations = Number(value('iterations'))
 const misbehave = value('tool-misbehave')
-const totals = readFileSync(join(here, port + '-' + (iterations > 0 ? 'measured' : 'baseline') + '.totals'), 'utf8').trim()
+let totals = readFileSync(join(here, port + '-' + (iterations > 0 ? 'measured' : 'baseline') + '.totals'), 'utf8').trim()
 let creator = ${JSON.stringify(CREATOR)}
 let caches = ${JSON.stringify(CACHES)}
+let events = ${JSON.stringify(EVENTS)}
 let commandLine = command + ' ' + args.join(' ')
 switch (misbehave) {
   // The baseline simulated a wider last-level cache than the measured run.
   case 'cache-drift': if (iterations === 0) caches[2] = 'LL cache: 71303168 B, 64 B, 17-way associative'; break
+  // The baseline was taken without the branch simulator, so it records
+  // four events fewer than the measured run.
+  case 'fewer-events-at-baseline':
+    if (iterations === 0) {
+      events = events.slice(0, 9)
+      totals = totals.split(' ').slice(0, 10).join(' ')
+    }
+    break
   // The profile is of a run at another count, as a stale file would be.
   case 'profile-of-another-count': commandLine = commandLine.replace(/--iterations=\\d+$/, '--iterations=' + (iterations + 1)); break
+  // The profile is of a process that read another run's snapshot: the
+  // same runner, case and count, from a run assembled in another
+  // directory.
+  case 'profile-of-another-run': commandLine = commandLine.replaceAll(/counted-test-[^/]+/g, 'counted-test-other'); break
   // The profile was written by another version of the tool.
   case 'other-creator': creator = 'callgrind-3.21.0'; break
   case undefined: break
@@ -242,7 +266,7 @@ writeFileSync(outFile, [
   '# callgrind format', 'version: 1', 'creator: ' + creator, 'pid: ' + process.pid,
   'cmd:  ' + commandLine, 'part: 1', '',
   caches.map((cache) => 'desc: ' + cache).join('\\n'), '',
-  'positions: line', 'events: ${EVENTS.join(' ')}', totals.replace('totals:', 'summary:'), '', totals, '',
+  'positions: line', 'events: ' + events.join(' '), totals.replace('totals:', 'summary:'), '', totals, '',
 ].join('\\n'))
 appendFileSync(join(outFile, '..', '..', '..', '..', 'stand-in-invocations.jsonl'), JSON.stringify({
   options, command, args, environment: process.env,
@@ -278,6 +302,8 @@ switch (args.misbehave) {
   case 'other-value-at-baseline': if (iterations === 0) parseChecksum += 1; break
   case 'collector-on': environment.GOGC = '100'; break
   case 'silent': for (const name of Object.keys(environment)) delete environment[name]; break
+  // A setting the config does not name, reported by the baseline run only.
+  case 'setting-at-baseline': if (iterations === 0) environment.MIMALLOC_PURGE_DELAY = '0'; break
   // A setting the config does not name, reported from the second case on.
   case 'setting-per-case': if (caseId !== 'terms-512') environment.MIMALLOC_PURGE_DELAY = '0'; break
   // Not the snapshot's input, reported with a consistent identity.
@@ -630,6 +656,8 @@ describe('recording a counted section', () => {
       Assert.deepEqual(raw.tool, { name: 'valgrind', version: 'valgrind-3.22.0', arguments: CALLGRIND_ARGUMENTS })
       Assert.equal(raw.runner.command, process.execPath)
       Assert.deepEqual(raw.runner.arguments, [standIns.runner, `--port=${portId}`])
+      Assert.equal(raw.runner.snapshot, redactPaths(Path.join(runDirectory, 'definitions')))
+      Assert.match(raw.runner.snapshot, /^<repository>\/\.build\/counted-test-[^/]+\/definitions$/, 'the snapshot names the run directory, redacted')
       Assert.deepEqual(raw.runner.given, handed(portId === 'go' ? { GOMAXPROCS: '1', GOGC: 'off' } : {}))
       Assert.equal(raw.iterations, 20)
       Assert.equal(raw.cases.length, 1)
@@ -656,12 +684,77 @@ describe('recording a counted section', () => {
         Assert.doesNotMatch(profile, new RegExp(repositoryRoot.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&')))
         Assert.deepEqual(parseCallgrind(profile).totals, item[kind].totals)
         Assert.equal(parseCallgrind(profile).creator, CREATOR)
-        Assert.match(
+        Assert.equal(
           parseCallgrind(profile).command,
-          new RegExp(`^${process.execPath} ${standIns.runner} --port=${portId} --config=.*--deterministic=adder/terms-512 --iterations=${kind === 'measured' ? 20 : 0}$`),
+          `${process.execPath} ${standIns.runner} --port=${portId} --config=${raw.runner.snapshot}/measure.config.json --benchmarks=${raw.runner.snapshot}/benchmarks --deterministic=adder/terms-512 --iterations=${kind === 'measured' ? 20 : 0}`,
         )
       }
     }
+  })
+
+  // A run being recorded is assembled in its recording directory, named
+  // by the run, and renamed into results/ once complete. The snapshot
+  // paths in its profiles and its documents stay as they were, so the
+  // read-back holds them to the recording directory of the run it is
+  // reading, and a run assembled anywhere else is accepted only while
+  // it is where it was assembled.
+  test('a run recorded in its recording directory reads back from wherever it was moved to', async () => {
+    const recordingRun = { ...run, id: `${run.id}-recording-test` }
+    const runDirectory = recordingDirectory(recordingRun.id)
+    Assert.ok(!Fs.existsSync(runDirectory), `${runDirectory} is in the way`)
+    scratch.push(runDirectory)
+    const staged = stage()
+    Fs.renameSync(staged.runDirectory, runDirectory)
+    staged.runDirectory = runDirectory
+    staged.definitionsDirectory = Path.join(runDirectory, 'definitions')
+    const before = { ...process.env }
+    Object.assign(process.env, OPERATOR_SHELL)
+    try {
+      await recordDeterministic({
+        config: staged.standInConfig,
+        manifests: [adder],
+        runDirectory,
+        definitionsDirectory: staged.definitionsDirectory,
+        run: recordingRun,
+        valgrind: { available: true, version: 'valgrind-3.22.0', command: standIns.valgrind },
+        log: () => {},
+      })
+    } finally {
+      for (const name of Object.keys(OPERATOR_SHELL)) delete process.env[name]
+      Object.assign(process.env, before)
+    }
+    Assert.equal((await document(runDirectory, 'rust')).runner.snapshot, snapshotOf(recordingRun.id))
+    const moved = scratchDirectory(Path.join(Os.tmpdir(), 'measure-results-'))
+    const results = Path.join(moved, 'runs', recordingRun.id)
+    Fs.mkdirSync(Path.dirname(results), { recursive: true })
+    Fs.renameSync(runDirectory, results)
+    const read = (canonicalRun) =>
+      readDeterministic({
+        runDirectory: results,
+        config: staged.standInConfig,
+        manifests: [adder],
+        canonicalRun,
+        validate: (schemaFile, value, label) => validateSchema(schemaFile, value, label),
+      })
+    Assert.deepEqual(snapshotPaths(results, recordingRun.id), [snapshotOf(recordingRun.id), `${results}/definitions`])
+    Assert.equal((await read(recordingRun)).rows[0].ports.rust.perParse.instructions, 7_777_545.8)
+    // The same directory relabelled as another run, documents and all:
+    // its profiles and its documents name the snapshot of the run they
+    // were recorded for, and no other.
+    const another = { ...recordingRun, id: `${run.id}-another` }
+    for (const portId of ['go', 'rust']) {
+      const path = Path.join(results, 'raw', 'deterministic', `${portId}.json`)
+      Fs.writeFileSync(path, JSON.stringify({ ...JSON.parse(Fs.readFileSync(path, 'utf8')), run: another }))
+    }
+    await Assert.rejects(
+      read(another),
+      /go was counted against the snapshot at <repository>\/\.build\/record-.*-recording-test\/definitions, which is not this run's \(<repository>\/\.build\/record-.*-another\/definitions or /,
+    )
+  })
+
+  test('the snapshot a process is given has to be under the repository', () => {
+    Assert.equal(snapshotPath(Path.join(repositoryRoot, '.build', 'x', 'definitions')), '<repository>/.build/x/definitions')
+    Assert.throws(() => snapshotPath('/srv/elsewhere/definitions'), /snapshot at \/srv\/elsewhere\/definitions is outside the repository/)
   })
 
   test('passes each port its settings, and records what the runner read back rather than the config', async () => {
@@ -766,13 +859,14 @@ describe('recording a counted section', () => {
     }
   })
 
-  // The four refusals below are the recorder's alone. The document keeps
-  // the measured run's parse checksum, the first case's settings and the
-  // measured run's cache geometry, so a baseline that parsed to something
-  // else, a second case counted under other settings, or a baseline
-  // against other caches would be recorded and read back clean; and both
-  // ports parsing the wrong input agree with each other, so the identity
-  // check across them passes.
+  // The refusals below are the recorder's alone. The document keeps the
+  // measured run's parse checksum, the measured run's reported settings,
+  // the first case's settings and the measured run's cache geometry, so a
+  // baseline that parsed to something else, a baseline that ran under
+  // other settings, a second case counted under other settings, or a
+  // baseline against other caches would be recorded and read back clean;
+  // and both ports parsing the wrong input agree with each other, so the
+  // identity check across them passes.
   const nothingRecorded = (staged) =>
     Assert.ok(!recorded(staged.runDirectory, 'go') && !recorded(staged.runDirectory, 'rust'), 'no document was written')
 
@@ -785,6 +879,18 @@ describe('recording a counted section', () => {
   test('refuses two callgrind runs of one case that simulated different caches', async () => {
     const staged = stage({ tool: { rust: 'cache-drift' } })
     await Assert.rejects(record(staged), /^Error: rust adder\/terms-512: the two callgrind runs simulated different caches$/)
+    nothingRecorded(staged)
+  })
+
+  test('refuses a runner whose baseline ran under settings its measured run did not report', async () => {
+    const staged = stage({ rust: 'setting-at-baseline' })
+    await Assert.rejects(record(staged), /^Error: rust adder\/terms-512: the two callgrind runs ran under different settings$/)
+    nothingRecorded(staged)
+  })
+
+  test('refuses two callgrind runs of one case that recorded different events', async () => {
+    const staged = stage({ tool: { go: 'fewer-events-at-baseline' } })
+    await Assert.rejects(record(staged), /^Error: go adder\/terms-512: the two callgrind runs recorded different events$/)
     nothingRecorded(staged)
   })
 
@@ -821,6 +927,12 @@ describe('recording a counted section', () => {
       /rust adder\/terms-512 measured profile: the profile was written by callgrind-3\.21\.0 where the run was counted by valgrind-3\.22\.0/,
     )
     nothingRecorded(other)
+    const elsewhere = stage({ tool: { go: 'profile-of-another-run' } })
+    await Assert.rejects(
+      record(elsewhere),
+      /go adder\/terms-512 measured profile: the profile is of `.*counted-test-other\/definitions.*`, which does not read this run's snapshot at <repository>\/\.build\/counted-test-[^/]+\/definitions$/,
+    )
+    nothingRecorded(elsewhere)
   })
 
   test('reads back into the rows the matrix carries, and the matrix schema accepts them', async () => {
@@ -859,6 +971,7 @@ describe('schemas', () => {
     runner: {
       command: '.build/measure-rust',
       arguments: [],
+      snapshot: snapshotOf(run.id),
       given: { inherited: ['PATH', 'TMPDIR'], settings: {} },
       environment: {},
     },
@@ -907,6 +1020,13 @@ describe('schemas', () => {
     const withoutGiven = rawDocument(oldest.run)
     withoutGiven.runner = ungiven
     await Assert.rejects(validateSchema('deterministic-result.schema.json', withoutGiven, 'fixture'), /required property 'given'/)
+    const { snapshot: _snapshot, ...unplaced } = rawDocument(oldest.run).runner
+    const withoutSnapshot = rawDocument(oldest.run)
+    withoutSnapshot.runner = unplaced
+    await Assert.rejects(validateSchema('deterministic-result.schema.json', withoutSnapshot, 'fixture'), /required property 'snapshot'/)
+    const unredacted = rawDocument(oldest.run)
+    unredacted.runner.snapshot = `${repositoryRoot}/.build/record-${oldest.run.id}/definitions`
+    await Assert.rejects(validateSchema('deterministic-result.schema.json', unredacted, 'fixture'), /runner\/snapshot must match pattern/)
   })
 
   test("today's matrix schema accepts every recorded run, none of which the mode edited", async () => {
@@ -984,6 +1104,10 @@ describe('reading a counted run back', () => {
       performanceCases: [{ id: 'terms-512', description: 'Five hundred and twelve terms.' }],
     },
   ]
+  // The run was recorded, so its profiles and documents name its
+  // recording directory, which it has left: the directory read here is
+  // where results/ would hold it.
+  const snapshot = snapshotOf(run.id)
   Fs.mkdirSync(Path.join(runDirectory, 'definitions', 'inputs', 'adder'), { recursive: true })
   Fs.writeFileSync(Path.join(runDirectory, 'definitions', 'inputs', 'adder', 'terms-512.txt'), input)
   const sha256 = digest(input)
@@ -996,6 +1120,7 @@ describe('reading a counted run back', () => {
     runner: {
       command: `.build/measure-${portId}`,
       arguments: [],
+      snapshot,
       given: { inherited: ['PATH', 'TMPDIR'], settings: environment },
       environment,
     },
@@ -1030,10 +1155,13 @@ describe('reading a counted run back', () => {
     ['rust', RUST_MEASURED, RUST_BASELINE_TOTALS, environmentOf('rust')],
   ]) {
     Fs.mkdirSync(Path.join(runDirectory, 'raw', 'deterministic', portId), { recursive: true })
-    Fs.writeFileSync(Path.join(runDirectory, profilePath(portId, 'adder', 'terms-512', 'measured')), measured)
+    Fs.writeFileSync(
+      Path.join(runDirectory, profilePath(portId, 'adder', 'terms-512', 'measured')),
+      againstSnapshot(measured, snapshot),
+    )
     Fs.writeFileSync(
       Path.join(runDirectory, profilePath(portId, 'adder', 'terms-512', 'baseline')),
-      header(baseline, commandLine(portId, 0)),
+      header(baseline, commandLine(portId, 0, 'adder/terms-512', snapshot)),
     )
     Fs.writeFileSync(
       Path.join(runDirectory, 'raw', 'deterministic', `${portId}.json`),
@@ -1061,6 +1189,31 @@ describe('reading a counted run back', () => {
       return await read()
     } finally {
       Fs.writeFileSync(path, original)
+    }
+  }
+  // The read-back with every port's document and every named profile
+  // changed alike, so that the ports still agree with each other and
+  // each document with its profiles, and all of it put back afterwards.
+  const readWithAll = async ({ document: changeDocument, profiles: changeProfile }) => {
+    const files = []
+    for (const portId of ['go', 'rust']) {
+      const path = Path.join(runDirectory, 'raw', 'deterministic', `${portId}.json`)
+      const original = Fs.readFileSync(path, 'utf8')
+      files.push([path, original])
+      const raw = JSON.parse(original)
+      changeDocument(raw)
+      Fs.writeFileSync(path, JSON.stringify(raw))
+      for (const [kind, change] of Object.entries(changeProfile)) {
+        const profile = Path.join(runDirectory, profilePath(portId, 'adder', 'terms-512', kind))
+        const text = Fs.readFileSync(profile, 'utf8')
+        files.push([profile, text])
+        Fs.writeFileSync(profile, change(text))
+      }
+    }
+    try {
+      return await read()
+    } finally {
+      for (const [path, original] of files) Fs.writeFileSync(path, original)
     }
   }
 
@@ -1175,14 +1328,85 @@ describe('reading a counted run back', () => {
     await withProfile(
       'rust',
       'measured',
-      (text) => text.replace('--config=<repository>/.build/deterministic-run/definitions/measure.config.json', '--config=/etc/measure.config.json'),
-      /rust adder\/terms-512 measured profile: the profile is of `.*`, which does not read one run's snapshot/,
+      (text) => text.replace(`--config=${snapshot}/measure.config.json`, '--config=/etc/measure.config.json'),
+      new RegExp(`rust adder/terms-512 measured profile: the profile is of \`.*\`, which does not read this run's snapshot at ${snapshot}`),
     )
     await withProfile(
       'go',
       'measured',
       (text) => text.replace(/^cmd: .*\n/m, ''),
       /go adder\/terms-512 measured profile: the profile is of `undefined`, not of the runner command recorded/,
+    )
+  })
+
+  // The same runner, the same case, the same count and the same tool,
+  // from another recorded run: a profile of the runner built at another
+  // engine pin, with totals to match. What tells it apart is the
+  // snapshot it read, which names the run it was recorded for.
+  test('refuses a profile, and totals copied with it, from another recorded run of the same case', async () => {
+    const other = snapshotOf(`${run.id}-other`)
+    const elsewhere = (text) => againstSnapshot(text, other).replaceAll(snapshot, other)
+    await withProfile(
+      'go',
+      'measured',
+      elsewhere,
+      new RegExp(`go adder/terms-512 measured profile: the profile is of \`.*record-.*-other/definitions.*\`, which does not read this run's snapshot at ${snapshot}`),
+    )
+    await Assert.rejects(
+      readWithAll({ document: () => {}, profiles: { measured: elsewhere, baseline: elsewhere } }),
+      /go adder\/terms-512 measured profile: the profile is of `.*`, which does not read this run's snapshot at/,
+    )
+    await Assert.rejects(
+      readWithAll({
+        document: (raw) => {
+          raw.runner.snapshot = other
+        },
+        profiles: { measured: elsewhere, baseline: elsewhere },
+      }),
+      new RegExp(`go was counted against the snapshot at ${other}, which is not this run's \\(${snapshot} or ${runDirectory}/definitions\\)`),
+    )
+  })
+
+  // The per-parse figure divides by the configured count and subtracts
+  // a run of no parses. A document that names another count for either
+  // run, with the loop checksum and the profile's command edited to
+  // match in both ports, agrees with itself everywhere else and would
+  // come out low per parse.
+  test('refuses a measured run at another count, or a baseline that parsed, however consistent the documents are', async () => {
+    await Assert.rejects(
+      readWithAll({
+        document: (raw) => {
+          raw.cases[0].measured.iterations = 19
+          raw.cases[0].measured.checksum = loopChecksum(ADDER_PARSE, 19)
+        },
+        profiles: { measured: (text) => text.replace('--iterations=20', '--iterations=19') },
+      }),
+      /go adder\/terms-512: the measured run counted 19 parses where the run counts 20/,
+    )
+    await Assert.rejects(
+      readWithAll({
+        document: (raw) => {
+          raw.cases[0].baseline.iterations = 1
+          raw.cases[0].baseline.checksum = ADDER_PARSE
+        },
+        profiles: { baseline: (text) => text.replace('--iterations=0', '--iterations=1') },
+      }),
+      /go adder\/terms-512: the baseline counted 1 parse, and the per-parse figure subtracts a run of none/,
+    )
+  })
+
+  test('refuses a document that reports another port, or names a profile outside its own', async () => {
+    await Assert.rejects(
+      readWith('rust', (raw) => {
+        raw.port.id = 'go'
+      }),
+      /rust\.json reports port go/,
+    )
+    await Assert.rejects(
+      readWith('rust', (raw) => {
+        raw.cases[0].measured.profile = profilePath('go', 'adder', 'terms-512', 'measured')
+      }),
+      /rust adder\/terms-512 names an unexpected measured profile/,
     )
   })
 
@@ -1205,7 +1429,7 @@ describe('reading a counted run back', () => {
           label: 'x',
           profile: parseCallgrind(RUST_MEASURED),
           tool: { version: 'valgrind-3.22.0' },
-          runner: { command: '.build/measure-rust', arguments: ['--fast'] },
+          runner: { command: '.build/measure-rust', arguments: ['--fast'], snapshot: FIXTURE_SNAPSHOT },
           reference: 'adder/terms-512',
           iterations: 20,
         }),
@@ -1217,7 +1441,7 @@ describe('reading a counted run back', () => {
     const report = renderDeterministic(await read()).join('\n')
     Assert.match(report, /^> Counted by valgrind-3\.22\.0/m)
     Assert.match(report, /given `PATH` and `TMPDIR` from the recording host and the settings named here, and nothing else from the shell that recorded the run\. Go ran with `GOMAXPROCS=1`, `GOGC=off`, as read back from the runtime\./)
-    Assert.match(report, /^> Relative Ir is each port's instructions per parse over the fewest in the row\. It compares what each process did under its own settings, not like for like: Go ran with the collector off, so that figure carries none of the collector's work, where a port that frees as it goes carries every free in its\. Instructions are comparable with another run's only under the same tool version and the same simulated caches/m)
+    Assert.match(report, /^> Relative Ir is each port's instructions per parse over the fewest in the row\. It compares what each process did under its own settings, not like for like: Go ran with the collector off, so that figure carries none of the collector's work, where the figure of a port that frees as it goes carries every free\. Instructions are comparable with another run's only under the same tool version and the same simulated caches/m)
     Assert.match(report, /\| adder\/terms-512 \| Rust \| 7,777,546 \| .* \| 2\.79× \|/)
     Assert.match(report, /\| adder\/terms-512 \| Go \| 2,790,194 \| .* \| 1\.00× \|/)
     const section = await read()

@@ -67,6 +67,7 @@
       "required": [
         "command",
         "arguments",
+        "snapshot",
         "given",
         "environment"
       ],
@@ -80,6 +81,11 @@
           "items": {
             "type": "string"
           }
+        },
+        "snapshot": {
+          "description": "The definitions directory every counted process was given, with the recording host's repository path replaced, as the profiles' cmd: lines carry it. A run is assembled in a directory named by the run, so the path names this run and the read-back holds it, and every profile, to that.",
+          "type": "string",
+          "pattern": "^<repository>/.+/definitions$"
         },
         "given": {
           "description": "What the counted process was handed: the host variables passed through by name, from the harness's fixed allowlist, and the configured settings by value. Nothing else from the recording shell reached the process.",

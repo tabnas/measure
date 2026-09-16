@@ -368,7 +368,7 @@ export function renderDeterministic(deterministic) {
     '>',
     `> Relative Ir is each port's instructions per parse over the fewest in the row. It compares what each process did under its own settings, not like for like${
       collectorOff.length
-        ? `: ${collectorOff.join(' and ')} ran with the collector off, so that figure carries none of the collector's work, where a port that frees as it goes carries every free in its`
+        ? `: ${collectorOff.join(' and ')} ran with the collector off, so that figure carries none of the collector's work, where the figure of a port that frees as it goes carries every free`
         : ''
     }. Instructions are comparable with another run's only under the same tool version and the same simulated caches, and the miss columns move with where the allocator put memory as well, so read them against the same port's earlier runs under the same settings.`,
     '',

@@ -10,6 +10,7 @@ import {
   generateInput,
   loadConfig,
   loadManifests,
+  recordingDirectory,
   repositoryRoot,
   sha256,
   validateSchema,
@@ -75,7 +76,7 @@ async function main() {
   let finalDirectory
   if (options.record) {
     finalDirectory = join(repositoryRoot, 'results', 'runs', runID)
-    runDirectory = join(repositoryRoot, '.build', `record-${runID}`)
+    runDirectory = recordingDirectory(runID)
     await mkdir(join(repositoryRoot, 'results', 'runs'), { recursive: true })
     await ensureAbsent(finalDirectory)
     await rm(runDirectory, { recursive: true, force: true })
