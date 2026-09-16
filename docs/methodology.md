@@ -402,12 +402,16 @@ harness would withhold them: run them from a shell with no `GO`,
       --callgrind-out-file=.build/rust-$n.out \
       .build/measure-rust --config=measure.config.json --benchmarks=benchmarks \
       --deterministic=adder/terms-512 --iterations=$n >/dev/null
-    callgrind_annotate --inclusive=yes .build/rust-$n.out | grep 'tabnas::Tabnas::parse$'
+    callgrind_annotate --inclusive=yes .build/rust-$n.out | grep -F 'tabnas::Tabnas::parse '
   done
   ```
 
-  The first number on each line is the instructions inside `parse`, and
-  the second line's less the first line's is the second parse. Counted
+  The pattern ends in a space and carries no anchor, because
+  `callgrind_annotate` closes each line with the binary's path in
+  brackets after the symbol, and a pattern anchored at the symbol's end
+  matches nothing and prints nothing. The first number on each line is
+  the instructions inside `parse`, and the second line's less the first
+  line's is the second parse. Counted
   the way the harness counts, as the differences between the `totals:`
   lines of the process at zero, one, two and three parses, the second,
   third and fourth parses are 7,782,899, 7,782,909 and 7,789,783.

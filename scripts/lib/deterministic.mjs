@@ -306,12 +306,18 @@ export function parseCase(reference) {
 // omission: V8 compiles at run time, so an instruction count of it
 // counts the compiler as much as the parser. Go's entry carries
 // GOMAXPROCS=1, without which valgrind cannot follow the scheduler, and
-// GOGC=off, without which the count is not deterministic either: three
-// runs of the same twenty parses with the collector on cost 56.5M,
-// 58.3M and 72.1M instructions, because the runtime paces collection
-// on wall-clock terms that valgrind stretches fifty-fold; two with it
-// off cost 49.24M and 49.32M. So the Go figure is the mutator alone,
-// and the collector's cost stays where the wall clock already has it.
+// GOGC=off, without which the count is not deterministic either: with
+// the collector on, the count carries the collector's work as well as
+// the parser's, and the runtime paces that work on wall-clock terms
+// that valgrind stretches fifty-fold, so three counts of the same
+// twenty parses differ by a fifth of a percent where two with the
+// collector off differ by a few hundred instructions in fifty million.
+// The figures are not repeated here: they were measured once, and the
+// methodology note ("Measured once, outside the harness") carries them
+// with the command that repeats them, so this comment cannot drift
+// from the note the way a second copy of the numbers did. So the Go
+// figure is the mutator alone, and the collector's cost stays where
+// the wall clock already has it.
 //
 // The setting reaches the cache counters as well, in the other
 // direction. With the collector off nothing is freed, so every parse

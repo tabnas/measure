@@ -109,9 +109,12 @@ const RUST_BASELINE_TOTALS =
 // `GOMAXPROCS=1 .build/measure-go` at twenty parses of the same case,
 // captured before the config switched the collector off. A recorded run
 // therefore counts fewer Go instructions than this fixture does, and a
-// Rust-to-Go ratio taken from it (2.79x) is arithmetic on the fixture,
-// not the ratio the mode records (3.3x on this case with the collector
-// off). Both captures predate the parse the runners now take before the
+// Rust-to-Go ratio taken from it (2.79x, the two measured totals less
+// their baselines) is arithmetic on the fixture, not a ratio the mode
+// records: the collector-off counts the mode records are in the
+// methodology note ("Measured once, outside the harness"), with the
+// command that repeats them, and nothing in these fixtures stands for
+// one. Both captures predate the parse the runners now take before the
 // loop, which moves a baseline by one parse and a per-parse figure by
 // what the engine's first parse does over its second.
 const GO_MEASURED = `# callgrind format
