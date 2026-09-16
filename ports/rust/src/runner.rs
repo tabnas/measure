@@ -15,9 +15,9 @@ use tabnas::{Tabnas, Value};
 
 use crate::environment;
 use crate::model::{
-    Arguments, BenchmarkManifest, CapabilityGroup, CapabilityResult, InputIdentity, MeasureConfig,
-    Measurement, Methodology, PerformanceCase, PortMetadata, PortResult, Profile, RunMetadata,
-    Sample,
+    Arguments, BenchmarkManifest, CapabilityGroup, CapabilityResult, DeterministicArguments,
+    DeterministicResult, InputIdentity, MeasureConfig, Measurement, Methodology, PerformanceCase,
+    PortMetadata, PortResult, Profile, RunMetadata, Sample,
 };
 use crate::parsers::make_parser;
 
@@ -87,6 +87,65 @@ pub fn run(arguments: &Arguments) -> Result<PortResult, String> {
         },
         capabilities,
         measurements,
+    })
+}
+
+/// The deterministic mode. No warmup, no calibration, no clock: one parser,
+/// one input, exactly `iterations` parses, with the checksum consumed in
+/// the output so the loop cannot be elided. The harness runs this process
+/// under callgrind twice, once at the configured iteration count and once
+/// at zero, and the difference is what the parses cost. Everything before
+/// the loop (reading the config, building the parser, generating the
+/// input) is in both runs and cancels.
+pub fn run_deterministic(
+    arguments: &DeterministicArguments,
+) -> Result<DeterministicResult, String> {
+    let config: MeasureConfig = read_json(&arguments.config)?;
+    let port = config
+        .ports
+        .iter()
+        .find(|candidate| candidate.id == PORT_ID)
+        .ok_or_else(|| format!("the configuration has no {PORT_ID} port"))?;
+    if tabnas::VERSION != port.parser.version {
+        return Err(format!(
+            "configured {} {}, loaded {}",
+            port.parser.module,
+            port.parser.version,
+            tabnas::VERSION
+        ));
+    }
+
+    let manifests = load_manifests(&arguments.benchmarks)?;
+    let manifest = manifests
+        .iter()
+        .find(|candidate| candidate.id == arguments.benchmark_id)
+        .ok_or_else(|| format!("unknown benchmark: {}", arguments.benchmark_id))?;
+    let performance_case = manifest
+        .performance_cases
+        .iter()
+        .find(|candidate| candidate.id == arguments.case_id)
+        .ok_or_else(|| {
+            format!(
+                "unknown performance case: {}/{}",
+                arguments.benchmark_id, arguments.case_id
+            )
+        })?;
+    let parser = make_parser(&manifest.id)?;
+    let input = generate_input(performance_case)?;
+
+    let mut checksum = 0_i64;
+    for _ in 0..arguments.iterations {
+        let value = parse_or_fail(&parser, &input)
+            .map_err(|error| format!("{}/{} parse: {error}", manifest.id, performance_case.id))?;
+        checksum = (checksum + checksum_value(&value)) % CHECKSUM_MODULUS;
+    }
+
+    Ok(DeterministicResult {
+        benchmark_id: manifest.id.clone(),
+        case_id: performance_case.id.clone(),
+        input: input_identity(&input),
+        iterations: arguments.iterations,
+        checksum: checksum as f64,
     })
 }
 

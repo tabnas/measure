@@ -16,6 +16,7 @@ import {
   writeJson,
 } from './lib/common.mjs'
 import { buildSite } from './build-site.mjs'
+import { parseCase, recordDeterministic, valgrindVersion } from './lib/deterministic.mjs'
 
 const execute = promisify(execFile)
 
@@ -34,6 +35,29 @@ async function main() {
     throw new Error('Only the full profile can be committed to historical results')
   }
   const hostFingerprint = await resolveHostFingerprint()
+
+  // Checked before the build and the timed run, not after them: a host
+  // without valgrind should learn so in the first second, in one sentence.
+  let valgrind
+  if (options.deterministic) {
+    if (config.deterministic === undefined) {
+      throw new Error('measure.config.json has no deterministic section')
+    }
+    for (const reference of config.deterministic.cases) {
+      const { benchmarkId, caseId } = parseCase(reference)
+      const manifest = manifests.find((candidate) => candidate.id === benchmarkId)
+      if (manifest?.performanceCases.some((candidate) => candidate.id === caseId) !== true) {
+        throw new Error(`deterministic case ${reference} is not a performance case of any benchmark`)
+      }
+    }
+    valgrind = await valgrindVersion()
+    if (!valgrind.available) {
+      process.stderr.write(`${valgrind.message}\n`)
+      process.exitCode = 1
+      return
+    }
+    process.stdout.write(`Deterministic metrics: ${valgrind.version}\n`)
+  }
 
   await runVisible('npm', ['run', 'build'])
 
@@ -91,6 +115,24 @@ async function main() {
     }
     await validateSchema('port-result.schema.json', raw, `${port.id} raw result`)
     await writeJson(join(runDirectory, 'raw', `${port.id}.json`), raw)
+  }
+
+  if (options.deterministic) {
+    await recordDeterministic({
+      config,
+      manifests,
+      runDirectory,
+      definitionsDirectory,
+      run: {
+        id: runID,
+        generatedAt,
+        profile: options.profile,
+        suiteVersion: config.suiteVersion,
+        repositoryCommit: commit,
+        repositoryDirty: dirty,
+      },
+      valgrind,
+    })
   }
 
   await aggregateRun(runDirectory)
@@ -230,10 +272,13 @@ function parseArguments(arguments_) {
   let profile
   let output
   let record = false
+  let deterministic = false
   for (let index = 0; index < arguments_.length; index += 1) {
     const argument = arguments_[index]
     if (argument === '--record') {
       record = true
+    } else if (argument === '--deterministic') {
+      deterministic = true
     } else if (argument === '--profile') {
       profile = arguments_[++index]
     } else if (argument === '--output') {
@@ -244,7 +289,7 @@ function parseArguments(arguments_) {
   }
   if (profile === undefined) throw new Error('--profile is required')
   if (record && output !== undefined) throw new Error('--record and --output are mutually exclusive')
-  return { profile, output, record }
+  return { profile, output, record, deterministic }
 }
 
 main().catch((cause) => {

@@ -89,6 +89,79 @@ func Run(arguments Arguments) (*Result, error) {
 	}, nil
 }
 
+// RunDeterministic mirrors the Rust runner's mode of the same name: no
+// warmup, no calibration, no clock, exactly Iterations parses of one case
+// with the checksum consumed in the output. The harness runs the process
+// under callgrind at the configured count and again at zero, and the
+// difference is what the parses cost; the config read, the parser
+// construction and the input generation are in both and cancel. Valgrind
+// only tolerates this binary with GOMAXPROCS=1, which the harness sets.
+func RunDeterministic(arguments DeterministicArguments) (*DeterministicResult, error) {
+	config := MeasureConfig{}
+	if err := readJSON(arguments.Config, &config); err != nil {
+		return nil, err
+	}
+	port, err := findPort(config.Ports, "go")
+	if err != nil {
+		return nil, err
+	}
+	actualParserVersion, err := dependencyVersion(port.Parser.Module)
+	if err != nil {
+		return nil, err
+	}
+	if actualParserVersion != port.Parser.Version {
+		return nil, fmt.Errorf("configured %s %s, loaded %s", port.Parser.Module, port.Parser.Version, actualParserVersion)
+	}
+
+	manifests, err := loadManifests(arguments.Benchmarks)
+	if err != nil {
+		return nil, err
+	}
+	var manifest *BenchmarkManifest
+	for index := range manifests {
+		if manifests[index].ID == arguments.BenchmarkID {
+			manifest = &manifests[index]
+		}
+	}
+	if manifest == nil {
+		return nil, fmt.Errorf("unknown benchmark: %s", arguments.BenchmarkID)
+	}
+	var performanceCase *PerformanceCase
+	for index := range manifest.PerformanceCases {
+		if manifest.PerformanceCases[index].ID == arguments.CaseID {
+			performanceCase = &manifest.PerformanceCases[index]
+		}
+	}
+	if performanceCase == nil {
+		return nil, fmt.Errorf("unknown performance case: %s/%s", arguments.BenchmarkID, arguments.CaseID)
+	}
+	parser, err := makeParser(manifest.ID)
+	if err != nil {
+		return nil, err
+	}
+	input, err := generateInput(*performanceCase)
+	if err != nil {
+		return nil, err
+	}
+
+	checksum := int64(0)
+	for index := 0; index < arguments.Iterations; index++ {
+		result, parseErr := parser.Parse(input)
+		if parseErr != nil {
+			return nil, fmt.Errorf("%s/%s parse: %w", manifest.ID, performanceCase.ID, parseErr)
+		}
+		checksum = (checksum + int64(checksumValue(result))) % checksumModulus
+	}
+
+	return &DeterministicResult{
+		BenchmarkID: manifest.ID, CaseID: performanceCase.ID,
+		Input: InputIdentity{
+			Bytes: len([]byte(input)), CodeUnits: len(utf16.Encode([]rune(input))), SHA256: hashString(input),
+		},
+		Iterations: arguments.Iterations, Checksum: float64(checksum),
+	}, nil
+}
+
 func runCapabilities(manifest BenchmarkManifest, parser parserAdapter) CapabilityGroup {
 	results := make([]CapabilityResult, 0, len(manifest.CapabilityCases))
 	passed := 0

@@ -73,6 +73,26 @@ type Arguments struct {
 	HostFingerprint string
 }
 
+// The deterministic mode: one case, a fixed number of parses, no clock.
+type DeterministicArguments struct {
+	Config      string
+	Benchmarks  string
+	BenchmarkID string
+	CaseID      string
+	Iterations  int
+}
+
+// What the deterministic mode prints. The counts come from the tool
+// wrapped around the process; this is the evidence that the process
+// parsed the snapshot's input, plus a consumer for the loop.
+type DeterministicResult struct {
+	BenchmarkID string        `json:"benchmarkId"`
+	CaseID      string        `json:"caseId"`
+	Input       InputIdentity `json:"input"`
+	Iterations  int           `json:"iterations"`
+	Checksum    float64       `json:"checksum"`
+}
+
 type Result struct {
 	Schema        string            `json:"$schema"`
 	SchemaVersion int               `json:"schemaVersion"`

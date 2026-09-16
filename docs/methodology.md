@@ -122,6 +122,113 @@ durations and iteration counts remain in the per-port result documents.
   it warned about were the two furthest from Go. **Read a caveat about a port's own overhead as a bug to
   file, not only as a footnote to the numbers.**
 
+## Deterministic metrics
+
+Wall clock has a floor, and the harness cannot lower it by sampling more.
+A null change to the Rust engine (one function marked never-inline, which
+displaces the code after it and changes nothing) moved the suite by
+-2.49% to +2.92%, mean +0.64%, and reproduced the "palindrome regression"
+signature that four real changes had appeared to show. Interleaving two
+builds within one session controls for drift over time. It does not
+control for where the linker put the code, and that is what moved.
+
+So the rule is this. **A wall-clock claim below 3% is not a claim.** A
+change worth less than the band above is reported in one of two ways:
+as "removed N instructions with no visible regression", with the
+instruction count from the mode described here; or by layout-randomised
+repetition, several builds per arm with varied padding, reporting the
+distribution rather than one pair of medians. An instruction count is a
+screen and not a verdict, and it fails in both directions. Removing
+allocation converts to wall clock at or above its instruction saving;
+removing computation converts at a fraction of it; and trading either for
+an atomic operation or a pointer hop on a hot path loses on the clock
+while saving instructions. Five changes on the Rust port did exactly
+that. A change that saves instructions has earned a wall-clock
+measurement, and nothing more.
+
+### Running it
+
+The mode counts instead of timing:
+
+```sh
+npm run measure:deterministic
+```
+
+That is `npm run measure` with `--deterministic` added, and it records a
+normal full-profile run whose directory also carries the counts. For a
+run that is not committed, pass the flag to the script directly:
+
+```sh
+node scripts/run-all.mjs --profile smoke --output .build/counted --deterministic
+```
+
+The mode needs `valgrind` on the path. A host without it is told so
+before anything is built, in one sentence that names the package, and
+the harness stops; a normal `npm run measure` never asks for it. Expect
+the counted section to take several minutes: callgrind runs a process
+around fifty times slower than native, which is why the case set is small
+and fixed rather than the whole matrix.
+
+The case set is in `measure.config.json`, under `deterministic.cases`,
+with the iteration count next to it. The ports that take part are those
+with a `deterministic` entry: Rust, and Go with `GOMAXPROCS=1` and
+`GOGC=off`. The first is a constraint, because valgrind cannot follow
+the Go scheduler switching goroutine stacks across threads. The second
+is what makes the count a count: the Go runtime paces its collector on
+wall-clock terms that valgrind stretches fifty-fold, and three runs of
+the same twenty parses with the collector on cost 56.5M, 58.3M and 72.1M
+instructions, while two with it off cost 49.24M and 49.32M. So the Go
+figure is the work the parser does and none of what the collector does,
+and the collector's cost is in the wall clock column, where it was
+already. TypeScript has no entry and that is
+deliberate. V8 compiles at run time, so an instruction count of the Node
+port counts the compiler as much as the parser and says nothing that the
+wall clock does not.
+
+For each case, the harness runs the port's runner twice under
+`valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes`: once in
+its `--deterministic` mode at the configured number of parses, and once
+at zero. The runner in that mode has no warmup, no calibration and no
+clock; it builds the parser, generates the input, parses, and prints the
+input's hash and a checksum so the loop has a consumer. The zero-parse run
+is the baseline, and the difference divided by the count is the cost of
+one parse. Reading the config, building the parser and generating the
+input are in both runs and cancel, so the per-parse figure carries no
+share of process startup and depends on no symbol name the tool has to
+find.
+
+### Reading it
+
+A counted run carries, next to the wall-clock evidence:
+
+- `raw/deterministic/<port>.json`. The totals line of every profile, for
+  the measured run and the baseline, keyed by callgrind event name, with
+  the tool version and arguments, the runner command and the environment
+  it was given, the input's hash, and the simulated cache geometry.
+- `raw/deterministic/<port>/<benchmark>-<case>.out` and the matching
+  `-baseline.out`. The callgrind profiles themselves, with the recording
+  host's repository and home directories replaced by placeholders. Run
+  `callgrind_annotate` on one to see where the instructions went.
+- `matrix.json`, under `deterministic.rows`. Per parse, for each port:
+  `instructions` (Ir), `d1ReadMisses`, `d1WriteMisses`, `llDataMisses`,
+  `branches` and `mispredicts`, alongside the raw totals they were
+  derived from and `relativeInstructions` normalised to the port with
+  the fewest.
+- The run's `README.md`, under "Deterministic metrics". The same figures
+  as a table.
+
+Instruction count is the headline and the cache counters are secondary,
+and the difference is repeatability, not importance. Two counted runs of
+the Rust port an hour apart differed by 0.05% in instructions per parse,
+and two callgrind runs of one profiling binary differed by 0.16% in
+instructions and by 12% in first-level data-cache read misses: the
+engine's hash tables are seeded per process, where the allocator places
+memory varies with them, and misses follow both. A change that moves instructions by 1% is real; a
+change that moves D1 misses by 5% has to be shown twice. And a counted
+run is otherwise an ordinary run: every run recorded before the mode
+existed lacks the section and stays as it was, and a run made without
+the flag lacks it too.
+
 ## Parser pins
 
 Each port pins its parser exactly, and how it pins differs by runtime because

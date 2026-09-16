@@ -16,7 +16,8 @@ universal ranking.
 | `ports/typescript/` | TypeScript/Node runner using `@tabnas/parser`. |
 | `ports/go/` | Go runner using `github.com/tabnas/parser/go`. |
 | `ports/rust/` | Rust runner using the `tabnas` crate, pinned by git revision. |
-| `scripts/run-all.mjs` | Builds/runs every port and owns run-directory creation. |
+| `scripts/run-all.mjs` | Builds/runs every port and owns run-directory creation. With `--deterministic`, also counts a fixed case set under callgrind. |
+| `scripts/lib/deterministic.mjs` | The counted mode: valgrind detection, the callgrind totals parser, the two-run measurement, and the read-back the aggregator uses. |
 | `scripts/aggregate.mjs` | Validates cross-port identity and derives statistics/matrices. |
 | `scripts/build-site.mjs` | Builds the Pages data catalog from committed matrices. |
 | `results/runs/<run-id>/` | Immutable definition/input snapshots, raw results, matrix, and Markdown report. |
@@ -59,12 +60,16 @@ cargo fetch --locked --manifest-path ports/rust/Cargo.toml
 make build
 make test
 make measure
+make measure-deterministic
 make site
 ```
 
 Use `make test` before every commit. Use `make measure` when grammar behavior,
 runner code, dependency versions, profiles, or host/runtime state changes in a
-way that should be recorded.
+way that should be recorded. Use `make measure-deterministic` (needs
+`valgrind`) when the change being recorded is expected to be worth less
+than the wall-clock floor in `docs/methodology.md`; a run recorded that way
+is an ordinary run that also carries the counts.
 
 ## Adding work
 

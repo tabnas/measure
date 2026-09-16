@@ -31,7 +31,13 @@ A port runner must:
   runner errors;
 - report capability failures in JSON so the cross-port aggregator can explain
   them;
-- preserve raw performance samples.
+- preserve raw performance samples;
+- to take part in the counted mode, accept `--deterministic=<benchmark>/<case>`
+  with `--iterations=<n>`, parse that case exactly `n` times with no clock,
+  and print the input identity and a checksum, so that a tool wrapped
+  around the process sees the same work every time. A port that cannot do
+  this meaningfully, such as one whose runtime compiles at run time, omits
+  the `deterministic` entry from its config and is left out.
 
 Add its command to `measure.config.json` and ensure CI installs the required
 runtime. The port must use the same parser version family as the other rows or

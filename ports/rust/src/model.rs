@@ -210,6 +210,39 @@ pub struct Arguments {
     pub host_fingerprint: String,
 }
 
+/// What the runner was asked to do: the timed measurement that produces a
+/// raw result document, or the deterministic mode that parses one case a
+/// fixed number of times so an instruction counter can be wrapped around
+/// the process.
+#[derive(Debug)]
+pub enum Command {
+    Measure(Arguments),
+    Deterministic(DeterministicArguments),
+}
+
+#[derive(Debug)]
+pub struct DeterministicArguments {
+    pub config: String,
+    pub benchmarks: String,
+    pub benchmark_id: String,
+    pub case_id: String,
+    pub iterations: usize,
+}
+
+/// The document the deterministic mode prints: enough for the harness to
+/// check that the process it counted parsed the snapshot's input, and a
+/// checksum so the parse loop has a consumer. The counts themselves come
+/// from the tool wrapped around the process, never from here.
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DeterministicResult {
+    pub benchmark_id: String,
+    pub case_id: String,
+    pub input: InputIdentity,
+    pub iterations: usize,
+    pub checksum: f64,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -34,6 +34,9 @@
       "items": {
         "$ref": "#/$defs/port"
       }
+    },
+    "deterministic": {
+      "$ref": "#/$defs/deterministic"
     }
   },
   "$defs": {
@@ -121,6 +124,42 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "deterministic": {
+          "description": "Present on a port the deterministic mode counts. The environment is applied to the runner for those runs only (the Go port needs GOMAXPROCS=1 under valgrind).",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "environment": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "deterministic": {
+      "description": "The deterministic section: a fixed, small case set counted under callgrind rather than timed. Optional, because the mode needs valgrind and a normal run does not.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "iterations",
+        "cases"
+      ],
+      "properties": {
+        "iterations": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$"
           }
         }
       }
