@@ -350,7 +350,7 @@ function renderDeterministic(deterministic) {
   const lines = [
     '## Deterministic metrics',
     '',
-    `> Counted by ${deterministic.tool.version} (\`${deterministic.tool.arguments.join(' ')}\`), not timed. Each figure is per parse: the process counted at ${deterministic.iterations} parses, less the same process counted at zero, divided by ${deterministic.iterations}. Instruction count clears the layout floor that wall clock cannot; the cache and branch counters vary more between runs and are secondary evidence.${environments.length ? ` ${environments.join('; ')}.` : ''}`,
+    `> Counted by ${deterministic.tool.version} (\`${deterministic.tool.arguments.join(' ')}\`), not timed. Each figure is per parse: the process counted at ${deterministic.iterations} parses, less the same process counted at zero, divided by ${deterministic.iterations}; both processes parse once before the counted loop, so first-use work is in the baseline too. Instruction count clears the layout floor that wall clock cannot; the cache and branch counters vary more between runs and are secondary evidence.${environments.length ? ` ${environments.join('; ')}, as read back from the runtime.` : ''}`,
     '',
     `Simulated caches: ${deterministic.caches.map((cache) => `\`${cache}\``).join(', ')}.`,
     '',

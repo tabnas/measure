@@ -81,6 +81,7 @@
           }
         },
         "environment": {
+          "description": "The settings the runner reported reading back from its runtime, not the ones it was given. The harness refuses a count whose report differs from the configured settings.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -160,11 +161,16 @@
       "additionalProperties": false,
       "required": [
         "iterations",
+        "checksum",
         "totals",
         "profile"
       ],
       "properties": {
         "iterations": {
+          "$ref": "#/$defs/nonNegativeInteger"
+        },
+        "checksum": {
+          "description": "What the counted loop checksummed to: iterations times parseChecksum, reduced by the runners' modulus. Zero for the baseline.",
           "$ref": "#/$defs/nonNegativeInteger"
         },
         "totals": {
@@ -184,7 +190,7 @@
         "benchmarkId",
         "caseId",
         "input",
-        "checksum",
+        "parseChecksum",
         "events",
         "caches",
         "measured",
@@ -218,8 +224,9 @@
             }
           }
         },
-        "checksum": {
-          "type": "number"
+        "parseChecksum": {
+          "description": "What one parse checksums to, from the parse the runner takes before the counted loop in both runs. Never zero: the loop's checksum is checked against it.",
+          "$ref": "#/$defs/positiveInteger"
         },
         "events": {
           "type": "array",

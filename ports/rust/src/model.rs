@@ -230,9 +230,13 @@ pub struct DeterministicArguments {
 }
 
 /// The document the deterministic mode prints: enough for the harness to
-/// check that the process it counted parsed the snapshot's input, and a
-/// checksum so the parse loop has a consumer. The counts themselves come
-/// from the tool wrapped around the process, never from here.
+/// check that the process it counted parsed the snapshot's input, the
+/// configured number of times, under the configured settings. The counts
+/// themselves come from the tool wrapped around the process, never from
+/// here. `parse_checksum` is what the one parse before the loop came to
+/// and `checksum` what the loop came to, so the harness can check that
+/// the loop ran `iterations` times; `environment` is what the runtime
+/// reports it ran with, which for this port is nothing.
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DeterministicResult {
@@ -240,7 +244,9 @@ pub struct DeterministicResult {
     pub case_id: String,
     pub input: InputIdentity,
     pub iterations: usize,
+    pub parse_checksum: f64,
     pub checksum: f64,
+    pub environment: std::collections::BTreeMap<String, String>,
 }
 
 #[cfg(test)]

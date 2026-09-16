@@ -91,12 +91,16 @@ pub fn run(arguments: &Arguments) -> Result<PortResult, String> {
 }
 
 /// The deterministic mode. No warmup, no calibration, no clock: one parser,
-/// one input, exactly `iterations` parses, with the checksum consumed in
-/// the output so the loop cannot be elided. The harness runs this process
-/// under callgrind twice, once at the configured iteration count and once
-/// at zero, and the difference is what the parses cost. Everything before
-/// the loop (reading the config, building the parser, generating the
-/// input) is in both runs and cancels.
+/// one input, one parse and then exactly `iterations` parses, with both
+/// checksums in the output so neither can be elided. The harness runs
+/// this process under callgrind twice, once at the configured iteration
+/// count and once at zero, and the difference is what the counted parses
+/// cost. Everything before the loop (reading the config, building the
+/// parser, generating the input, and the one parse) is in both runs and
+/// cancels. The parse before the loop is what makes that true of the
+/// engine's first-use work: at the pinned revision `Tabnas::parse` builds
+/// its parser on the first call, and without a parse in the baseline that
+/// cost would sit in the per-parse figure at one part in `iterations`.
 pub fn run_deterministic(
     arguments: &DeterministicArguments,
 ) -> Result<DeterministicResult, String> {
@@ -130,11 +134,31 @@ pub fn run_deterministic(
                 arguments.benchmark_id, arguments.case_id
             )
         })?;
+    count_parses(manifest, performance_case, arguments.iterations)
+}
+
+/// The counted mode proper, from the manifest and case already resolved:
+/// the parser, the input, one parse, the loop, and the document. Split
+/// out the way the Go runner's `countParses` is, so the two runners keep
+/// the same shape.
+fn count_parses(
+    manifest: &BenchmarkManifest,
+    performance_case: &PerformanceCase,
+    iterations: usize,
+) -> Result<DeterministicResult, String> {
     let parser = make_parser(&manifest.id)?;
     let input = generate_input(performance_case)?;
 
+    // One parse before the counted loop, in both runs. Whatever the engine
+    // leaves until it is first asked to parse is then in the baseline as
+    // well as in the measured run, and cancels. Its checksum is reported
+    // on its own so the harness can hold the loop's to it.
+    let first = parse_or_fail(&parser, &input)
+        .map_err(|error| format!("{}/{} parse: {error}", manifest.id, performance_case.id))?;
+    let parse_checksum = checksum_value(&first);
+
     let mut checksum = 0_i64;
-    for _ in 0..arguments.iterations {
+    for _ in 0..iterations {
         let value = parse_or_fail(&parser, &input)
             .map_err(|error| format!("{}/{} parse: {error}", manifest.id, performance_case.id))?;
         checksum = (checksum + checksum_value(&value)) % CHECKSUM_MODULUS;
@@ -144,8 +168,14 @@ pub fn run_deterministic(
         benchmark_id: manifest.id.clone(),
         case_id: performance_case.id.clone(),
         input: input_identity(&input),
-        iterations: arguments.iterations,
+        iterations,
+        parse_checksum: parse_checksum as f64,
         checksum: checksum as f64,
+        // This port takes nothing from its environment that the count
+        // depends on: no collector to pace and no scheduler to pin. The
+        // field is empty rather than absent so the harness checks every
+        // port the same way, with nothing configured and nothing observed.
+        environment: BTreeMap::new(),
     })
 }
 
@@ -390,4 +420,84 @@ fn clean_error(message: &str) -> String {
         .chars()
         .take(500)
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// The repository's own definitions, which both ports read directly.
+    /// The mode is tested against the real case set rather than a fixture,
+    /// so a case added to `deterministic.cases` is covered without more
+    /// work.
+    fn definitions() -> (String, String) {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join("..");
+        (
+            root.join("measure.config.json")
+                .to_string_lossy()
+                .into_owned(),
+            root.join("benchmarks").to_string_lossy().into_owned(),
+        )
+    }
+
+    fn counted(benchmark_id: &str, case_id: &str, iterations: usize) -> DeterministicResult {
+        let (config, benchmarks) = definitions();
+        run_deterministic(&DeterministicArguments {
+            config,
+            benchmarks,
+            benchmark_id: benchmark_id.to_string(),
+            case_id: case_id.to_string(),
+            iterations,
+        })
+        .expect("the counted mode runs against the repository's definitions")
+    }
+
+    /// The harness holds the loop's checksum to the count times the
+    /// checksum of the parse before the loop. Both are pinned here to what
+    /// the Go runner and the harness's fixture carry: 512 for the adder
+    /// (the sum of 512 ones) and 1 for the palindrome (true), and the adder
+    /// input's hash is the one the harness's test file names.
+    #[test]
+    fn the_counted_mode_parses_once_and_then_exactly_the_count_asked() {
+        const TERMS_512: &str = "c6973089da125bc7162b53db8e8e6fa05cd62ce89ff873f197625ab4c08bf194";
+        for (benchmark, case, iterations, parse, checksum, bytes, sha256) in [
+            (
+                "adder",
+                "terms-512",
+                3,
+                512.0,
+                1536.0,
+                1023,
+                Some(TERMS_512),
+            ),
+            ("adder", "terms-512", 0, 512.0, 0.0, 1023, Some(TERMS_512)),
+            ("palindrome", "chars-1024", 2, 1.0, 2.0, 1024, None),
+        ] {
+            let result = counted(benchmark, case, iterations);
+            assert_eq!(
+                (
+                    result.benchmark_id.as_str(),
+                    result.case_id.as_str(),
+                    result.iterations
+                ),
+                (benchmark, case, iterations)
+            );
+            assert_eq!(
+                (result.parse_checksum, result.checksum),
+                (parse, checksum),
+                "{benchmark}/{case} at {iterations} parses"
+            );
+            assert_eq!(result.input.bytes, bytes, "{benchmark}/{case}");
+            if let Some(sha256) = sha256 {
+                assert_eq!(result.input.sha256, sha256, "{benchmark}/{case}");
+            }
+        }
+    }
+
+    /// Nothing in this port's environment bears on the count, and the
+    /// harness holds the empty report against an empty configuration.
+    #[test]
+    fn the_counted_mode_reports_no_runtime_setting() {
+        assert!(counted("adder", "terms-512", 1).environment.is_empty());
+    }
 }

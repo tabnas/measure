@@ -189,13 +189,42 @@ For each case, the harness runs the port's runner twice under
 `valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes`: once in
 its `--deterministic` mode at the configured number of parses, and once
 at zero. The runner in that mode has no warmup, no calibration and no
-clock; it builds the parser, generates the input, parses, and prints the
-input's hash and a checksum so the loop has a consumer. The zero-parse run
-is the baseline, and the difference divided by the count is the cost of
-one parse. Reading the config, building the parser and generating the
-input are in both runs and cancel, so the per-parse figure carries no
-share of process startup and depends on no symbol name the tool has to
-find.
+clock; it builds the parser, generates the input, parses once, parses
+the configured number of times, and prints the input's hash, the
+checksum of the first parse and the checksum of the loop. The zero-parse
+run is the baseline, and the difference divided by the count is the cost
+of one parse. Reading the config, building the parser, generating the
+input and the first parse are in both runs and cancel, so the per-parse
+figure carries no share of process startup and depends on no symbol name
+the tool has to find.
+
+The first parse is in both runs because an engine can leave work until
+it is first asked to parse. At the pinned revision the Rust engine
+builds its parser on the first call, and under callgrind its first parse
+of `adder/terms-512` costs 7,878,111 instructions against 7,778,955 for
+the second and 7,789,621 for the third. Without a parse in the baseline
+that one-time work sits inside the per-parse figure at one part in
+twenty, about 0.06%. That is under the mode's own repeatability, and it
+is still startup work in a figure described as carrying none, so the
+runner takes the parse and the baseline carries the work.
+
+The runner's document is checked rather than trusted, the way the
+wall-clock aggregator checks each port's input hash and capability
+results. The loop's checksum has to be the configured count times the
+checksum of the first parse, reduced by the modulus every runner uses,
+so a loop that ran nineteen times is refused; a case whose parse
+checksums to zero is refused too, because a loop of zeros proves nothing
+about how many times it ran. The ports counted in one run have to report
+the same input hash, the same first-parse checksum and the same loop
+checksum, since they parse the same input the same number of times, and
+a port that parses to a different value is refused rather than published
+as comparable. And a runner reports the settings it read back from its
+runtime rather than the ones it was given: the Go runner prints
+`GOMAXPROCS` as the scheduler has it and `GOGC` as the collector has it,
+so a count taken with the collector on is refused before it can be
+recorded under a config that says `GOGC=off`. The read-back the
+aggregator uses repeats every one of these checks on the recorded
+documents.
 
 ### Reading it
 
@@ -203,8 +232,9 @@ A counted run carries, next to the wall-clock evidence:
 
 - `raw/deterministic/<port>.json`. The totals line of every profile, for
   the measured run and the baseline, keyed by callgrind event name, with
-  the tool version and arguments, the runner command and the environment
-  it was given, the input's hash, and the simulated cache geometry.
+  the tool version and arguments, the runner command and the settings
+  the runner reported running under, the input's hash, the checksum of
+  one parse and of each loop, and the simulated cache geometry.
 - `raw/deterministic/<port>/<benchmark>-<case>.out` and the matching
   `-baseline.out`. The callgrind profiles themselves, with the recording
   host's repository and home directories replaced by placeholders. Run

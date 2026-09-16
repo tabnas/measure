@@ -84,13 +84,19 @@ type DeterministicArguments struct {
 
 // What the deterministic mode prints. The counts come from the tool
 // wrapped around the process; this is the evidence that the process
-// parsed the snapshot's input, plus a consumer for the loop.
+// parsed the snapshot's input, the configured number of times, under
+// the configured settings. ParseChecksum is what the one parse before
+// the loop came to and Checksum what the loop came to, so the harness
+// can check that the loop ran Iterations times; Environment is what the
+// runtime reports it ran with, not what it was given.
 type DeterministicResult struct {
-	BenchmarkID string        `json:"benchmarkId"`
-	CaseID      string        `json:"caseId"`
-	Input       InputIdentity `json:"input"`
-	Iterations  int           `json:"iterations"`
-	Checksum    float64       `json:"checksum"`
+	BenchmarkID   string            `json:"benchmarkId"`
+	CaseID        string            `json:"caseId"`
+	Input         InputIdentity     `json:"input"`
+	Iterations    int               `json:"iterations"`
+	ParseChecksum float64           `json:"parseChecksum"`
+	Checksum      float64           `json:"checksum"`
+	Environment   map[string]string `json:"environment"`
 }
 
 type Result struct {
