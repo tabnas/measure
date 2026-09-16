@@ -126,11 +126,10 @@ durations and iteration counts remain in the per-port result documents.
 
 Wall clock has a floor, and the harness cannot lower it by sampling more.
 A null change to the Rust engine (one function marked never-inline, which
-displaces the code after it and changes nothing) moved the suite by
--2.49% to +2.92%, mean +0.64%, and reproduced the "palindrome regression"
-signature that four real changes had appeared to show. Interleaving two
-builds within one session controls for drift over time. It does not
-control for where the linker put the code, and that is what moved.
+displaces the code after it and changes nothing) moves the suite by
+-2.49% to +2.92%, mean +0.64%, from one build to the next. Interleaving
+two builds within one session controls for drift over time. It does not
+control for where the linker put the code, and that is what moves.
 
 So the rule is this. **A wall-clock claim below 3% is not a claim.** A
 change worth less than the band above is reported in one of two ways:
@@ -142,9 +141,8 @@ screen and not a verdict, and it fails in both directions. Removing
 allocation converts to wall clock at or above its instruction saving;
 removing computation converts at a fraction of it; and trading either for
 an atomic operation or a pointer hop on a hot path loses on the clock
-while saving instructions. Five changes on the Rust port did exactly
-that. A change that saves instructions has earned a wall-clock
-measurement, and nothing more.
+while saving instructions. A change that saves instructions has earned a
+wall-clock measurement, and nothing more.
 
 ### Running it
 
@@ -163,11 +161,12 @@ node scripts/run-all.mjs --profile smoke --output .build/counted --deterministic
 ```
 
 The mode needs `valgrind` on the path. A host without it is told so
-before anything is built, in one sentence that names the package, and
-the harness stops; a normal `npm run measure` never asks for it. Expect
-the counted section to take several minutes: callgrind runs a process
-around fifty times slower than native, which is why the case set is small
-and fixed rather than the whole matrix.
+before anything is built, in two lines, one naming what is missing and
+one saying to install it or to run without the flag, and the harness
+stops with no stack trace; a normal `npm run measure` never asks for
+it. Expect the counted section to take several minutes: callgrind runs
+a process around fifty times slower than native, which is why the case
+set is small and fixed rather than the whole matrix.
 
 The case set is in `measure.config.json`, under `deterministic.cases`,
 with the iteration count next to it. The ports that take part are those
@@ -184,6 +183,19 @@ already. TypeScript has no entry and that is
 deliberate. V8 compiles at run time, so an instruction count of the Node
 port counts the compiler as much as the parser and says nothing that the
 wall clock does not.
+
+The collector setting reaches the cache columns too, and it moves them
+the other way. With the collector off nothing is freed, so every parse
+allocates into memory the process has never touched, and the first
+write to each of those lines misses at every level of the simulated
+cache. On `adder/terms-512` the Go port records 5,388 first-level write
+misses per parse, of which 5,292 go on to miss the last level, where
+the Rust port, recycling memory through its allocator, records 19,285
+and 57. Go's D1 write-miss and LL data-miss columns are a cost of the
+setting more than of the port. The report prints them beside Rust's
+because they are what the counted process did, and a reader compares
+instructions across ports and compares misses across revisions of one
+port, under one setting.
 
 For each case, the harness runs the port's runner twice under
 `valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes`: once in
@@ -224,7 +236,12 @@ runtime rather than the ones it was given: the Go runner prints
 so a count taken with the collector on is refused before it can be
 recorded under a config that says `GOGC=off`. The read-back the
 aggregator uses repeats every one of these checks on the recorded
-documents.
+documents, and adds one the recorder has no need of: every total a
+document records is read back out of the profile it names, so a figure
+in the JSON that the profile on disk does not carry is refused, the way
+`matrix.json` is held to the raw wall-clock samples. The tool and the
+cache geometry the report quotes are the ones every port and every case
+in the run was held to.
 
 ### Reading it
 
@@ -248,16 +265,22 @@ A counted run carries, next to the wall-clock evidence:
   as a table.
 
 Instruction count is the headline and the cache counters are secondary,
-and the difference is repeatability, not importance. Two counted runs of
-the Rust port an hour apart differed by 0.05% in instructions per parse,
-and two callgrind runs of one profiling binary differed by 0.16% in
-instructions and by 12% in first-level data-cache read misses: the
-engine's hash tables are seeded per process, where the allocator places
-memory varies with them, and misses follow both. A change that moves instructions by 1% is real; a
-change that moves D1 misses by 5% has to be shown twice. And a counted
-run is otherwise an ordinary run: every run recorded before the mode
-existed lacks the section and stays as it was, and a run made without
-the flag lacks it too.
+and the difference is repeatability, not importance. Two callgrind runs
+of one profiling binary differed by 0.16% in instructions and by 12% in
+first-level data-cache read misses: the engine's hash tables are seeded
+per process, where the allocator places memory varies with them, and
+misses follow both. That band is one binary counted twice, not two
+recorded runs. Where the repository holds two counted runs at one pin,
+the difference between their `deterministic.rows` is the mode's own
+run-to-run repeatability, and a change smaller than it is not a claim
+either. A change that moves instructions by 1% is well clear of the
+band; a change that moves D1 misses by 5% has to be shown twice; and
+Go's write-miss and last-level columns carry the collector setting as
+well as the port, so a movement in them is read against Go's own
+earlier runs rather than against Rust. And a counted run is otherwise an
+ordinary run: every run recorded before the mode existed lacks the
+section and stays as it was, and a run made without the flag lacks it
+too.
 
 ## Parser pins
 

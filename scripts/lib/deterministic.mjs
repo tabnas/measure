@@ -36,7 +36,18 @@
 // asked for. And the ports counted in one run have to report the same
 // input and the same checksums, since they parse the same input the
 // same number of times. The read-back the aggregator uses repeats every
-// one of those checks on the recorded documents.
+// one of those checks on the recorded documents, and adds one the
+// recorder does not need: the totals a document records are read back
+// out of the profile it names, so a figure in the JSON is held to the
+// evidence on disk rather than taken from the document.
+//
+// The Go port is counted with its collector off (see
+// `deterministicPorts`), and that shapes its cache columns as well as
+// its instruction column: a heap that is never recycled is written into
+// fresh lines on every parse, so its write misses run to memory where
+// the Rust port's are served from the last-level cache. Those columns
+// are a cost of the setting, and `docs/methodology.md` says so where
+// the figures are read.
 
 import { execFile } from 'node:child_process'
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
@@ -75,9 +86,9 @@ export const HEADLINE = {
 }
 
 // Whether valgrind is on this host, without throwing: a host without it
-// gets one sentence saying what to install, not a stack trace from
-// `execFile`. The command it answers for is the one the counts are then
-// taken through.
+// gets two lines, one saying what is missing and one saying what to do,
+// not a stack trace from `execFile`. The command it answers for is the
+// one the counts are then taken through.
 export async function valgrindVersion({ command = 'valgrind' } = {}) {
   try {
     const { stdout } = await execute(command, ['--version'], { encoding: 'utf8' })
@@ -186,6 +197,16 @@ export function parseCase(reference) {
 // on wall-clock terms that valgrind stretches fifty-fold; two with it
 // off cost 49.24M and 49.32M. So the Go figure is the mutator alone,
 // and the collector's cost stays where the wall clock already has it.
+//
+// The setting reaches the cache counters as well, in the other
+// direction. With the collector off nothing is freed, so every parse
+// allocates into memory the process has never touched, and the first
+// write to each of those lines misses every level of the simulated
+// cache: on `adder/terms-512` the recorded Go figure is 5,388 D1 write
+// misses per parse of which 5,292 go on to miss LL, where the Rust
+// port, recycling through its allocator, records 19,285 and 57. Go's
+// D1 write-miss and LL data-miss columns measure the setting more than
+// the port, and the report's reader is told so in the methodology.
 export function deterministicPorts(config) {
   return config.ports.filter((port) => port.deterministic !== undefined)
 }
@@ -343,6 +364,10 @@ export async function recordDeterministic({
         sameJson(measured.profile.events, baseline.profile.events),
         `${port.id} ${reference}: the two callgrind runs recorded different events`,
       )
+      assert(
+        sameJson(measured.profile.caches, baseline.profile.caches),
+        `${port.id} ${reference}: the two callgrind runs simulated different caches`,
+      )
       if (environment === undefined) environment = measured.result.environment
       assert(
         sameJson(environment, measured.result.environment),
@@ -454,9 +479,15 @@ async function countOnce({
 
 // The deterministic half of a run, read back for aggregation: the raw
 // documents, checked against the config, the manifests, the input
-// snapshots the run carries and each other. Returns `undefined` for a
-// run that has no deterministic section, which is every run recorded
-// before the mode existed and every run made without `--deterministic`.
+// snapshots the run carries, the profiles they name and each other.
+// Every total a document records is re-read from its profile, the way
+// the wall-clock aggregator holds `matrix.json` to its raw samples, so
+// no per-parse figure rests on a number that is only in the JSON. The
+// tool and the simulated cache geometry are taken from the first
+// document once every port and every case has been held to the same
+// ones. Returns `undefined` for a run that has no deterministic
+// section, which is every run recorded before the mode existed and
+// every run made without `--deterministic`.
 export async function readDeterministic({ runDirectory, config, manifests, canonicalRun, validate }) {
   const directory = join(runDirectory, 'raw', 'deterministic')
   if (!(await exists(directory))) return undefined
@@ -466,6 +497,8 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
   assert(ports.length > 0, `${directory} exists but no configured port takes part`)
 
   const raws = []
+  let tool
+  let caches
   for (const port of ports) {
     const path = join(directory, `${port.id}.json`)
     assert(await exists(path), `missing deterministic result for configured port ${port.id}`)
@@ -473,6 +506,11 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
     await validate('deterministic-result.schema.json', raw, `deterministic result ${port.id}.json`)
     assert(raw.port.id === port.id, `${path} reports port ${raw.port.id}`)
     assert(sameJson(raw.run, canonicalRun), `deterministic run metadata differs for port ${port.id}`)
+    if (tool === undefined) tool = raw.tool
+    assert(
+      sameJson(raw.tool, tool),
+      `${port.id} was counted by ${describeTool(raw.tool)} where ${raws[0]?.port.id} was counted by ${describeTool(tool)}`,
+    )
     assert(raw.iterations === section.iterations, `${port.id} counted a different number of parses than configured`)
     assert(
       sameJson(
@@ -511,15 +549,27 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
           item[kind].profile === profilePath(port.id, item.benchmarkId, item.caseId, kind),
           `${port.id} ${reference} names an unexpected ${kind} profile`,
         )
-        assert(
-          await exists(join(runDirectory, item[kind].profile)),
-          `${port.id} ${reference} ${kind} profile is missing from the run`,
-        )
+        const profileFile = join(runDirectory, item[kind].profile)
+        assert(await exists(profileFile), `${port.id} ${reference} ${kind} profile is missing from the run`)
         assert(
           sameJson(Object.keys(item[kind].totals), item.events),
           `${port.id} ${reference} ${kind} totals do not match its events`,
         )
+        const profile = await readProfile(profileFile, `${port.id} ${reference} ${kind} profile`)
+        assert(
+          sameJson(profile.totals, item[kind].totals),
+          `${port.id} ${reference} ${kind} totals are not the totals line of ${item[kind].profile}`,
+        )
+        assert(
+          sameJson(profile.caches, item.caches),
+          `${port.id} ${reference} ${kind} profile simulated different caches from the ones recorded`,
+        )
       }
+      if (caches === undefined) caches = item.caches
+      assert(
+        sameJson(item.caches, caches),
+        `${port.id} ${reference} was counted against different simulated caches from the first case counted`,
+      )
     }
     raws.push({ port, raw })
   }
@@ -567,13 +617,25 @@ export async function readDeterministic({ runDirectory, config, manifests, canon
   }
 
   return {
-    tool: raws[0].raw.tool,
+    tool,
     iterations: section.iterations,
-    caches: raws[0].raw.cases[0].caches,
+    caches,
     ports: Object.fromEntries(
       raws.map(({ port, raw }) => [port.id, { label: port.label, environment: raw.runner.environment }]),
     ),
     rows,
+  }
+}
+
+const describeTool = (tool) => `${tool.name} ${tool.version} (${tool.arguments.join(' ')})`
+
+// A recorded profile, parsed; a profile that cannot be parsed names the
+// document that pointed at it rather than only the line it lacks.
+async function readProfile(path, label) {
+  try {
+    return parseCallgrind(await readFile(path, 'utf8'))
+  } catch (cause) {
+    throw new Error(`${label}: ${cause.message}`)
   }
 }
 

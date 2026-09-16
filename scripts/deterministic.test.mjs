@@ -140,8 +140,10 @@ const CACHES = [
   'LL cache: 35651584 B, 64 B, 17-way associative',
 ]
 
+// A profile reduced to what the harness reads: the cache geometry the
+// tool simulated, the events line and the totals line.
 const header = (totalsLine) =>
-  `# callgrind format\nevents: ${EVENTS.join(' ')}\n${totalsLine}\n`
+  `# callgrind format\n${CACHES.map((cache) => `desc: ${cache}`).join('\n')}\nevents: ${EVENTS.join(' ')}\n${totalsLine}\n`
 
 // What one parse of the adder's 512-term input checksums to, in every
 // port: the sum of 512 ones. Twenty of them are the 10240 the fixture
@@ -957,6 +959,99 @@ describe('reading a counted run back', () => {
     )
   })
 
+  // The totals in the document are held to the totals line of the
+  // profile it names, whichever side is edited: a figure in the JSON
+  // that the profile on disk does not carry is refused, and so is a
+  // profile that no longer says what the JSON recorded from it.
+  test('refuses totals that are not the totals line of the profile they name', async () => {
+    await Assert.rejects(
+      readWith('rust', (raw) => {
+        raw.cases[0].measured.totals.Ir = 999_999_999
+      }),
+      /rust adder\/terms-512 measured totals are not the totals line of raw\/deterministic\/rust\/adder-terms-512\.out/,
+    )
+    await Assert.rejects(
+      readWith('go', (raw) => {
+        raw.cases[0].baseline.totals.D1mw -= 1
+      }),
+      /go adder\/terms-512 baseline totals are not the totals line of raw\/deterministic\/go\/adder-terms-512-baseline\.out/,
+    )
+    const profile = Path.join(runDirectory, profilePath('rust', 'adder', 'terms-512', 'measured'))
+    const original = Fs.readFileSync(profile, 'utf8')
+    Fs.writeFileSync(profile, original.replace(/^totals: 157063015/m, 'totals: 157063016'))
+    try {
+      await Assert.rejects(read(), /rust adder\/terms-512 measured totals are not the totals line of/)
+    } finally {
+      Fs.writeFileSync(profile, original)
+    }
+  })
+
+  test('names the document when a profile it points at cannot be read', async () => {
+    const profile = Path.join(runDirectory, profilePath('go', 'adder', 'terms-512', 'baseline'))
+    const original = Fs.readFileSync(profile, 'utf8')
+    Fs.writeFileSync(profile, original.replace(/^totals: .*\n/m, ''))
+    try {
+      await Assert.rejects(
+        read(),
+        /go adder\/terms-512 baseline profile: callgrind profile has no totals: line; the dump did not finish/,
+      )
+    } finally {
+      Fs.writeFileSync(profile, original)
+    }
+  })
+
+  test('refuses a document whose cache geometry is not its profile\'s', async () => {
+    await Assert.rejects(
+      readWith('go', (raw) => {
+        raw.cases[0].caches[1] = 'D1 cache: 65536 B, 64 B, 8-way associative'
+      }),
+      /go adder\/terms-512 measured profile simulated different caches from the ones recorded/,
+    )
+  })
+
+  // The section reports one tool and one cache geometry for the run, so
+  // every port has to have been counted by that tool and every case
+  // against that geometry, rather than the first document speaking for
+  // the rest.
+  test('refuses ports counted by different tools', async () => {
+    await Assert.rejects(
+      readWith('rust', (raw) => {
+        raw.tool.version = 'valgrind-3.21.0'
+      }),
+      /rust was counted by valgrind valgrind-3\.21\.0 \(--tool=callgrind --cache-sim=yes --branch-sim=yes\) where go was counted by valgrind valgrind-3\.22\.0/,
+    )
+    await Assert.rejects(
+      readWith('rust', (raw) => {
+        raw.tool.arguments = ['--tool=callgrind']
+      }),
+      /rust was counted by valgrind valgrind-3\.22\.0 \(--tool=callgrind\) where go was counted by/,
+    )
+  })
+
+  test('refuses cases counted against different simulated caches', async () => {
+    // Both of the port's profiles and its document move together, so the
+    // check that fires is the one across ports rather than the one
+    // between a document and its profile.
+    const wider = 'LL cache: 71303168 B, 64 B, 17-way associative'
+    const profiles = ['measured', 'baseline'].map((kind) =>
+      Path.join(runDirectory, profilePath('rust', 'adder', 'terms-512', kind)),
+    )
+    const originals = profiles.map((profile) => Fs.readFileSync(profile, 'utf8'))
+    for (const [index, profile] of profiles.entries()) {
+      Fs.writeFileSync(profile, originals[index].replace(`desc: ${CACHES[2]}`, `desc: ${wider}`))
+    }
+    try {
+      await Assert.rejects(
+        readWith('rust', (raw) => {
+          raw.cases[0].caches[2] = wider
+        }),
+        /rust adder\/terms-512 was counted against different simulated caches from the first case counted/,
+      )
+    } finally {
+      for (const [index, profile] of profiles.entries()) Fs.writeFileSync(profile, originals[index])
+    }
+  })
+
   test('refuses a loop whose checksum is not the count times one parse', async () => {
     await Assert.rejects(
       readWith('go', (raw) => {
@@ -984,12 +1079,18 @@ describe('reading a counted run back', () => {
 })
 
 describe('a host without valgrind', () => {
-  test('is told what to install, in a sentence rather than a stack trace', async () => {
+  test('is told what to install, in two lines rather than a stack trace', async () => {
     const result = await valgrindVersion({ command: '/nonexistent/valgrind' })
     Assert.equal(result.available, false)
     Assert.match(result.message, /needs valgrind/)
     Assert.match(result.message, /Install valgrind, or run without --deterministic/)
     Assert.doesNotMatch(result.message, /\n\s+at /)
+    // Two lines, what is missing and what to do, which is the shape
+    // docs/methodology.md describes.
+    Assert.deepEqual(
+      result.message.split('\n').map((line) => line.replace(/:.*$/, ':')),
+      ['Deterministic mode needs valgrind (--tool=callgrind), and this host has none:', 'Install valgrind, or run without --deterministic.'],
+    )
   })
 
   test('is refused by a program that is not valgrind', async () => {
