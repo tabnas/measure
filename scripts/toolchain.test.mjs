@@ -62,12 +62,14 @@ describe('toolchain discontinuity', () => {
 
 // No recorded run carries the counted section yet, so the runs here are
 // the recorded ones with a section put on them: the same host, counted
-// by one tool against one geometry, and then by another.
+// by one tool with one argument list against one geometry, and then by
+// another.
 describe('counted-section discontinuity', () => {
-  const counted = (matrix, tool, caches) => ({
+  const ARGUMENTS = ['--tool=callgrind', '--cache-sim=yes', '--branch-sim=yes']
+  const counted = (matrix, tool, caches, callgrindArguments = ARGUMENTS) => ({
     ...matrix,
     deterministic: {
-      tool: { name: 'valgrind', version: tool, arguments: ['--tool=callgrind', '--cache-sim=yes', '--branch-sim=yes'] },
+      tool: { name: 'valgrind', version: tool, arguments: [...callgrindArguments] },
       iterations: 20,
       caches,
       ports: {},
@@ -81,6 +83,10 @@ describe('counted-section discontinuity', () => {
   const same = counted(at('20260915T204238333Z'), 'valgrind-3.22.0', narrow)
   const otherTool = counted(at('20260915T204429053Z'), 'valgrind-3.23.0', narrow)
   const otherCaches = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', wide)
+  // The same list spelled out again, so the check is on what the
+  // arguments are and not on which array object carries them.
+  const sameArguments = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', narrow, [...ARGUMENTS])
+  const otherArguments = counted(at('20260915T204429053Z'), 'valgrind-3.22.0', narrow, [...ARGUMENTS, '--cache-sim=no'])
   const series = [first, uncounted, same]
 
   test('compares against the previous counted run, skipping runs without the section', () => {
@@ -104,7 +110,19 @@ describe('counted-section discontinuity', () => {
     Assert.doesNotMatch(warning, /Toolchain changed/, 'the runtimes held still')
   })
 
-  test('says nothing when the tool and the geometry held still', () => {
+  test('reports a changed argument list as a discontinuity, and an unchanged one as none', () => {
+    Assert.deepEqual(countingChanges(sameArguments, [...series, sameArguments]), [])
+    Assert.deepEqual(countingChanges(otherArguments, [...series, otherArguments]), [
+      `callgrind arguments: ${ARGUMENTS.join(' ')} -> ${[...ARGUMENTS, '--cache-sim=no'].join(' ')}`,
+    ])
+    const warning = toolchainWarning(otherArguments, [...series, otherArguments])
+    Assert.match(warning, /The counted section's tool changed since 20260915T204238333Z/)
+    Assert.match(warning, /callgrind arguments: .* -> .*--cache-sim=no/)
+    Assert.match(warning, /not\ncomparable with earlier counted runs/)
+  })
+
+  test('says nothing when the tool, its arguments and the geometry held still', () => {
     Assert.equal(toolchainWarning(same, series), '')
+    Assert.equal(toolchainWarning(sameArguments, [...series, sameArguments]), '')
   })
 })

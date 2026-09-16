@@ -18,11 +18,14 @@
 // as a time series, those rows say the parser regressed. They say nothing
 // about the parser at all.
 //
-// The counted section has the same shape of problem with two things the
-// environment fingerprint does not cover either: the valgrind version,
-// which is the one runtime dependency this repository does not pin, and
-// the cache geometry callgrind simulates, which it takes from the host
-// it runs on. A run records both and holds every port and case in it to
+// The counted section has the same shape of problem with three things
+// the environment fingerprint does not cover either: the valgrind
+// version, which is the one runtime dependency this repository does not
+// pin; the cache geometry callgrind simulates, which it takes from the
+// host it runs on; and the arguments the tool is run with, which are the
+// harness's own (CALLGRIND_ARGUMENTS in deterministic.mjs) and which a
+// change to makes a new measurement rather than a new reading of an old
+// one. A run records all three and holds every port and case in it to
 // them, and a counted run is compared against the previous counted run
 // on the same host the way the wall clock is compared against the
 // previous run.
@@ -81,8 +84,9 @@ export function comparableCountedRun(matrix, matrices) {
 }
 
 // One line per thing the counts depend on that changed since the previous
-// counted run: the tool version, and the simulated cache geometry.
-// Empty for a run without the section, or with nothing to compare against.
+// counted run: the tool version, the tool's arguments, and the simulated
+// cache geometry. Empty for a run without the section, or with nothing to
+// compare against.
 export function countingChanges(matrix, matrices) {
   if (matrix.deterministic === undefined) return []
   const previous = comparableCountedRun(matrix, matrices)
@@ -92,6 +96,9 @@ export function countingChanges(matrix, matrices) {
   const now = matrix.deterministic
   if (before.tool.version !== now.tool.version) {
     changes.push(`callgrind: ${before.tool.version} -> ${now.tool.version}`)
+  }
+  if (!sameJson(before.tool.arguments, now.tool.arguments)) {
+    changes.push(`callgrind arguments: ${before.tool.arguments.join(' ')} -> ${now.tool.arguments.join(' ')}`)
   }
   if (!sameJson(before.caches, now.caches)) {
     changes.push(`simulated caches: ${before.caches.join('; ')} -> ${now.caches.join('; ')}`)

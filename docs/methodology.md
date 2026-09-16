@@ -210,14 +210,18 @@ The counted process is given an environment the harness builds, not the
 shell's. The Go runtime paces its collector on `GOMEMLIMIT` as well as
 `GOGC` and reads `GODEBUG`; the Rust port's allocator reads its
 `MIMALLOC_` settings when the process starts; the loader honours
-`LD_PRELOAD`; valgrind reads `VALGRIND_OPTS`. Each changes the count, a
-runner can read back only the first two of the Go runtime's, and a
-setting left in the recording shell would otherwise reach the process
-and appear nowhere. So the harness passes `PATH` and `TMPDIR` from the
-host, whichever are set, and the port's configured settings, and
-nothing else, and the document records what was passed: the host
-variables by name and the settings by value. A run whose document names
-anything else is refused at read-back.
+`LD_PRELOAD`; valgrind reads `VALGRIND_OPTS`. Each changes the count,
+and the runners can read back two of them: the Go runner reports
+`GOMAXPROCS` as its scheduler has it and `GOGC` as its collector has
+it, and that is the whole of what any runner reports. `GOMEMLIMIT`,
+`GODEBUG`, and the settings the allocator, the loader, and the tool
+read are read back by nothing, so a setting left in the recording
+shell would reach the process and appear nowhere, and what keeps them
+out is the list of what the harness passes. It passes `PATH` and
+`TMPDIR` from the host, whichever are set, and the port's configured
+settings, and nothing else, and the document records what was passed:
+the host variables by name and the settings by value. A run whose
+document names anything else is refused at read-back.
 
 For each case, the harness runs the port's runner twice under
 `valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes`: once in
@@ -326,11 +330,13 @@ counted section; a counted run recorded on a host whose tool or
 geometry differs from the previous counted run there is announced at
 the terminal the way a changed runtime version is, and the counts on
 either side of that line are not one series, however unchanged the
-ports are. Check the two before reading anything into a difference
-between two runs' `deterministic.rows`. And a counted run is otherwise
-an ordinary run: every run recorded before the mode existed lacks the
-section and stays as it was, and a run made without the flag lacks it
-too.
+ports are. The tool's arguments are the harness's own rather than the
+host's, and a run records and compares them the same way, so a change
+to them is announced too. Check the three before reading anything into
+a difference between two runs' `deterministic.rows`. And a counted run
+is otherwise an ordinary run: every run recorded before the mode
+existed lacks the section and stays as it was, and a run made without
+the flag lacks it too.
 
 ### Measured once, outside the harness
 
@@ -346,6 +352,28 @@ repeat the measurement, with the command. The runners are built with
 than through the harness, so the shell's settings reach it where the
 harness would withhold them: run them from a shell with no `GO`,
 `MIMALLOC_`, `LD_` or `VALGRIND_` settings beyond the ones shown.
+
+The tool simulated the caches it found on that host, and every profile
+behind the figures carries the same three header lines:
+
+```text
+desc: I1 cache: 32768 B, 64 B, 8-way associative
+desc: D1 cache: 49152 B, 64 B, 12-way associative
+desc: LL cache: 276824064 B, 64 B, 33-way associative
+```
+
+The instruction counts do not depend on those lines. Every miss figure
+does: the first-level read and write misses on the `D1` line, and the
+last-level write misses on the `LL` line as well, since a write reaches
+the last level only after missing the first. The host fingerprint does
+not cover the geometry, and the fingerprint above reported `D1 cache:
+32768 B, 64 B, 8-way associative` and `LL cache: 35651584 B, 64 B,
+17-way associative` earlier the same day. So a miss figure below is
+reproducible on a host whose profiles carry these three lines and on
+no other: a host whose lines differ gets its own figures from the same
+commands, and those compare with each other, not with these. Check the
+`desc:` lines of a profile against the three above before comparing a
+miss count with one below.
 
 - **The wall-clock floor, -2.49% to +2.92% with a mean of +0.64%.** The
   full profile's median per row, one build of the Rust engine against
@@ -386,7 +414,10 @@ harness would withhold them: run them from a shell with no `GO`,
   and at `--iterations=0` for each runner (`.build/measure-rust` in
   place of the Go runner, and no `GO` settings) and subtract the sixth
   and the ninth numbers on the two `totals:` lines, which the `events:`
-  line names `D1mw` and `DLmw`.
+  line names `D1mw` and `DLmw`. All four figures are of the geometry
+  above as much as of the ports: the first-level pair follows the `D1`
+  line and the last-level pair the `LL` line, and a host whose profiles
+  carry other lines does not reproduce them.
 - **The Rust engine's first parse of `adder/terms-512`: 7,866,557
   instructions, against 7,782,339 for its second, so the first-use work
   is 84,218.** Measured on the harness's own Rust runner as the
@@ -422,10 +453,12 @@ harness would withhold them: run them from a shell with no `GO`,
   and twenty parses. The Go pair is the `off` pair above, 11,758 and
   11,648 read misses; the Rust pair is 165,456,330 and 165,106,082
   instructions with 361,935 and 363,175 read misses, from the Rust
-  command above at `--iterations=20` run twice. The mode's own
-  run-to-run repeatability is the figure to use once two counted runs
-  at one pin are recorded, and these pairs say which counter to expect
-  to move, and by how much for each port.
+  command above at `--iterations=20` run twice. The instruction pairs
+  hold on any geometry; the read-miss pairs follow the `D1` line above
+  and hold on no other. The mode's own run-to-run repeatability is the
+  figure to use once two counted runs at one pin are recorded, and
+  these pairs say which counter to expect to move, and by how much for
+  each port.
 
 ## Parser pins
 
