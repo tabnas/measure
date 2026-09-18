@@ -89,6 +89,132 @@ func Run(arguments Arguments) (*Result, error) {
 	}, nil
 }
 
+// RunDeterministic mirrors the Rust runner's mode of the same name: no
+// warmup, no calibration, no clock, one parse and then exactly Iterations
+// parses of one case, with both checksums in the output. The harness
+// runs the process under callgrind at the configured count and again at
+// zero, and the difference is what the counted parses cost; the config
+// read, the parser construction, the input generation and the parse
+// before the loop are in both and cancel. Valgrind only tolerates this
+// binary with GOMAXPROCS=1, which the harness sets, and the count is
+// only repeatable with GOGC=off, which it also sets; the document
+// reports both as the runtime has them, not as the environment says.
+func RunDeterministic(arguments DeterministicArguments) (*DeterministicResult, error) {
+	config := MeasureConfig{}
+	if err := readJSON(arguments.Config, &config); err != nil {
+		return nil, err
+	}
+	port, err := findPort(config.Ports, "go")
+	if err != nil {
+		return nil, err
+	}
+	actualParserVersion, err := dependencyVersion(port.Parser.Module)
+	if err != nil {
+		return nil, err
+	}
+	if actualParserVersion != port.Parser.Version {
+		return nil, fmt.Errorf("configured %s %s, loaded %s", port.Parser.Module, port.Parser.Version, actualParserVersion)
+	}
+
+	manifests, err := loadManifests(arguments.Benchmarks)
+	if err != nil {
+		return nil, err
+	}
+	var manifest *BenchmarkManifest
+	for index := range manifests {
+		if manifests[index].ID == arguments.BenchmarkID {
+			manifest = &manifests[index]
+		}
+	}
+	if manifest == nil {
+		return nil, fmt.Errorf("unknown benchmark: %s", arguments.BenchmarkID)
+	}
+	var performanceCase *PerformanceCase
+	for index := range manifest.PerformanceCases {
+		if manifest.PerformanceCases[index].ID == arguments.CaseID {
+			performanceCase = &manifest.PerformanceCases[index]
+		}
+	}
+	if performanceCase == nil {
+		return nil, fmt.Errorf("unknown performance case: %s/%s", arguments.BenchmarkID, arguments.CaseID)
+	}
+	return countParses(manifest, performanceCase, arguments.Iterations)
+}
+
+// countParses is the counted mode proper, from the manifest and case
+// already resolved: the parser, the input, one parse, the loop, and the
+// document. It is what the package's tests exercise, because the parser
+// version check above reads build information a test binary does not
+// carry; the built binary's whole path is covered by
+// scripts/runners.test.mjs.
+func countParses(manifest *BenchmarkManifest, performanceCase *PerformanceCase, iterations int) (*DeterministicResult, error) {
+	parser, err := makeParser(manifest.ID)
+	if err != nil {
+		return nil, err
+	}
+	input, err := generateInput(*performanceCase)
+	if err != nil {
+		return nil, err
+	}
+	environment := effectiveSettings()
+
+	// One parse before the counted loop, in both runs. Whatever an engine
+	// leaves until it is first asked to parse is then in the baseline as
+	// well as in the measured run, and cancels, instead of sitting in the
+	// per-parse figure at one part in Iterations. Its checksum is reported
+	// on its own so the harness can hold the loop's to it.
+	first, parseErr := parser.Parse(input)
+	if parseErr != nil {
+		return nil, fmt.Errorf("%s/%s parse: %w", manifest.ID, performanceCase.ID, parseErr)
+	}
+	parseChecksum := int64(checksumValue(first))
+
+	checksum := int64(0)
+	for index := 0; index < iterations; index++ {
+		result, parseErr := parser.Parse(input)
+		if parseErr != nil {
+			return nil, fmt.Errorf("%s/%s parse: %w", manifest.ID, performanceCase.ID, parseErr)
+		}
+		checksum = (checksum + int64(checksumValue(result))) % checksumModulus
+	}
+
+	return &DeterministicResult{
+		BenchmarkID: manifest.ID, CaseID: performanceCase.ID,
+		Input: InputIdentity{
+			Bytes: len([]byte(input)), CodeUnits: len(utf16.Encode([]rune(input))), SHA256: hashString(input),
+		},
+		Iterations: iterations, ParseChecksum: float64(parseChecksum), Checksum: float64(checksum),
+		Environment: environment,
+	}, nil
+}
+
+// The settings the count depends on, read back from the runtime rather
+// than copied from the environment: GOMAXPROCS as the scheduler has it
+// and GOGC as the collector has it. The document then says what the
+// process ran under, and the harness holds that against what the config
+// asked for, so a count taken with the collector on cannot be recorded
+// under a config that says it was off.
+//
+// SetGCPercent is the runtime's only reader of the percent that can say
+// "off": runtime/metrics reports the same state as a wrapped uint64. It
+// returns the previous value, and setting that straight back leaves the
+// runtime as it was. Called before any parse, so both counted runs carry
+// it alike. GOMEMLIMIT and GODEBUG also change what the collector does
+// and are not read back here; the harness keeps them out by giving the
+// counted process an allowlisted environment and recording it.
+func effectiveSettings() map[string]string {
+	percent := debug.SetGCPercent(-1)
+	debug.SetGCPercent(percent)
+	gogc := strconv.Itoa(percent)
+	if percent < 0 {
+		gogc = "off"
+	}
+	return map[string]string{
+		"GOMAXPROCS": strconv.Itoa(runtime.GOMAXPROCS(0)),
+		"GOGC":       gogc,
+	}
+}
+
 func runCapabilities(manifest BenchmarkManifest, parser parserAdapter) CapabilityGroup {
 	results := make([]CapabilityResult, 0, len(manifest.CapabilityCases))
 	passed := 0

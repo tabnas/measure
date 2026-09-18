@@ -15,6 +15,7 @@ import {
   validateSchema,
   writeJson,
 } from './lib/common.mjs'
+import { HEADLINE, readDeterministic } from './lib/deterministic.mjs'
 import { summarize } from './lib/statistics.mjs'
 
 export async function aggregateRun(runDirectory, { write = true } = {}) {
@@ -186,6 +187,16 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
     )
   }
 
+  // Present only for a run made with --deterministic. Every run recorded
+  // before the mode existed lacks it, and stays exactly as it was.
+  const deterministic = await readDeterministic({
+    runDirectory: absoluteRunDirectory,
+    config,
+    manifests,
+    canonicalRun,
+    validate: (schemaFile, value, label) => validateSchema(schemaFile, value, label, schemasDirectory),
+  })
+
   const matrix = {
     $schema: 'https://tabnas.github.io/measure/schemas/matrix.schema.json',
     schemaVersion: rawResults[0].schemaVersion,
@@ -200,6 +211,7 @@ export async function aggregateRun(runDirectory, { write = true } = {}) {
     })),
     capabilityMatrix,
     performanceMatrix,
+    ...(deterministic === undefined ? {} : { deterministic }),
   }
   await validateSchema(
     'matrix.schema.json',
@@ -296,15 +308,95 @@ export function renderReport(matrix) {
     lines.push('')
   }
 
+  if (matrix.deterministic !== undefined) {
+    lines.push(...renderDeterministic(matrix.deterministic))
+  }
+
   lines.push(
     '## Raw evidence',
     '',
     ...matrix.ports.map((port) => `- [${port.label} raw samples](raw/${port.id}.json)`),
+    ...(matrix.deterministic === undefined
+      ? []
+      : Object.entries(matrix.deterministic.ports).map(
+          ([portId, port]) => `- [${port.label} callgrind counts](raw/deterministic/${portId}.json)`,
+        )),
     '',
     'Statistics: median is p50; p95 is linearly interpolated; standard deviation is the sample standard deviation. Relative throughput is normalized to the slowest port in each row (1.00×).',
     '',
   )
   return lines.join('\n')
+}
+
+const HEADLINE_LABELS = {
+  instructions: 'Ir',
+  d1ReadMisses: 'D1 read misses',
+  d1WriteMisses: 'D1 write misses',
+  llDataMisses: 'LL data misses',
+  branches: 'branches',
+  mispredicts: 'mispredicts',
+}
+
+// The run report's counted section. The report is held byte for byte to
+// this renderer for as long as the run is recorded, so what the blurb
+// says about the figures has to be true of every run it is rendered
+// for, and it is derived from the section rather than written for one
+// configuration: which host variables the processes were given, which
+// port ran under which settings, and what the relative column does and
+// does not compare.
+export function renderDeterministic(deterministic) {
+  const portIds = Object.keys(deterministic.ports)
+  const ports = portIds.map((portId) => deterministic.ports[portId])
+  const environments = portIds
+    .filter((portId) => Object.keys(deterministic.ports[portId].environment).length > 0)
+    .map(
+      (portId) =>
+        `${deterministic.ports[portId].label} ran with ${Object.entries(deterministic.ports[portId].environment)
+          .map(([name, value]) => `\`${name}=${value}\``)
+          .join(', ')}`,
+    )
+  const inherited = [...new Set(ports.flatMap((port) => port.given.inherited))]
+  const given =
+    inherited.length === 0
+      ? 'nothing from the recording host'
+      : `${inherited.map((name) => `\`${name}\``).join(' and ')} from the recording host`
+  const collectorOff = ports.filter((port) => port.environment.GOGC === 'off').map((port) => port.label)
+  const lines = [
+    '## Deterministic metrics',
+    '',
+    `> Counted by ${deterministic.tool.version} (\`${deterministic.tool.arguments.join(' ')}\`), not timed. Each figure is per parse: the process counted at ${deterministic.iterations} parses, less the same process counted at zero, divided by ${deterministic.iterations}; both processes parse once before the counted loop, so first-use work is in the baseline too. Instruction count clears the layout floor that wall clock cannot; the cache and branch counters vary more between runs and are secondary evidence. Each counted process was given ${given} and the settings named here, and nothing else from the shell that recorded the run.${environments.length ? ` ${environments.join('; ')}, as read back from the runtime.` : ''}`,
+    '>',
+    `> Relative Ir is each port's instructions per parse over the fewest in the row. It compares what each process did under its own settings, not like for like${
+      collectorOff.length
+        ? `: ${collectorOff.join(' and ')} ran with the collector off, so that figure carries none of the collector's work, where the figure of a port that frees as it goes carries every free`
+        : ''
+    }. Instructions are comparable with another run's only under the same tool version and the same simulated caches, and the miss columns move with where the allocator put memory as well, so read them against the same port's earlier runs under the same settings.`,
+    '',
+    `Simulated caches: ${deterministic.caches.map((cache) => `\`${cache}\``).join(', ')}.`,
+    '',
+    `| Case | Port | ${Object.values(HEADLINE_LABELS).join(' / parse | ')} / parse | Relative Ir |`,
+    `| --- | --- | ${Object.keys(HEADLINE_LABELS).map(() => '---:').join(' | ')} | ---: |`,
+  ]
+  for (const row of deterministic.rows) {
+    for (const portId of portIds) {
+      const summary = row.ports[portId]
+      const cells = Object.keys(HEADLINE).map((metric) => formatNumber(summary.perParse[metric], 0))
+      lines.push(
+        `| ${row.benchmarkId}/${row.caseId} | ${deterministic.ports[portId].label} | ${cells.join(' | ')} | ${formatNumber(row.relativeInstructions[portId], 2)}× |`,
+      )
+    }
+  }
+  lines.push(
+    '',
+    ...deterministic.rows.flatMap((row) =>
+      portIds.map(
+        (portId) =>
+          `- [${deterministic.ports[portId].label} ${row.benchmarkId}/${row.caseId} profile](${row.ports[portId].profile}) (annotate with \`callgrind_annotate\`)`,
+      ),
+    ),
+    '',
+  )
+  return lines
 }
 
 function parseCLI(arguments_) {

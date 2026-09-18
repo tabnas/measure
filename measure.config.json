@@ -16,6 +16,13 @@
       "maxIterations": 1048576
     }
   },
+  "deterministic": {
+    "iterations": 20,
+    "cases": [
+      "adder/terms-512",
+      "palindrome/chars-1024"
+    ]
+  },
   "ports": [
     {
       "id": "typescript",
@@ -46,7 +53,13 @@
         "go.sum"
       ],
       "command": ".build/measure-go",
-      "arguments": []
+      "arguments": [],
+      "deterministic": {
+        "environment": {
+          "GOMAXPROCS": "1",
+          "GOGC": "off"
+        }
+      }
     },
     {
       "id": "rust",
@@ -60,7 +73,8 @@
         "ports/rust/Cargo.lock"
       ],
       "command": ".build/measure-rust",
-      "arguments": []
+      "arguments": [],
+      "deterministic": {}
     }
   ]
 }

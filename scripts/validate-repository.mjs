@@ -12,6 +12,7 @@ import {
   sameJson,
   validateSchema,
 } from './lib/common.mjs'
+import { deterministicPorts, parseCase } from './lib/deterministic.mjs'
 
 async function main() {
   const runArgument = parseRunArgument(process.argv.slice(2))
@@ -72,6 +73,17 @@ async function validateDefinitions() {
     assert(await exists(directory), `Benchmark ${manifest.id} must live in its matching directory`)
     const caseIDs = [...manifest.capabilityCases, ...manifest.performanceCases].map((testCase) => testCase.id)
     assert(new Set(caseIDs).size === caseIDs.length, `${manifest.id} case identifiers must be unique`)
+  }
+  if (config.deterministic !== undefined) {
+    assert(deterministicPorts(config).length > 0, 'The deterministic section names no port to count')
+    for (const reference of config.deterministic.cases) {
+      const { benchmarkId, caseId } = parseCase(reference)
+      const manifest = manifests.find((candidate) => candidate.id === benchmarkId)
+      assert(
+        manifest?.performanceCases.some((candidate) => candidate.id === caseId) === true,
+        `Deterministic case ${reference} is not a performance case of any benchmark`,
+      )
+    }
   }
 }
 

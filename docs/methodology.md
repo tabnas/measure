@@ -122,6 +122,345 @@ durations and iteration counts remain in the per-port result documents.
   it warned about were the two furthest from Go. **Read a caveat about a port's own overhead as a bug to
   file, not only as a footnote to the numbers.**
 
+## Deterministic metrics
+
+Wall clock has a floor, and the harness cannot lower it by sampling more.
+A null change to the Rust engine (one function marked never-inline, which
+displaces the code after it and changes nothing) moves the suite by
+about three percent either way from one build to the next; the band, and
+what it was measured on, are in the note at the end of this section.
+Interleaving two builds within one session controls for drift over time.
+It does not control for where the linker put the code, and that is what
+moves.
+
+So the rule is this. **A wall-clock claim below 3% is not a claim.** A
+change worth less than the band above is reported in one of two ways:
+as "removed N instructions with no visible regression", with the
+instruction count from the mode described here; or by layout-randomised
+repetition, several builds per arm with varied padding, reporting the
+distribution rather than one pair of medians. An instruction count is a
+screen and not a verdict, and it fails in both directions. Removing
+allocation converts to wall clock at or above its instruction saving;
+removing computation converts at a fraction of it; and trading either for
+an atomic operation or a pointer hop on a hot path loses on the clock
+while saving instructions. A change that saves instructions has earned a
+wall-clock measurement, and nothing more.
+
+### Running it
+
+The mode counts instead of timing:
+
+```sh
+npm run measure:deterministic
+```
+
+That is `npm run measure` with `--deterministic` added, and it records a
+normal full-profile run whose directory also carries the counts. For a
+run that is not committed, pass the flag to the script directly:
+
+```sh
+node scripts/run-all.mjs --profile smoke --output .build/counted --deterministic
+```
+
+The mode needs `valgrind` on the path. A host without it is told so
+before anything is built, in two lines, one naming what is missing and
+one saying to install it or to run without the flag, and the harness
+stops with no stack trace; a normal `npm run measure` never asks for
+it. Expect the counted section to take several minutes: callgrind runs
+a process around fifty times slower than native, which is why the case
+set is small and fixed rather than the whole matrix.
+
+The case set is in `measure.config.json`, under `deterministic.cases`,
+with the iteration count next to it. The ports that take part are those
+with a `deterministic` entry: Rust, and Go with `GOMAXPROCS=1` and
+`GOGC=off`. The first is a constraint, because valgrind cannot follow
+the Go scheduler switching goroutine stacks across threads. The second
+is what makes the count a count. With the collector on, the count is
+the work of the parser and of the collector together, and the
+collector's share, some twenty-three million instructions on top of
+fifty-two million for the parser in the note's measurement, is paced by
+the runtime on its own terms, some of them wall-clock terms that
+valgrind stretches fifty-fold. It is not a property of the parser and
+it does not repeat: three counts of the same twenty parses differ by a
+fifth of a percent, where two with the collector off differ by a few
+hundred instructions in fifty million (the figures and the command are
+in the note at the end of this section). So the Go figure is the work
+the parser does and none of what the collector does, and the
+collector's cost is in the wall clock column, where it was already.
+TypeScript has no entry and that is deliberate. V8 compiles at run
+time, so an instruction count of the Node port counts the compiler as
+much as the parser and says nothing that the wall clock does not.
+
+The collector setting reaches the cache columns too, and it moves them
+the other way. With the collector off nothing is freed, so every parse
+allocates into memory the process has never touched, and the first
+write to each of those lines misses at every level of the simulated
+cache. On `adder/terms-512` all but a few dozen of the Go port's
+first-level write misses per parse go on to miss the last level, where
+the Rust port, recycling memory through its allocator, records three
+times as many first-level write misses and sends a few dozen of them
+to the last level (the figures and the command are in the note at the
+end of this section). Go's D1 write-miss and LL data-miss columns are a
+cost of the setting more than of the port. The report prints them
+beside Rust's because they are what the counted process did, and a
+reader compares instructions across ports and compares misses across
+revisions of one port, under one setting.
+
+The counted process is given an environment the harness builds, not the
+shell's. The Go runtime paces its collector on `GOMEMLIMIT` as well as
+`GOGC` and reads `GODEBUG`; the Rust port's allocator reads its
+`MIMALLOC_` settings when the process starts; the loader honours
+`LD_PRELOAD`; valgrind reads `VALGRIND_OPTS`. Each changes the count,
+and the runners can read back one of them, `GOGC`, together with
+`GOMAXPROCS`: the Go runner reports `GOMAXPROCS` as its scheduler has
+it and `GOGC` as its collector has it, and that is the whole of what
+any runner reports. `GOMEMLIMIT`,
+`GODEBUG`, and the settings the allocator, the loader, and the tool
+read are read back by nothing, so a setting left in the recording
+shell would reach the process and appear nowhere, and what keeps them
+out is the list of what the harness passes. It passes `PATH` and
+`TMPDIR` from the host, whichever are set, and the port's configured
+settings, and nothing else, and the document records what was passed:
+the host variables by name and the settings by value. A run whose
+document names anything else is refused at read-back.
+
+For each case, the harness runs the port's runner twice under
+`valgrind --tool=callgrind --cache-sim=yes --branch-sim=yes`: once in
+its `--deterministic` mode at the configured number of parses, and once
+at zero. The runner in that mode has no warmup, no calibration, and no
+clock; it builds the parser, generates the input, parses once, parses
+the configured number of times, and prints the input's hash, the
+checksum of the first parse and the checksum of the loop. The zero-parse
+run is the baseline, and the difference divided by the count is the cost
+of one parse. Reading the config, building the parser, generating the
+input and the first parse are in both runs and cancel, so the per-parse
+figure carries no share of process startup and depends on no symbol name
+the tool has to find.
+
+The first parse is in both runs because an engine can leave work until
+it is first asked to parse. At the pinned revision the Rust engine
+builds its parser on the first call, and under callgrind its first parse
+of `adder/terms-512` costs some eighty thousand instructions more than
+its second (the note at the end of the section has the figures and the
+command). Without a parse in the baseline that one-time work sits
+inside the per-parse figure at one part in twenty, about 0.05%. That is
+under the mode's own repeatability, and it is still startup work in a
+figure described as carrying none, so the runner takes the parse and the
+baseline carries the work.
+
+The runner's document is checked rather than trusted, the way the
+wall-clock aggregator checks each port's input hash and capability
+results. The loop's checksum has to be the configured count times the
+checksum of the first parse, reduced by the modulus every runner uses,
+so a loop that ran nineteen times is refused; a case whose parse
+checksums to zero is refused too, because a loop of zeros proves nothing
+about how many times it ran. The ports counted in one run have to report
+the same input hash, the same first-parse checksum and the same loop
+checksum, since they parse the same input the same number of times, and
+a port that parses to a different value is refused rather than published
+as comparable. And a runner reports the settings it read back from its
+runtime rather than the ones it was given: the Go runner prints
+`GOMAXPROCS` as the scheduler has it and `GOGC` as the collector has it,
+so a count taken with the collector on is refused before it can be
+recorded under a config that says `GOGC=off`. The read-back the
+aggregator uses repeats every one of these checks on the recorded
+documents, and adds one the recorder has no need of: every total a
+document records is read back out of the profile it names, so a figure
+in the JSON that the profile on disk does not carry is refused, the way
+`matrix.json` is held to the raw wall-clock samples, and each profile
+is held to being a profile of what the document says was counted: its
+`cmd:` line has to be the recorded runner command, the snapshot the
+document records the process reading, the case and the count, and its
+`creator:` line has to be the tool version the document names. A run
+is assembled in a directory named after it, so the snapshot names the
+run, and a profile copied in from another case, another count, another
+run or another valgrind is refused with its totals intact. The tool
+and the cache geometry the report quotes are the ones every port and
+every case in the run was held to.
+
+### Reading it
+
+A counted run carries, next to the wall-clock evidence:
+
+- `raw/deterministic/<port>.json`. The totals line of every profile, for
+  the measured run and the baseline, keyed by callgrind event name, with
+  the tool version and arguments, the runner command, the environment
+  the process was given and the settings the runner reported running
+  under, the input's hash, the checksum of one parse and of each loop,
+  and the simulated cache geometry.
+- `raw/deterministic/<port>/<benchmark>-<case>.out` and the matching
+  `-baseline.out`. The callgrind profiles themselves, with the recording
+  host's repository and home directories replaced by placeholders. Run
+  `callgrind_annotate` on one to see where the instructions went.
+- `matrix.json`, under `deterministic.rows`. Per parse, for each port:
+  `instructions` (Ir), `d1ReadMisses`, `d1WriteMisses`, `llDataMisses`,
+  `branches` and `mispredicts`, alongside the raw totals they were
+  derived from and `relativeInstructions` normalised to the port with
+  the fewest.
+- The run's `README.md`, under "Deterministic metrics". The same figures
+  as a table.
+
+Instruction count is the headline and the cache counters are secondary,
+and the difference is repeatability, not importance. Two callgrind runs
+of one binary do not agree exactly, and how far apart they land depends
+on the port (the note at the end of the section has both pairs and the
+command). The Go runner's two counts of twenty parses differ by a few
+hundred instructions in fifty million and by about 1% in first-level
+data-cache read misses. The Rust runner's two differ by a fifth of a
+percent in instructions and a third of a percent in those misses,
+because the engine's hash tables are seeded per process, so the probe
+sequences and where the allocator places memory both vary from one
+process to the next. That band is one binary counted twice, not two
+recorded runs. Where the repository holds two counted runs at one pin,
+the difference between their `deterministic.rows` is the mode's own
+run-to-run repeatability, and a change smaller than it is not a claim
+either. A change that moves instructions by 1% is five times the wider
+of the two bands; a change that moves D1 misses by a few percent has to
+be shown twice; and Go's write-miss and last-level columns carry the
+collector setting as well as the port, so a movement in them is read
+against Go's own earlier runs rather than against Rust.
+
+Two counted runs are comparable only under the same valgrind version
+and the same simulated cache geometry. Neither is pinned: the tool is
+the one runtime dependency this repository takes from the host rather
+than from a lockfile, and callgrind takes the geometry it simulates
+from the machine it runs on, warning when the machine's last-level
+cache is not one it can model exactly. A run records both, holds every
+port and every case in it to them, and prints them at the top of its
+counted section; a counted run recorded on a host whose tool or
+geometry differs from the previous counted run there is announced at
+the terminal the way a changed runtime version is, and the counts on
+either side of that line are not one series, however unchanged the
+ports are. The tool's arguments are the harness's own rather than the
+host's, and a run records and compares them the same way, so a change
+to them is announced too. Check the three before reading anything into
+a difference between two runs' `deterministic.rows`. And a counted run
+is otherwise an ordinary run: every run recorded before the mode
+existed lacks the section and stays as it was, and a run made without
+the flag lacks it too.
+
+### Measured once, outside the harness
+
+The figures this section leans on for its band and its choices were
+measured once each, by hand, on September 16, 2026, on the host that
+recorded the runs of the day before (fingerprint `063cd3b35d2f`), under
+valgrind 3.22.0 and at the engine revisions each port pinned that day.
+None of them is a recorded run, so they are the reason the rule reads
+as it does and not the page's own evidence for it. Each is listed with
+what it was measured on and, where this harness's own runners can
+repeat the measurement, with the command. The runners are built with
+`npm run build`, and each command below counts a process by hand rather
+than through the harness, so the shell's settings reach it where the
+harness would withhold them: run them from a shell with no `GO`,
+`MIMALLOC_`, `LD_` or `VALGRIND_` settings beyond the ones shown.
+
+The tool simulated the caches it found on that host, and every profile
+behind the figures carries the same three header lines:
+
+```text
+desc: I1 cache: 32768 B, 64 B, 8-way associative
+desc: D1 cache: 49152 B, 64 B, 12-way associative
+desc: LL cache: 276824064 B, 64 B, 33-way associative
+```
+
+The instruction counts do not depend on those lines. Every miss figure
+does: the first-level read and write misses on the `D1` line, and the
+last-level write misses on the `LL` line as well, since a write reaches
+the last level only after missing the first. The host fingerprint does
+not cover the geometry, and the fingerprint above reported `D1 cache:
+32768 B, 64 B, 8-way associative` and `LL cache: 35651584 B, 64 B,
+17-way associative` earlier the same day. So a miss figure below is
+reproducible on a host whose profiles carry these three lines and on
+no other: a host whose lines differ gets its own figures from the same
+commands, and those compare with each other, not with these. Check the
+`desc:` lines of a profile against the three above before comparing a
+miss count with one below.
+
+- **The wall-clock floor, -2.49% to +2.92% with a mean of +0.64%.** The
+  full profile's median per row, one build of the Rust engine against
+  the same engine with one function marked never-inline, interleaved
+  across rounds within one session. It rests on two engine builds this
+  repository never made and cannot make, and it stands as the reason
+  for the 3% rule, not as a figure to compare against.
+- **The Go collector, on and off: 74,619,994, 74,482,701 and 74,457,411
+  instructions for three counts of twenty parses with it on; 51,708,870
+  and 51,708,544 for two with it off.** Measured on the harness's own Go
+  runner at `adder/terms-512`. With the collector off the two counts
+  are 326 instructions apart and the count is the parser alone; with it
+  on the count carries some twenty-three million instructions of the
+  collector's work as well, and moves by a fifth of a percent from one
+  count to the next. To repeat it, count the process once with the
+  collector as the runtime defaults it and once off:
+
+  ```sh
+  for setting in 100 off; do
+    GOMAXPROCS=1 GOGC=$setting valgrind -q --tool=callgrind --cache-sim=yes --branch-sim=yes \
+      --callgrind-out-file=.build/go-gogc-$setting.out \
+      .build/measure-go --config=measure.config.json --benchmarks=benchmarks \
+      --deterministic=adder/terms-512 --iterations=20 >/dev/null
+    grep ^totals: .build/go-gogc-$setting.out
+  done
+  ```
+
+  The numbers on a `totals:` line are in the order of the profile's
+  `events:` line, and the first is the instruction count. Run the loop
+  twice and the two `off` lines agree where the two `100` lines do not.
+- **The write misses under the collector setting: 5,319 first-level
+  write misses per parse for the Go port, of which 5,292 go on to miss
+  the last level; 15,175 and 31 for the Rust port.** Measured on the
+  harness's own runners at `adder/terms-512`, as the process counted at
+  twenty parses less the process counted at none, divided by twenty:
+  the Go runner with `GOMAXPROCS=1 GOGC=off` and the Rust runner with
+  nothing set. To repeat it, run the command above at `--iterations=20`
+  and at `--iterations=0` for each runner (`.build/measure-rust` in
+  place of the Go runner, and no `GO` settings) and subtract the sixth
+  and the ninth numbers on the two `totals:` lines, which the `events:`
+  line names `D1mw` and `DLmw`. All four figures are of the geometry
+  above as much as of the ports: the first-level pair follows the `D1`
+  line and the last-level pair the `LL` line, and a host whose profiles
+  carry other lines does not reproduce them.
+- **The Rust engine's first parse of `adder/terms-512`: 7,866,557
+  instructions, against 7,782,339 for its second, so the first-use work
+  is 84,218.** Measured on the harness's own Rust runner as the
+  instructions inside `tabnas::Tabnas::parse`, inclusive of what it
+  calls, in the process counted at no parses, which holds the parse
+  before the loop alone, and in the process counted at one, which holds
+  that parse and the loop's. The runner keeps its symbol names, and
+  this is the one figure here that needs one. To repeat it:
+
+  ```sh
+  for n in 0 1; do
+    valgrind -q --tool=callgrind --cache-sim=yes --branch-sim=yes \
+      --callgrind-out-file=.build/rust-$n.out \
+      .build/measure-rust --config=measure.config.json --benchmarks=benchmarks \
+      --deterministic=adder/terms-512 --iterations=$n >/dev/null
+    callgrind_annotate --inclusive=yes .build/rust-$n.out | grep -F 'tabnas::Tabnas::parse '
+  done
+  ```
+
+  The pattern ends in a space and carries no anchor, because
+  `callgrind_annotate` closes each line with the binary's path in
+  brackets after the symbol, and a pattern anchored at the symbol's end
+  matches nothing and prints nothing. The first number on each line is
+  the instructions inside `parse`, and the second line's less the first
+  line's is the second parse. Counted
+  the way the harness counts, as the differences between the `totals:`
+  lines of the process at zero, one, two and three parses, the second,
+  third and fourth parses are 7,782,899, 7,782,909 and 7,789,783.
+- **Two callgrind runs of one binary: 326 instructions and 0.9% of the
+  first-level read misses apart for the Go runner with the collector
+  off; a fifth of a percent and a third of a percent apart for the Rust
+  runner.** Measured on the harness's own runners at `adder/terms-512`
+  and twenty parses. The Go pair is the `off` pair above, 11,758 and
+  11,648 read misses; the Rust pair is 165,456,330 and 165,106,082
+  instructions with 361,935 and 363,175 read misses, from the Rust
+  command above at `--iterations=20` run twice. The instruction pairs
+  hold on any geometry; the read-miss pairs follow the `D1` line above
+  and hold on no other. The mode's own run-to-run repeatability is the
+  figure to use once two counted runs at one pin are recorded, and
+  these pairs say which counter to expect to move, and by how much for
+  each port.
+
 ## Parser pins
 
 Each port pins its parser exactly, and how it pins differs by runtime because

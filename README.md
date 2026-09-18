@@ -44,6 +44,11 @@ make measure
 `make test` builds all three runners and executes a short validation profile.
 `make measure` records a full run under `results/runs/`, refreshes
 `results/latest/`, updates the catalog, and rebuilds the Pages history data.
+`make measure-deterministic` records the same run with callgrind
+instruction and cache counts for a fixed small case set alongside the
+wall clock; it needs `valgrind` installed, and
+[`docs/methodology.md`](docs/methodology.md) says when those counts are
+the evidence to reach for.
 
 For repeated measurements across a fleet, the harness derives a stable,
 12-character pseudonymous fingerprint from the operating system's machine key.

@@ -6,3 +6,13 @@ npm
 stderr
 stdout
 toolchain
+callgrind
+glibc
+goroutine
+inlines
+inlining
+libc
+rebased
+runtime
+runtimes
+valgrind

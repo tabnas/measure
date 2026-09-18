@@ -31,7 +31,19 @@ A port runner must:
   runner errors;
 - report capability failures in JSON so the cross-port aggregator can explain
   them;
-- preserve raw performance samples.
+- preserve raw performance samples;
+- to take part in the counted mode, accept `--deterministic=<benchmark>/<case>`
+  with `--iterations=<n>`, parse that case once and then exactly `n` times
+  with no clock, and print the input identity, the checksum of the first
+  parse, the checksum of the `n` parses, and the runtime settings it read
+  back (an empty object where there are none), so that a tool wrapped
+  around the process counts the same work every time and the harness can
+  check what the process did against what it asked for. The harness
+  gives that process `PATH` and `TMPDIR` from the host, the settings in
+  the port's `deterministic.environment`, and nothing else, so a runner
+  that needs another variable names it there. A port that
+  cannot do this meaningfully, such as one whose runtime compiles at run
+  time, omits the `deterministic` entry from its config and is left out.
 
 Add its command to `measure.config.json` and ensure CI installs the required
 runtime. The port must use the same parser version family as the other rows or
