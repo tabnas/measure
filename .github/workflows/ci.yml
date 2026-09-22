@@ -21,8 +21,15 @@ jobs:
         with:
           go-version: '1.26.x'
           cache: true
+      - name: Check the Rust toolchain
+        # The ubuntu-24.04 image ships a stable Rust toolchain, so there is
+        # no setup action to pin here. Printing the version puts the
+        # compiler that produced the measurement in the log next to the Node
+        # and Go versions, and fails loudly if a future image drops it.
+        run: cargo --version && rustc --version
       - run: npm ci
       - run: GOWORK=off go mod download
+      - run: cargo fetch --locked --manifest-path ports/rust/Cargo.toml
       - run: npm test
       - run: npm run validate
       - run: npm run site
