@@ -22,7 +22,7 @@
     "clean": "node scripts/clean.mjs"
   },
   "dependencies": {
-    "@tabnas/parser": "0.12.1"
+    "@tabnas/parser": "0.12.2"
   },
   "devDependencies": {
     "@types/node": "26.6.2",

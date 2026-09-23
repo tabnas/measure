@@ -24,7 +24,7 @@ The suite currently defines:
   `L = { wwᴿ | w ∈ {a,b}* }`. A state-aware midpoint condition lets the
   deterministic rule machine recognize it without automatic branch search.
 
-Both are run against TypeScript/Node.js, Go, and Rust using Tabnas `0.12.1`.
+Both are run against TypeScript/Node.js, Go, and Rust using Tabnas `0.12.2`.
 The Rust crate is unpublished, so its port pins a parser revision rather
 than a registry version; see [`docs/methodology.md`](docs/methodology.md).
 
