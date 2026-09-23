@@ -29,7 +29,7 @@
       "label": "TypeScript / Node.js",
       "parser": {
         "module": "@tabnas/parser",
-        "version": "0.9.7"
+        "version": "0.12.1"
       },
       "manifests": [
         "package.json",
@@ -46,7 +46,7 @@
       "label": "Go",
       "parser": {
         "module": "github.com/tabnas/parser/go",
-        "version": "0.9.7"
+        "version": "0.12.1"
       },
       "manifests": [
         "go.mod",
@@ -66,7 +66,7 @@
       "label": "Rust",
       "parser": {
         "module": "tabnas",
-        "version": "0.9.7"
+        "version": "0.12.1"
       },
       "manifests": [
         "ports/rust/Cargo.toml",
