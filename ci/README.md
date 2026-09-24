@@ -1,13 +1,13 @@
 # ci/
 
-Staging area for GitHub Actions workflow changes.
+No scripts live here. The workflows in `.github/workflows/` run the
+`npm` scripts and the files under `scripts/` directly.
 
-This directory exists because session credentials cannot write
-`.github/workflows/*` — see admin `DECISIONS.md` ADR-8. To change CI:
-
-1. Put the intended workflow file in `workflows/`.
-2. A maintainer promotes it with the admin `rollout/apply-ci-folders.sh`
-   script.
+To change CI, edit `.github/workflows/` in a reviewed pull request.
+Session credentials push workflow files (admin `DECISIONS.md` ADR-8, as
+amended 2026-09-24), so staging a workflow here first for a maintainer
+to promote is optional. Sessions still cannot push tags, so a maintainer
+pushes any tag that a tag-triggered workflow needs.
 
 ## Promoted, 2026-09-22
 
