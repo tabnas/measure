@@ -35,9 +35,9 @@ drift from the other:
 
 | Gate | Runs | Checks |
 |---|---|---|
-| `make prose` (Vale) | `ci/workflows/docs.yml` (staged) | spelling, Google's conventions, and the banned list, at the levels set in `.vale.ini` |
+| `make prose` (Vale) | `.github/workflows/docs.yml` | spelling, Google's conventions, and the banned list, at the levels set in `.vale.ini` |
 | `scripts/docs.test.mjs` | `npm test` | the banned list again, the no-em-dash rule, the first-person rules, the exclamation ration, and no emoji |
-| `scripts/vale-counts.mjs` | `make prose` | that every count in `.vale.ini`, and the total below, are what Vale reports |
+| `scripts/vale-counts.mjs` | `make prose`, `.github/workflows/docs.yml` | that every count in `.vale.ini`, and the total below, are what Vale reports |
 
 The gated set is the reader-facing one: the `README.md` and the two prose
 pages under `docs/`. This repository is a measurement harness rather than
@@ -66,7 +66,7 @@ is capability, not preference.**
 
 **A Google rule sitting below error level was tried at error first and
 found wrong for these pages.** `.vale.ini` records what each produced on
-a clean run over the gated set: 166 alerts across 3 files. Those numbers
+a clean run over the gated set: 203 alerts across 3 files. Those numbers
 were written by hand once, and this sentence and the one in `.vale.ini`
 drifted apart from each other and from a run.
 `node scripts/vale-counts.mjs` now reads both against a live Vale run
@@ -74,11 +74,11 @@ and fails on any difference; `--write` re-measures. A rule switched off
 is measured with it switched back on, because the count is the evidence
 for switching it off.
 
-**The Vale gate is staged, not yet wired.** `ci/workflows/docs.yml`
-follows this repository's convention for proposed workflows (see
-`ci/README.md`): review it and move it to `.github/workflows/` to
-activate. `make prose` runs the same check locally today, and
-`scripts/docs.test.mjs` runs in `npm test` now.
+**The Vale gate runs in CI.** `.github/workflows/docs.yml` runs Vale
+and `scripts/vale-counts.mjs` on every push and pull request that
+touches a gated page, this guide, the Vale configuration, or the gate's
+own scripts and workflow. `make prose` runs the same two checks locally,
+and `scripts/docs.test.mjs` runs in `npm test`.
 
 ## The structure: Diátaxis, enforced by placement
 
@@ -102,9 +102,9 @@ explanation) but the normative statement lives in the reference and
 everything else links to it.
 
 **The set is small and named.** `scripts/gated-docs.mjs` lists the pages
-explicitly and filters to what is on disk, so a renamed page shows up as
-a missing gate rather than a crash. A new prose page is added to that
-list in the same commit that adds the page.
+explicitly and throws when a listed page is not on disk, so a renamed
+page fails the gate rather than leaving it. A new prose page is added to
+that list in the same commit that adds the page.
 
 ## The published set cites nothing internal
 
@@ -114,7 +114,7 @@ published:
 
 | Set | Audience |
 |---|---|
-| Published: everything `gated-docs.cjs` lists | anyone using tabnas |
+| Published: everything `scripts/gated-docs.mjs` lists | anyone using tabnas |
 | Internal: `AGENTS.md`, design notes, feasibility reports, ledgers | contributors |
 
 **A published page never cites an internal one.** Not as a link, not as a
@@ -165,8 +165,8 @@ phrases. Ten habits, with the register they apply in:
    ABNF, skip to the reference"). "We" appears only in tutorials, walking
    through code together. "I" appears nowhere.
 8. **Show that the code is real.** Every fenced example carrying a `// =>`
-   assertion is executed by `ts/test/doc-examples.test.js`; when a page
-   says the output is the engine's, that is what it means.
+   assertion is executed by a test; when a page says the output is the
+   engine's, that is what it means.
 9. **Jokes are self-directed or about the industry's mundanity, and the
    register goes fully serious the moment correctness or safety is on the
    table.** Never joke about the reader, other tools, or an error's
@@ -312,9 +312,11 @@ that names a thing.
 ## Code snippets
 
 A fenced JavaScript or Go example that states a result carries that
-result as a `// =>` comment, and `ts/test/doc-examples.test.js` executes
-it. A snippet that cannot be executed says why in one sentence rather
-than being left to look executable.
+result as a `// =>` comment, and a test executes it. No gated page here
+carries one yet, so this repository has no doc-example harness; the
+first page that does brings one with it. A snippet that cannot be
+executed says why in one sentence rather than being left to look
+executable.
 
 ## Terminology
 
@@ -373,17 +375,21 @@ notations" is. A rule demoted without that note reads later as an
 oversight, and gets re-promoted by somebody repeating the work.
 
 To accept a word the spelling gate does not know, add it to `accept.txt`
-in the same directory, one stem at a time. Never add a suffix pattern:
-`\w+ise` accepts `madeupise` too, and punches a hole through the gate the
-file exists to make usable. Write a case pair as one regular expression
-(`[Tt]abnas`), because two plain lines make Vale enforce one spelling
-over the other, and it will then report the directory `ts/` as a
-misspelling of `TS`.
+in the same directory, one word at a time. An entry matches a whole word,
+so `[Ee]nder` does not accept `enders`: a plural or a possessive is an
+entry of its own. Never add a suffix pattern: `\w+ise` accepts `madeupise`
+too, and punches a hole through the gate the file exists to make usable.
+Write a case pair as one regular expression (`[Tt]abnas`), because two
+plain lines make Vale enforce one spelling over the other. A name also
+written in lower case, as a package name is, puts its capitals in the same
+entry (`(?:[Jj]son|JSON)`); a name with one correct case is one exact
+entry (`TS`, `DOMPurify`), so Vale reports any other case of it.
 
 ## The fleet
 
 These rules are the same across every tabnas repository, and the assets
 are copies rather than a shared package: `.vale.ini`, the vocabulary, the
-word-choice rule, `gated-docs.cjs` and `docs.test.js`. A change to the
-house voice is a change to each copy. The vocabulary and the gated file
-list are per-repository, because the terms and the pages differ.
+word-choice rule, `scripts/gated-docs.mjs` and `scripts/docs.test.mjs`.
+A change to the house voice is a change to each copy. The vocabulary and
+the gated file list are per-repository, because the terms and the pages
+differ.
