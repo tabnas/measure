@@ -14,16 +14,14 @@ path = "src/main.rs"
 # The Rust parser is not published to crates.io and carries no `rs/` tag,
 # so the exact revision is the only pin available.
 #
-# The revision is past `ts/v0.9.7` and `go/v0.9.7`. It carries the rule
-# stack fix that made this port measurable at all (tabnas/parser#176,
-# merged) and the allocation work that followed it. All of it is
-# Rust-internal, so the three ports still report 0.9.7 and the matrix
-# still compares like with like.
+# The revision is the `ts/v0.12.2` and `go/v0.12.2` release commit, so
+# the three ports run the same engine release and the matrix compares
+# like with like. The crate's in-tree version there is 0.12.2 too.
 [dependencies]
-tabnas = { git = "https://github.com/tabnas/parser", rev = "e99befac7249c731a93ebf61078833b0a413dac1" }
+tabnas = { git = "https://github.com/tabnas/parser", rev = "16dbc26c1e1cde506142300b18acb98db9a6374c" }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
-sha2 = "0.10.9"
+sha2 = "0.11.0"
 # The other two ports bring their own allocator: Go has the runtime's and
 # TypeScript has V8's. Rust defaults to whatever libc supplies, which on
 # this host is glibc, and the engine allocates heavily enough that the
