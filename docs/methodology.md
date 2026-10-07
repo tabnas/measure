@@ -471,9 +471,10 @@ the published artifacts differ:
 - Go pins `github.com/tabnas/parser/go` by version in `go.mod` and `go.sum`,
   resolved from the repository's `go/vX.Y.Z` tags.
 - Rust pins the `tabnas` crate by **git revision** in
-  `ports/rust/Cargo.toml` and `ports/rust/Cargo.lock`. The crate is not
-  published to crates.io and the parser repository carries no `rs/` tags, so a
-  revision is the only exact pin available. The revision is what the run is
+  `ports/rust/Cargo.toml` and `ports/rust/Cargo.lock`. The engine crate has
+  been on crates.io, as `tabnas-parser`, and tagged `rs/v*` only since 0.12.6.
+  The release pinned here, 0.12.2, is not on crates.io and has no `rs/` tag, so
+  a revision is the only exact pin available. The revision is what the run is
   reproducible against; the version the runner reports is the crate's in-tree
   version, which can be ahead of the last TypeScript and Go release.
 
@@ -482,15 +483,15 @@ versions, and the revision in the lockfile is what settles any question the
 version string leaves open.
 
 **Every run carries those files, under `definitions/manifests/<port>/`.** A
-run names its parsers by the version each port reports, and the Rust crate is
-unpublished, so every revision on a branch reports the same in-tree version:
-the twenty distinct revisions behind this repository's Rust series, measured
-across forty runs, all call themselves 0.9.7. Without the manifests the only
-link from a run to the revision it measured is the run's `repositoryCommit`,
-and a branch that is rebased or squashed takes that commit away while the run
-stays. One run here was reported as already naming an object no longer in the
-history it was reviewed against. The snapshot makes a run answer the question
-by itself.
+run names its parsers by the version each port reports, and the Rust port is
+pinned by revision, so every revision on a branch reports the same in-tree
+version: the twenty distinct revisions behind this repository's Rust series,
+measured across forty runs, all call themselves 0.9.7. Without the manifests
+the only link from a run to the revision it measured is the run's
+`repositoryCommit`, and a branch that is rebased or squashed takes that commit
+away while the run stays. One run here was reported as already naming an
+object no longer in the history it was reviewed against. The snapshot makes a
+run answer the question by itself.
 
 Runs recorded before the snapshot was added do not carry it. For those, the
 revision is still recoverable while the commit survives, by reading the

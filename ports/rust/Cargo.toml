@@ -11,8 +11,9 @@ publish = false
 name = "measure-rust"
 path = "src/main.rs"
 
-# The Rust parser is not published to crates.io and carries no `rs/` tag,
-# so the exact revision is the only pin available.
+# The engine has been on crates.io (as tabnas-parser), with `rs/` tags,
+# only since 0.12.6. The release pinned here, 0.12.2, has neither, so the
+# exact revision is the only pin available.
 #
 # The revision is the `ts/v0.12.2` and `go/v0.12.2` release commit, so
 # the three ports run the same engine release and the matrix compares
