@@ -2,8 +2,9 @@
 
 // Can a recorded run still say which parser it measured?
 //
-// Invariant 8 pins the Rust crate by git revision, because it is unpublished
-// and untagged. Invariant 11 says every run carries the manifests used to
+// Invariant 8 pins the Rust crate by git revision, because the release it
+// measures predates the crate's crates.io releases and `rs/` tags.
+// Invariant 11 says every run carries the manifests used to
 // produce it. Between them, the run that measured a revision has to carry
 // the file that names it -- otherwise the only link is the run's
 // `repositoryCommit`, and a rebase or a squash takes that commit away while

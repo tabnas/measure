@@ -163,7 +163,7 @@ async function snapshotDefinitions(runDirectory, config, manifests) {
 
   // Invariant 11 says a run carries the manifests used to produce it, and
   // these were the ones it did not. A run named its parsers only by the
-  // version each port reports, and the Rust crate is unpublished, so every
+  // version each port reports, and the Rust port pins a revision, so every
   // revision on a branch reports the same in-tree version: twenty-three
   // pinned revisions all calling themselves 0.9.7. That left the measured
   // git revision recoverable only through the run's `repositoryCommit`,

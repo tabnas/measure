@@ -66,7 +66,7 @@ universal ranking.
 
 | Path | Contract |
 | --- | --- |
-| `benchmarks/<id>/benchmark.json` | Canonical capability cases and deterministic performance generators. Both ports read these files directly. |
+| `benchmarks/<id>/benchmark.json` | Canonical capability cases and deterministic performance generators. Every port reads these files directly. |
 | `schemas/` | JSON Schema contracts for benchmark manifests, raw port results, and matrix reports. |
 | `ports/typescript/` | TypeScript/Node runner using `@tabnas/parser`. |
 | `ports/go/` | Go runner using `github.com/tabnas/parser/go`. |
@@ -83,7 +83,7 @@ universal ranking.
 
 1. A benchmark's input is defined once in its manifest. Port-specific copies
    are forbidden.
-2. Both ports must report the same SHA-256 input hash for a matrix row.
+2. Every port must report the same SHA-256 input hash for a matrix row.
 3. Capability failures fail the run; performance numbers from a failing
    implementation are never published as comparable.
 4. Parser construction, process startup, compilation, and report generation
@@ -93,10 +93,12 @@ universal ranking.
 7. Generated `results/latest/`, `results/index.json`, and
    `site/data/catalog.json` must agree with the immutable run catalog.
 8. Pin runtime dependencies exactly. A parser upgrade is its own measured
-   change and must produce a new run. The Rust crate is unpublished and
-   untagged, so its pin is a git revision in `ports/rust/Cargo.toml` and
-   `ports/rust/Cargo.lock`; the version the runner reports is the crate's
-   in-tree version and can be ahead of the last TypeScript and Go release.
+   change and must produce a new run. The engine crate has been on crates.io
+   (as `tabnas-parser`), with `rs/` tags, only since 0.12.6. The release
+   pinned here, 0.12.2, predates both, so its Rust pin is a git revision in
+   `ports/rust/Cargo.toml` and `ports/rust/Cargo.lock`; the version the
+   runner reports is the crate's in-tree version and can be ahead of the last
+   TypeScript and Go release.
 9. Rebuild history by scanning immutable run directories. Never maintain a
    second hand-authored list of results.
 10. Trend lines must identify host and environment discontinuities. Do not

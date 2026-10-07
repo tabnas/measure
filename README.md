@@ -25,8 +25,9 @@ The suite currently defines:
   deterministic rule machine recognize it without automatic branch search.
 
 Both are run against TypeScript/Node.js, Go, and Rust using Tabnas `0.12.2`.
-The Rust crate is unpublished, so its port pins a parser revision rather
-than a registry version; see [`docs/methodology.md`](docs/methodology.md).
+That release was cut before the engine crate reached crates.io at 0.12.6, so
+the Rust port pins its parser revision rather than a registry version; see
+[`docs/methodology.md`](docs/methodology.md).
 
 ## Quick start
 
